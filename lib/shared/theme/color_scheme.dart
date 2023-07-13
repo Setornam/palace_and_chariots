@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 ColorScheme lightColorScheme = ColorScheme.fromSeed(
   seedColor: Colors.blue,
-  tertiary: const Color(0xffdb00ff),
-  primary: Colors.blueAccent,
+  tertiary: const Color(0xffb48325),
+  primary: Color(0xff071ec3),
   onPrimary: const Color(0xFFffffff),
   background: const Color(0xFFffffff),
   onBackground: const Color(0xFF1a1c18),

@@ -8,26 +8,24 @@ import 'color_scheme.dart';
 
 ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
-
   inputDecorationTheme: InputDecorationTheme(
-        enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.transparent),
-            borderRadius: BorderRadius.circular(12)),
-        errorMaxLines: 4,
-        filled: true,
-        fillColor: lightColorScheme.surface,
-        focusColor: lightColorScheme.primary,
-        focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: lightColorScheme.primary, width: 2),
-            borderRadius: BorderRadius.circular(12)),
-        contentPadding: const EdgeInsets.all(22),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+      enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.transparent),
+          borderRadius: BorderRadius.circular(7)),
+      errorMaxLines: 4,
+      filled: true,
+      fillColor: lightColorScheme.surface,
+      focusColor: lightColorScheme.primary,
+      focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: lightColorScheme.primary, width: 2),
-        ),
-        floatingLabelBehavior: FloatingLabelBehavior.auto,
-        floatingLabelAlignment: FloatingLabelAlignment.start,
-        border: OutlineInputBorder(
-            borderSide: BorderSide(color: lightColorScheme.surface))),
-
+          borderRadius: BorderRadius.circular(7)),
+      contentPadding: const EdgeInsets.all(22),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(7),
+        borderSide: BorderSide(color: lightColorScheme.primary, width: 2),
+      ),
+      floatingLabelBehavior: FloatingLabelBehavior.auto,
+      floatingLabelAlignment: FloatingLabelAlignment.start,
+      border: OutlineInputBorder(
+          borderSide: BorderSide(color: lightColorScheme.surface))),
 );

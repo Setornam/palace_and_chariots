@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "322047129867",
+    "project_id": "palace-and-chariots-5e051",
+    "storage_bucket": "palace-and-chariots-5e051.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322047129867:android:9b5f4ac68779c7d1ee8a0e",
+        "android_client_info": {
+          "package_name": "com.example.palace_and_chariots"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "322047129867-gt0bu2llrflkkr5qq0trn8tlrp7gjsci.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmcyzlpO7Ak0BEH9uLs1dShZXovg_dgTI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "322047129867-gt0bu2llrflkkr5qq0trn8tlrp7gjsci.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
