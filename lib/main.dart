@@ -7,7 +7,7 @@ import 'package:palace_and_chariots/shared/theme/widget_light_theme.dart';
 import 'package:palace_and_chariots/src/home/presentation/widgets/custom_bottom_nav.dart';
 import 'package:palace_and_chariots/src/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:palace_and_chariots/src/sign_in/presentation/pages/sign_in_page.dart';
-import 'package:palace_and_chariots/src/sign_up/presentation/sign_up_page.dart';
+import 'package:palace_and_chariots/src/sign_up/presentation/pages/sign_up_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,12 +23,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        useInheritedMediaQuery: true,
-        title: 'Flutter Demo',
-        theme: lightMode,
-        home: const SignUpPage()
-        // home: CustomBottomNavigation(),
-        );
+      debugShowCheckedModeBanner: false,
+      useInheritedMediaQuery: true,
+      title: 'Flutter Demo',
+      theme: lightMode,
+      // home: const SignInPage()
+      home: CustomBottomNavigation(),
+    );
   }
 }
