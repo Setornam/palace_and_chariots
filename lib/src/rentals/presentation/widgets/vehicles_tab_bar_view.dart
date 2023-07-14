@@ -125,105 +125,138 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                   itemBuilder: (BuildContext context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: SizedBox(
-                        child: ListTile(
-                          visualDensity: const VisualDensity(vertical: 4),
-                          title:   Container(
-                    //           height: 80,
-                    //           width: MediaQuery.of(context).size.width * 0.72,
-                    //           decoration: const BoxDecoration(
-                    //               borderRadius: BorderRadius.only(
-                    //                   topLeft: Radius.circular(7),
-                    //                   bottomLeft: Radius.circular(7)),
-                    //               color: Color(0xffe7e7f4)),
-                    //           child: Column(
-                    //             children: [
-                    //               Row(
-                    //                 mainAxisAlignment:
-                    //                     MainAxisAlignment.spaceBetween,
-                    //                 children: [
-                    //                   const Text(
-                    //                     'Toyota Corolla 2020',
-                    //                     style: TextStyle(
-                    //                         fontWeight: FontWeight.bold,
-                    //                         fontSize: 15,
-                    //                         color: Colors.black87),
-                    //                   ),
-                    //                   const Icon(
-                    //                     Icons.star,
-                    //                     color: Color(0xfff8c123),
-                    //                   )
-                    //                 ],
-                    //               ),
-                          leading: Container(
-                            width: 70,
-                            decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(7),
-                                    bottomLeft: Radius.circular(7)),
-                                image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(
-                                        'assets/images/benz-front.png'))),
-                          ),
+                      child: Container(
+                        child: Row(
+                          children: [
+                            Container(
+                              height: 80,
+                              width: 80,
+                              decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(7),
+                                      bottomLeft: Radius.circular(7)),
+                                  image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: AssetImage(
+                                          'assets/images/benz-front.png'))),
+                            ),
+                            Expanded(
+                              child: Container(
+                                height: 80,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(7),
+                                        bottomLeft: Radius.circular(7)),
+                                    color: Color(0xffe7e7f4)),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Toyota Corolla 2020',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                                color: Colors.black87),
+                                          ),
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.star,
+                                                color: Color(0xfff8c123),
+                                              ),
+                                              Text(
+                                                '4.5',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium,
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            'Silver |',
+                                            style: TextStyle(
+                                                fontSize: 13,
+                                                color: Colors.black87),
+                                          ),
+                                          Text(
+                                            ' Available',
+                                            style: TextStyle(
+                                                fontSize: 13,
+                                                color:
+                                                    lightColorScheme.primary),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 5),
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  'GHS 530',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 15,
+                                                      color: lightColorScheme
+                                                          .primary),
+                                                ),
+                                                Text(
+                                                  ' |  Per day',
+                                                  style: TextStyle(
+                                                      fontSize: 13,
+                                                      color: Colors.black87),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+
+                                          //order button
+                                          SizedBox(
+                                            height: 25,
+                                            child: ElevatedButton(
+                                              onPressed: () {},
+                                              style: ElevatedButton.styleFrom(
+                                                shape:
+                                                    const RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    5))),
+                                                backgroundColor:
+                                                    lightColorScheme.primary,
+                                                elevation: 0,
+                                              ),
+                                              child: const Text(
+                                                'Order',
+                                                style: TextStyle(fontSize: 11),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     );
-
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(vertical: 10),
-                    //   child: Container(
-
-                    //     child: Row(
-                    //       children: [
-
-                    //         Container(
-                    //           // height: 80,
-                    //           // width: 80,
-                    //           decoration: const BoxDecoration(
-                    //               borderRadius: BorderRadius.only(
-                    //                   topLeft: Radius.circular(7),
-                    //                   bottomLeft: Radius.circular(7)),
-                    //               image: DecorationImage(
-                    //                   fit: BoxFit.cover,
-                    //                   image: AssetImage(
-                    //                       'assets/images/benz-front.png'))),
-                    //         ),
-
-                    //         Container(
-                    //           height: 80,
-                    //           width: MediaQuery.of(context).size.width * 0.72,
-                    //           decoration: const BoxDecoration(
-                    //               borderRadius: BorderRadius.only(
-                    //                   topLeft: Radius.circular(7),
-                    //                   bottomLeft: Radius.circular(7)),
-                    //               color: Color(0xffe7e7f4)),
-                    //           child: Column(
-                    //             children: [
-                    //               Row(
-                    //                 mainAxisAlignment:
-                    //                     MainAxisAlignment.spaceBetween,
-                    //                 children: [
-                    //                   const Text(
-                    //                     'Toyota Corolla 2020',
-                    //                     style: TextStyle(
-                    //                         fontWeight: FontWeight.bold,
-                    //                         fontSize: 15,
-                    //                         color: Colors.black87),
-                    //                   ),
-                    //                   const Icon(
-                    //                     Icons.star,
-                    //                     color: Color(0xfff8c123),
-                    //                   )
-                    //                 ],
-                    //               )
-                    //             ],
-                    //           ),
-                    //         )
-                    //       ],
-                    //     ),
-                    //   ),
-                    // );
                   }),
             )
           ],
