@@ -14,6 +14,9 @@ class ImageAssets {
 
   static const onBoardingImageFour = 'assets/images/onboarding-img4.png';
 
+  static const heroBackground = 'assets/images/hero_bg.png';
+
+
 
 
 }
