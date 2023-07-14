@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: lightMode,
       // home: const SignInPage()
       // home: CustomBottomNavigation(),
-      home:RentalsPage(),
+      home: RentalsPage(),
     );
   }
 }
