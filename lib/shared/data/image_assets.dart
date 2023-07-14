@@ -17,6 +17,23 @@ class ImageAssets {
   static const heroBackground = 'assets/images/hero_bg.png';
 
 
+  static const mercedesLogo = 'assets/images/benz.png';
+
+  static const kiaLogo = 'assets/images/kia.png';
+
+  // ignore: constant_identifier_names
+  static const BMWLogo = 'assets/images/bmw.png';
+
+  static const hondaLogo = 'assets/images/honda.png';
+
+  static const lexusLogo = 'assets/images/lexus.png';
+
+
+
+
+
+
+
 
 
 }
