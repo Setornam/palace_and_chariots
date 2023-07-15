@@ -33,6 +33,7 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
               ))
         ],
       ),
+      
       body: Stack(
         children: [
           Column(
@@ -403,7 +404,7 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                                 ),
                               ),
 
-                              //pick up time
+                              //drop off time
                               Container(
                                 decoration: const BoxDecoration(
                                     color: Colors.white,
@@ -421,7 +422,7 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                                             child: Icon(Icons.access_time),
                                           ),
                                           Padding(
-                                            padding: EdgeInsets.only(right: 25),
+                                            padding: EdgeInsets.only(right: 15),
                                             child: Text(
                                               'Drop off time',
                                               style:

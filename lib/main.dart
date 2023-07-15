@@ -8,6 +8,7 @@ import 'package:palace_and_chariots/src/home/presentation/widgets/custom_bottom_
 import 'package:palace_and_chariots/src/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/pages/rentals_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_details_page.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_gallery_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/view_more_page.dart';
 import 'package:palace_and_chariots/src/sign_in/presentation/pages/sign_in_page.dart';
 import 'package:palace_and_chariots/src/sign_up/presentation/pages/sign_up_page.dart';
@@ -26,15 +27,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      useInheritedMediaQuery: true,
-      title: 'Flutter Demo',
-      theme: lightMode,
-      home: ItemDetailsPage(),
-      // home: ViewMorePage(),
-      // home: const SignInPage()
-      // home: CustomBottomNavigation(),
-      // home: RentalsPage(),
-    );
+        debugShowCheckedModeBanner: false,
+        useInheritedMediaQuery: true,
+        title: 'Flutter Demo',
+        theme: lightMode,
+        home: ItemGalleryPage()
+        // home: ItemDetailsPage(),
+        // home: ViewMorePage(),
+        // home: const SignInPage()
+        // home: CustomBottomNavigation(),
+        // home: RentalsPage(),
+        );
   }
 }
