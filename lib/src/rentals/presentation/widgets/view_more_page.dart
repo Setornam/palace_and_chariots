@@ -55,6 +55,7 @@ class _ViewMorePageState extends State<ViewMorePage> {
                       ),
                     ),
                   ),
+                
                 ]),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 25, top: 10),
