@@ -10,10 +10,11 @@ class ViewMorePage extends StatefulWidget {
 }
 
 class _ViewMorePageState extends State<ViewMorePage> {
-  late bool isSortByPopularityChecked = false;
-  bool isSortByPriceChecked = false;
-  bool isSortByHigherRatingChecked = false;
-  bool isSortByLowerRatingChecked = false;
+  ValueNotifier<bool> isSortByPopularityChecked = ValueNotifier(false);
+  ValueNotifier<bool> isSortByLowerPriceChecked = ValueNotifier(false);
+  ValueNotifier<bool> isSortByHighestRatingChecked = ValueNotifier(false);
+  ValueNotifier<bool> isSortByLowestRatingChecked = ValueNotifier(false);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +26,7 @@ class _ViewMorePageState extends State<ViewMorePage> {
             padding: EdgeInsets.only(top: 20),
             child: Column(
               children: [
-                Stack(children: [
+                const Stack(children: [
                   SizedBox(
                     height: 50,
                     child: TextField(
@@ -63,14 +64,23 @@ class _ViewMorePageState extends State<ViewMorePage> {
                       GestureDetector(
                         onTap: () {
                           showModalBottomSheet(
+                              constraints:
+                                  const BoxConstraints.tightFor(height: 250),
                               context: context,
                               builder: (BuildContext context) => SizedBox(
                                     child: Padding(
-                                      padding: EdgeInsets.all(15.0),
+                                      padding: EdgeInsets.all(12.0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
+                                          Center(
+                                            child: Container(
+                                              color: Colors.black,
+                                              height: 2,
+                                              width: 50,
+                                            ),
+                                          ),
                                           Text(
                                             'Sort by',
                                             style: TextStyle(
@@ -78,30 +88,147 @@ class _ViewMorePageState extends State<ViewMorePage> {
                                                 color:
                                                     lightColorScheme.primary),
                                           ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text('Popularity'),
-                                              Checkbox(
-                                                  value:
-                                                      isSortByPopularityChecked,
-                                                  onChanged: (checked) {
-                                                    isSortByPopularityChecked ==
-                                                            false
-                                                        ? setState(() {
-                                                            isSortByPopularityChecked =
-                                                                true;
-                                                          })
-                                                        : isSortByPopularityChecked ==
-                                                                true
-                                                            ? setState(() {
-                                                                isSortByPopularityChecked =
-                                                                    false;
-                                                              })
-                                                            : null;
-                                                  }),
-                                            ],
+
+                                          ValueListenableBuilder(
+                                            builder: (BuildContext context,
+                                                value, Widget? child) {
+                                              return Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  const Text('Popularity'),
+                                                  Checkbox(
+                                                      side: const BorderSide(
+                                                        color: Colors.grey,
+                                                      ),
+                                                      fillColor:
+                                                          MaterialStateProperty
+                                                              .all(
+                                                                  lightColorScheme
+                                                                      .primary),
+                                                      value:
+                                                          isSortByPopularityChecked
+                                                              .value,
+                                                      onChanged: (checked) {
+                                                        isSortByPopularityChecked
+                                                                .value =
+                                                            !isSortByPopularityChecked
+                                                                .value;
+                                                      }),
+                                                ],
+                                              );
+                                            },
+                                            valueListenable:
+                                                isSortByPopularityChecked,
+                                          ),
+
+                                          //sort by lower price
+                                          ValueListenableBuilder(
+                                            builder: (BuildContext context,
+                                                value, Widget? child) {
+                                              return Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  const Text(
+                                                      'Price (lower first)'),
+                                                  Checkbox(
+                                                      side: const BorderSide(
+                                                        color: Colors.grey,
+                                                      ),
+                                                      fillColor:
+                                                          MaterialStateProperty
+                                                              .all(
+                                                                  lightColorScheme
+                                                                      .primary),
+                                                      value:
+                                                          isSortByLowerPriceChecked
+                                                              .value,
+                                                      onChanged: (checked) {
+                                                        isSortByLowerPriceChecked
+                                                                .value =
+                                                            !isSortByLowerPriceChecked
+                                                                .value;
+                                                      }),
+                                                ],
+                                              );
+                                            },
+                                            valueListenable:
+                                                isSortByLowerPriceChecked,
+                                          ),
+
+                                          //sort by highest rating
+                                          ValueListenableBuilder(
+                                            builder: (BuildContext context,
+                                                value, Widget? child) {
+                                              return Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  const Text(
+                                                      'Star rating (highest first) '),
+                                                  Checkbox(
+                                                      side: const BorderSide(
+                                                        color: Colors.grey,
+                                                      ),
+                                                      fillColor:
+                                                          MaterialStateProperty
+                                                              .all(
+                                                                  lightColorScheme
+                                                                      .primary),
+                                                      value:
+                                                          isSortByHighestRatingChecked
+                                                              .value,
+                                                      onChanged: (checked) {
+                                                        isSortByHighestRatingChecked
+                                                                .value =
+                                                            !isSortByHighestRatingChecked
+                                                                .value;
+                                                      }),
+                                                ],
+                                              );
+                                            },
+                                            valueListenable:
+                                                isSortByHighestRatingChecked,
+                                          ),
+
+                                          //sort by lowest rating
+                                          ValueListenableBuilder(
+                                            builder: (BuildContext context,
+                                                value, Widget? child) {
+                                              return Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  const Text(
+                                                      'Star rating (lowest first)'),
+                                                  Checkbox(
+                                                      side: const BorderSide(
+                                                        color: Colors.grey,
+                                                      ),
+                                                      fillColor:
+                                                          MaterialStateProperty
+                                                              .all(
+                                                                  lightColorScheme
+                                                                      .primary),
+                                                      value:
+                                                          isSortByLowestRatingChecked
+                                                              .value,
+                                                      onChanged: (checked) {
+                                                        isSortByLowestRatingChecked
+                                                                .value =
+                                                            !isSortByLowestRatingChecked
+                                                                .value;
+                                                      }),
+                                                ],
+                                              );
+                                            },
+                                            valueListenable:
+                                                isSortByLowestRatingChecked,
                                           )
                                         ],
                                       ),
