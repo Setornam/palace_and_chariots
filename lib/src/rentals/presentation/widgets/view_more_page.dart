@@ -1,0 +1,278 @@
+import 'package:flutter/material.dart';
+
+import '../../../../shared/theme/color_scheme.dart';
+
+class ViewMorePage extends StatefulWidget {
+  const ViewMorePage({super.key});
+
+  @override
+  State<ViewMorePage> createState() => _ViewMorePageState();
+}
+
+class _ViewMorePageState extends State<ViewMorePage> {
+  late bool isSortByPopularityChecked = false;
+  bool isSortByPriceChecked = false;
+  bool isSortByHigherRatingChecked = false;
+  bool isSortByLowerRatingChecked = false;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 90,
+          elevation: 0,
+          backgroundColor: Colors.white,
+          title: Padding(
+            padding: EdgeInsets.only(top: 20),
+            child: Column(
+              children: [
+                Stack(children: [
+                  SizedBox(
+                    height: 50,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+                        suffixIcon: Padding(
+                          padding: EdgeInsets.only(right: 20),
+                          child: Icon(
+                            Icons.search,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        labelText: 'What are you searching for?',
+                        labelStyle: TextStyle(color: Colors.grey),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.lightBlue),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30))),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xffe7e9f4)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30))),
+                        fillColor: Color(0xffe7e9f4),
+                      ),
+                    ),
+                  ),
+                ]),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 25, top: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context) => SizedBox(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(15.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Sort by',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color:
+                                                    lightColorScheme.primary),
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text('Popularity'),
+                                              Checkbox(
+                                                  value:
+                                                      isSortByPopularityChecked,
+                                                  onChanged: (checked) {
+                                                    isSortByPopularityChecked ==
+                                                            false
+                                                        ? setState(() {
+                                                            isSortByPopularityChecked =
+                                                                true;
+                                                          })
+                                                        : isSortByPopularityChecked ==
+                                                                true
+                                                            ? setState(() {
+                                                                isSortByPopularityChecked =
+                                                                    false;
+                                                              })
+                                                            : null;
+                                                  }),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ));
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.arrow_upward,
+                              color: Colors.black,
+                              size: 20,
+                            ),
+                            Icon(
+                              Icons.arrow_downward,
+                              color: Colors.black,
+                              size: 20,
+                            ),
+                            Text(
+                              'Sort',
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Text(
+                        '15 properties',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: GridView.builder(
+              itemCount: 10,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 15,
+                mainAxisSpacing: 15,
+              ),
+              itemBuilder: (BuildContext context, index) {
+                return Container(
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 80,
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(7),
+                                topRight: Radius.circular(7)),
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage(
+                                    'assets/images/benz-front.png'))),
+                        child: const Align(
+                          alignment: Alignment.topLeft,
+                          child: Padding(
+                            padding: EdgeInsets.all(5.0),
+                            child: Icon(
+                              size: 18,
+                              Icons.favorite_outline,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 80,
+                          decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(7),
+                                  bottomLeft: Radius.circular(7)),
+                              color: Color(0xffe7e7f4)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      'Toyota Corolla\n2020',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12,
+                                          color: Colors.black87),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 10),
+                                      child: Row(
+                                        children: [
+                                          const Icon(
+                                            Icons.star,
+                                            size: 18,
+                                            color: Color(0xfff8c123),
+                                          ),
+                                          Text(
+                                            '4.5',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall,
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: Row(
+                                    children: [
+                                      const Text(
+                                        'Silver |',
+                                        style: TextStyle(
+                                            fontSize: 13,
+                                            color: Colors.black87),
+                                      ),
+                                      Text(
+                                        ' Available',
+                                        style: TextStyle(
+                                            fontSize: 13,
+                                            color: lightColorScheme.primary),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 5),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            'GHS 530',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                                color:
+                                                    lightColorScheme.primary),
+                                          ),
+                                          const Text(
+                                            ' |  Per day',
+                                            style: TextStyle(
+                                                fontSize: 13,
+                                                color: Colors.black87),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }),
+        ));
+  }
+}

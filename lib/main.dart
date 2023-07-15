@@ -7,6 +7,7 @@ import 'package:palace_and_chariots/shared/theme/widget_light_theme.dart';
 import 'package:palace_and_chariots/src/home/presentation/widgets/custom_bottom_nav.dart';
 import 'package:palace_and_chariots/src/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/pages/rentals_page.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/view_more_page.dart';
 import 'package:palace_and_chariots/src/sign_in/presentation/pages/sign_in_page.dart';
 import 'package:palace_and_chariots/src/sign_up/presentation/pages/sign_up_page.dart';
 
@@ -28,9 +29,10 @@ class MyApp extends StatelessWidget {
       useInheritedMediaQuery: true,
       title: 'Flutter Demo',
       theme: lightMode,
+      home: ViewMorePage(),
       // home: const SignInPage()
       // home: CustomBottomNavigation(),
-      home: RentalsPage(),
+      // home: RentalsPage(),
     );
   }
 }

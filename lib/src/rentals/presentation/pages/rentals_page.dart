@@ -70,6 +70,8 @@ class _RentalsPageState extends State<RentalsPage> {
             ],
           ),
         ),
+        
+        
         body: const TabBarView(
           children: [
             VehiclesTabBarView(),
