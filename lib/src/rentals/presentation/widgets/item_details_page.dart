@@ -33,7 +33,6 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
               ))
         ],
       ),
-      
       body: Stack(
         children: [
           Column(
@@ -168,6 +167,8 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                             ),
                           ],
                         ),
+                       
+                       
                         const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

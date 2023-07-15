@@ -41,7 +41,7 @@ dependencies:
   device_preview: ^1.1.0
   flutter_svg: ^2.0.5
   pinput: ^2.2.31
-  intl_phone_field: ^3.1.0
+  intl_phone_field: ^3.2.0
   date_field: ^3.0.3
   dotted_border: ^2.0.0+3
   animated_svg: ^2.0.0
@@ -51,6 +51,7 @@ dependencies:
   firebase_auth: ^4.6.1
   google_sign_in: ^6.1.4
   cloud_firestore: ^4.8.0
+  intl_phone_number_input: ^0.7.3+1
 
 
 dev_dependencies:

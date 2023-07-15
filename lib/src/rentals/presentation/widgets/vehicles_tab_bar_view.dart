@@ -148,6 +148,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                               ),
                             ),
                           ),
+                          
                           Expanded(
                             child: Container(
                               height: 80,

@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/widget_light_theme.dart';
+import 'package:palace_and_chariots/src/checkout/presentation/pages/checkout_page.dart';
 import 'package:palace_and_chariots/src/home/presentation/widgets/custom_bottom_nav.dart';
 import 'package:palace_and_chariots/src/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/pages/rentals_page.dart';
@@ -27,16 +28,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        useInheritedMediaQuery: true,
-        title: 'Flutter Demo',
-        theme: lightMode,
-        home: ItemGalleryPage()
-        // home: ItemDetailsPage(),
-        // home: ViewMorePage(),
-        // home: const SignInPage()
-        // home: CustomBottomNavigation(),
-        // home: RentalsPage(),
-        );
+      debugShowCheckedModeBanner: false,
+      useInheritedMediaQuery: true,
+      title: 'Flutter Demo',
+      theme: lightMode,
+      // home: ItemGalleryPage()
+      home: const CheckoutPage(),
+      // home: ItemDetailsPage(),
+      // home: ViewMorePage(),
+      // home: const SignInPage()
+      // home: CustomBottomNavigation(),
+      // home: RentalsPage(),
+    );
   }
 }
