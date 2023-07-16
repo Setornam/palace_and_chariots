@@ -33,12 +33,12 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: lightMode,
       // home: ItemGalleryPage()
-      home: const CheckoutPage(),
+      // home: const CheckoutPage(),
       // home: ItemDetailsPage(),
       // home: ViewMorePage(),
       // home: const SignInPage()
       // home: CustomBottomNavigation(),
-      // home: RentalsPage(),
+      home: RentalsPage(),
     );
   }
 }

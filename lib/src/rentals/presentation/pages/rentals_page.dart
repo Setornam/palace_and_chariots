@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/vehicles_tab_bar_view.dart';
 
+import '../widgets/accommodation_tab_bar_view.dart';
+
 class RentalsPage extends StatefulWidget {
   const RentalsPage({super.key});
 
@@ -75,7 +77,7 @@ class _RentalsPageState extends State<RentalsPage> {
         body: const TabBarView(
           children: [
             VehiclesTabBarView(),
-            Icon(Icons.directions_transit),
+            AccommodationTabBarView(),
             Icon(Icons.directions_bike),
           ],
         ),
