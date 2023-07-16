@@ -8,6 +8,7 @@ import 'package:palace_and_chariots/src/checkout/presentation/pages/checkout_pag
 import 'package:palace_and_chariots/src/home/presentation/widgets/custom_bottom_nav.dart';
 import 'package:palace_and_chariots/src/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/pages/rentals_page.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/destination_search_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_details_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_gallery_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/view_more_page.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
       // home: const SignInPage()
       // home: CustomBottomNavigation(),
       home: RentalsPage(),
+      // home: DestinationSearchPage(),
     );
   }
 }
