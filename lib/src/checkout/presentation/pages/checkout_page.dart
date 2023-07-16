@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 
+import '../widgets/driver_details_form.dart';
 import '../widgets/user_info_form.dart';
 
 class CheckoutPage extends StatefulWidget {
@@ -219,7 +220,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
               const Divider(),
 
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -230,12 +231,47 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   Text(
                     'GHS 830',
                     style: TextStyle(
-                        color: Colors.black87, fontWeight: FontWeight.bold),
+                      color: lightColorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
 
-              UserInfoForm()
+              DriverDetailsForm(),
+
+              UserInfoForm(),
+
+              Text(
+                'Terms and conditions',
+                style:
+                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(top: 5, bottom: 10),
+                child: Row(
+                  children: [
+                    Text(
+                      'By clicking Book Now , you are confirming that you\nhave read, understood and accepted our',
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              SizedBox(
+                width: MediaQuery.sizeOf(context).width,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      minimumSize: const Size.fromHeight(50),
+                    ),
+                    onPressed: () {},
+                    child: Text('Book Now')),
+              )
             ],
           ),
         ));

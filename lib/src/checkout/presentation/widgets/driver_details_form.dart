@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 
-class UserInfoForm extends StatefulWidget {
-  const UserInfoForm({super.key});
+class DriverDetailsForm extends StatefulWidget {
+  const DriverDetailsForm({super.key});
 
   @override
-  State<UserInfoForm> createState() => _UserInfoFormState();
+  State<DriverDetailsForm> createState() => _DriverDetailsFormState();
 }
 
-class _UserInfoFormState extends State<UserInfoForm> {
+class _DriverDetailsFormState extends State<DriverDetailsForm> {
   TextEditingController phoneNumberController = TextEditingController();
   String phoneNumber = "";
   late String country = '';
+  late String title = '';
+
   bool isSavedToAccount = false;
   List<DropdownMenuItem> countrys = [
     const DropdownMenuItem(
@@ -20,6 +22,14 @@ class _UserInfoFormState extends State<UserInfoForm> {
       child: Text('Ghana'),
     ),
     const DropdownMenuItem(value: 'Nigeria', child: Text('Nigeria'))
+  ];
+
+  List<DropdownMenuItem> titles = [
+    const DropdownMenuItem(
+      value: 'Mr.',
+      child: Text('Mr.'),
+    ),
+    const DropdownMenuItem(value: 'Mrs.', child: Text('Mrs.'))
   ];
 
   @override
@@ -34,15 +44,78 @@ class _UserInfoFormState extends State<UserInfoForm> {
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 15),
               child: Text(
-                'Your Information',
+                'Main drivers detail',
                 style:
                     TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               ),
             ),
+
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 5),
+              child: Text(
+                'As they appear on drivers license',
+                style: TextStyle(color: Colors.black87),
+              ),
+            ),
+
+            //title
+            const Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 5),
+              child: Text(
+                'Title',
+                style: TextStyle(color: Colors.black87),
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: DropdownButtonFormField(
+                  decoration: const InputDecoration(
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 30, vertical: 14),
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                    labelStyle: TextStyle(color: Colors.grey),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.lightBlue),
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
+                    fillColor: Colors.white,
+                  ),
+                  hint: const Text('please select'),
+                  items: titles,
+                  onChanged: (selectedCountry) => title = selectedCountry),
+            ),
+
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 5),
               child: Text(
                 'Full Name(*)',
+                style: TextStyle(color: Colors.black87),
+              ),
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 30, vertical: 14),
+                floatingLabelBehavior: FloatingLabelBehavior.never,
+                labelStyle: TextStyle(color: Colors.grey),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.lightBlue),
+                    borderRadius: BorderRadius.all(Radius.circular(5))),
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.all(Radius.circular(5))),
+                fillColor: Colors.white,
+              ),
+            ),
+
+            //email address
+            const Padding(
+              padding: const EdgeInsets.only(bottom: 5, top: 10),
+              child: Text(
+                'Email Address(*)',
                 style: TextStyle(color: Colors.black87),
               ),
             ),
@@ -113,7 +186,7 @@ class _UserInfoFormState extends State<UserInfoForm> {
             const Padding(
               padding: EdgeInsets.only(top: 15, bottom: 5),
               child: Text(
-                'Country',
+                'Country of residence',
                 style: TextStyle(color: Colors.black87),
               ),
             ),
@@ -141,7 +214,7 @@ class _UserInfoFormState extends State<UserInfoForm> {
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 5),
               child: Text(
-                'Address(*)',
+                'License number(*)',
                 style: TextStyle(color: Colors.black87),
               ),
             ),
@@ -159,64 +232,12 @@ class _UserInfoFormState extends State<UserInfoForm> {
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 fillColor: Colors.white,
               ),
-            ),
-
-            const Padding(
-              padding: EdgeInsets.only(top: 15, bottom: 5),
-              child: Text(
-                'City(*)',
-                style: TextStyle(color: Colors.black87),
-              ),
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 30, vertical: 14),
-                floatingLabelBehavior: FloatingLabelBehavior.never,
-                labelStyle: TextStyle(color: Colors.grey),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.lightBlue),
-                    borderRadius: BorderRadius.all(Radius.circular(5))),
-                enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
-                    borderRadius: BorderRadius.all(Radius.circular(5))),
-                fillColor: Colors.white,
-              ),
-            ),
-
-            Row(
-              children: [
-                Checkbox.adaptive(
-                    side: BorderSide(color: Colors.grey),
-                    fillColor:
-                        MaterialStateProperty.all(lightColorScheme.primary),
-                    value: isSavedToAccount,
-                    onChanged: (val) {
-                      setState(() {
-                        isSavedToAccount = !isSavedToAccount;
-                      });
-                    }),
-                Text(
-                  'Save to your account',
-                  style: TextStyle(color: Colors.black87),
-                ),
-              ],
             ),
 
             Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: Row(
-                children: [
-                  Icon(Icons.error_outline, color: lightColorScheme.primary),
-                  Text(
-                    '  Free Cancellation up to 24 hours before pick up ',
-                    style: TextStyle(color: lightColorScheme.primary),
-                  )
-                ],
-              ),
-            ),
-
-            Divider()
+              padding: const EdgeInsets.only(top: 15),
+              child: Divider(),
+            )
           ],
         ),
       ),
