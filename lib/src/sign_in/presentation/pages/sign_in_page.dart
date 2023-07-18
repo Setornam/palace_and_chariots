@@ -330,7 +330,8 @@ class _SignInPageState extends State<SignInPage> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (BuildContext context) => Home()));
+                              builder: (BuildContext context) =>
+                                  CustomBottomNavigation()));
                     },
                     child: Text('Sign up as guest  ',
                         textAlign: TextAlign.center,
