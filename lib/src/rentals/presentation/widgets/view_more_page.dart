@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_details_page.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
 
@@ -53,7 +54,7 @@ class _ViewMorePageState extends State<ViewMorePage> {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                     child: TextField(
                       decoration: InputDecoration(
@@ -268,7 +269,7 @@ class _ViewMorePageState extends State<ViewMorePage> {
                               color: Colors.black,
                               size: 20,
                             ),
-                            Icon(
+                            const Icon(
                               Icons.arrow_downward,
                               color: Colors.black,
                               size: 20,
@@ -301,124 +302,136 @@ class _ViewMorePageState extends State<ViewMorePage> {
                 mainAxisSpacing: 15,
               ),
               itemBuilder: (BuildContext context, index) {
-                return Column(
-                  children: [
-                    Container(
-                      height: 80,
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(7),
-                              topRight: Radius.circular(7)),
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image:
-                                  AssetImage('assets/images/benz-front.png'))),
-                      child: const Align(
-                        alignment: Alignment.topLeft,
-                        child: Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: Icon(
-                            size: 18,
-                            Icons.favorite_outline,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const ItemDetailsPage()));
+                  },
+                  child: Column(
+                    children: [
+                      Container(
                         height: 80,
                         decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(7),
-                                bottomLeft: Radius.circular(7)),
-                            color: Color(0xffe7e7f4)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text(
-                                    'Toyota Corolla\n2020',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12,
-                                        color: Colors.black87),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 10),
-                                    child: Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.star,
-                                          size: 18,
-                                          color: Color(0xfff8c123),
-                                        ),
-                                        Text(
-                                          '4.5',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodySmall,
-                                        )
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 5),
-                                child: Row(
-                                  children: [
-                                    const Text(
-                                      'Silver |',
-                                      style: TextStyle(
-                                          fontSize: 13, color: Colors.black87),
-                                    ),
-                                    Text(
-                                      ' Available',
-                                      style: TextStyle(
-                                          fontSize: 13,
-                                          color: lightColorScheme.primary),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          'GHS 530',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 15,
-                                              color: lightColorScheme.primary),
-                                        ),
-                                        const Text(
-                                          ' |  Per day',
-                                          style: TextStyle(
-                                              fontSize: 13,
-                                              color: Colors.black87),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                topLeft: Radius.circular(7),
+                                topRight: Radius.circular(7)),
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage(
+                                    'assets/images/benz-front.png'))),
+                        child: const Align(
+                          alignment: Alignment.topLeft,
+                          child: Padding(
+                            padding: EdgeInsets.all(5.0),
+                            child: Icon(
+                              size: 18,
+                              Icons.favorite_outline,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
-                    )
-                  ],
+                      Expanded(
+                        child: Container(
+                          height: 80,
+                          decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(7),
+                                  bottomLeft: Radius.circular(7)),
+                              color: Color(0xffe7e7f4)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      'Toyota Corolla\n2020',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12,
+                                          color: Colors.black87),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 10),
+                                      child: Row(
+                                        children: [
+                                          const Icon(
+                                            Icons.star,
+                                            size: 18,
+                                            color: Color(0xfff8c123),
+                                          ),
+                                          Text(
+                                            '4.5',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall,
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: Row(
+                                    children: [
+                                      const Text(
+                                        'Silver |',
+                                        style: TextStyle(
+                                            fontSize: 13,
+                                            color: Colors.black87),
+                                      ),
+                                      Text(
+                                        ' Available',
+                                        style: TextStyle(
+                                            fontSize: 13,
+                                            color: lightColorScheme.primary),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 5),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            'GHS 530',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                                color:
+                                                    lightColorScheme.primary),
+                                          ),
+                                          const Text(
+                                            ' |  Per day',
+                                            style: TextStyle(
+                                                fontSize: 13,
+                                                color: Colors.black87),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 );
               }),
         ));

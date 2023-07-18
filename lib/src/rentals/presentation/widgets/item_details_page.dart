@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
+import 'package:palace_and_chariots/src/checkout/presentation/pages/checkout_page.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_gallery_page.dart';
 
 class ItemDetailsPage extends StatefulWidget {
   const ItemDetailsPage({super.key});
@@ -13,6 +15,7 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.black,
         backgroundColor: Colors.white,
         automaticallyImplyLeading: true,
         centerTitle: true,
@@ -70,13 +73,22 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                                         'assets/images/benz-front.png'))),
                             child: Padding(
                               padding: const EdgeInsets.all(2.0),
-                              child: Container(
-                                color: Colors.black.withOpacity(.5),
-                                child: const Center(
-                                  child: Text(
-                                    '+5',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 30),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              ItemGalleryPage()));
+                                },
+                                child: Container(
+                                  color: Colors.black.withOpacity(.5),
+                                  child: const Center(
+                                    child: Text(
+                                      '+5',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 30),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -85,144 +97,146 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                         ],
                       ),
                     ),
-                    Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              'Toyota Corolla 2020',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  color: Colors.black87),
-                            ),
-                            Text(
-                              'GHS 530',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  color: lightColorScheme.primary),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            const Text(
-                              'Silver    ',
-                              style: TextStyle(
-                                  fontSize: 13, color: Colors.black87),
-                            ),
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.star,
-                                  size: 14,
-                                  color: Color(0xfff8c123),
-                                ),
-                                Text(
-                                  '4.5',
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(top: 5),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.person_2_outlined,
-                                    color: Colors.black87,
-                                    size: 20,
-                                  ),
-                                  Text(
-                                    '4 seats',
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.black87),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 5, right: 100),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.settings,
-                                    color: Colors.black54,
-                                    size: 20,
-                                  ),
-                                  Text(
-                                    'Auto',
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.black87),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                       
-                       
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(top: 5),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.luggage_rounded,
-                                    color: Colors.black87,
-                                    size: 20,
-                                  ),
-                                  Text(
-                                    '2 Large bag',
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.black87),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 5, right: 55),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.luggage_outlined,
-                                    color: Colors.black54,
-                                    size: 20,
-                                  ),
-                                  Text(
-                                    '1 small bag',
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.black87),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: Row(
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Icon(Icons.error_outline,
-                                  color: lightColorScheme.primary),
+                              const Text(
+                                'Toyota Corolla 2020',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                    color: Colors.black87),
+                              ),
                               Text(
-                                '  Free Cancellation up to 24 hours before pick up ',
-                                style:
-                                    TextStyle(color: lightColorScheme.primary),
+                                'GHS 530',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                    color: lightColorScheme.primary),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              const Text(
+                                'Silver    ',
+                                style: TextStyle(
+                                    fontSize: 13, color: Colors.black87),
+                              ),
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.star,
+                                    size: 14,
+                                    color: Color(0xfff8c123),
+                                  ),
+                                  Text(
+                                    '4.5',
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium,
+                                  )
+                                ],
                               )
                             ],
                           ),
-                        )
-                      ],
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(top: 5),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.person_2_outlined,
+                                      color: Colors.black87,
+                                      size: 20,
+                                    ),
+                                    Text(
+                                      '4 seats',
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.black87),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 5, right: 100),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.settings,
+                                      color: Colors.black54,
+                                      size: 20,
+                                    ),
+                                    Text(
+                                      'Auto',
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.black87),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(top: 5),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.luggage_rounded,
+                                      color: Colors.black87,
+                                      size: 20,
+                                    ),
+                                    Text(
+                                      '2 Large bag',
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.black87),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 5, right: 55),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.luggage_outlined,
+                                      color: Colors.black54,
+                                      size: 20,
+                                    ),
+                                    Text(
+                                      '1 small bag',
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.black87),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20),
+                            child: Row(
+                              children: [
+                                Icon(Icons.error_outline,
+                                    color: lightColorScheme.primary),
+                                Text(
+                                  '  Free Cancellation up to 24 hours before pick up ',
+                                  style: TextStyle(
+                                      color: lightColorScheme.primary),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -463,7 +477,13 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                       backgroundColor: Colors.green,
                       minimumSize: const Size.fromHeight(50),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  CheckoutPage()));
+                    },
                     child: Text('Submit')),
               ))
         ],

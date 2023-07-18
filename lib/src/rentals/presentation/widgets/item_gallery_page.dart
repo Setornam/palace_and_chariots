@@ -14,6 +14,7 @@ class _ItemGalleryPageState extends State<ItemGalleryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          foregroundColor: Colors.black,
           backgroundColor: Colors.white,
           automaticallyImplyLeading: true,
           centerTitle: true,

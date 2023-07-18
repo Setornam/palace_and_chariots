@@ -18,6 +18,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          foregroundColor: Colors.black,
           backgroundColor: Colors.white,
           elevation: 0,
           automaticallyImplyLeading: true,
