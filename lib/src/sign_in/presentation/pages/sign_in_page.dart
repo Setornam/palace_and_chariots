@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:palace_and_chariots/shared/data/image_assets.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
+import 'package:palace_and_chariots/src/home/presentation/pages/home.dart';
+
+import '../../../home/presentation/widgets/custom_bottom_nav.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage();
@@ -48,12 +51,12 @@ class _SignInPageState extends State<SignInPage> {
       });
 
       // Login successful, navigate to another page
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (BuildContext context) => const CustomBottomNavigation(),
-      //   ),
-      // );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => const CustomBottomNavigation(),
+        ),
+      );
     } catch (e) {
       // Show error message using a snackbar
       setState(() {
@@ -320,15 +323,23 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                 ),
 
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(top: 50, left: 100),
-                  child: Text('Sign up as guest  ',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.white,
-                        fontSize: 14,
-                      )),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => Home()));
+                    },
+                    child: Text('Sign up as guest  ',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Colors.white,
+                          fontSize: 14,
+                        )),
+                  ),
                 ),
               ],
             ),

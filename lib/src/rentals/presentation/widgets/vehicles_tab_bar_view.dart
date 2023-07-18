@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/data/image_assets.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/view_more_page.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
 
@@ -114,9 +115,32 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
           ),
 
           ///best cars
-          ///
+
+          Padding(
+            padding: EdgeInsets.only(top: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Best cars'),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => ViewMorePage()));
+                  },
+                  child: Text(
+                    'See More',
+                    style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: lightColorScheme.primary),
+                  ),
+                )
+              ],
+            ),
+          ),
           SizedBox(
-            height: 450,
+            height: 430,
             child: ListView.builder(
                 itemCount: 5,
                 itemBuilder: (BuildContext context, index) {
@@ -148,7 +172,6 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                               ),
                             ),
                           ),
-                          
                           Expanded(
                             child: Container(
                               height: 80,
@@ -257,11 +280,9 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                     ),
                                   ],
                                 ),
-                             
                               ),
                             ),
                           )
-                        
                         ],
                       ),
                     ),

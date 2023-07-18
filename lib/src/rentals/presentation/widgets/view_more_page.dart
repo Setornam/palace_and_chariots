@@ -19,14 +19,40 @@ class _ViewMorePageState extends State<ViewMorePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          toolbarHeight: 90,
+          automaticallyImplyLeading: false,
+          toolbarHeight: 150,
           elevation: 0,
           backgroundColor: Colors.white,
           title: Padding(
-            padding: EdgeInsets.only(top: 20),
+            padding: EdgeInsets.only(top: 25),
             child: Column(
               children: [
-                const Stack(children: [
+                Column(children: [
+                  Row(
+                    children: [
+                      Row(
+                        children: [
+                          BackButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            color: Colors.black,
+                          ),
+                          const Text(
+                            'Back',
+                            style: TextStyle(color: Colors.black, fontSize: 18),
+                          )
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 60),
+                        child: Text(
+                          'Rentals',
+                          style: TextStyle(color: lightColorScheme.primary),
+                        ),
+                      )
+                    ],
+                  ),
                   SizedBox(
                     height: 50,
                     child: TextField(
@@ -55,10 +81,9 @@ class _ViewMorePageState extends State<ViewMorePage> {
                       ),
                     ),
                   ),
-                
                 ]),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 25, top: 10),
+                  padding: const EdgeInsets.only(bottom: 1, top: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -286,8 +311,8 @@ class _ViewMorePageState extends State<ViewMorePage> {
                               topRight: Radius.circular(7)),
                           image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: AssetImage(
-                                  'assets/images/benz-front.png'))),
+                              image:
+                                  AssetImage('assets/images/benz-front.png'))),
                       child: const Align(
                         alignment: Alignment.topLeft,
                         child: Padding(
@@ -324,8 +349,7 @@ class _ViewMorePageState extends State<ViewMorePage> {
                                         color: Colors.black87),
                                   ),
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.only(bottom: 10),
+                                    padding: const EdgeInsets.only(bottom: 10),
                                     child: Row(
                                       children: [
                                         const Icon(
@@ -352,8 +376,7 @@ class _ViewMorePageState extends State<ViewMorePage> {
                                     const Text(
                                       'Silver |',
                                       style: TextStyle(
-                                          fontSize: 13,
-                                          color: Colors.black87),
+                                          fontSize: 13, color: Colors.black87),
                                     ),
                                     Text(
                                       ' Available',
@@ -377,8 +400,7 @@ class _ViewMorePageState extends State<ViewMorePage> {
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 15,
-                                              color:
-                                                  lightColorScheme.primary),
+                                              color: lightColorScheme.primary),
                                         ),
                                         const Text(
                                           ' |  Per day',

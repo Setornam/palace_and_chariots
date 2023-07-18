@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/data/image_assets.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/pages/rentals_page.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -68,6 +69,13 @@ class Home extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  RentalsPage()));
+                    },
                     child: ListTile(
                       trailing: Icon(
                         Icons.arrow_forward,

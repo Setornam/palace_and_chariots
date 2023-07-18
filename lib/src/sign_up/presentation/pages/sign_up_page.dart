@@ -4,6 +4,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:palace_and_chariots/shared/data/image_assets.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 
+import '../../../home/presentation/widgets/custom_bottom_nav.dart';
+
 class SignUpPage extends StatefulWidget {
   const SignUpPage();
   @override
@@ -52,12 +54,12 @@ class _SignUpPageState extends State<SignUpPage> {
       });
 
       // ignore: use_build_context_synchronously
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (BuildContext context) => const CustomBottomNavigation(),
-      //   ),
-      // );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => const CustomBottomNavigation(),
+        ),
+      );
     } catch (e) {
       // Show error message using a snackbar
       setState(() {

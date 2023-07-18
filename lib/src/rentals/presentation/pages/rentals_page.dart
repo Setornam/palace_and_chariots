@@ -18,13 +18,40 @@ class _RentalsPageState extends State<RentalsPage> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 90,
+          automaticallyImplyLeading: false,
+          toolbarHeight: 110,
           elevation: 0,
           backgroundColor: Colors.white,
           title: Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: Stack(children: const [
-              SizedBox(
+            padding: const EdgeInsets.only(top: 1),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Row(
+                children: [
+                  Row(
+                    children: [
+                      BackButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        color: Colors.black,
+                      ),
+                      const Text(
+                        'Back',
+                        style: TextStyle(color: Colors.black, fontSize: 18),
+                      )
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 60),
+                    child: Text(
+                      'Rentals',
+                      style: TextStyle(color: lightColorScheme.primary),
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
                 height: 50,
                 child: TextField(
                   decoration: InputDecoration(
@@ -72,8 +99,6 @@ class _RentalsPageState extends State<RentalsPage> {
             ],
           ),
         ),
-        
-        
         body: const TabBarView(
           children: [
             VehiclesTabBarView(),

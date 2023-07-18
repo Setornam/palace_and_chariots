@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/data/image_assets.dart';
+import 'package:palace_and_chariots/src/sign_in/presentation/pages/sign_in_page.dart';
 
 import '../widgets/indicator.dart';
 import '../widgets/onboarding_item.dart';
@@ -90,18 +91,25 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   ]),
               Padding(
                 padding: const EdgeInsets.only(top: 20),
-                child: Text(
-                  'Skip',
-                  style: theme.textTheme.bodyLarge!.apply(
-                      color: Colors.white,
-                      decoration: TextDecoration.underline,
-                      decorationStyle: TextDecorationStyle.solid),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => SignInPage()));
+                  },
+                  child: Text(
+                    'Skip',
+                    style: theme.textTheme.bodyLarge!.apply(
+                        color: Colors.white,
+                        decoration: TextDecoration.underline,
+                        decorationStyle: TextDecorationStyle.solid),
+                  ),
                 ),
               )
             ],
           ),
         ),
-       
       ]),
     );
   }
