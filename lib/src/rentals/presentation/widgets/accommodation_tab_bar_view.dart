@@ -210,7 +210,8 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                       children: [
                                         Center(
                                           child: Padding(
-                                            padding: const EdgeInsets.only(bottom:5),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 5),
                                             child: Container(
                                               color: Colors.black,
                                               height: 2,
@@ -227,11 +228,12 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
 
                                         //rooms
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10),
                                           child: ValueListenableBuilder(
                                             valueListenable: numberOfRooms,
-                                            builder: (BuildContext context, value,
-                                                Widget? child) {
+                                            builder: (BuildContext context,
+                                                value, Widget? child) {
                                               return Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -242,7 +244,8 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                     children: [
                                                       IconButton(
                                                           onPressed: () {
-                                                            numberOfRooms.value++;
+                                                            numberOfRooms
+                                                                .value++;
                                                           },
                                                           icon: Icon(
                                                             Icons
@@ -251,10 +254,17 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                 lightColorScheme
                                                                     .primary,
                                                           )),
-                                                      Text(numberOfRooms.value.toString(),style: TextStyle(color: Colors.black87),),
+                                                      Text(
+                                                        numberOfRooms.value
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black87),
+                                                      ),
                                                       IconButton(
                                                           onPressed: () {
-                                                            numberOfRooms.value--;
+                                                            numberOfRooms
+                                                                .value--;
                                                           },
                                                           icon: Icon(
                                                             Icons
@@ -273,41 +283,50 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
 
                                         //adults
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10),
                                           child: ValueListenableBuilder(
                                             valueListenable: numberOfAdults,
-                                            builder: (BuildContext context, value,
-                                                Widget? child) {
+                                            builder: (BuildContext context,
+                                                value, Widget? child) {
                                               return Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   Text('Adults'),
                                                   Row(
                                                     children: [
                                                       IconButton(
                                                           onPressed: () {
-                                                            numberOfAdults.value++;
+                                                            numberOfAdults
+                                                                .value++;
                                                           },
                                                           icon: Icon(
                                                             Icons
                                                                 .add_circle_outline,
                                                             color:
-                                                            lightColorScheme
-                                                                .primary,
+                                                                lightColorScheme
+                                                                    .primary,
                                                           )),
-                                                      Text(numberOfAdults.value.toString(),style: TextStyle(color: Colors.black87),),
+                                                      Text(
+                                                        numberOfAdults.value
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black87),
+                                                      ),
                                                       IconButton(
                                                           onPressed: () {
-                                                            numberOfAdults.value--;
+                                                            numberOfAdults
+                                                                .value--;
                                                           },
                                                           icon: Icon(
                                                             Icons
                                                                 .remove_circle_outline,
                                                             color:
-                                                            lightColorScheme
-                                                                .primary,
+                                                                lightColorScheme
+                                                                    .primary,
                                                           )),
                                                     ],
                                                   )
@@ -317,44 +336,52 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                           ),
                                         ),
 
-
                                         //children
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10),
                                           child: ValueListenableBuilder(
                                             valueListenable: numberOfChildren,
-                                            builder: (BuildContext context, value,
-                                                Widget? child) {
+                                            builder: (BuildContext context,
+                                                value, Widget? child) {
                                               return Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   Text('Children'),
                                                   Row(
                                                     children: [
                                                       IconButton(
                                                           onPressed: () {
-                                                            numberOfChildren.value++;
+                                                            numberOfChildren
+                                                                .value++;
                                                           },
                                                           icon: Icon(
                                                             Icons
                                                                 .add_circle_outline,
                                                             color:
-                                                            lightColorScheme
-                                                                .primary,
+                                                                lightColorScheme
+                                                                    .primary,
                                                           )),
-                                                      Text(numberOfChildren.value.toString(),style: TextStyle(color: Colors.black87),),
+                                                      Text(
+                                                        numberOfChildren.value
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black87),
+                                                      ),
                                                       IconButton(
                                                           onPressed: () {
-                                                            numberOfChildren.value--;
+                                                            numberOfChildren
+                                                                .value--;
                                                           },
                                                           icon: Icon(
                                                             Icons
                                                                 .remove_circle_outline,
                                                             color:
-                                                            lightColorScheme
-                                                                .primary,
+                                                                lightColorScheme
+                                                                    .primary,
                                                           )),
                                                     ],
                                                   )
@@ -439,7 +466,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
             ),
           ),
           SizedBox(
-            height: 350,
+            height: 330,
             child: ListView.builder(
                 itemCount: 7,
                 itemBuilder: (BuildContext context, index) {
