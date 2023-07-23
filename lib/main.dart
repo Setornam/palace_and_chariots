@@ -9,9 +9,11 @@ import 'package:palace_and_chariots/src/home/presentation/widgets/custom_bottom_
 import 'package:palace_and_chariots/src/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/pages/rentals_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/accommodation_details_.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/accommodation_gallery.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/destination_search_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_details_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_gallery_page.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/rooms_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/search_result_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/view_more_page.dart';
 import 'package:palace_and_chariots/src/sign_in/presentation/pages/sign_in_page.dart';
@@ -44,7 +46,8 @@ class MyApp extends StatelessWidget {
       // home: RentalsPage(),
       // home: DestinationSearchPage(),
       // home: SearchResultPage(),
-      home: AccommodationDetailsPage(),
+      // home: AccommodationDetailsPage(),
+      home: RoomsPage(),
     );
   }
 }

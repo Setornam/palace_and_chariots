@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/pages/checkout_page.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/accommodation_gallery.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_gallery_page.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/rooms_page.dart';
 
 class AccommodationDetailsPage extends StatefulWidget {
   const AccommodationDetailsPage({super.key});
@@ -32,6 +34,7 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
               ))
         ],
       ),
+      
       body: Stack(
         children: [
           SingleChildScrollView(
@@ -85,7 +88,7 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
-                                                const ItemGalleryPage()));
+                                                const AccommodationGalleryPage()));
                                   },
                                   child: Container(
                                     color: Colors.black.withOpacity(.5),
@@ -231,13 +234,13 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                                 ],
                               ),
                             ),
-                            Divider(),
+                            const Divider(),
 
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Image.asset('assets/images/map.png'),
-                                Column(
+                                const Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Icon(Icons.location_on_outlined),
@@ -249,8 +252,8 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                             ),
 
                             //most popular facilities
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 20),
                               child: Text(
                                 'Most popular facilities',
                                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -401,6 +404,8 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                                 ),
                               ),
                             ),
+                          
+                          
                           ],
                         ),
                       ),
@@ -421,7 +426,7 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      const CheckoutPage()));
+                                      const RoomsPage()));
                         },
                         child: const Text('select rooms')),
                   ),
