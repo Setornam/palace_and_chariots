@@ -268,7 +268,8 @@ class _SearchResultPageState extends State<SearchResultPage> {
             itemCount: 7,
             itemBuilder: (BuildContext context, index) {
               return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                 child: Row(
                   children: [
                     Container(
@@ -326,7 +327,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
                                     size: 18,
                                   ),
                                   Text(
-                                    ' 4 km away from Accra|  ',
+                                    ' 4 km away | ',
                                     style:
                                         Theme.of(context).textTheme.bodyMedium,
                                   ),
@@ -341,7 +342,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
                                         Theme.of(context).textTheme.bodyMedium,
                                   ),
                                   Text(
-                                    ' |10 reviews',
+                                    ' | 10 reviews',
                                     style:
                                         Theme.of(context).textTheme.bodyMedium,
                                   )
