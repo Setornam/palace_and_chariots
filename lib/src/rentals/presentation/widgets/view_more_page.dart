@@ -288,6 +288,7 @@ class _ViewMorePageState extends State<ViewMorePage> {
                     ],
                   ),
                 ),
+              
               ],
             ),
           ),
