@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/event_tab_bar_view.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/vehicles_tab_bar_view.dart';
 
 import '../widgets/accommodation_tab_bar_view.dart';
@@ -99,11 +100,11 @@ class _RentalsPageState extends State<RentalsPage> {
             ],
           ),
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: [
             VehiclesTabBarView(),
             AccommodationTabBarView(),
-            Icon(Icons.directions_bike),
+            EventTabBarView()
           ],
         ),
       ),

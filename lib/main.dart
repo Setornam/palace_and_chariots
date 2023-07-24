@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
       // home: ViewMorePage(),
       // home: const SignInPage()
       // home: CustomBottomNavigation(),
-      // home: RentalsPage(),
+      home: RentalsPage(),
       // home: DestinationSearchPage(),
       // home: SearchResultPage(),
       // home: AccommodationDetailsPage(),
