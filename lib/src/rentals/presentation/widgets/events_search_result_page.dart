@@ -38,8 +38,7 @@ class _EventSearchResultPageState extends State<EventSearchResultPage> {
                       child: Icon(Icons.cancel,
                           color: Colors.grey.withOpacity(.5)),
                     ),
-                    prefixIcon: Icon(
-                      Icons.arrow_back,
+                    prefixIcon: BackButton(
                       color: Colors.black87,
                     ),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -317,15 +316,13 @@ class _EventSearchResultPageState extends State<EventSearchResultPage> {
                                     'The Queens Court Event Center',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 15,
+                                        fontSize: 13,
                                         color: Colors.black87),
                                   ),
-
-                                   const Text(
+                                  Text(
                                     'Available',
                                     style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15,
+                                        fontSize: 12,
                                         color: lightColorScheme.primary),
                                   ),
                                 ],
@@ -334,29 +331,29 @@ class _EventSearchResultPageState extends State<EventSearchResultPage> {
                                 padding: const EdgeInsets.only(top: 30),
                                 child: Row(
                                   children: [
-                                    const Icon(
-                                      Icons.location_on,
-                                      size: 18,
-                                    ),
-                                    Text(
-                                      ' 4 km away | ',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium,
-                                    ),
+                                    // const Icon(
+                                    //   Icons.location_on,
+                                    //   size: 18,
+                                    // ),
+                                    // Text(
+                                    //   ' 4 km away | ',
+                                    //   style: Theme.of(context)
+                                    //       .textTheme
+                                    //       .bodyMedium,
+                                    // ),
                                     const Icon(
                                       Icons.star,
                                       size: 18,
                                       color: Color(0xfff8c123),
                                     ),
                                     Text(
-                                      ' 4.5',
+                                      ' 4.5  ',
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium,
                                     ),
                                     Text(
-                                      ' | 10 reviews',
+                                      ' |   10 reviews',
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium,
