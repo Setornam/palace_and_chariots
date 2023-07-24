@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/widget_light_theme.dart';
+import 'package:palace_and_chariots/src/checkout/presentation/pages/accommodation_checkout_page.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/pages/checkout_page.dart';
 import 'package:palace_and_chariots/src/home/presentation/widgets/custom_bottom_nav.dart';
 import 'package:palace_and_chariots/src/onboarding/presentation/pages/onboarding_page.dart';
@@ -47,7 +48,8 @@ class MyApp extends StatelessWidget {
       // home: DestinationSearchPage(),
       // home: SearchResultPage(),
       // home: AccommodationDetailsPage(),
-      home: RoomsPage(),
+      // home: RoomsPage(),
+      home: AccommodationCheckoutPage(),
     );
   }
 }
