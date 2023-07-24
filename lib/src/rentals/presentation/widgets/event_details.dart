@@ -71,7 +71,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             ),
                             Container(
                               height: 80,
-                              width: 150,
+                              width: 130,
                               decoration: const BoxDecoration(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(7)),
@@ -93,7 +93,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                     color: Colors.black.withOpacity(.5),
                                     child: const Center(
                                       child: Text(
-                                        '+5',
+                                        '+12',
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 30),
                                       ),
