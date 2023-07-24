@@ -78,9 +78,27 @@ class HighProfileSecurityPage extends StatelessWidget {
               ),
             ),
             Text('Individuals'),
-            Text('Families')
+            Text('Families'),
 
-            
+             Padding(
+                  padding: const EdgeInsets.only(top: 50),
+                  child: SizedBox(
+                    width: MediaQuery.sizeOf(context).width * 0.9,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: lightColorScheme.primary,
+                          minimumSize: const Size.fromHeight(50),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      const SecurityCheckoutForm()));
+                        },
+                        child: const Text('Reserve')),
+                  ),
+                )
           ],
         ),
       ),
