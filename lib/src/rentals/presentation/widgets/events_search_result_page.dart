@@ -273,7 +273,7 @@ class _EventSearchResultPageState extends State<EventSearchResultPage> {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (BuildContext context) =>

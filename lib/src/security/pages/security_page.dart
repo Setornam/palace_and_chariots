@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../shared/theme/color_scheme.dart';
+import '../widgets/high_profile_security.dart';
 
 class SecurityPage extends StatelessWidget {
   const SecurityPage({super.key});
@@ -51,28 +52,38 @@ class SecurityPage extends StatelessWidget {
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2),
           children: [
-            Column(
-              children: [
-                Container(
-                  height: 140,
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(7),
-                          bottomLeft: Radius.circular(7),
-                          topLeft: Radius.circular(7),
-                          topRight: Radius.circular(7)),
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage(
-                              'assets/images/PersonalSecurity.png'))),
-                  child: const Align(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
-                      padding: EdgeInsets.all(5.0),
-                    ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            HighProfileSecurityPage()));
+              },
+              child: Column(
+                children: [
+                  Container(
+                    height: 140,
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(7),
+                            bottomLeft: Radius.circular(7),
+                            topLeft: Radius.circular(7),
+                            topRight: Radius.circular(7)),
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage(
+                                'assets/images/PersonalSecurity.png'))),
                   ),
-                ),
-              ],
+                  const Padding(
+                    padding: EdgeInsets.only(top: 8),
+                    child: Text(
+                      'Personal Security',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ],
+              ),
             )
           ],
         ),
