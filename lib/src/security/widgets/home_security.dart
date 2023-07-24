@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../shared/theme/color_scheme.dart';
 import '../../checkout/presentation/pages/security_checkout_page.dart';
 
-class HighProfileSecurityPage extends StatelessWidget {
-  const HighProfileSecurityPage({super.key});
+class HomeSecurityPage extends StatelessWidget {
+  const HomeSecurityPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,12 +61,12 @@ class HighProfileSecurityPage extends StatelessWidget {
                   image: DecorationImage(
                       fit: BoxFit.cover,
                       image:
-                          AssetImage('assets/images/highProfileSecurity.png'))),
+                          AssetImage('assets/images/homeSecurity.png'))),
             ),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Text(
-                'High Profile Security',
+                'Home Security',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),
