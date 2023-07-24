@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/data/image_assets.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/destination_search_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/search_result_page.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -84,6 +85,13 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                   Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    DestinationSearchPage()));
+                      },
                       child: Row(
                         children: [
                           const Icon(Icons.location_on_outlined,

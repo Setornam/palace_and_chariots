@@ -21,6 +21,9 @@ import 'package:palace_and_chariots/src/security/pages/security_page.dart';
 import 'package:palace_and_chariots/src/sign_in/presentation/pages/sign_in_page.dart';
 import 'package:palace_and_chariots/src/sign_up/presentation/pages/sign_up_page.dart';
 
+// keytool -list -v -keystore C:\Users\username\.android\debug.keystore
+// -alias androiddebugkey -storepass android -keypass android
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -44,9 +47,10 @@ class MyApp extends StatelessWidget {
       // home: ItemDetailsPage(),
       // home: ViewMorePage(),
       // home: const SignInPage()
-      home: CustomBottomNavigation(),
+      // home: CustomBottomNavigation(),
       // home: RentalsPage(),
       // home: SecurityPage(),
+      home: OnboardingPage(),
 
       // home: DestinationSearchPage(),
       // home: SearchResultPage(),

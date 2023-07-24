@@ -265,12 +265,12 @@ class _SignInPageState extends State<SignInPage> {
                       });
 
                       // ignore: use_build_context_synchronously
-                      // await Navigator.pushReplacement(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (BuildContext context) =>
-                      //           const CustomBottomNavigation(),
-                      //     ));
+                      await Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const CustomBottomNavigation(),
+                          ));
                     },
                     color: Colors.white,
                     textColor: Colors.black87,
