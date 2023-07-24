@@ -114,7 +114,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Accra City Hotel',
+                                  'The Queens Court Event Center',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15,
@@ -151,23 +151,27 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text(
-                                            'Check in',
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.black87),
-                                          ),
-                                          Text(
-                                            ' Fri, 12 April 2023 ',
-                                            style: TextStyle(
-                                                color:
-                                                    lightColorScheme.primary),
-                                          )
-                                        ],
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 40),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Text(
+                                              'Check in',
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.black87),
+                                            ),
+                                            Text(
+                                              ' Fri, 12 April 2023 ',
+                                              style: TextStyle(
+                                                  color:
+                                                      lightColorScheme.primary),
+                                            )
+                                          ],
+                                        ),
                                       ),
                                       Column(
                                         crossAxisAlignment:
@@ -198,54 +202,58 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Text(
-                                    'Rooms and guests',
+                                    'Number of Guests',
                                     style: TextStyle(
                                         fontSize: 15, color: Colors.black87),
                                   ),
                                   Text(
-                                    '1 room - 2 adults - No children',
+                                    '150 guests',
                                     style: TextStyle(
                                         color: lightColorScheme.primary),
                                   )
                                 ],
                               ),
                             ),
-                            const Divider(),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'US\$ 300',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: lightColorScheme.primary),
-                                  ),
-                                  const Text(
-                                    'include taxes and charges',
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.black87),
-                                  ),
-                                ],
-                              ),
-                            ),
+                            // const Divider(),
+                            // Padding(
+                            //   padding: const EdgeInsets.only(top: 20),
+                            //   child: Column(
+                            //     mainAxisAlignment:
+                            //         MainAxisAlignment.spaceBetween,
+                            //     crossAxisAlignment: CrossAxisAlignment.start,
+                            //     children: [
+                            //       Text(
+                            //         'US\$ 300',
+                            //         style: TextStyle(
+                            //             fontSize: 20,
+                            //             fontWeight: FontWeight.bold,
+                            //             color: lightColorScheme.primary),
+                            //       ),
+                            //       const Text(
+                            //         'include taxes and charges',
+                            //         style: TextStyle(
+                            //             fontSize: 15, color: Colors.black87),
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ),
                             const Divider(),
 
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Image.asset('assets/images/map.png'),
-                                const Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Icon(Icons.location_on_outlined),
-                                    Text(
-                                        'Tetteh Quarshie opposite Accra Mall\nEast Legon Accra'),
-                                  ],
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: const Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Icon(Icons.location_on_outlined),
+                                      Text(
+                                          'Tetteh Quarshie opposite Accra\n Mall East Legon Accra'),
+                                    ],
+                                  ),
                                 )
                               ],
                             ),
@@ -254,7 +262,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             const Padding(
                               padding: EdgeInsets.only(top: 20),
                               child: Text(
-                                'Most popular facilities',
+                                'Amenities and Services',
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ),
