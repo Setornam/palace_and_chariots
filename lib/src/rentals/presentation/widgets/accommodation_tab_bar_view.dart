@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/data/image_assets.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/search_result_page.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
@@ -448,7 +449,13 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                           backgroundColor: lightColorScheme.primary,
                           minimumSize: const Size.fromHeight(40),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      SearchResultPage()));
+                        },
                         child: Text('Search')),
                   )
                 ],
@@ -566,8 +573,6 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                   );
                 }),
           )
-        
-        
         ],
       ),
     );
