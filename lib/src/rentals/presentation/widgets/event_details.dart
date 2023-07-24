@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/pages/checkout_page.dart';
+import 'package:palace_and_chariots/src/checkout/presentation/pages/event_checkout_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/Event_gallery.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_gallery_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/rooms_page.dart';
@@ -385,11 +386,11 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                           minimumSize: const Size.fromHeight(50),
                         ),
                         onPressed: () {
-                          Navigator.pushReplacement(
+                          Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      const RoomsPage()));
+                                      const EventCheckoutPage()));
                         },
                         child: const Text('Reserve')),
                   ),
