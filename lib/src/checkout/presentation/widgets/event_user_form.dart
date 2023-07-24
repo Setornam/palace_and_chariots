@@ -13,6 +13,8 @@ class _EventUserFormState extends State<EventUserForm> {
   TextEditingController phoneNumberController = TextEditingController();
   String phoneNumber = "";
   late String country = '';
+  late String event = '';
+
   bool isSavedToAccount = false;
   bool isDecorationsSelected = false;
   bool isEventCoverageSelected = false;
@@ -160,7 +162,7 @@ class _EventUserFormState extends State<EventUserForm> {
                   child: IntlPhoneField(
                       decoration: InputDecoration(
                           alignLabelWithHint: true,
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.lightBlue),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5))),
@@ -193,7 +195,7 @@ class _EventUserFormState extends State<EventUserForm> {
             Row(
               children: [
                 Checkbox.adaptive(
-                    side: BorderSide(color: Colors.grey),
+                    side: const BorderSide(color: Colors.grey),
                     fillColor:
                         MaterialStateProperty.all(lightColorScheme.primary),
                     value: isSavedToAccount,
@@ -202,28 +204,67 @@ class _EventUserFormState extends State<EventUserForm> {
                         isSavedToAccount = !isSavedToAccount;
                       });
                     }),
-                Text(
+                const Text(
                   'Save to your account',
                   style: TextStyle(color: Colors.black87),
                 ),
               ],
             ),
 
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //event type
+                const Padding(
+                  padding: EdgeInsets.only(top: 15, bottom: 5),
+                  child: Text(
+                    'Event type',
+                    style: TextStyle(color: Colors.black87),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: DropdownButtonFormField(
+                      decoration: const InputDecoration(
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 30, vertical: 14),
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        labelStyle: TextStyle(color: Colors.grey),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.lightBlue),
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                        fillColor: Colors.white,
+                      ),
+                      hint: const Text('anniversary or birthday'),
+                      items: eventTypes,
+                      onChanged: (selectedEvent) => event = selectedEvent),
+                ),
+              ],
+            ),
+
             Padding(
-              padding: const EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.only(
+                top: 20,
+              ),
               child: Row(
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'I am interested in ',
-                        style: TextStyle(color: Colors.black87),
+                        style: TextStyle(
+                            color: Colors.black87,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
                       ),
                       Row(
                         children: [
                           Checkbox.adaptive(
-                              side: BorderSide(color: Colors.grey),
+                              side: const BorderSide(color: Colors.grey),
                               fillColor: MaterialStateProperty.all(
                                   lightColorScheme.primary),
                               value: isDecorationsSelected,
@@ -233,7 +274,7 @@ class _EventUserFormState extends State<EventUserForm> {
                                       !isDecorationsSelected;
                                 });
                               }),
-                          Text(
+                          const Text(
                             'Decorations',
                             style: TextStyle(color: Colors.black87),
                           ),
@@ -242,7 +283,7 @@ class _EventUserFormState extends State<EventUserForm> {
                       Row(
                         children: [
                           Checkbox.adaptive(
-                              side: BorderSide(color: Colors.grey),
+                              side: const BorderSide(color: Colors.grey),
                               fillColor: MaterialStateProperty.all(
                                   lightColorScheme.primary),
                               value: isEventCoverageSelected,
@@ -252,7 +293,7 @@ class _EventUserFormState extends State<EventUserForm> {
                                       !isEventCoverageSelected;
                                 });
                               }),
-                          Text(
+                          const Text(
                             'Event Coverage',
                             style: TextStyle(color: Colors.black87),
                           ),
@@ -261,7 +302,7 @@ class _EventUserFormState extends State<EventUserForm> {
                       Row(
                         children: [
                           Checkbox.adaptive(
-                              side: BorderSide(color: Colors.grey),
+                              side: const BorderSide(color: Colors.grey),
                               fillColor: MaterialStateProperty.all(
                                   lightColorScheme.primary),
                               value: isSecuritySelected,
@@ -270,7 +311,7 @@ class _EventUserFormState extends State<EventUserForm> {
                                   isSecuritySelected = !isSecuritySelected;
                                 });
                               }),
-                          Text(
+                          const Text(
                             'Security',
                             style: TextStyle(color: Colors.black87),
                           ),
@@ -279,7 +320,7 @@ class _EventUserFormState extends State<EventUserForm> {
                       Row(
                         children: [
                           Checkbox.adaptive(
-                              side: BorderSide(color: Colors.grey),
+                              side: const BorderSide(color: Colors.grey),
                               fillColor: MaterialStateProperty.all(
                                   lightColorScheme.primary),
                               value: isTransportationSelected,
@@ -289,7 +330,7 @@ class _EventUserFormState extends State<EventUserForm> {
                                       !isTransportationSelected;
                                 });
                               }),
-                          Text(
+                          const Text(
                             'Transportation',
                             style: TextStyle(color: Colors.black87),
                           ),
@@ -298,7 +339,7 @@ class _EventUserFormState extends State<EventUserForm> {
                       Row(
                         children: [
                           Checkbox.adaptive(
-                              side: BorderSide(color: Colors.grey),
+                              side: const BorderSide(color: Colors.grey),
                               fillColor: MaterialStateProperty.all(
                                   lightColorScheme.primary),
                               value: isOtherSelected,
@@ -307,7 +348,7 @@ class _EventUserFormState extends State<EventUserForm> {
                                   isOtherSelected = !isOtherSelected;
                                 });
                               }),
-                          Text(
+                          const Text(
                             'Other',
                             style: TextStyle(color: Colors.black87),
                           ),
@@ -319,7 +360,7 @@ class _EventUserFormState extends State<EventUserForm> {
               ),
             ),
 
-            Divider()
+            const Divider()
           ],
         ),
       ),

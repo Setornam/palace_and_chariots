@@ -31,7 +31,19 @@ class _EventCheckoutPageState extends State<EventCheckoutPage> {
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: ListView(
-              children: const [EventUserForm()],
+              children: [
+                EventUserForm(),
+                SizedBox(
+                  width: MediaQuery.sizeOf(context).width,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: lightColorScheme.primary,
+                        minimumSize: const Size.fromHeight(50),
+                      ),
+                      onPressed: () {},
+                      child: Text('Submit')),
+                )
+              ],
             ),
           ),
         ]));
