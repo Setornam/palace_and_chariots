@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/pages/checkout_page.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/Event_gallery.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_gallery_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/rooms_page.dart';
 
@@ -8,8 +9,7 @@ class EventDetailsPage extends StatefulWidget {
   const EventDetailsPage({super.key});
 
   @override
-  State<EventDetailsPage> createState() =>
-      _EventDetailsPageState();
+  State<EventDetailsPage> createState() => _EventDetailsPageState();
 }
 
 class _EventDetailsPageState extends State<EventDetailsPage> {
@@ -33,7 +33,6 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
               ))
         ],
       ),
-      
       body: Stack(
         children: [
           SingleChildScrollView(
@@ -51,7 +50,8 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             borderRadius: BorderRadius.all(Radius.circular(7)),
                             image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: AssetImage('assets/images/room.jpg'))),
+                                image: AssetImage(
+                                    'assets/images/event_space1.png'))),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 5, bottom: 15),
@@ -67,7 +67,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                   image: DecorationImage(
                                       fit: BoxFit.cover,
                                       image: AssetImage(
-                                          'assets/images/room.jpg'))),
+                                          'assets/images/event_space2.png'))),
                             ),
                             Container(
                               height: 80,
@@ -78,7 +78,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                   image: DecorationImage(
                                       fit: BoxFit.cover,
                                       image: AssetImage(
-                                          'assets/images/room.jpg'))),
+                                          'assets/images/event_space.png'))),
                               child: Padding(
                                 padding: const EdgeInsets.all(2.0),
                                 child: GestureDetector(
@@ -403,8 +403,6 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                 ),
                               ),
                             ),
-                          
-                          
                           ],
                         ),
                       ),
