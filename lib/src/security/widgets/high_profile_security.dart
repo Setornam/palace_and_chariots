@@ -65,17 +65,22 @@ class HighProfileSecurityPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: Text(
                 'Personal Security',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),
             Text(
                 'Personal protection has never been more needed these days. Assaults and trafficking have increased over the years. The worst part, if it becomes easier than ever. With technology in the palm of your hand, criminals can know where you are and your routine. Many high-profile individuals don’t even know they need personal protection until they have experienced something jeopardizing their safety. If you classify in one of these categories, make sure to contact personal security services.'),
-            Text(
-              'This service is availbale for',
-              style: TextStyle(fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.only(top: 40, bottom: 10),
+              child: Text(
+                'This service is availble for',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
             Text('Individuals'),
             Text('Families')
+
+            
           ],
         ),
       ),
