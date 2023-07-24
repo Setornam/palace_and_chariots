@@ -263,7 +263,8 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                               padding: EdgeInsets.only(top: 20),
                               child: Text(
                                 'Amenities and Services',
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 18),
                               ),
                             ),
 
@@ -272,6 +273,8 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                               child: SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Column(
                                       crossAxisAlignment:
@@ -279,9 +282,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                       children: [
                                         Row(
                                           children: [
-                                            Icon(Icons.pool),
+                                            Icon(Icons.family_restroom),
                                             Text(
-                                              '1 swimming pool',
+                                              'Washrooms',
                                               style: TextStyle(
                                                   fontSize: 15,
                                                   color: Colors.black87),
@@ -305,36 +308,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                         ),
                                         Row(
                                           children: [
-                                            Icon(Icons.local_parking),
+                                            Icon(Icons.power),
                                             Text(
-                                              'Private Parking',
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  color: Colors.black87),
-                                            ),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsets.symmetric(vertical: 5),
-                                          child: Row(
-                                            children: [
-                                              Icon(Icons.wifi),
-                                              Text(
-                                                'Free Wifi in all areas',
-                                                style: TextStyle(
-                                                    fontSize: 15,
-                                                    color: Colors.black87),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Row(
-                                          children: [
-                                            Icon(Icons
-                                                .wheelchair_pickup_outlined),
-                                            Text(
-                                              'Facilities for disabled guests',
+                                              'Standby generator',
                                               style: TextStyle(
                                                   fontSize: 15,
                                                   color: Colors.black87),
@@ -343,69 +319,51 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                         ),
                                       ],
                                     ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Icon(Icons.family_restroom),
-                                            Text(
-                                              'family rooms',
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  color: Colors.black87),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 20),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 5),
+                                            child: Row(
+                                              children: [
+                                                Icon(Icons
+                                                    .baby_changing_station),
+                                                Text(
+                                                  'Changing Rooms',
+                                                  style: TextStyle(
+                                                      fontSize: 15,
+                                                      color: Colors.black87),
+                                                ),
+                                              ],
                                             ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Icon(Icons.spa),
-                                            Text(
-                                              'Spa and wellness center',
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  color: Colors.black87),
-                                            ),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsets.symmetric(vertical: 5),
-                                          child: Row(
+                                          ),
+                                          Row(
                                             children: [
-                                              Icon(Icons.check),
+                                              Icon(Icons.local_parking),
                                               Text(
-                                                'Airport Shuttle',
+                                                'Free Parking',
                                                 style: TextStyle(
                                                     fontSize: 15,
                                                     color: Colors.black87),
                                               ),
                                             ],
                                           ),
-                                        ),
-                                        Row(
-                                          children: [
-                                            Icon(Icons.local_parking),
-                                            Text(
-                                              'Free Parking',
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  color: Colors.black87),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              '',
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  color: Colors.black87),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                                          Row(
+                                            children: [
+                                              Text(
+                                                '',
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    color: Colors.black87),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -433,7 +391,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                   builder: (BuildContext context) =>
                                       const RoomsPage()));
                         },
-                        child: const Text('select rooms')),
+                        child: const Text('Reserve')),
                   ),
                 )
               ],
