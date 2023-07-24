@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
+import '../../../checkout/presentation/pages/accommodation_checkout_page.dart';
 
 class RoomsPage extends StatefulWidget {
   const RoomsPage({super.key});
@@ -23,7 +24,7 @@ class _RoomsPageState extends State<RoomsPage> {
         elevation: 0,
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -261,7 +262,14 @@ class _RoomsPageState extends State<RoomsPage> {
                                                           const Size.fromHeight(
                                                               40),
                                                     ),
-                                                    onPressed: () {},
+                                                    onPressed: () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (BuildContext
+                                                                      context) =>
+                                                                  AccommodationCheckoutPage()));
+                                                    },
                                                     child: Text(
                                                       'Submit',
                                                       style: TextStyle(

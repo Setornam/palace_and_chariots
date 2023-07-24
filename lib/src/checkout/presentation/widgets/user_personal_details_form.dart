@@ -15,6 +15,9 @@ class _userPersonalDetailsFormState extends State<userPersonalDetailsForm> {
   String phoneNumber = "";
   late String country = '';
   bool isSavedToAccount = false;
+  bool isWorkSelected = false;
+  bool isLeisureSelected = false;
+
   List<DropdownMenuItem> countrys = [
     const DropdownMenuItem(
       value: 'Ghana',
@@ -78,6 +81,58 @@ class _userPersonalDetailsFormState extends State<userPersonalDetailsForm> {
               ),
             ),
 
+            const Padding(
+              padding: EdgeInsets.only(top: 20, bottom: 5),
+              child: Text(
+                'Email Address(*)',
+                style: TextStyle(color: Colors.black87),
+              ),
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 30, vertical: 14),
+                floatingLabelBehavior: FloatingLabelBehavior.never,
+                labelStyle: TextStyle(color: Colors.grey),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.lightBlue),
+                    borderRadius: BorderRadius.all(Radius.circular(5))),
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                    borderRadius: BorderRadius.all(Radius.circular(5))),
+                fillColor: Colors.white,
+              ),
+            ),
+
+            //country
+            const Padding(
+              padding: EdgeInsets.only(top: 15, bottom: 5),
+              child: Text(
+                'Country',
+                style: TextStyle(color: Colors.black87),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: DropdownButtonFormField(
+                  decoration: const InputDecoration(
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 30, vertical: 14),
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                    labelStyle: TextStyle(color: Colors.grey),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.lightBlue),
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
+                    fillColor: Colors.white,
+                  ),
+                  hint: const Text('select country'),
+                  items: countrys,
+                  onChanged: (selectedCountry) => country = selectedCountry),
+            ),
+
             ///phone number
             ///
 
@@ -125,81 +180,6 @@ class _userPersonalDetailsFormState extends State<userPersonalDetailsForm> {
                       }),
                 )),
 
-            //country
-            const Padding(
-              padding: EdgeInsets.only(top: 15, bottom: 5),
-              child: Text(
-                'Country',
-                style: TextStyle(color: Colors.black87),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: DropdownButtonFormField(
-                  decoration: const InputDecoration(
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 30, vertical: 14),
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    labelStyle: TextStyle(color: Colors.grey),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.lightBlue),
-                        borderRadius: BorderRadius.all(Radius.circular(5))),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey),
-                        borderRadius: BorderRadius.all(Radius.circular(5))),
-                    fillColor: Colors.white,
-                  ),
-                  hint: const Text('select country'),
-                  items: countrys,
-                  onChanged: (selectedCountry) => country = selectedCountry),
-            ),
-
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 5),
-              child: Text(
-                'Address(*)',
-                style: TextStyle(color: Colors.black87),
-              ),
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 30, vertical: 14),
-                floatingLabelBehavior: FloatingLabelBehavior.never,
-                labelStyle: TextStyle(color: Colors.grey),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.lightBlue),
-                    borderRadius: BorderRadius.all(Radius.circular(5))),
-                enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
-                    borderRadius: BorderRadius.all(Radius.circular(5))),
-                fillColor: Colors.white,
-              ),
-            ),
-
-            const Padding(
-              padding: EdgeInsets.only(top: 15, bottom: 5),
-              child: Text(
-                'City(*)',
-                style: TextStyle(color: Colors.black87),
-              ),
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 30, vertical: 14),
-                floatingLabelBehavior: FloatingLabelBehavior.never,
-                labelStyle: TextStyle(color: Colors.grey),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.lightBlue),
-                    borderRadius: BorderRadius.all(Radius.circular(5))),
-                enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
-                    borderRadius: BorderRadius.all(Radius.circular(5))),
-                fillColor: Colors.white,
-              ),
-            ),
-
             Row(
               children: [
                 Checkbox.adaptive(
@@ -223,10 +203,50 @@ class _userPersonalDetailsFormState extends State<userPersonalDetailsForm> {
               padding: const EdgeInsets.only(top: 20),
               child: Row(
                 children: [
-                  Icon(Icons.error_outline, color: lightColorScheme.primary),
-                  Text(
-                    '  Free Cancellation up to 24 hours before pick up ',
-                    style: TextStyle(color: lightColorScheme.primary),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'What is the purpose for your trip ',
+                        style: TextStyle(color: Colors.black87),
+                      ),
+                      Row(
+                        children: [
+                          Checkbox.adaptive(
+                              side: BorderSide(color: Colors.grey),
+                              fillColor: MaterialStateProperty.all(
+                                  lightColorScheme.primary),
+                              value: isWorkSelected,
+                              onChanged: (val) {
+                                setState(() {
+                                  isSavedToAccount = !isSavedToAccount;
+                                });
+                              }),
+                          Text(
+                            'Work',
+                            style: TextStyle(color: Colors.black87),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Checkbox.adaptive(
+                              side: BorderSide(color: Colors.grey),
+                              fillColor: MaterialStateProperty.all(
+                                  lightColorScheme.primary),
+                              value: isLeisureSelected,
+                              onChanged: (val) {
+                                setState(() {
+                                  isSavedToAccount = !isSavedToAccount;
+                                });
+                              }),
+                          Text(
+                            'Leisure',
+                            style: TextStyle(color: Colors.black87),
+                          ),
+                        ],
+                      ),
+                    ],
                   )
                 ],
               ),
