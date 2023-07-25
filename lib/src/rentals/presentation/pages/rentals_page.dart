@@ -57,7 +57,7 @@ class _RentalsPageState extends State<RentalsPage> {
                 child: TextField(
                   decoration: InputDecoration(
                     contentPadding:
-                        EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+                        EdgeInsets.symmetric(horizontal: 30, vertical: 35),
                     suffixIcon: Padding(
                       padding: EdgeInsets.only(right: 20),
                       child: Icon(
