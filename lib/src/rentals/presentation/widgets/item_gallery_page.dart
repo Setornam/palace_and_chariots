@@ -29,7 +29,8 @@ class _ItemGalleryPageState extends State<ItemGalleryPage> {
         ),
         body: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: GridView.builder(
+          child: 
+          GridView.builder(
               itemCount: 7,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -53,6 +54,7 @@ class _ItemGalleryPageState extends State<ItemGalleryPage> {
                   ),
                 );
               }),
+       
         ));
   }
 }

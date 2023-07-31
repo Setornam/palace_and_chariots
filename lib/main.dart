@@ -20,6 +20,7 @@ import 'package:palace_and_chariots/src/rentals/presentation/widgets/view_more_p
 import 'package:palace_and_chariots/src/security/pages/security_page.dart';
 import 'package:palace_and_chariots/src/sign_in/presentation/pages/sign_in_page.dart';
 import 'package:palace_and_chariots/src/sign_up/presentation/pages/sign_up_page.dart';
+import 'package:palace_and_chariots/src/travel_tour/presentation/travel_and_tour_page.dart';
 
 // keytool -list -v -keystore C:\Users\username\.android\debug.keystore
 // -alias androiddebugkey -storepass android -keypass android
@@ -50,7 +51,8 @@ class MyApp extends StatelessWidget {
       // home: CustomBottomNavigation(),
       // home: RentalsPage(),
       // home: SecurityPage(),
-      home: OnboardingPage(),
+      // home: OnboardingPage(),
+      home: TravelAndTourPage(),
 
       // home: DestinationSearchPage(),
       // home: SearchResultPage(),
