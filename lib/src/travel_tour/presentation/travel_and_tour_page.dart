@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
+import 'package:palace_and_chariots/src/travel_tour/presentation/widgets/tourism_tab_bar.dart';
 import 'package:palace_and_chariots/src/travel_tour/presentation/widgets/travel_tab_bar_view.dart';
 
 class TravelAndTourPage extends StatefulWidget {
@@ -13,7 +14,7 @@ class _TravelAndTourPageState extends State<TravelAndTourPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -95,7 +96,7 @@ class _TravelAndTourPageState extends State<TravelAndTourPage> {
           ),
         ),
         body: const TabBarView(
-          children: [TravelTabBarView()],
+          children: [TravelTabBarView(), TourismTabBarView()],
         ),
       ),
     );

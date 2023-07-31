@@ -263,7 +263,8 @@ class _SearchResultPageState extends State<SearchResultPage> {
           ),
         ),
       ),
-      body: SizedBox(
+      body:
+       SizedBox(
         height: 680,
         child: ListView.builder(
             itemCount: 7,
@@ -425,6 +426,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
               );
             }),
       ),
+   
     );
   }
 }
