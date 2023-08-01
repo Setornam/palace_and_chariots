@@ -395,7 +395,7 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                           const Icon(Icons.person_2_outlined,
                               size: 18, color: Colors.black54),
                           Text(
-                            '   1 room - 2 adults - no children ',
+                            '  - 2 adults - no children ',
                             style: Theme.of(context).textTheme.bodyMedium,
                           )
                         ],

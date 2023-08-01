@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/data/image_assets.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/pages/rentals_page.dart';
-import 'package:palace_and_chariots/src/travel_tour/presentation/travel_and_tour_page.dart';
+import 'package:palace_and_chariots/src/travel_tour/presentation/pages/travel_and_tour_page.dart';
 
 import '../../../sales/presentation/pages/sales_page.dart';
 import '../../../security/pages/security_page.dart';
