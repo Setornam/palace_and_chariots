@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/data/image_assets.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/pages/rentals_page.dart';
+import 'package:palace_and_chariots/src/travel_tour/presentation/travel_and_tour_page.dart';
 
+import '../../../sales/presentation/pages/sales_page.dart';
 import '../../../security/pages/security_page.dart';
 
 class Home extends StatelessWidget {
@@ -97,6 +99,13 @@ class Home extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  TravelAndTourPage()));
+                    },
                     child: ListTile(
                       trailing: Icon(
                         Icons.arrow_forward,
@@ -142,6 +151,12 @@ class Home extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => SalesPage()));
+                    },
                     child: ListTile(
                       trailing: Icon(
                         Icons.arrow_forward,
