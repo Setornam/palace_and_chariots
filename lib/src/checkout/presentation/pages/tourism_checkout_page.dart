@@ -296,6 +296,8 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                 )
               ],
             ),
+         
+         
           ),
         ),
       ),
