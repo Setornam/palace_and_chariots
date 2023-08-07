@@ -34,7 +34,6 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
               ))
         ],
       ),
-      
       body: Stack(
         children: [
           SingleChildScrollView(
@@ -72,7 +71,7 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                             ),
                             Container(
                               height: 80,
-                              width: 150,
+                              width: 120,
                               decoration: const BoxDecoration(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(7)),
@@ -152,23 +151,27 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text(
-                                            'Check in',
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.black87),
-                                          ),
-                                          Text(
-                                            ' Fri, 12 April 2023 ',
-                                            style: TextStyle(
-                                                color:
-                                                    lightColorScheme.primary),
-                                          )
-                                        ],
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 20),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Text(
+                                              'Check in',
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.black87),
+                                            ),
+                                            Text(
+                                              ' Fri, 12 April 2023 ',
+                                              style: TextStyle(
+                                                  color:
+                                                      lightColorScheme.primary),
+                                            )
+                                          ],
+                                        ),
                                       ),
                                       Column(
                                         crossAxisAlignment:
@@ -239,13 +242,16 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Image.asset('assets/images/map.png'),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 10),
+                                  child: Image.asset('assets/images/map.png'),
+                                ),
                                 const Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Icon(Icons.location_on_outlined),
                                     Text(
-                                        'Tetteh Quarshie opposite Accra Mall\nEast Legon Accra'),
+                                        'Tetteh Quarshie opposite Accra\n Mall East Legon Accra'),
                                   ],
                                 )
                               ],
@@ -404,8 +410,6 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                                 ),
                               ),
                             ),
-                          
-                          
                           ],
                         ),
                       ),

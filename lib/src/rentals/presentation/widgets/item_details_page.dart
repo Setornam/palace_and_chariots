@@ -230,6 +230,7 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                                 Text(
                                   '  Free Cancellation up to 24 hours before pick up ',
                                   style: TextStyle(
+                                      fontSize: 13,
                                       color: lightColorScheme.primary),
                                 )
                               ],

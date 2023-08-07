@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
-import 'package:palace_and_chariots/src/rentals/presentation/widgets/event_tab_bar_view.dart';
-import 'package:palace_and_chariots/src/rentals/presentation/widgets/vehicles_tab_bar_view.dart';
+import 'package:palace_and_chariots/src/sales/presentation/widgets/accommodation_tab_bar_view.dart';
+import 'package:palace_and_chariots/src/sales/presentation/widgets/vehicles_tab_bar_view.dart';
 
-import '../widgets/accommodation_tab_bar_view.dart';
 
-class RentalsPage extends StatefulWidget {
-  const RentalsPage({super.key});
+
+class SalesPage extends StatefulWidget {
+  const SalesPage({super.key});
 
   @override
-  State<RentalsPage> createState() => _RentalsPageState();
+  State<SalesPage> createState() => _SalesPageState();
 }
 
-class _RentalsPageState extends State<RentalsPage> {
+class _SalesPageState extends State<SalesPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -46,7 +46,7 @@ class _RentalsPageState extends State<RentalsPage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 60),
                     child: Text(
-                      'Rentals',
+                      'Sales',
                       style: TextStyle(color: lightColorScheme.primary),
                     ),
                   )
@@ -57,7 +57,7 @@ class _RentalsPageState extends State<RentalsPage> {
                 child: TextField(
                   decoration: InputDecoration(
                     contentPadding:
-                        EdgeInsets.symmetric(horizontal: 30, vertical: 35),
+                        EdgeInsets.symmetric(horizontal: 30, vertical: 50),
                     suffixIcon: Padding(
                       padding: EdgeInsets.only(right: 20),
                       child: Icon(
@@ -94,9 +94,7 @@ class _RentalsPageState extends State<RentalsPage> {
               Tab(
                 text: 'Accommodation',
               ),
-              Tab(
-                text: 'Event Services',
-              )
+             
             ],
           ),
         ),
@@ -104,8 +102,8 @@ class _RentalsPageState extends State<RentalsPage> {
         body: const TabBarView(
           children: [
             VehiclesTabBarView(),
-            AccommodationTabBarView(),
-            EventTabBarView()
+            AccommodationTabBarView()
+           
           ],
         ),
       ),

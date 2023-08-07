@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
 
-class ItemGalleryPage extends StatefulWidget {
-  const ItemGalleryPage({super.key});
+class AccmmodationSalesGalleryPage extends StatefulWidget {
+  const AccmmodationSalesGalleryPage({super.key});
 
   @override
-  State<ItemGalleryPage> createState() => _ItemGalleryPageState();
+  State<AccmmodationSalesGalleryPage> createState() => _AccmmodationSalesGalleryPageState();
 }
 
-class _ItemGalleryPageState extends State<ItemGalleryPage> {
+class _AccmmodationSalesGalleryPageState extends State<AccmmodationSalesGalleryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +45,7 @@ class _ItemGalleryPageState extends State<ItemGalleryPage> {
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage('assets/images/benz-front.png'))),
+                          image: AssetImage('assets/images/room.jpg'))),
                   child: const Align(
                     alignment: Alignment.topLeft,
                     child: Padding(

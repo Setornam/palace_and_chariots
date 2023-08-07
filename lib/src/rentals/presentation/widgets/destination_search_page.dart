@@ -13,6 +13,7 @@ class _DestinationSearchPageState extends State<DestinationSearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
       toolbarHeight: 90,
       elevation: 0,
       backgroundColor: Colors.white,
@@ -31,7 +32,7 @@ class _DestinationSearchPageState extends State<DestinationSearchPage> {
                   color: Colors.grey.withOpacity(.5)
                 ),
               ),
-              prefixIcon: Icon(Icons.arrow_back,color: Colors.black87,),
+              prefixIcon: BackButton(color: Colors.black87,),
               floatingLabelBehavior: FloatingLabelBehavior.never,
               labelText: 'Enter destination',
               labelStyle: TextStyle(color: Colors.black87),

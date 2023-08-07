@@ -20,6 +20,12 @@ import 'package:palace_and_chariots/src/rentals/presentation/widgets/view_more_p
 import 'package:palace_and_chariots/src/security/pages/security_page.dart';
 import 'package:palace_and_chariots/src/sign_in/presentation/pages/sign_in_page.dart';
 import 'package:palace_and_chariots/src/sign_up/presentation/pages/sign_up_page.dart';
+import 'package:palace_and_chariots/src/travel_tour/presentation/pages/travel_and_tour_page.dart';
+
+import 'src/sales/presentation/pages/sales_page.dart';
+
+// keytool -list -v -keystore C:\Users\username\.android\debug.keystore
+// -alias androiddebugkey -storepass android -keypass android
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,7 +52,10 @@ class MyApp extends StatelessWidget {
       // home: const SignInPage()
       // home: CustomBottomNavigation(),
       // home: RentalsPage(),
-      home: SecurityPage(),
+      // home: SecurityPage(),
+      home: OnboardingPage(),
+      // home: TravelAndTourPage(),
+      // home: SalesPage(),
 
       // home: DestinationSearchPage(),
       // home: SearchResultPage(),

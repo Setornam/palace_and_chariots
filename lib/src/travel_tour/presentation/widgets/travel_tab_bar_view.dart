@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:palace_and_chariots/shared/data/image_assets.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/destination_search_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/search_result_page.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
+import '../../../checkout/presentation/pages/travel_checkout_page.dart';
 
-class AccommodationTabBarView extends StatefulWidget {
-  const AccommodationTabBarView({super.key});
+class TravelTabBarView extends StatefulWidget {
+  const TravelTabBarView({super.key});
 
   @override
-  State<AccommodationTabBarView> createState() =>
-      _AccommodationTabBarViewState();
+  State<TravelTabBarView> createState() => _TravelTabBarViewState();
 }
 
-class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
+class _TravelTabBarViewState extends State<TravelTabBarView> {
   ValueNotifier<int> numberOfRooms = ValueNotifier(0);
   ValueNotifier<int> numberOfAdults = ValueNotifier(0);
   ValueNotifier<int> numberOfChildren = ValueNotifier(0);
+
+  List<Map<String, String>> locations = [
+    {'name': 'Accra', 'image': 'assets/images/accra.png'},
+    {'name': 'Lagos', 'image': 'assets/images/lagos.png'},
+    {'name': 'Dubai', 'image': 'assets/images/dubai.png'},
+    {'name': 'London', 'image': 'assets/images/london.png'},
+    {'name': 'Barcelona', 'image': 'assets/images/barca.png'},
+    {'name': 'New York', 'image': 'assets/images/new_york.png'},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -26,48 +34,6 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ///accommodation buttons
-          Row(
-            children: [
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(8))),
-                  backgroundColor: lightColorScheme.primary,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 35, vertical: 10),
-                  elevation: 0,
-                ),
-                child: const Text(
-                  'Apartments',
-                  style: TextStyle(fontSize: 13),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 30),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide(color: lightColorScheme.primary),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(8))),
-                    backgroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 40, vertical: 10),
-                    elevation: 0,
-                  ),
-                  child: Text(
-                    'Hotels',
-                    style: TextStyle(
-                        fontSize: 13, color: lightColorScheme.primary),
-                  ),
-                ),
-              ),
-            ],
-          ),
-
           ///search container
           Padding(
             padding: const EdgeInsets.only(top: 8),
@@ -93,13 +59,56 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                     DestinationSearchPage()));
                       },
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Icon(Icons.location_on_outlined,
-                              size: 18, color: Colors.black54),
-                          Text(
-                            '   Enter destination',
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          )
+                          //from
+                          Row(
+                            children: [
+                              const Icon(Icons.flight_takeoff,
+                                  size: 18, color: Colors.black54),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '   take off',
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall,
+                                  ),
+                                  Text(
+                                    '   City or airport',
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.only(right: 40),
+                            child: Row(
+                              children: [
+                                const Icon(Icons.flight_land,
+                                    size: 18, color: Colors.black54),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '   destination',
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
+                                    ),
+                                    Text(
+                                      '   City or airport',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -199,7 +208,6 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                   ),
                   Divider(),
 
-                  //room size
                   Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: GestureDetector(
@@ -229,65 +237,10 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                           ),
                                         ),
                                         Text(
-                                          '   Select Rooms and guests',
+                                          '   Passengers',
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               color: lightColorScheme.primary),
-                                        ),
-
-                                        //rooms
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 10),
-                                          child: ValueListenableBuilder(
-                                            valueListenable: numberOfRooms,
-                                            builder: (BuildContext context,
-                                                value, Widget? child) {
-                                              return Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text('Rooms'),
-                                                  Row(
-                                                    children: [
-                                                      IconButton(
-                                                          onPressed: () {
-                                                            numberOfRooms
-                                                                .value++;
-                                                          },
-                                                          icon: Icon(
-                                                            Icons
-                                                                .add_circle_outline,
-                                                            color:
-                                                                lightColorScheme
-                                                                    .primary,
-                                                          )),
-                                                      Text(
-                                                        numberOfRooms.value
-                                                            .toString(),
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.black87),
-                                                      ),
-                                                      IconButton(
-                                                          onPressed: () {
-                                                            numberOfRooms
-                                                                .value--;
-                                                          },
-                                                          icon: Icon(
-                                                            Icons
-                                                                .remove_circle_outline,
-                                                            color:
-                                                                lightColorScheme
-                                                                    .primary,
-                                                          )),
-                                                    ],
-                                                  )
-                                                ],
-                                              );
-                                            },
-                                          ),
                                         ),
 
                                         //adults
@@ -442,7 +395,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                           const Icon(Icons.person_2_outlined,
                               size: 18, color: Colors.black54),
                           Text(
-                            '   1 room - 2 adults - no children ',
+                            '  - 2 adults - no children ',
                             style: Theme.of(context).textTheme.bodyMedium,
                           )
                         ],
@@ -462,122 +415,62 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      SearchResultPage()));
+                                      TravelCheckoutPage()));
                         },
-                        child: Text('Search')),
+                        child: Text('Next')),
                   )
                 ],
               ),
             ),
           ),
 
-          ///best rooms
+          ///popular locations
           ///
-          Padding(
-            padding: const EdgeInsets.only(top: 15),
+          const Padding(
+            padding: EdgeInsets.only(top: 15, bottom: 10),
             child: Text(
-              'Best Rooms',
+              'Popular Locations',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
           SizedBox(
             height: 330,
-            child: ListView.builder(
-                itemCount: 7,
+            child: GridView.builder(
+                itemCount: 6,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisExtent: 100,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
                 itemBuilder: (BuildContext context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 80,
-                          width: 80,
-                          decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(7),
-                                  bottomLeft: Radius.circular(7)),
-                              image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: AssetImage('assets/images/room.jpg'))),
-                          child: const Align(
-                            alignment: Alignment.topLeft,
-                            child: Padding(
-                              padding: EdgeInsets.all(5.0),
-                              child: Icon(
-                                size: 18,
-                                Icons.favorite_outline,
+                  return Container(
+                    height: 70,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage(locations[index]['image']!))),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.favorite_border,
                                 color: Colors.white,
-                              ),
+                              )),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              locations[index]['name']!,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
                             ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            height: 80,
-                            decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(7),
-                                    bottomLeft: Radius.circular(7)),
-                                color: Color(0xffe7e7f4)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const Text(
-                                        'Superior Twin',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15,
-                                            color: Colors.black87),
-                                      ),
-                                      Text(
-                                        ' Available',
-                                        style: TextStyle(
-                                            fontSize: 13,
-                                            color: lightColorScheme.primary),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.star,
-                                        size: 18,
-                                        color: Color(0xfff8c123),
-                                      ),
-                                      Text(
-                                        ' 4.5',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium,
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Icon(Icons.bed,
-                                          size: 18, color: Colors.black54),
-                                      Text(
-                                        '1 King size bed',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium,
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
+                          )
+                        ]),
                   );
                 }),
           )

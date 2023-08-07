@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../shared/theme/color_scheme.dart';
+import '../../checkout/presentation/pages/security_checkout_page.dart';
 
-class HighProfileSecurityPage extends StatelessWidget {
-  const HighProfileSecurityPage({super.key});
+class FacilitySecurityPage extends StatelessWidget {
+  const FacilitySecurityPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,28 +60,49 @@ class HighProfileSecurityPage extends StatelessWidget {
                       topRight: Radius.circular(7)),
                   image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage('assets/images/PersonalSecurity.png'))),
+                      image:
+                          AssetImage('assets/images/officeSecurity.png'))),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
               child: Text(
-                'Personal Security',
+                'Facility Security',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),
-            Text(
+            const Text(
                 'Personal protection has never been more needed these days. Assaults and trafficking have increased over the years. The worst part, if it becomes easier than ever. With technology in the palm of your hand, criminals can know where you are and your routine. Many high-profile individuals don’t even know they need personal protection until they have experienced something jeopardizing their safety. If you classify in one of these categories, make sure to contact personal security services.'),
-            Padding(
-              padding: const EdgeInsets.only(top: 40, bottom: 10),
+            const Padding(
+              padding: EdgeInsets.only(top: 40, bottom: 10),
               child: Text(
                 'This service is availble for',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            Text('Individuals'),
-            Text('Families')
-
-            
+            const Text('Individuals'),
+            const Text('Families'),
+            Padding(
+              padding: const EdgeInsets.only(top: 200),
+              child: SizedBox(
+                width: MediaQuery.sizeOf(context).width,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: lightColorScheme.primary,
+                      minimumSize: const Size.fromHeight(40),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const SecurityCheckoutPage()));
+                    },
+                    child: const Text(
+                      'Request',
+                      style: TextStyle(color: Colors.white),
+                    )),
+              ),
+            ),
           ],
         ),
       ),

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
 
-class ItemGalleryPage extends StatefulWidget {
-  const ItemGalleryPage({super.key});
+class SalesGalleryPage extends StatefulWidget {
+  const SalesGalleryPage({super.key});
 
   @override
-  State<ItemGalleryPage> createState() => _ItemGalleryPageState();
+  State<SalesGalleryPage> createState() => _SalesGalleryPageState();
 }
 
-class _ItemGalleryPageState extends State<ItemGalleryPage> {
+class _SalesGalleryPageState extends State<SalesGalleryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
