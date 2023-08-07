@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:iconly/iconly.dart';
+import 'package:palace_and_chariots/src/profile/presentation/pages/profile_page.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
 import '../pages/home.dart';
@@ -22,7 +23,7 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
     Container(),
     Container(),
     Container(),
-    Container()
+    ProfilePage()
   ];
   // current index
 
