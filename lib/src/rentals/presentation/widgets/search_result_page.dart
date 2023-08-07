@@ -422,6 +422,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
                       )
                     ],
                   ),
+                
                 ),
               );
             }),

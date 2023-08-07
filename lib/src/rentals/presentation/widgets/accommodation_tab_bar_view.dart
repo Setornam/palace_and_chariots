@@ -485,7 +485,8 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
             child: ListView.builder(
                 itemCount: 7,
                 itemBuilder: (BuildContext context, index) {
-                  return Padding(
+                  return
+                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Row(
                       children: [
@@ -579,6 +580,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                       ],
                     ),
                   );
+               
                 }),
           )
         ],

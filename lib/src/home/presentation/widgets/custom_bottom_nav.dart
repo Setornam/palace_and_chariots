@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:iconly/iconly.dart';
+import 'package:palace_and_chariots/src/booking_list/presentation/pages/bookings_list_page.dart';
 import 'package:palace_and_chariots/src/chat/presentation/pages/chatbox_page.dart';
 import 'package:palace_and_chariots/src/notifications/presentation/pages/notifications_page.dart';
 import 'package:palace_and_chariots/src/profile/presentation/pages/profile_page.dart';
@@ -22,7 +23,7 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
   // list of screens that will be rendered in the scaffold body
   final List screens = [
     Home(),
-    Container(),
+    BookingsListPage(),
     ChatBoxPage(),
     NotificationsPage(),
     ProfilePage()

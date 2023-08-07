@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
-
+import 'package:palace_and_chariots/src/booking_list/presentation/widgets/active_bookings_tab_bar_view.dart';
+import 'package:palace_and_chariots/src/booking_list/presentation/widgets/favorites_tab_bar_view.dart';
+import 'package:palace_and_chariots/src/booking_list/presentation/widgets/history_tab_bar_view.dart';
 
 class BookingsListPage extends StatefulWidget {
   const BookingsListPage({super.key});
@@ -17,10 +19,10 @@ class _BookingsListPageState extends State<BookingsListPage> {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          toolbarHeight: 110,
+          toolbarHeight: 30,
           elevation: 0,
           backgroundColor: Colors.white,
-            centerTitle: true,
+          centerTitle: true,
           title: Text(
             'List',
             style: TextStyle(color: lightColorScheme.primary),
@@ -45,12 +47,11 @@ class _BookingsListPageState extends State<BookingsListPage> {
             ],
           ),
         ),
-       
         body: const TabBarView(
           children: [
-            VehiclesTabBarView(),
-            AccommodationTabBarView(),
-            EventTabBarView()
+            ActiveBookingsTabBarView(),
+            HistoryTabBarView(),
+            FavoriteTabBarView()
           ],
         ),
       ),
