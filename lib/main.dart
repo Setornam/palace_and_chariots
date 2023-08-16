@@ -24,11 +24,14 @@ import 'package:palace_and_chariots/src/travel_tour/presentation/pages/travel_an
 
 import 'src/sales/presentation/pages/sales_page.dart';
 
+import 'injection_container.dart' as di;
+
 // keytool -list -v -keystore C:\Users\username\.android\debug.keystore
 // -alias androiddebugkey -storepass android -keypass android
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  di.init();
   await Firebase.initializeApp();
   runApp(DevicePreview(
       enabled: !kReleaseMode, builder: (context) => const MyApp()));
