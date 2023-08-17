@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:palace_and_chariots/src/rentals/vehicle/domain/entities/vehicle.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -13,10 +15,15 @@ abstract class VehicleRemoteDatabase {
 class VehicleRemoteDatabaseImpl implements VehicleRemoteDatabase {
   @override
   Stream<List<Vehicle>> list() async* {
-    yield* FirebaseFirestore.instance.collection('vehicles').snapshots().map(
-        (event) => event.docs
-            .map<Vehicle>((vehicle) => Vehicle.fromJson(vehicle.data()))
-            .toList());
+    yield* FirebaseFirestore.instance
+        .collection('vehicles')
+        .snapshots()
+        .map((event) => event.docs.map<Vehicle>((vehicle) {
+              var data = Vehicle.fromJson(vehicle.data());
+              print('eben');
+
+              return data;
+            }).toList());
   }
 
   @override

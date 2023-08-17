@@ -53,17 +53,19 @@ class Vehicle with _$Vehicle {
       ///Vehicle popularity
       required String popularity,
 
-      ///Vehicle speed
-      String? speed,
+      // ///Vehicle speed
+      // String? speed,
 
-      ///Vehicle range (for jets)
-      String? range,
+      // ///Vehicle range (for jets)
+      // String? range,
+  
+      // ///height of vehicle
+      // String? height,
 
-      ///height of vehicle
-      String? height,
-
-      ///length of vehicle
-      String? length}) = _Vehicle;
+      // ///length of vehicle
+      // String? length
+      
+      }) = _Vehicle;
 
   /// Converts json to dart object
   factory Vehicle.fromJson(Map<String, dynamic> json) =>

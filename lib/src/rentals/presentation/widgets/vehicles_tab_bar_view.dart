@@ -228,7 +228,9 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                             Color(0xfff8c123),
                                                       ),
                                                       Text(
-                                                        '4.5',
+                                                        snapshot
+                                                            .requireData[index]
+                                                            .rating,
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .bodyMedium,
@@ -239,14 +241,18 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                               ),
                                               Row(
                                                 children: [
-                                                  const Text(
-                                                    'Silver |',
-                                                    style: TextStyle(
+                                                  Text(
+                                                    '${snapshot.requireData[index].color} |',
+                                                    style: const TextStyle(
                                                         fontSize: 13,
                                                         color: Colors.black87),
                                                   ),
                                                   Text(
-                                                    ' Available',
+                                                    snapshot.requireData[index]
+                                                                .availability ==
+                                                            true
+                                                        ? "  Available"
+                                                        : "   Unavailable",
                                                     style: TextStyle(
                                                         fontSize: 13,
                                                         color: lightColorScheme
@@ -266,7 +272,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                     child: Row(
                                                       children: [
                                                         Text(
-                                                          'GHS 530',
+                                                          'GHS ${snapshot.requireData[index].price}',
                                                           style: TextStyle(
                                                               fontWeight:
                                                                   FontWeight

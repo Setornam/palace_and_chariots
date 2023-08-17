@@ -62,18 +62,6 @@ mixin _$Vehicle {
   ///Vehicle popularity
   String get popularity => throw _privateConstructorUsedError;
 
-  ///Vehicle speed
-  String? get speed => throw _privateConstructorUsedError;
-
-  ///Vehicle range (for jets)
-  String? get range => throw _privateConstructorUsedError;
-
-  ///height of vehicle
-  String? get height => throw _privateConstructorUsedError;
-
-  ///length of vehicle
-  String? get length => throw _privateConstructorUsedError;
-
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $VehicleCopyWith<Vehicle> get copyWith => throw _privateConstructorUsedError;
@@ -98,11 +86,7 @@ abstract class $VehicleCopyWith<$Res> {
       String luggage,
       List<String> otherFeatures,
       String rating,
-      String popularity,
-      String? speed,
-      String? range,
-      String? height,
-      String? length});
+      String popularity});
 
   $VehicleBrandCopyWith<$Res> get brand;
 }
@@ -134,10 +118,6 @@ class _$VehicleCopyWithImpl<$Res, $Val extends Vehicle>
     Object? otherFeatures = null,
     Object? rating = null,
     Object? popularity = null,
-    Object? speed = freezed,
-    Object? range = freezed,
-    Object? height = freezed,
-    Object? length = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -196,22 +176,6 @@ class _$VehicleCopyWithImpl<$Res, $Val extends Vehicle>
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
               as String,
-      speed: freezed == speed
-          ? _value.speed
-          : speed // ignore: cast_nullable_to_non_nullable
-              as String?,
-      range: freezed == range
-          ? _value.range
-          : range // ignore: cast_nullable_to_non_nullable
-              as String?,
-      height: freezed == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as String?,
-      length: freezed == length
-          ? _value.length
-          : length // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 
@@ -245,11 +209,7 @@ abstract class _$$_VehicleCopyWith<$Res> implements $VehicleCopyWith<$Res> {
       String luggage,
       List<String> otherFeatures,
       String rating,
-      String popularity,
-      String? speed,
-      String? range,
-      String? height,
-      String? length});
+      String popularity});
 
   @override
   $VehicleBrandCopyWith<$Res> get brand;
@@ -279,10 +239,6 @@ class __$$_VehicleCopyWithImpl<$Res>
     Object? otherFeatures = null,
     Object? rating = null,
     Object? popularity = null,
-    Object? speed = freezed,
-    Object? range = freezed,
-    Object? height = freezed,
-    Object? length = freezed,
   }) {
     return _then(_$_Vehicle(
       id: null == id
@@ -341,22 +297,6 @@ class __$$_VehicleCopyWithImpl<$Res>
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
               as String,
-      speed: freezed == speed
-          ? _value.speed
-          : speed // ignore: cast_nullable_to_non_nullable
-              as String?,
-      range: freezed == range
-          ? _value.range
-          : range // ignore: cast_nullable_to_non_nullable
-              as String?,
-      height: freezed == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as String?,
-      length: freezed == length
-          ? _value.length
-          : length // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -379,11 +319,7 @@ class _$_Vehicle implements _Vehicle {
       required this.luggage,
       required final List<String> otherFeatures,
       required this.rating,
-      required this.popularity,
-      this.speed,
-      this.range,
-      this.height,
-      this.length})
+      required this.popularity})
       : _images = images,
         _otherFeatures = otherFeatures;
 
@@ -460,22 +396,6 @@ class _$_Vehicle implements _Vehicle {
   @override
   final String popularity;
 
-  ///Vehicle speed
-  @override
-  final String? speed;
-
-  ///Vehicle range (for jets)
-  @override
-  final String? range;
-
-  ///height of vehicle
-  @override
-  final String? height;
-
-  ///length of vehicle
-  @override
-  final String? length;
-
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
@@ -499,11 +419,7 @@ class _$_Vehicle implements _Vehicle {
                 .equals(other._otherFeatures, _otherFeatures) &&
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.popularity, popularity) ||
-                other.popularity == popularity) &&
-            (identical(other.speed, speed) || other.speed == speed) &&
-            (identical(other.range, range) || other.range == range) &&
-            (identical(other.height, height) || other.height == height) &&
-            (identical(other.length, length) || other.length == length));
+                other.popularity == popularity));
   }
 
   @JsonKey(ignore: true)
@@ -523,11 +439,7 @@ class _$_Vehicle implements _Vehicle {
       luggage,
       const DeepCollectionEquality().hash(_otherFeatures),
       rating,
-      popularity,
-      speed,
-      range,
-      height,
-      length);
+      popularity);
 
   @JsonKey(ignore: true)
   @override
@@ -558,11 +470,7 @@ abstract class _Vehicle implements Vehicle {
       required final String luggage,
       required final List<String> otherFeatures,
       required final String rating,
-      required final String popularity,
-      final String? speed,
-      final String? range,
-      final String? height,
-      final String? length}) = _$_Vehicle;
+      required final String popularity}) = _$_Vehicle;
 
   factory _Vehicle.fromJson(Map<String, dynamic> json) = _$_Vehicle.fromJson;
 
@@ -622,22 +530,6 @@ abstract class _Vehicle implements Vehicle {
 
   ///Vehicle popularity
   String get popularity;
-  @override
-
-  ///Vehicle speed
-  String? get speed;
-  @override
-
-  ///Vehicle range (for jets)
-  String? get range;
-  @override
-
-  ///height of vehicle
-  String? get height;
-  @override
-
-  ///length of vehicle
-  String? get length;
   @override
   @JsonKey(ignore: true)
   _$$_VehicleCopyWith<_$_Vehicle> get copyWith =>

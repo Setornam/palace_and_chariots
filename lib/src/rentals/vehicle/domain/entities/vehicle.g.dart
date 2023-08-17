@@ -24,10 +24,6 @@ _$_Vehicle _$$_VehicleFromJson(Map<String, dynamic> json) => _$_Vehicle(
           .toList(),
       rating: json['rating'] as String,
       popularity: json['popularity'] as String,
-      speed: json['speed'] as String?,
-      range: json['range'] as String?,
-      height: json['height'] as String?,
-      length: json['length'] as String?,
     );
 
 Map<String, dynamic> _$$_VehicleToJson(_$_Vehicle instance) =>
@@ -46,8 +42,4 @@ Map<String, dynamic> _$$_VehicleToJson(_$_Vehicle instance) =>
       'otherFeatures': instance.otherFeatures,
       'rating': instance.rating,
       'popularity': instance.popularity,
-      'speed': instance.speed,
-      'range': instance.range,
-      'height': instance.height,
-      'length': instance.length,
     };
