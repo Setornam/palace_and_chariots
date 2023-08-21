@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/injection_container.dart';
 import 'package:palace_and_chariots/shared/data/image_assets.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/pages/checkout_page.dart';
-import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_details_page.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/vehicle_details_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/view_more_page.dart';
 import 'package:palace_and_chariots/src/rentals/vehicle/domain/entities/vehicle.dart';
 import 'package:palace_and_chariots/src/rentals/vehicle/presentation/bloc/vehicle_bloc.dart';
@@ -65,6 +65,10 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
               List<Vehicle> jetList = List.from(vehicleList
                   .where((vehicle) => vehicle.category == 'private Jet'));
 
+              List<Vehicle> lexusList = List.from(vehicleList.where((vehicle) =>
+                  vehicle.brand.name == 'lexus' &&
+                  vehicle.category == "saloon"));
+
               List<Vehicle> mercedesList = List.from(vehicleList.where(
                   (vehicle) =>
                       vehicle.brand.name == 'Mercedes' &&
@@ -73,10 +77,6 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
               List<Vehicle> BMWList = List.from(vehicleList.where((vehicle) =>
                   vehicle.brand.name == 'BMW' && vehicle.category == "saloon"));
 
-              List<Vehicle> lexusList = List.from(vehicleList.where((vehicle) =>
-                  vehicle.brand.name == 'Lexus' &&
-                  vehicle.category == "saloon"));
-
               List<Vehicle> kiaList = List.from(
                   vehicleList.where((vehicle) => vehicle.brand.name == 'KIA'));
 
@@ -84,19 +84,14 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                   vehicle.brand.name == 'Honda' &&
                   vehicle.category == "saloon"));
 
-              List<Vehicle> mercedesBusList = List.from(vehicleList.where(
+              List<Vehicle> lexusBusList = List.from(vehicleList.where(
                   (vehicle) =>
-                      vehicle.brand.name == 'Mercedes' &&
+                      vehicle.brand.name == 'lexus' &&
                       vehicle.category == "bus"));
 
               List<Vehicle> BMWBusList = List.from(vehicleList.where(
                   (vehicle) =>
                       vehicle.brand.name == 'BMW' &&
-                      vehicle.category == "bus"));
-
-              List<Vehicle> lexusBusList = List.from(vehicleList.where(
-                  (vehicle) =>
-                      vehicle.brand.name == 'Lexus' &&
                       vehicle.category == "bus"));
 
               List<Vehicle> kiaBusList = List.from(vehicleList.where(
@@ -314,7 +309,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                             isActiveBrand == "Mercedes"
                                 ?
 
-                                //display a list of all mercedes brand cars
+                                //display a list of mercedes brand cars
 
                                 SizedBox(
                                     height: 430,
@@ -332,7 +327,38 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                     MaterialPageRoute(
                                                         builder: (BuildContext
                                                                 context) =>
-                                                            const ItemDetailsPage()));
+                                                            VehicleDetailsPage(
+                                                              color:
+                                                                  mercedesList[
+                                                                          index]
+                                                                      .color,
+                                                              name:
+                                                                  mercedesList[
+                                                                          index]
+                                                                      .name,
+                                                              luggage:
+                                                                  mercedesList[
+                                                                          index]
+                                                                      .luggage,
+                                                              numberOfSeats:
+                                                                  mercedesList[
+                                                                          index]
+                                                                      .seats,
+                                                              price:
+                                                                  mercedesList[
+                                                                          index]
+                                                                      .price,
+                                                              rating:
+                                                                  mercedesList[
+                                                                          index]
+                                                                      .rating,
+                                                              images: [],
+                                                              otherFeatures: [],
+                                                              transmission:
+                                                                  mercedesList[
+                                                                          index]
+                                                                      .transmission,
+                                                            )));
                                               },
                                               child: Container(
                                                 child: Row(
@@ -525,11 +551,15 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                           );
                                         }),
                                   )
-                                : isActiveBrand == "BMW"
-                                    ? SizedBox(
+                                : isActiveBrand == "lexus"
+                                    ?
+
+                                    //display a list of alllexus brand cars
+
+                                    SizedBox(
                                         height: 430,
                                         child: ListView.builder(
-                                            itemCount: BMWList.length,
+                                            itemCount: lexusList.length,
                                             itemBuilder:
                                                 (BuildContext context, index) {
                                               return Padding(
@@ -541,9 +571,30 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                     Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
-                                                            builder: (BuildContext
-                                                                    context) =>
-                                                                const ItemDetailsPage()));
+                                                            builder: (BuildContext context) => VehicleDetailsPage(
+                                                                color: lexusList[
+                                                                        index]
+                                                                    .color,
+                                                                name: lexusList[
+                                                                        index]
+                                                                    .name,
+                                                                luggage:
+                                                                    lexusList[index]
+                                                                        .luggage,
+                                                                numberOfSeats:
+                                                                    lexusList[index]
+                                                                        .seats,
+                                                                price:
+                                                                    lexusList[index]
+                                                                        .price,
+                                                                rating:
+                                                                    lexusList[index]
+                                                                        .rating,
+                                                                images: [],
+                                                                otherFeatures: [],
+                                                                transmission:
+                                                                    lexusList[index]
+                                                                        .transmission)));
                                                   },
                                                   child: Container(
                                                     child: Row(
@@ -563,11 +614,12 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                               image: DecorationImage(
                                                                   fit: BoxFit
                                                                       .cover,
-                                                                  image: NetworkImage(BMWList[
-                                                                          index]
-                                                                      .images
-                                                                      .first
-                                                                      .toString()))),
+                                                                  image: NetworkImage(
+                                                                      lexusList[
+                                                                              index]
+                                                                          .images
+                                                                          .first
+                                                                          .toString()))),
                                                           child: const Align(
                                                             alignment: Alignment
                                                                 .topLeft,
@@ -610,7 +662,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                             .spaceBetween,
                                                                     children: [
                                                                       Text(
-                                                                        BMWList[index]
+                                                                        lexusList[index]
                                                                             .name,
                                                                         style: const TextStyle(
                                                                             fontWeight: FontWeight
@@ -628,7 +680,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                 Color(0xfff8c123),
                                                                           ),
                                                                           Text(
-                                                                            BMWList[index].rating,
+                                                                            lexusList[index].rating,
                                                                             style:
                                                                                 Theme.of(context).textTheme.bodyMedium,
                                                                           )
@@ -639,7 +691,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                   Row(
                                                                     children: [
                                                                       Text(
-                                                                        '${BMWList[index].color} |',
+                                                                        '${lexusList[index].color} |',
                                                                         style: const TextStyle(
                                                                             fontSize:
                                                                                 13,
@@ -671,7 +723,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                             Row(
                                                                           children: [
                                                                             Text(
-                                                                              'GHS ${BMWList[index].price}',
+                                                                              'GHS ${lexusList[index].price}',
                                                                               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: lightColorScheme.primary),
                                                                             ),
                                                                             const Text(
@@ -724,13 +776,11 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                               );
                                             }),
                                       )
-
-                                    //Lexus cars
-                                    : isActiveBrand == "Lexus"
+                                    : isActiveBrand == "BMW"
                                         ? SizedBox(
                                             height: 430,
                                             child: ListView.builder(
-                                                itemCount: lexusList.length,
+                                                itemCount: BMWList.length,
                                                 itemBuilder:
                                                     (BuildContext context,
                                                         index) {
@@ -745,7 +795,31 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                             MaterialPageRoute(
                                                                 builder: (BuildContext
                                                                         context) =>
-                                                                    const ItemDetailsPage()));
+                                                                    VehicleDetailsPage(
+                                                                      color: BMWList[
+                                                                              index]
+                                                                          .color,
+                                                                      name: BMWList[
+                                                                              index]
+                                                                          .name,
+                                                                      luggage: BMWList[
+                                                                              index]
+                                                                          .luggage,
+                                                                      numberOfSeats:
+                                                                          BMWList[index]
+                                                                              .seats,
+                                                                      price: BMWList[
+                                                                              index]
+                                                                          .price,
+                                                                      rating: BMWList[
+                                                                              index]
+                                                                          .rating,
+                                                                      transmission:
+                                                                          BMWList[index]
+                                                                              .transmission,
+                                                                      images: [],
+                                                                      otherFeatures: [],
+                                                                    )));
                                                       },
                                                       child: Container(
                                                         child: Row(
@@ -765,7 +839,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                   image: DecorationImage(
                                                                       fit: BoxFit
                                                                           .cover,
-                                                                      image: NetworkImage(lexusList[
+                                                                      image: NetworkImage(BMWList[
                                                                               index]
                                                                           .images
                                                                           .first
@@ -815,7 +889,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                             MainAxisAlignment.spaceBetween,
                                                                         children: [
                                                                           Text(
-                                                                            lexusList[index].name,
+                                                                            BMWList[index].name,
                                                                             style: const TextStyle(
                                                                                 fontWeight: FontWeight.bold,
                                                                                 fontSize: 15,
@@ -828,7 +902,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                 color: Color(0xfff8c123),
                                                                               ),
                                                                               Text(
-                                                                                lexusList[index].rating,
+                                                                                BMWList[index].rating,
                                                                                 style: Theme.of(context).textTheme.bodyMedium,
                                                                               )
                                                                             ],
@@ -838,7 +912,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                       Row(
                                                                         children: [
                                                                           Text(
-                                                                            '${lexusList[index].color} |',
+                                                                            '${BMWList[index].color} |',
                                                                             style:
                                                                                 const TextStyle(fontSize: 13, color: Colors.black87),
                                                                           ),
@@ -862,7 +936,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                 Row(
                                                                               children: [
                                                                                 Text(
-                                                                                  'GHS ${lexusList[index].price}',
+                                                                                  'GHS ${BMWList[index].price}',
                                                                                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: lightColorScheme.primary),
                                                                                 ),
                                                                                 const Text(
@@ -908,12 +982,12 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                 }),
                                           )
 
-                                        //kia
-                                        : isActiveBrand == "KIA"
+                                        //Lexus cars
+                                        : isActiveBrand == "Lexus"
                                             ? SizedBox(
                                                 height: 430,
                                                 child: ListView.builder(
-                                                    itemCount: kiaList.length,
+                                                    itemCount: lexusList.length,
                                                     itemBuilder:
                                                         (BuildContext context,
                                                             index) {
@@ -927,9 +1001,25 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                             Navigator.push(
                                                                 context,
                                                                 MaterialPageRoute(
-                                                                    builder: (BuildContext
-                                                                            context) =>
-                                                                        const ItemDetailsPage()));
+                                                                    builder: (BuildContext context) => VehicleDetailsPage(
+                                                                        color: lexusList[index]
+                                                                            .color,
+                                                                        name: lexusList[index]
+                                                                            .name,
+                                                                        luggage:
+                                                                            lexusList[index]
+                                                                                .luggage,
+                                                                        numberOfSeats:
+                                                                            lexusList[index]
+                                                                                .seats,
+                                                                        price: lexusList[index]
+                                                                            .price,
+                                                                        rating: lexusList[index]
+                                                                            .rating,
+                                                                        images: [],
+                                                                        otherFeatures: [],
+                                                                        transmission:
+                                                                            lexusList[index].transmission)));
                                                           },
                                                           child: Container(
                                                             child: Row(
@@ -947,7 +1037,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                       image: DecorationImage(
                                                                           fit: BoxFit
                                                                               .cover,
-                                                                          image: NetworkImage(kiaList[index]
+                                                                          image: NetworkImage(lexusList[index]
                                                                               .images
                                                                               .first
                                                                               .toString()))),
@@ -998,7 +1088,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                 MainAxisAlignment.spaceBetween,
                                                                             children: [
                                                                               Text(
-                                                                                kiaList[index].name,
+                                                                                lexusList[index].name,
                                                                                 style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black87),
                                                                               ),
                                                                               Row(
@@ -1008,7 +1098,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                     color: Color(0xfff8c123),
                                                                                   ),
                                                                                   Text(
-                                                                                    kiaList[index].rating,
+                                                                                    lexusList[index].rating,
                                                                                     style: Theme.of(context).textTheme.bodyMedium,
                                                                                   )
                                                                                 ],
@@ -1018,7 +1108,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                           Row(
                                                                             children: [
                                                                               Text(
-                                                                                '${kiaList[index].color} |',
+                                                                                '${lexusList[index].color} |',
                                                                                 style: const TextStyle(fontSize: 13, color: Colors.black87),
                                                                               ),
                                                                               Text(
@@ -1036,7 +1126,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                 child: Row(
                                                                                   children: [
                                                                                     Text(
-                                                                                      'GHS ${kiaList[index].price}',
+                                                                                      'GHS ${lexusList[index].price}',
                                                                                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: lightColorScheme.primary),
                                                                                     ),
                                                                                     const Text(
@@ -1079,12 +1169,14 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                       );
                                                     }),
                                               )
-                                            : isActiveBrand == "Honda"
+
+                                            //kia
+                                            : isActiveBrand == "KIA"
                                                 ? SizedBox(
                                                     height: 430,
                                                     child: ListView.builder(
                                                         itemCount:
-                                                            hondaList.length,
+                                                            kiaList.length,
                                                         itemBuilder:
                                                             (BuildContext
                                                                     context,
@@ -1101,9 +1193,17 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                 Navigator.push(
                                                                     context,
                                                                     MaterialPageRoute(
-                                                                        builder:
-                                                                            (BuildContext context) =>
-                                                                                const ItemDetailsPage()));
+                                                                        builder: (BuildContext context) => VehicleDetailsPage(
+                                                                            color:
+                                                                                kiaList[index].color,
+                                                                            name: kiaList[index].name,
+                                                                            luggage: kiaList[index].luggage,
+                                                                            numberOfSeats: kiaList[index].seats,
+                                                                            price: kiaList[index].price,
+                                                                            rating: kiaList[index].rating,
+                                                                            images: [],
+                                                                            otherFeatures: [],
+                                                                            transmission: kiaList[index].transmission)));
                                                               },
                                                               child: Container(
                                                                 child: Row(
@@ -1120,7 +1220,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                   7)),
                                                                           image: DecorationImage(
                                                                               fit: BoxFit.cover,
-                                                                              image: NetworkImage(hondaList[index].images.first.toString()))),
+                                                                              image: NetworkImage(kiaList[index].images.first.toString()))),
                                                                       child:
                                                                           const Align(
                                                                         alignment:
@@ -1160,7 +1260,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                                 children: [
                                                                                   Text(
-                                                                                    hondaList[index].name,
+                                                                                    kiaList[index].name,
                                                                                     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black87),
                                                                                   ),
                                                                                   Row(
@@ -1170,7 +1270,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                         color: Color(0xfff8c123),
                                                                                       ),
                                                                                       Text(
-                                                                                        BMWList[index].rating,
+                                                                                        kiaList[index].rating,
                                                                                         style: Theme.of(context).textTheme.bodyMedium,
                                                                                       )
                                                                                     ],
@@ -1180,167 +1280,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                               Row(
                                                                                 children: [
                                                                                   Text(
-                                                                                    '${hondaList[index].color} |',
-                                                                                    style: const TextStyle(fontSize: 13, color: Colors.black87),
-                                                                                  ),
-                                                                                  Text(
-                                                                                    hondaList[index].availability == true ? "  Available" : "   Unavailable",
-                                                                                    style: TextStyle(fontSize: 13, color: lightColorScheme.primary),
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                              Row(
-                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                children: [
-                                                                                  Padding(
-                                                                                    padding: const EdgeInsets.only(top: 5),
-                                                                                    child: Row(
-                                                                                      children: [
-                                                                                        Text(
-                                                                                          'GHS ${hondaList[index].price}',
-                                                                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: lightColorScheme.primary),
-                                                                                        ),
-                                                                                        const Text(
-                                                                                          ' |  Per day',
-                                                                                          style: TextStyle(fontSize: 13, color: Colors.black87),
-                                                                                        ),
-                                                                                      ],
-                                                                                    ),
-                                                                                  ),
-
-                                                                                  //order button
-                                                                                  SizedBox(
-                                                                                    height: 25,
-                                                                                    child: ElevatedButton(
-                                                                                      onPressed: () {
-                                                                                        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const CheckoutPage()));
-                                                                                      },
-                                                                                      style: ElevatedButton.styleFrom(
-                                                                                        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
-                                                                                        backgroundColor: lightColorScheme.primary,
-                                                                                        elevation: 0,
-                                                                                      ),
-                                                                                      child: const Text(
-                                                                                        'Order',
-                                                                                        style: TextStyle(fontSize: 11),
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          );
-                                                        }),
-                                                  )
-                                                : SizedBox(
-                                                    height: 430,
-                                                    child: ListView.builder(
-                                                        itemCount:
-                                                            saloonList.length,
-                                                        itemBuilder:
-                                                            (BuildContext
-                                                                    context,
-                                                                index) {
-                                                          return Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .symmetric(
-                                                                    vertical:
-                                                                        10),
-                                                            child:
-                                                                GestureDetector(
-                                                              onTap: () {
-                                                                Navigator.push(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                        builder:
-                                                                            (BuildContext context) =>
-                                                                                const ItemDetailsPage()));
-                                                              },
-                                                              child: Container(
-                                                                child: Row(
-                                                                  children: [
-                                                                    Container(
-                                                                      height:
-                                                                          80,
-                                                                      width: 80,
-                                                                      decoration: BoxDecoration(
-                                                                          borderRadius: const BorderRadius.only(
-                                                                              topLeft: Radius.circular(
-                                                                                  7),
-                                                                              bottomLeft: Radius.circular(
-                                                                                  7)),
-                                                                          image: DecorationImage(
-                                                                              fit: BoxFit.cover,
-                                                                              image: NetworkImage(vehicleList[index].images.first.toString()))),
-                                                                      child:
-                                                                          const Align(
-                                                                        alignment:
-                                                                            Alignment.topLeft,
-                                                                        child:
-                                                                            Padding(
-                                                                          padding:
-                                                                              EdgeInsets.all(5.0),
-                                                                          child:
-                                                                              Icon(
-                                                                            size:
-                                                                                18,
-                                                                            Icons.favorite_outline,
-                                                                            color:
-                                                                                Colors.white,
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                    Expanded(
-                                                                      child:
-                                                                          Container(
-                                                                        height:
-                                                                            80,
-                                                                        decoration: const BoxDecoration(
-                                                                            borderRadius:
-                                                                                BorderRadius.only(topLeft: Radius.circular(7), bottomLeft: Radius.circular(7)),
-                                                                            color: Color(0xffe7e7f4)),
-                                                                        child:
-                                                                            Padding(
-                                                                          padding:
-                                                                              const EdgeInsets.all(8.0),
-                                                                          child:
-                                                                              Column(
-                                                                            children: [
-                                                                              Row(
-                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                children: [
-                                                                                  Text(
-                                                                                    vehicleList[index].name,
-                                                                                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black87),
-                                                                                  ),
-                                                                                  Row(
-                                                                                    children: [
-                                                                                      const Icon(
-                                                                                        Icons.star,
-                                                                                        color: Color(0xfff8c123),
-                                                                                      ),
-                                                                                      Text(
-                                                                                        saloonList[index].rating,
-                                                                                        style: Theme.of(context).textTheme.bodyMedium,
-                                                                                      )
-                                                                                    ],
-                                                                                  )
-                                                                                ],
-                                                                              ),
-                                                                              Row(
-                                                                                children: [
-                                                                                  Text(
-                                                                                    '${saloonList[index].color} |',
+                                                                                    '${kiaList[index].color} |',
                                                                                     style: const TextStyle(fontSize: 13, color: Colors.black87),
                                                                                   ),
                                                                                   Text(
@@ -1357,7 +1297,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                     child: Row(
                                                                                       children: [
                                                                                         Text(
-                                                                                          'GHS ${saloonList[index].price}',
+                                                                                          'GHS ${kiaList[index].price}',
                                                                                           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: lightColorScheme.primary),
                                                                                         ),
                                                                                         const Text(
@@ -1400,6 +1340,316 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                           );
                                                         }),
                                                   )
+                                                : isActiveBrand == "Honda"
+                                                    ? SizedBox(
+                                                        height: 430,
+                                                        child: ListView.builder(
+                                                            itemCount: hondaList
+                                                                .length,
+                                                            itemBuilder:
+                                                                (BuildContext
+                                                                        context,
+                                                                    index) {
+                                                              return Padding(
+                                                                padding: const EdgeInsets
+                                                                        .symmetric(
+                                                                    vertical:
+                                                                        10),
+                                                                child:
+                                                                    GestureDetector(
+                                                                  onTap: () {
+                                                                    Navigator.push(
+                                                                        context,
+                                                                        MaterialPageRoute(
+                                                                            builder: (BuildContext context) => VehicleDetailsPage(
+                                                                                color: hondaList[index].color,
+                                                                                name: hondaList[index].name,
+                                                                                luggage: hondaList[index].luggage,
+                                                                                numberOfSeats: hondaList[index].seats,
+                                                                                price: hondaList[index].price,
+                                                                                rating: hondaList[index].rating,
+                                                                                images: [],
+                                                                                otherFeatures: [],
+                                                                                transmission: hondaList[index].transmission)));
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    child: Row(
+                                                                      children: [
+                                                                        Container(
+                                                                          height:
+                                                                              80,
+                                                                          width:
+                                                                              80,
+                                                                          decoration: BoxDecoration(
+                                                                              borderRadius: const BorderRadius.only(topLeft: Radius.circular(7), bottomLeft: Radius.circular(7)),
+                                                                              image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(hondaList[index].images.first.toString()))),
+                                                                          child:
+                                                                              const Align(
+                                                                            alignment:
+                                                                                Alignment.topLeft,
+                                                                            child:
+                                                                                Padding(
+                                                                              padding: EdgeInsets.all(5.0),
+                                                                              child: Icon(
+                                                                                size: 18,
+                                                                                Icons.favorite_outline,
+                                                                                color: Colors.white,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        Expanded(
+                                                                          child:
+                                                                              Container(
+                                                                            height:
+                                                                                80,
+                                                                            decoration:
+                                                                                const BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(7), bottomLeft: Radius.circular(7)), color: Color(0xffe7e7f4)),
+                                                                            child:
+                                                                                Padding(
+                                                                              padding: const EdgeInsets.all(8.0),
+                                                                              child: Column(
+                                                                                children: [
+                                                                                  Row(
+                                                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                    children: [
+                                                                                      Text(
+                                                                                        hondaList[index].name,
+                                                                                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black87),
+                                                                                      ),
+                                                                                      Row(
+                                                                                        children: [
+                                                                                          const Icon(
+                                                                                            Icons.star,
+                                                                                            color: Color(0xfff8c123),
+                                                                                          ),
+                                                                                          Text(
+                                                                                            BMWList[index].rating,
+                                                                                            style: Theme.of(context).textTheme.bodyMedium,
+                                                                                          )
+                                                                                        ],
+                                                                                      )
+                                                                                    ],
+                                                                                  ),
+                                                                                  Row(
+                                                                                    children: [
+                                                                                      Text(
+                                                                                        '${hondaList[index].color} |',
+                                                                                        style: const TextStyle(fontSize: 13, color: Colors.black87),
+                                                                                      ),
+                                                                                      Text(
+                                                                                        hondaList[index].availability == true ? "  Available" : "   Unavailable",
+                                                                                        style: TextStyle(fontSize: 13, color: lightColorScheme.primary),
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
+                                                                                  Row(
+                                                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                    children: [
+                                                                                      Padding(
+                                                                                        padding: const EdgeInsets.only(top: 5),
+                                                                                        child: Row(
+                                                                                          children: [
+                                                                                            Text(
+                                                                                              'GHS ${hondaList[index].price}',
+                                                                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: lightColorScheme.primary),
+                                                                                            ),
+                                                                                            const Text(
+                                                                                              ' |  Per day',
+                                                                                              style: TextStyle(fontSize: 13, color: Colors.black87),
+                                                                                            ),
+                                                                                          ],
+                                                                                        ),
+                                                                                      ),
+
+                                                                                      //order button
+                                                                                      SizedBox(
+                                                                                        height: 25,
+                                                                                        child: ElevatedButton(
+                                                                                          onPressed: () {
+                                                                                            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const CheckoutPage()));
+                                                                                          },
+                                                                                          style: ElevatedButton.styleFrom(
+                                                                                            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+                                                                                            backgroundColor: lightColorScheme.primary,
+                                                                                            elevation: 0,
+                                                                                          ),
+                                                                                          child: const Text(
+                                                                                            'Order',
+                                                                                            style: TextStyle(fontSize: 11),
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            }),
+                                                      )
+                                                    : SizedBox(
+                                                        height: 430,
+                                                        child: ListView.builder(
+                                                            itemCount:
+                                                                saloonList
+                                                                    .length,
+                                                            itemBuilder:
+                                                                (BuildContext
+                                                                        context,
+                                                                    index) {
+                                                              return Padding(
+                                                                padding: const EdgeInsets
+                                                                        .symmetric(
+                                                                    vertical:
+                                                                        10),
+                                                                child:
+                                                                    GestureDetector(
+                                                                  onTap: () {
+                                                                    Navigator.push(
+                                                                        context,
+                                                                        MaterialPageRoute(
+                                                                            builder: (BuildContext context) => VehicleDetailsPage(
+                                                                                color: saloonList[index].color,
+                                                                                name: saloonList[index].name,
+                                                                                luggage: saloonList[index].luggage,
+                                                                                numberOfSeats: saloonList[index].seats,
+                                                                                price: saloonList[index].price,
+                                                                                rating: saloonList[index].rating,
+                                                                                images: [],
+                                                                                otherFeatures: [],
+                                                                                transmission: saloonList[index].transmission)));
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    child: Row(
+                                                                      children: [
+                                                                        Container(
+                                                                          height:
+                                                                              80,
+                                                                          width:
+                                                                              80,
+                                                                          decoration: BoxDecoration(
+                                                                              borderRadius: const BorderRadius.only(topLeft: Radius.circular(7), bottomLeft: Radius.circular(7)),
+                                                                              image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(saloonList[index].images.first.toString()))),
+                                                                          child:
+                                                                              const Align(
+                                                                            alignment:
+                                                                                Alignment.topLeft,
+                                                                            child:
+                                                                                Padding(
+                                                                              padding: EdgeInsets.all(5.0),
+                                                                              child: Icon(
+                                                                                size: 18,
+                                                                                Icons.favorite_outline,
+                                                                                color: Colors.white,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        Expanded(
+                                                                          child:
+                                                                              Container(
+                                                                            height:
+                                                                                80,
+                                                                            decoration:
+                                                                                const BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(7), bottomLeft: Radius.circular(7)), color: Color(0xffe7e7f4)),
+                                                                            child:
+                                                                                Padding(
+                                                                              padding: const EdgeInsets.all(8.0),
+                                                                              child: Column(
+                                                                                children: [
+                                                                                  Row(
+                                                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                    children: [
+                                                                                      Text(
+                                                                                        saloonList[index].name,
+                                                                                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black87),
+                                                                                      ),
+                                                                                      Row(
+                                                                                        children: [
+                                                                                          const Icon(
+                                                                                            Icons.star,
+                                                                                            color: Color(0xfff8c123),
+                                                                                          ),
+                                                                                          Text(
+                                                                                            saloonList[index].rating,
+                                                                                            style: Theme.of(context).textTheme.bodyMedium,
+                                                                                          )
+                                                                                        ],
+                                                                                      )
+                                                                                    ],
+                                                                                  ),
+                                                                                  Row(
+                                                                                    children: [
+                                                                                      Text(
+                                                                                        '${saloonList[index].color} |',
+                                                                                        style: const TextStyle(fontSize: 13, color: Colors.black87),
+                                                                                      ),
+                                                                                      Text(
+                                                                                        saloonList[index].availability == true ? "  Available" : "   Unavailable",
+                                                                                        style: TextStyle(fontSize: 13, color: lightColorScheme.primary),
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
+                                                                                  Row(
+                                                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                    children: [
+                                                                                      Padding(
+                                                                                        padding: const EdgeInsets.only(top: 5),
+                                                                                        child: Row(
+                                                                                          children: [
+                                                                                            Text(
+                                                                                              'GHS ${saloonList[index].price}',
+                                                                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: lightColorScheme.primary),
+                                                                                            ),
+                                                                                            const Text(
+                                                                                              ' |  Per day',
+                                                                                              style: TextStyle(fontSize: 13, color: Colors.black87),
+                                                                                            ),
+                                                                                          ],
+                                                                                        ),
+                                                                                      ),
+
+                                                                                      //order button
+                                                                                      SizedBox(
+                                                                                        height: 25,
+                                                                                        child: ElevatedButton(
+                                                                                          onPressed: () {
+                                                                                            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const CheckoutPage()));
+                                                                                          },
+                                                                                          style: ElevatedButton.styleFrom(
+                                                                                            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+                                                                                            backgroundColor: lightColorScheme.primary,
+                                                                                            elevation: 0,
+                                                                                          ),
+                                                                                          child: const Text(
+                                                                                            'Order',
+                                                                                            style: TextStyle(fontSize: 11),
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            }),
+                                                      )
                           ],
                         )
                       : isActiveVehicle == "Bus"
@@ -1434,15 +1684,15 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                     ],
                                   ),
                                 ),
-                                isActiveBrand == "Mercedes"
+                                isActiveBrand == "lexus"
                                     ?
 
-                                    //display a list of all mercedes brand buses
+                                    //display a list of alllexus brand buses
 
                                     SizedBox(
                                         height: 430,
                                         child: ListView.builder(
-                                            itemCount: mercedesBusList.length,
+                                            itemCount: lexusBusList.length,
                                             itemBuilder:
                                                 (BuildContext context, index) {
                                               return Padding(
@@ -1454,9 +1704,31 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                     Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
-                                                            builder: (BuildContext
-                                                                    context) =>
-                                                                const ItemDetailsPage()));
+                                                            builder: (BuildContext context) => VehicleDetailsPage(
+                                                                color:
+                                                                    lexusBusList[index]
+                                                                        .color,
+                                                                name: lexusBusList[
+                                                                        index]
+                                                                    .name,
+                                                                luggage:
+                                                                    lexusBusList[index]
+                                                                        .luggage,
+                                                                numberOfSeats:
+                                                                    lexusBusList[index]
+                                                                        .seats,
+                                                                price:
+                                                                    lexusBusList[index]
+                                                                        .price,
+                                                                rating:
+                                                                    lexusBusList[index]
+                                                                        .rating,
+                                                                images: [],
+                                                                otherFeatures: [],
+                                                                transmission:
+                                                                    lexusBusList[
+                                                                            index]
+                                                                        .transmission)));
                                                   },
                                                   child: Container(
                                                     child: Row(
@@ -1477,7 +1749,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                   fit: BoxFit
                                                                       .cover,
                                                                   image: NetworkImage(
-                                                                      mercedesBusList[
+                                                                      lexusBusList[
                                                                               index]
                                                                           .images
                                                                           .first
@@ -1524,7 +1796,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                             .spaceBetween,
                                                                     children: [
                                                                       Text(
-                                                                        mercedesBusList[index]
+                                                                        lexusBusList[index]
                                                                             .name,
                                                                         style: const TextStyle(
                                                                             fontWeight: FontWeight
@@ -1542,7 +1814,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                 Color(0xfff8c123),
                                                                           ),
                                                                           Text(
-                                                                            mercedesBusList[index].rating,
+                                                                            lexusBusList[index].rating,
                                                                             style:
                                                                                 Theme.of(context).textTheme.bodyMedium,
                                                                           )
@@ -1553,7 +1825,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                   Row(
                                                                     children: [
                                                                       Text(
-                                                                        '${mercedesBusList[index].color} |',
+                                                                        '$lexusBusList[index].color} |',
                                                                         style: const TextStyle(
                                                                             fontSize:
                                                                                 13,
@@ -1585,7 +1857,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                             Row(
                                                                           children: [
                                                                             Text(
-                                                                              'GHS ${mercedesBusList[index].price}',
+                                                                              'GHS $lexusBusList[index].price}',
                                                                               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: lightColorScheme.primary),
                                                                             ),
                                                                             const Text(
@@ -1655,9 +1927,28 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                         Navigator.push(
                                                             context,
                                                             MaterialPageRoute(
-                                                                builder: (BuildContext
-                                                                        context) =>
-                                                                    const ItemDetailsPage()));
+                                                                builder: (BuildContext context) => VehicleDetailsPage(
+                                                                    color: BMWBusList[index]
+                                                                        .color,
+                                                                    name: BMWBusList[index]
+                                                                        .name,
+                                                                    luggage:
+                                                                        BMWBusList[index]
+                                                                            .luggage,
+                                                                    numberOfSeats:
+                                                                        BMWBusList[index]
+                                                                            .seats,
+                                                                    price: BMWBusList[
+                                                                            index]
+                                                                        .price,
+                                                                    rating: BMWBusList[
+                                                                            index]
+                                                                        .rating,
+                                                                    images: [],
+                                                                    otherFeatures: [],
+                                                                    transmission:
+                                                                        BMWBusList[index]
+                                                                            .transmission)));
                                                       },
                                                       child: Container(
                                                         child: Row(
@@ -1840,9 +2131,25 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                             Navigator.push(
                                                                 context,
                                                                 MaterialPageRoute(
-                                                                    builder: (BuildContext
-                                                                            context) =>
-                                                                        const ItemDetailsPage()));
+                                                                    builder: (BuildContext context) => VehicleDetailsPage(
+                                                                        color: lexusBusList[index]
+                                                                            .color,
+                                                                        name: lexusBusList[index]
+                                                                            .name,
+                                                                        luggage:
+                                                                            lexusBusList[index]
+                                                                                .luggage,
+                                                                        numberOfSeats:
+                                                                            lexusBusList[index]
+                                                                                .seats,
+                                                                        price: lexusBusList[index]
+                                                                            .price,
+                                                                        rating: lexusBusList[index]
+                                                                            .rating,
+                                                                        images: [],
+                                                                        otherFeatures: [],
+                                                                        transmission:
+                                                                            lexusBusList[index].transmission)));
                                                           },
                                                           child: Container(
                                                             child: Row(
@@ -2016,9 +2323,17 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                 Navigator.push(
                                                                     context,
                                                                     MaterialPageRoute(
-                                                                        builder:
-                                                                            (BuildContext context) =>
-                                                                                const ItemDetailsPage()));
+                                                                        builder: (BuildContext context) => VehicleDetailsPage(
+                                                                            color:
+                                                                                kiaBusList[index].color,
+                                                                            name: kiaBusList[index].name,
+                                                                            luggage: kiaBusList[index].luggage,
+                                                                            numberOfSeats: kiaBusList[index].seats,
+                                                                            price: kiaBusList[index].price,
+                                                                            rating: kiaBusList[index].rating,
+                                                                            images: [],
+                                                                            otherFeatures: [],
+                                                                            transmission: kiaBusList[index].transmission)));
                                                               },
                                                               child: Container(
                                                                 child: Row(
@@ -2177,8 +2492,16 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                     Navigator.push(
                                                                         context,
                                                                         MaterialPageRoute(
-                                                                            builder: (BuildContext context) =>
-                                                                                const ItemDetailsPage()));
+                                                                            builder: (BuildContext context) => VehicleDetailsPage(
+                                                                                color: hondaBusList[index].color,
+                                                                                name: hondaBusList[index].name,
+                                                                                luggage: hondaBusList[index].luggage,
+                                                                                numberOfSeats: hondaBusList[index].seats,
+                                                                                price: hondaBusList[index].price,
+                                                                                rating: hondaBusList[index].rating,
+                                                                                images: [],
+                                                                                otherFeatures: [],
+                                                                                transmission: hondaBusList[index].transmission)));
                                                                   },
                                                                   child:
                                                                       Container(
@@ -2323,8 +2646,16 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                     Navigator.push(
                                                                         context,
                                                                         MaterialPageRoute(
-                                                                            builder: (BuildContext context) =>
-                                                                                const ItemDetailsPage()));
+                                                                            builder: (BuildContext context) => VehicleDetailsPage(
+                                                                                color: busList[index].color,
+                                                                                name: busList[index].name,
+                                                                                luggage: busList[index].luggage,
+                                                                                numberOfSeats: busList[index].seats,
+                                                                                price: busList[index].price,
+                                                                                rating: busList[index].rating,
+                                                                                images: [],
+                                                                                otherFeatures: [],
+                                                                                transmission: busList[index].transmission)));
                                                                   },
                                                                   child:
                                                                       Container(
@@ -2379,7 +2710,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                             color: Color(0xfff8c123),
                                                                                           ),
                                                                                           Text(
-                                                                                            vehicleList[index].rating,
+                                                                                            busList[index].rating,
                                                                                             style: Theme.of(context).textTheme.bodyMedium,
                                                                                           )
                                                                                         ],
@@ -2493,7 +2824,19 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
-                                                const ItemDetailsPage()));
+                                                VehicleDetailsPage(
+                                                    color: jetList[index].color,
+                                                    name: jetList[index].name,
+                                                    luggage:
+                                                        jetList[index].luggage,
+                                                    numberOfSeats:
+                                                        jetList[index].seats,
+                                                    price: jetList[index].price,
+                                                    rating:
+                                                        jetList[index].rating,
+                                                    images: [],
+                                                    otherFeatures: [],
+                                                    transmission: '')));
                                   },
                                   child: Container(
                                     child: Row(

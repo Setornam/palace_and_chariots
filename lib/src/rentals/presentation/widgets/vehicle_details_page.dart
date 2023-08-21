@@ -3,14 +3,26 @@ import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/pages/checkout_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_gallery_page.dart';
 
-class ItemDetailsPage extends StatefulWidget {
-  const ItemDetailsPage({super.key});
+class VehicleDetailsPage extends StatefulWidget {
+  final String numberOfSeats, name, price, color, rating, transmission, luggage;
+  final List<String> otherFeatures, images;
+  const VehicleDetailsPage(
+      {super.key,
+      required this.numberOfSeats,
+      required this.name,
+      required this.price,
+      required this.color,
+      required this.rating,
+      required this.luggage,
+      required this.otherFeatures,
+      required this.images,
+      required this.transmission});
 
   @override
-  State<ItemDetailsPage> createState() => _ItemDetailsPageState();
+  State<VehicleDetailsPage> createState() => _VehicleDetailsPageState();
 }
 
-class _ItemDetailsPageState extends State<ItemDetailsPage> {
+class _VehicleDetailsPageState extends State<VehicleDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +32,7 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
         automaticallyImplyLeading: true,
         centerTitle: true,
         title: Text(
-          'Car Details',
+          widget.name,
           style: Theme.of(context)
               .textTheme
               .bodyLarge!
@@ -104,15 +116,15 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text(
-                                'Toyota Corolla 2020',
+                              Text(
+                                widget.name,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15,
                                     color: Colors.black87),
                               ),
                               Text(
-                                'GHS 530',
+                                widget.price,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15,
@@ -122,8 +134,8 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                           ),
                           Row(
                             children: [
-                              const Text(
-                                'Silver    ',
+                              Text(
+                                '${widget.color}    ',
                                 style: TextStyle(
                                     fontSize: 13, color: Colors.black87),
                               ),
@@ -135,7 +147,7 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                                     color: Color(0xfff8c123),
                                   ),
                                   Text(
-                                    '4.5',
+                                    widget.rating,
                                     style:
                                         Theme.of(context).textTheme.bodyMedium,
                                   )
@@ -143,7 +155,7 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                               )
                             ],
                           ),
-                          const Row(
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Padding(
@@ -156,7 +168,7 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                                       size: 20,
                                     ),
                                     Text(
-                                      '4 seats',
+                                      widget.numberOfSeats,
                                       style: TextStyle(
                                           fontSize: 15, color: Colors.black87),
                                     ),
@@ -173,7 +185,7 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                                       size: 20,
                                     ),
                                     Text(
-                                      'Auto',
+                                      widget.transmission,
                                       style: TextStyle(
                                           fontSize: 15, color: Colors.black87),
                                     ),
@@ -182,7 +194,7 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                               ),
                             ],
                           ),
-                          const Row(
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Padding(
@@ -195,30 +207,30 @@ class _ItemDetailsPageState extends State<ItemDetailsPage> {
                                       size: 20,
                                     ),
                                     Text(
-                                      '2 Large bag',
+                                      widget.luggage,
                                       style: TextStyle(
                                           fontSize: 15, color: Colors.black87),
                                     ),
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 5, right: 55),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.luggage_outlined,
-                                      color: Colors.black54,
-                                      size: 20,
-                                    ),
-                                    Text(
-                                      '1 small bag',
-                                      style: TextStyle(
-                                          fontSize: 15, color: Colors.black87),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              // Padding(
+                              //   padding: EdgeInsets.only(top: 5, right: 55),
+                              //   child: Row(
+                              //     children: [
+                              //       Icon(
+                              //         Icons.ac_unit,
+                              //         color: Colors.black54,
+                              //         size: 20,
+                              //       ),
+                              //       Text(
+                              //         widget.otherFeatures.first,
+                              //         style: TextStyle(
+                              //             fontSize: 15, color: Colors.black87),
+                              //       ),
+                              //     ],
+                              //   ),
+                              // ),
                             ],
                           ),
                           Padding(

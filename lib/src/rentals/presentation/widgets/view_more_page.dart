@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_details_page.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/vehicle_details_page.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
 
@@ -288,7 +288,6 @@ class _ViewMorePageState extends State<ViewMorePage> {
                     ],
                   ),
                 ),
-              
               ],
             ),
           ),
@@ -304,13 +303,17 @@ class _ViewMorePageState extends State<ViewMorePage> {
               ),
               itemBuilder: (BuildContext context, index) {
                 return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const ItemDetailsPage()));
-                  },
+                  // onTap: () {
+                  //   Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //           builder: (BuildContext context) =>
+                  //               const ItemDetailsPage()
+
+                  //               )
+
+                  //               );
+                  // },
                   child: Column(
                     children: [
                       Container(
