@@ -39,13 +39,13 @@ mixin _$Vehicle {
   List<String> get images => throw _privateConstructorUsedError;
 
   ///vehicle brand
-  VehicleBrand get brand => throw _privateConstructorUsedError;
+  VehicleBrand? get brand => throw _privateConstructorUsedError;
 
   ///Vehicle Category
   String get category => throw _privateConstructorUsedError;
 
   ///vehicle transmission
-  String get transmission => throw _privateConstructorUsedError;
+  String? get transmission => throw _privateConstructorUsedError;
 
   ///number of seats
   String get seats => throw _privateConstructorUsedError;
@@ -54,13 +54,25 @@ mixin _$Vehicle {
   String get luggage => throw _privateConstructorUsedError;
 
   ///Other Vehicle Features
-  List<String> get otherFeatures => throw _privateConstructorUsedError;
+  List<String>? get otherFeatures => throw _privateConstructorUsedError;
 
   ///Vehicle rating
   String get rating => throw _privateConstructorUsedError;
 
   ///Vehicle popularity
   String get popularity => throw _privateConstructorUsedError;
+
+  ///Vehicle speed
+  String? get speed => throw _privateConstructorUsedError;
+
+  ///Vehicle range (for jets)
+  String? get range => throw _privateConstructorUsedError;
+
+  ///height of vehicle
+  String? get height => throw _privateConstructorUsedError;
+
+  ///length of vehicle
+  String? get length => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -79,16 +91,20 @@ abstract class $VehicleCopyWith<$Res> {
       String price,
       bool availability,
       List<String> images,
-      VehicleBrand brand,
+      VehicleBrand? brand,
       String category,
-      String transmission,
+      String? transmission,
       String seats,
       String luggage,
-      List<String> otherFeatures,
+      List<String>? otherFeatures,
       String rating,
-      String popularity});
+      String popularity,
+      String? speed,
+      String? range,
+      String? height,
+      String? length});
 
-  $VehicleBrandCopyWith<$Res> get brand;
+  $VehicleBrandCopyWith<$Res>? get brand;
 }
 
 /// @nodoc
@@ -110,14 +126,18 @@ class _$VehicleCopyWithImpl<$Res, $Val extends Vehicle>
     Object? price = null,
     Object? availability = null,
     Object? images = null,
-    Object? brand = null,
+    Object? brand = freezed,
     Object? category = null,
-    Object? transmission = null,
+    Object? transmission = freezed,
     Object? seats = null,
     Object? luggage = null,
-    Object? otherFeatures = null,
+    Object? otherFeatures = freezed,
     Object? rating = null,
     Object? popularity = null,
+    Object? speed = freezed,
+    Object? range = freezed,
+    Object? height = freezed,
+    Object? length = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -144,18 +164,18 @@ class _$VehicleCopyWithImpl<$Res, $Val extends Vehicle>
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      brand: null == brand
+      brand: freezed == brand
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
-              as VehicleBrand,
+              as VehicleBrand?,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as String,
-      transmission: null == transmission
+      transmission: freezed == transmission
           ? _value.transmission
           : transmission // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       seats: null == seats
           ? _value.seats
           : seats // ignore: cast_nullable_to_non_nullable
@@ -164,10 +184,10 @@ class _$VehicleCopyWithImpl<$Res, $Val extends Vehicle>
           ? _value.luggage
           : luggage // ignore: cast_nullable_to_non_nullable
               as String,
-      otherFeatures: null == otherFeatures
+      otherFeatures: freezed == otherFeatures
           ? _value.otherFeatures
           : otherFeatures // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
@@ -176,13 +196,33 @@ class _$VehicleCopyWithImpl<$Res, $Val extends Vehicle>
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
               as String,
+      speed: freezed == speed
+          ? _value.speed
+          : speed // ignore: cast_nullable_to_non_nullable
+              as String?,
+      range: freezed == range
+          ? _value.range
+          : range // ignore: cast_nullable_to_non_nullable
+              as String?,
+      height: freezed == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as String?,
+      length: freezed == length
+          ? _value.length
+          : length // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $VehicleBrandCopyWith<$Res> get brand {
-    return $VehicleBrandCopyWith<$Res>(_value.brand, (value) {
+  $VehicleBrandCopyWith<$Res>? get brand {
+    if (_value.brand == null) {
+      return null;
+    }
+
+    return $VehicleBrandCopyWith<$Res>(_value.brand!, (value) {
       return _then(_value.copyWith(brand: value) as $Val);
     });
   }
@@ -202,17 +242,21 @@ abstract class _$$_VehicleCopyWith<$Res> implements $VehicleCopyWith<$Res> {
       String price,
       bool availability,
       List<String> images,
-      VehicleBrand brand,
+      VehicleBrand? brand,
       String category,
-      String transmission,
+      String? transmission,
       String seats,
       String luggage,
-      List<String> otherFeatures,
+      List<String>? otherFeatures,
       String rating,
-      String popularity});
+      String popularity,
+      String? speed,
+      String? range,
+      String? height,
+      String? length});
 
   @override
-  $VehicleBrandCopyWith<$Res> get brand;
+  $VehicleBrandCopyWith<$Res>? get brand;
 }
 
 /// @nodoc
@@ -231,14 +275,18 @@ class __$$_VehicleCopyWithImpl<$Res>
     Object? price = null,
     Object? availability = null,
     Object? images = null,
-    Object? brand = null,
+    Object? brand = freezed,
     Object? category = null,
-    Object? transmission = null,
+    Object? transmission = freezed,
     Object? seats = null,
     Object? luggage = null,
-    Object? otherFeatures = null,
+    Object? otherFeatures = freezed,
     Object? rating = null,
     Object? popularity = null,
+    Object? speed = freezed,
+    Object? range = freezed,
+    Object? height = freezed,
+    Object? length = freezed,
   }) {
     return _then(_$_Vehicle(
       id: null == id
@@ -265,18 +313,18 @@ class __$$_VehicleCopyWithImpl<$Res>
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      brand: null == brand
+      brand: freezed == brand
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
-              as VehicleBrand,
+              as VehicleBrand?,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as String,
-      transmission: null == transmission
+      transmission: freezed == transmission
           ? _value.transmission
           : transmission // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       seats: null == seats
           ? _value.seats
           : seats // ignore: cast_nullable_to_non_nullable
@@ -285,10 +333,10 @@ class __$$_VehicleCopyWithImpl<$Res>
           ? _value.luggage
           : luggage // ignore: cast_nullable_to_non_nullable
               as String,
-      otherFeatures: null == otherFeatures
+      otherFeatures: freezed == otherFeatures
           ? _value._otherFeatures
           : otherFeatures // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
@@ -297,6 +345,22 @@ class __$$_VehicleCopyWithImpl<$Res>
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
               as String,
+      speed: freezed == speed
+          ? _value.speed
+          : speed // ignore: cast_nullable_to_non_nullable
+              as String?,
+      range: freezed == range
+          ? _value.range
+          : range // ignore: cast_nullable_to_non_nullable
+              as String?,
+      height: freezed == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as String?,
+      length: freezed == length
+          ? _value.length
+          : length // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -312,14 +376,18 @@ class _$_Vehicle implements _Vehicle {
       required this.price,
       required this.availability,
       required final List<String> images,
-      required this.brand,
+      this.brand,
       required this.category,
-      required this.transmission,
+      this.transmission,
       required this.seats,
       required this.luggage,
-      required final List<String> otherFeatures,
+      final List<String>? otherFeatures,
       required this.rating,
-      required this.popularity})
+      required this.popularity,
+      this.speed,
+      this.range,
+      this.height,
+      this.length})
       : _images = images,
         _otherFeatures = otherFeatures;
 
@@ -359,7 +427,7 @@ class _$_Vehicle implements _Vehicle {
 
   ///vehicle brand
   @override
-  final VehicleBrand brand;
+  final VehicleBrand? brand;
 
   ///Vehicle Category
   @override
@@ -367,7 +435,7 @@ class _$_Vehicle implements _Vehicle {
 
   ///vehicle transmission
   @override
-  final String transmission;
+  final String? transmission;
 
   ///number of seats
   @override
@@ -378,14 +446,16 @@ class _$_Vehicle implements _Vehicle {
   final String luggage;
 
   ///Other Vehicle Features
-  final List<String> _otherFeatures;
+  final List<String>? _otherFeatures;
 
   ///Other Vehicle Features
   @override
-  List<String> get otherFeatures {
+  List<String>? get otherFeatures {
+    final value = _otherFeatures;
+    if (value == null) return null;
     if (_otherFeatures is EqualUnmodifiableListView) return _otherFeatures;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_otherFeatures);
+    return EqualUnmodifiableListView(value);
   }
 
   ///Vehicle rating
@@ -395,6 +465,22 @@ class _$_Vehicle implements _Vehicle {
   ///Vehicle popularity
   @override
   final String popularity;
+
+  ///Vehicle speed
+  @override
+  final String? speed;
+
+  ///Vehicle range (for jets)
+  @override
+  final String? range;
+
+  ///height of vehicle
+  @override
+  final String? height;
+
+  ///length of vehicle
+  @override
+  final String? length;
 
   @override
   bool operator ==(dynamic other) {
@@ -419,7 +505,11 @@ class _$_Vehicle implements _Vehicle {
                 .equals(other._otherFeatures, _otherFeatures) &&
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.popularity, popularity) ||
-                other.popularity == popularity));
+                other.popularity == popularity) &&
+            (identical(other.speed, speed) || other.speed == speed) &&
+            (identical(other.range, range) || other.range == range) &&
+            (identical(other.height, height) || other.height == height) &&
+            (identical(other.length, length) || other.length == length));
   }
 
   @JsonKey(ignore: true)
@@ -439,7 +529,11 @@ class _$_Vehicle implements _Vehicle {
       luggage,
       const DeepCollectionEquality().hash(_otherFeatures),
       rating,
-      popularity);
+      popularity,
+      speed,
+      range,
+      height,
+      length);
 
   @JsonKey(ignore: true)
   @override
@@ -463,14 +557,18 @@ abstract class _Vehicle implements Vehicle {
       required final String price,
       required final bool availability,
       required final List<String> images,
-      required final VehicleBrand brand,
+      final VehicleBrand? brand,
       required final String category,
-      required final String transmission,
+      final String? transmission,
       required final String seats,
       required final String luggage,
-      required final List<String> otherFeatures,
+      final List<String>? otherFeatures,
       required final String rating,
-      required final String popularity}) = _$_Vehicle;
+      required final String popularity,
+      final String? speed,
+      final String? range,
+      final String? height,
+      final String? length}) = _$_Vehicle;
 
   factory _Vehicle.fromJson(Map<String, dynamic> json) = _$_Vehicle.fromJson;
 
@@ -501,7 +599,7 @@ abstract class _Vehicle implements Vehicle {
   @override
 
   ///vehicle brand
-  VehicleBrand get brand;
+  VehicleBrand? get brand;
   @override
 
   ///Vehicle Category
@@ -509,7 +607,7 @@ abstract class _Vehicle implements Vehicle {
   @override
 
   ///vehicle transmission
-  String get transmission;
+  String? get transmission;
   @override
 
   ///number of seats
@@ -521,7 +619,7 @@ abstract class _Vehicle implements Vehicle {
   @override
 
   ///Other Vehicle Features
-  List<String> get otherFeatures;
+  List<String>? get otherFeatures;
   @override
 
   ///Vehicle rating
@@ -530,6 +628,22 @@ abstract class _Vehicle implements Vehicle {
 
   ///Vehicle popularity
   String get popularity;
+  @override
+
+  ///Vehicle speed
+  String? get speed;
+  @override
+
+  ///Vehicle range (for jets)
+  String? get range;
+  @override
+
+  ///height of vehicle
+  String? get height;
+  @override
+
+  ///length of vehicle
+  String? get length;
   @override
   @JsonKey(ignore: true)
   _$$_VehicleCopyWith<_$_Vehicle> get copyWith =>

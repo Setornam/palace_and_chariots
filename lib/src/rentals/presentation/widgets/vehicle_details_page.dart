@@ -4,7 +4,8 @@ import 'package:palace_and_chariots/src/checkout/presentation/pages/checkout_pag
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_gallery_page.dart';
 
 class VehicleDetailsPage extends StatefulWidget {
-  final String numberOfSeats, name, price, color, rating, transmission, luggage;
+  final String numberOfSeats, name, category, price, color, rating, luggage;
+  final String? transmission;
   final List<String> otherFeatures, images;
   const VehicleDetailsPage(
       {super.key,
@@ -16,7 +17,7 @@ class VehicleDetailsPage extends StatefulWidget {
       required this.luggage,
       required this.otherFeatures,
       required this.images,
-      required this.transmission});
+      required this.transmission, required this.category});
 
   @override
   State<VehicleDetailsPage> createState() => _VehicleDetailsPageState();
@@ -118,13 +119,13 @@ class _VehicleDetailsPageState extends State<VehicleDetailsPage> {
                             children: [
                               Text(
                                 widget.name,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15,
                                     color: Colors.black87),
                               ),
                               Text(
-                                widget.price,
+                                'GHS ${widget.price}',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15,
@@ -185,7 +186,7 @@ class _VehicleDetailsPageState extends State<VehicleDetailsPage> {
                                       size: 20,
                                     ),
                                     Text(
-                                      widget.transmission,
+                                      widget.transmission!,
                                       style: TextStyle(
                                           fontSize: 15, color: Colors.black87),
                                     ),
@@ -194,6 +195,9 @@ class _VehicleDetailsPageState extends State<VehicleDetailsPage> {
                               ),
                             ],
                           ),
+                          
+                          
+                          
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

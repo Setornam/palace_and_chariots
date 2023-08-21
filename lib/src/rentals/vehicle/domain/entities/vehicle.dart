@@ -30,13 +30,13 @@ class Vehicle with _$Vehicle {
       required List<String> images,
 
       ///vehicle brand
-      required VehicleBrand brand,
+       VehicleBrand? brand,
 
       ///Vehicle Category
       required String category,
 
       ///vehicle transmission
-      required String transmission,
+       String? transmission,
 
       ///number of seats
       required String seats,
@@ -45,7 +45,7 @@ class Vehicle with _$Vehicle {
       required String luggage,
 
       ///Other Vehicle Features
-      required List<String> otherFeatures,
+       List<String>? otherFeatures,
 
       ///Vehicle rating
       required String rating,
@@ -53,19 +53,17 @@ class Vehicle with _$Vehicle {
       ///Vehicle popularity
       required String popularity,
 
-      // ///Vehicle speed
-      // String? speed,
+      ///Vehicle speed
+      String? speed,
 
-      // ///Vehicle range (for jets)
-      // String? range,
-  
-      // ///height of vehicle
-      // String? height,
+      ///Vehicle range (for jets)
+      String? range,
 
-      // ///length of vehicle
-      // String? length
-      
-      }) = _Vehicle;
+      ///height of vehicle
+      String? height,
+
+      ///length of vehicle
+      String? length}) = _Vehicle;
 
   /// Converts json to dart object
   factory Vehicle.fromJson(Map<String, dynamic> json) =>

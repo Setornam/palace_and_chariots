@@ -63,45 +63,46 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                   vehicleList.where((vehicle) => vehicle.category == 'bus'));
 
               List<Vehicle> jetList = List.from(vehicleList
-                  .where((vehicle) => vehicle.category == 'private Jet'));
+                  .where((vehicle) => vehicle.category == 'private jet'));
 
               List<Vehicle> lexusList = List.from(vehicleList.where((vehicle) =>
-                  vehicle.brand.name == 'lexus' &&
+                  vehicle.brand!.name == 'lexus' &&
                   vehicle.category == "saloon"));
 
               List<Vehicle> mercedesList = List.from(vehicleList.where(
                   (vehicle) =>
-                      vehicle.brand.name == 'Mercedes' &&
+                      vehicle.brand!.name == 'Mercedes' &&
                       vehicle.category == "saloon"));
 
               List<Vehicle> BMWList = List.from(vehicleList.where((vehicle) =>
-                  vehicle.brand.name == 'BMW' && vehicle.category == "saloon"));
+                  vehicle.brand!.name == 'BMW' &&
+                  vehicle.category == "saloon"));
 
               List<Vehicle> kiaList = List.from(
-                  vehicleList.where((vehicle) => vehicle.brand.name == 'KIA'));
+                  vehicleList.where((vehicle) => vehicle.brand!.name == 'KIA'));
 
               List<Vehicle> hondaList = List.from(vehicleList.where((vehicle) =>
-                  vehicle.brand.name == 'Honda' &&
+                  vehicle.brand!.name == 'Honda' &&
                   vehicle.category == "saloon"));
 
               List<Vehicle> lexusBusList = List.from(vehicleList.where(
                   (vehicle) =>
-                      vehicle.brand.name == 'lexus' &&
+                      vehicle.brand!.name == 'lexus' &&
                       vehicle.category == "bus"));
 
               List<Vehicle> BMWBusList = List.from(vehicleList.where(
                   (vehicle) =>
-                      vehicle.brand.name == 'BMW' &&
+                      vehicle.brand!.name == 'BMW' &&
                       vehicle.category == "bus"));
 
               List<Vehicle> kiaBusList = List.from(vehicleList.where(
                   (vehicle) =>
-                      vehicle.brand.name == 'KIA' &&
+                      vehicle.brand!.name == 'KIA' &&
                       vehicle.category == "bus"));
 
               List<Vehicle> hondaBusList = List.from(vehicleList.where(
                   (vehicle) =>
-                      vehicle.brand.name == 'Honda' &&
+                      vehicle.brand!.name == 'Honda' &&
                       vehicle.category == "bus"));
 
               return Column(
@@ -358,6 +359,10 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                   mercedesList[
                                                                           index]
                                                                       .transmission,
+                                                              category:
+                                                                  mercedesList[
+                                                                          index]
+                                                                      .category,
                                                             )));
                                               },
                                               child: Container(
@@ -571,30 +576,38 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                     Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
-                                                            builder: (BuildContext context) => VehicleDetailsPage(
-                                                                color: lexusList[
-                                                                        index]
-                                                                    .color,
-                                                                name: lexusList[
-                                                                        index]
-                                                                    .name,
-                                                                luggage:
-                                                                    lexusList[index]
-                                                                        .luggage,
-                                                                numberOfSeats:
-                                                                    lexusList[index]
-                                                                        .seats,
-                                                                price:
-                                                                    lexusList[index]
-                                                                        .price,
-                                                                rating:
-                                                                    lexusList[index]
-                                                                        .rating,
-                                                                images: [],
-                                                                otherFeatures: [],
-                                                                transmission:
-                                                                    lexusList[index]
-                                                                        .transmission)));
+                                                            builder: (BuildContext
+                                                                    context) =>
+                                                                VehicleDetailsPage(
+                                                                  color: lexusList[
+                                                                          index]
+                                                                      .color,
+                                                                  name: lexusList[
+                                                                          index]
+                                                                      .name,
+                                                                  luggage: lexusList[
+                                                                          index]
+                                                                      .luggage,
+                                                                  numberOfSeats:
+                                                                      lexusList[
+                                                                              index]
+                                                                          .seats,
+                                                                  price: lexusList[
+                                                                          index]
+                                                                      .price,
+                                                                  rating: lexusList[
+                                                                          index]
+                                                                      .rating,
+                                                                  images: [],
+                                                                  otherFeatures: [],
+                                                                  transmission:
+                                                                      lexusList[
+                                                                              index]
+                                                                          .transmission,
+                                                                  category: lexusList[
+                                                                          index]
+                                                                      .category,
+                                                                )));
                                                   },
                                                   child: Container(
                                                     child: Row(
@@ -819,6 +832,9 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                               .transmission,
                                                                       images: [],
                                                                       otherFeatures: [],
+                                                                      category:
+                                                                          BMWList[index]
+                                                                              .category,
                                                                     )));
                                                       },
                                                       child: Container(
@@ -1001,25 +1017,28 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                             Navigator.push(
                                                                 context,
                                                                 MaterialPageRoute(
-                                                                    builder: (BuildContext context) => VehicleDetailsPage(
-                                                                        color: lexusList[index]
-                                                                            .color,
-                                                                        name: lexusList[index]
-                                                                            .name,
-                                                                        luggage:
-                                                                            lexusList[index]
-                                                                                .luggage,
-                                                                        numberOfSeats:
-                                                                            lexusList[index]
-                                                                                .seats,
-                                                                        price: lexusList[index]
-                                                                            .price,
-                                                                        rating: lexusList[index]
-                                                                            .rating,
-                                                                        images: [],
-                                                                        otherFeatures: [],
-                                                                        transmission:
-                                                                            lexusList[index].transmission)));
+                                                                    builder: (BuildContext
+                                                                            context) =>
+                                                                        VehicleDetailsPage(
+                                                                          color:
+                                                                              lexusList[index].color,
+                                                                          name:
+                                                                              lexusList[index].name,
+                                                                          luggage:
+                                                                              lexusList[index].luggage,
+                                                                          numberOfSeats:
+                                                                              lexusList[index].seats,
+                                                                          price:
+                                                                              lexusList[index].price,
+                                                                          rating:
+                                                                              lexusList[index].rating,
+                                                                          images: [],
+                                                                          otherFeatures: [],
+                                                                          transmission:
+                                                                              lexusList[index].transmission,
+                                                                          category:
+                                                                              lexusList[index].category,
+                                                                        )));
                                                           },
                                                           child: Container(
                                                             child: Row(
@@ -1193,17 +1212,20 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                 Navigator.push(
                                                                     context,
                                                                     MaterialPageRoute(
-                                                                        builder: (BuildContext context) => VehicleDetailsPage(
-                                                                            color:
-                                                                                kiaList[index].color,
-                                                                            name: kiaList[index].name,
-                                                                            luggage: kiaList[index].luggage,
-                                                                            numberOfSeats: kiaList[index].seats,
-                                                                            price: kiaList[index].price,
-                                                                            rating: kiaList[index].rating,
-                                                                            images: [],
-                                                                            otherFeatures: [],
-                                                                            transmission: kiaList[index].transmission)));
+                                                                        builder: (BuildContext
+                                                                                context) =>
+                                                                            VehicleDetailsPage(
+                                                                              color: kiaList[index].color,
+                                                                              name: kiaList[index].name,
+                                                                              luggage: kiaList[index].luggage,
+                                                                              numberOfSeats: kiaList[index].seats,
+                                                                              price: kiaList[index].price,
+                                                                              rating: kiaList[index].rating,
+                                                                              images: [],
+                                                                              otherFeatures: [],
+                                                                              transmission: kiaList[index].transmission,
+                                                                              category: kiaList[index].category,
+                                                                            )));
                                                               },
                                                               child: Container(
                                                                 child: Row(
@@ -1362,15 +1384,17 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                         context,
                                                                         MaterialPageRoute(
                                                                             builder: (BuildContext context) => VehicleDetailsPage(
-                                                                                color: hondaList[index].color,
-                                                                                name: hondaList[index].name,
-                                                                                luggage: hondaList[index].luggage,
-                                                                                numberOfSeats: hondaList[index].seats,
-                                                                                price: hondaList[index].price,
-                                                                                rating: hondaList[index].rating,
-                                                                                images: [],
-                                                                                otherFeatures: [],
-                                                                                transmission: hondaList[index].transmission)));
+                                                                                  color: hondaList[index].color,
+                                                                                  name: hondaList[index].name,
+                                                                                  luggage: hondaList[index].luggage,
+                                                                                  numberOfSeats: hondaList[index].seats,
+                                                                                  price: hondaList[index].price,
+                                                                                  rating: hondaList[index].rating,
+                                                                                  images: [],
+                                                                                  otherFeatures: [],
+                                                                                  transmission: hondaList[index].transmission,
+                                                                                  category: hondaList[index].category,
+                                                                                )));
                                                                   },
                                                                   child:
                                                                       Container(
@@ -1517,15 +1541,17 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                         context,
                                                                         MaterialPageRoute(
                                                                             builder: (BuildContext context) => VehicleDetailsPage(
-                                                                                color: saloonList[index].color,
-                                                                                name: saloonList[index].name,
-                                                                                luggage: saloonList[index].luggage,
-                                                                                numberOfSeats: saloonList[index].seats,
-                                                                                price: saloonList[index].price,
-                                                                                rating: saloonList[index].rating,
-                                                                                images: [],
-                                                                                otherFeatures: [],
-                                                                                transmission: saloonList[index].transmission)));
+                                                                                  color: saloonList[index].color,
+                                                                                  name: saloonList[index].name,
+                                                                                  luggage: saloonList[index].luggage,
+                                                                                  numberOfSeats: saloonList[index].seats,
+                                                                                  price: saloonList[index].price,
+                                                                                  rating: saloonList[index].rating,
+                                                                                  images: [],
+                                                                                  otherFeatures: [],
+                                                                                  transmission: saloonList[index].transmission,
+                                                                                  category: saloonList[index].category,
+                                                                                )));
                                                                   },
                                                                   child:
                                                                       Container(
@@ -1704,31 +1730,38 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                     Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
-                                                            builder: (BuildContext context) => VehicleDetailsPage(
-                                                                color:
-                                                                    lexusBusList[index]
-                                                                        .color,
-                                                                name: lexusBusList[
-                                                                        index]
-                                                                    .name,
-                                                                luggage:
-                                                                    lexusBusList[index]
-                                                                        .luggage,
-                                                                numberOfSeats:
-                                                                    lexusBusList[index]
-                                                                        .seats,
-                                                                price:
-                                                                    lexusBusList[index]
-                                                                        .price,
-                                                                rating:
-                                                                    lexusBusList[index]
-                                                                        .rating,
-                                                                images: [],
-                                                                otherFeatures: [],
-                                                                transmission:
-                                                                    lexusBusList[
-                                                                            index]
-                                                                        .transmission)));
+                                                            builder: (BuildContext
+                                                                    context) =>
+                                                                VehicleDetailsPage(
+                                                                  color: lexusBusList[
+                                                                          index]
+                                                                      .color,
+                                                                  name: lexusBusList[
+                                                                          index]
+                                                                      .name,
+                                                                  luggage: lexusBusList[
+                                                                          index]
+                                                                      .luggage,
+                                                                  numberOfSeats:
+                                                                      lexusBusList[
+                                                                              index]
+                                                                          .seats,
+                                                                  price: lexusBusList[
+                                                                          index]
+                                                                      .price,
+                                                                  rating: lexusBusList[
+                                                                          index]
+                                                                      .rating,
+                                                                  images: [],
+                                                                  otherFeatures: [],
+                                                                  transmission:
+                                                                      lexusBusList[
+                                                                              index]
+                                                                          .transmission,
+                                                                  category: lexusBusList[
+                                                                          index]
+                                                                      .category,
+                                                                )));
                                                   },
                                                   child: Container(
                                                     child: Row(
@@ -1927,28 +1960,36 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                         Navigator.push(
                                                             context,
                                                             MaterialPageRoute(
-                                                                builder: (BuildContext context) => VehicleDetailsPage(
-                                                                    color: BMWBusList[index]
-                                                                        .color,
-                                                                    name: BMWBusList[index]
-                                                                        .name,
-                                                                    luggage:
-                                                                        BMWBusList[index]
-                                                                            .luggage,
-                                                                    numberOfSeats:
-                                                                        BMWBusList[index]
-                                                                            .seats,
-                                                                    price: BMWBusList[
-                                                                            index]
-                                                                        .price,
-                                                                    rating: BMWBusList[
-                                                                            index]
-                                                                        .rating,
-                                                                    images: [],
-                                                                    otherFeatures: [],
-                                                                    transmission:
-                                                                        BMWBusList[index]
-                                                                            .transmission)));
+                                                                builder: (BuildContext
+                                                                        context) =>
+                                                                    VehicleDetailsPage(
+                                                                      color: BMWBusList[
+                                                                              index]
+                                                                          .color,
+                                                                      name: BMWBusList[
+                                                                              index]
+                                                                          .name,
+                                                                      luggage: BMWBusList[
+                                                                              index]
+                                                                          .luggage,
+                                                                      numberOfSeats:
+                                                                          BMWBusList[index]
+                                                                              .seats,
+                                                                      price: BMWBusList[
+                                                                              index]
+                                                                          .price,
+                                                                      rating: BMWBusList[
+                                                                              index]
+                                                                          .rating,
+                                                                      images: [],
+                                                                      otherFeatures: [],
+                                                                      transmission:
+                                                                          BMWBusList[index]
+                                                                              .transmission,
+                                                                      category:
+                                                                          BMWBusList[index]
+                                                                              .category,
+                                                                    )));
                                                       },
                                                       child: Container(
                                                         child: Row(
@@ -2131,25 +2172,28 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                             Navigator.push(
                                                                 context,
                                                                 MaterialPageRoute(
-                                                                    builder: (BuildContext context) => VehicleDetailsPage(
-                                                                        color: lexusBusList[index]
-                                                                            .color,
-                                                                        name: lexusBusList[index]
-                                                                            .name,
-                                                                        luggage:
-                                                                            lexusBusList[index]
-                                                                                .luggage,
-                                                                        numberOfSeats:
-                                                                            lexusBusList[index]
-                                                                                .seats,
-                                                                        price: lexusBusList[index]
-                                                                            .price,
-                                                                        rating: lexusBusList[index]
-                                                                            .rating,
-                                                                        images: [],
-                                                                        otherFeatures: [],
-                                                                        transmission:
-                                                                            lexusBusList[index].transmission)));
+                                                                    builder: (BuildContext
+                                                                            context) =>
+                                                                        VehicleDetailsPage(
+                                                                          color:
+                                                                              lexusBusList[index].color,
+                                                                          name:
+                                                                              lexusBusList[index].name,
+                                                                          luggage:
+                                                                              lexusBusList[index].luggage,
+                                                                          numberOfSeats:
+                                                                              lexusBusList[index].seats,
+                                                                          price:
+                                                                              lexusBusList[index].price,
+                                                                          rating:
+                                                                              lexusBusList[index].rating,
+                                                                          images: [],
+                                                                          otherFeatures: [],
+                                                                          transmission:
+                                                                              lexusBusList[index].transmission,
+                                                                          category:
+                                                                              lexusBusList[index].category,
+                                                                        )));
                                                           },
                                                           child: Container(
                                                             child: Row(
@@ -2323,17 +2367,20 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                 Navigator.push(
                                                                     context,
                                                                     MaterialPageRoute(
-                                                                        builder: (BuildContext context) => VehicleDetailsPage(
-                                                                            color:
-                                                                                kiaBusList[index].color,
-                                                                            name: kiaBusList[index].name,
-                                                                            luggage: kiaBusList[index].luggage,
-                                                                            numberOfSeats: kiaBusList[index].seats,
-                                                                            price: kiaBusList[index].price,
-                                                                            rating: kiaBusList[index].rating,
-                                                                            images: [],
-                                                                            otherFeatures: [],
-                                                                            transmission: kiaBusList[index].transmission)));
+                                                                        builder: (BuildContext
+                                                                                context) =>
+                                                                            VehicleDetailsPage(
+                                                                              color: kiaBusList[index].color,
+                                                                              name: kiaBusList[index].name,
+                                                                              luggage: kiaBusList[index].luggage,
+                                                                              numberOfSeats: kiaBusList[index].seats,
+                                                                              price: kiaBusList[index].price,
+                                                                              rating: kiaBusList[index].rating,
+                                                                              images: [],
+                                                                              otherFeatures: [],
+                                                                              transmission: kiaBusList[index].transmission,
+                                                                              category: kiaBusList[index].category,
+                                                                            )));
                                                               },
                                                               child: Container(
                                                                 child: Row(
@@ -2493,15 +2540,17 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                         context,
                                                                         MaterialPageRoute(
                                                                             builder: (BuildContext context) => VehicleDetailsPage(
-                                                                                color: hondaBusList[index].color,
-                                                                                name: hondaBusList[index].name,
-                                                                                luggage: hondaBusList[index].luggage,
-                                                                                numberOfSeats: hondaBusList[index].seats,
-                                                                                price: hondaBusList[index].price,
-                                                                                rating: hondaBusList[index].rating,
-                                                                                images: [],
-                                                                                otherFeatures: [],
-                                                                                transmission: hondaBusList[index].transmission)));
+                                                                                  color: hondaBusList[index].color,
+                                                                                  name: hondaBusList[index].name,
+                                                                                  luggage: hondaBusList[index].luggage,
+                                                                                  numberOfSeats: hondaBusList[index].seats,
+                                                                                  price: hondaBusList[index].price,
+                                                                                  rating: hondaBusList[index].rating,
+                                                                                  images: [],
+                                                                                  otherFeatures: [],
+                                                                                  transmission: hondaBusList[index].transmission,
+                                                                                  category: hondaBusList[index].category,
+                                                                                )));
                                                                   },
                                                                   child:
                                                                       Container(
@@ -2647,15 +2696,17 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                         context,
                                                                         MaterialPageRoute(
                                                                             builder: (BuildContext context) => VehicleDetailsPage(
-                                                                                color: busList[index].color,
-                                                                                name: busList[index].name,
-                                                                                luggage: busList[index].luggage,
-                                                                                numberOfSeats: busList[index].seats,
-                                                                                price: busList[index].price,
-                                                                                rating: busList[index].rating,
-                                                                                images: [],
-                                                                                otherFeatures: [],
-                                                                                transmission: busList[index].transmission)));
+                                                                                  color: busList[index].color,
+                                                                                  name: busList[index].name,
+                                                                                  luggage: busList[index].luggage,
+                                                                                  numberOfSeats: busList[index].seats,
+                                                                                  price: busList[index].price,
+                                                                                  rating: busList[index].rating,
+                                                                                  images: [],
+                                                                                  otherFeatures: [],
+                                                                                  transmission: busList[index].transmission,
+                                                                                  category: busList[index].category,
+                                                                                )));
                                                                   },
                                                                   child:
                                                                       Container(
@@ -2825,18 +2876,20 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                         MaterialPageRoute(
                                             builder: (BuildContext context) =>
                                                 VehicleDetailsPage(
-                                                    color: jetList[index].color,
-                                                    name: jetList[index].name,
-                                                    luggage:
-                                                        jetList[index].luggage,
-                                                    numberOfSeats:
-                                                        jetList[index].seats,
-                                                    price: jetList[index].price,
-                                                    rating:
-                                                        jetList[index].rating,
-                                                    images: [],
-                                                    otherFeatures: [],
-                                                    transmission: '')));
+                                                  color: jetList[index].color,
+                                                  name: jetList[index].name,
+                                                  luggage:
+                                                      jetList[index].luggage,
+                                                  numberOfSeats:
+                                                      jetList[index].seats,
+                                                  price: jetList[index].price,
+                                                  rating: jetList[index].rating,
+                                                  images: [],
+                                                  otherFeatures: [],
+                                                  transmission: '',
+                                                  category:
+                                                      jetList[index].category,
+                                                )));
                                   },
                                   child: Container(
                                     child: Row(
