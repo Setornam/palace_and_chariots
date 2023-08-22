@@ -5,7 +5,7 @@ import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_galler
 
 class VehicleDetailsPage extends StatefulWidget {
   final String numberOfSeats, name, category, price, color, rating, luggage;
-  final String? transmission;
+  final String? transmission, height, length, speed, range;
   final List<String> otherFeatures, images;
   const VehicleDetailsPage(
       {super.key,
@@ -17,7 +17,12 @@ class VehicleDetailsPage extends StatefulWidget {
       required this.luggage,
       required this.otherFeatures,
       required this.images,
-      required this.transmission, required this.category});
+      required this.transmission,
+      required this.category,
+      this.height,
+      this.length,
+      this.range,
+      this.speed});
 
   @override
   State<VehicleDetailsPage> createState() => _VehicleDetailsPageState();
@@ -164,7 +169,7 @@ class _VehicleDetailsPageState extends State<VehicleDetailsPage> {
                                 child: Row(
                                   children: [
                                     Icon(
-                                      Icons.person_2_outlined,
+                                      Icons.airline_seat_recline_extra,
                                       color: Colors.black87,
                                       size: 20,
                                     ),
@@ -176,28 +181,40 @@ class _VehicleDetailsPageState extends State<VehicleDetailsPage> {
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 5, right: 100),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.settings,
-                                      color: Colors.black54,
-                                      size: 20,
+                              widget.category == "private jet"
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 100),
+                                          child: Text(widget.height!),
+                                        ),
+                                        Text(widget.length!),
+                                      ],
+                                    )
+                                  : Padding(
+                                      padding:
+                                          EdgeInsets.only(top: 5, right: 100),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.settings,
+                                            color: Colors.black54,
+                                            size: 20,
+                                          ),
+                                          Text(
+                                            widget.transmission!,
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.black87),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    Text(
-                                      widget.transmission!,
-                                      style: TextStyle(
-                                          fontSize: 15, color: Colors.black87),
-                                    ),
-                                  ],
-                                ),
-                              ),
                             ],
                           ),
-                          
-                          
-                          
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -218,25 +235,30 @@ class _VehicleDetailsPageState extends State<VehicleDetailsPage> {
                                   ],
                                 ),
                               ),
-                              // Padding(
-                              //   padding: EdgeInsets.only(top: 5, right: 55),
-                              //   child: Row(
-                              //     children: [
-                              //       Icon(
-                              //         Icons.ac_unit,
-                              //         color: Colors.black54,
-                              //         size: 20,
-                              //       ),
-                              //       Text(
-                              //         widget.otherFeatures.first,
-                              //         style: TextStyle(
-                              //             fontSize: 15, color: Colors.black87),
-                              //       ),
-                              //     ],
-                              //   ),
-                              // ),
+                              widget.category == "private jet"
+                                  ? Padding(
+                                      padding: EdgeInsets.only(right: 75),
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.air_sharp),
+                                          Text('range: ${widget.range}'),
+                                        ],
+                                      ),
+                                    )
+                                  : Container(),
                             ],
                           ),
+                          widget.category == "private jet"
+                              ? Padding(
+                                  padding: EdgeInsets.only(right: 75),
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.speed),
+                                      Text('speed: ${widget.speed}'),
+                                    ],
+                                  ),
+                                )
+                              : Container(),
                           Padding(
                             padding: const EdgeInsets.only(top: 20),
                             child: Row(

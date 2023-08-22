@@ -295,7 +295,9 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (BuildContext context) =>
-                                                  const ViewMorePage()));
+                                                  ViewMorePage(
+                                                    saloonCars: saloonList,
+                                                  )));
                                     },
                                     child: Text(
                                       'See More',
@@ -1551,7 +1553,9 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                   otherFeatures: [],
                                                                                   transmission: saloonList[index].transmission,
                                                                                   category: saloonList[index].category,
-                                                                                )));
+                                                                                )
+                                                                                
+                                                                                ));
                                                                   },
                                                                   child:
                                                                       Container(
@@ -1695,9 +1699,10 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
-                                                  builder: (BuildContext
-                                                          context) =>
-                                                      const ViewMorePage()));
+                                                  builder:
+                                                      (BuildContext context) =>
+                                                          ViewMorePage(
+                                                              buses: busList)));
                                         },
                                         child: Text(
                                           'See More',
@@ -2849,7 +2854,8 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (BuildContext context) =>
-                                            const ViewMorePage()));
+                                            ViewMorePage(
+                                                privateJets: jetList)));
                               },
                               child: Text(
                                 'See More',
@@ -2889,6 +2895,10 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                   transmission: '',
                                                   category:
                                                       jetList[index].category,
+                                                  height: jetList[index].height,
+                                                  length: jetList[index].length,
+                                                  speed: jetList[index].speed,
+                                                  range: jetList[index].range,
                                                 )));
                                   },
                                   child: Container(
