@@ -46,7 +46,7 @@ class _ViewMorePageState extends State<ViewMorePage> {
     listToSort!.sort(
         (a, b) => (double.parse(b.rating)).compareTo(double.parse(a.rating)));
 
-    if (isSortByLowestRatingChecked.value == true) {
+    if (isSortByLowestRatingChecked.value == false) {
       setState(() {
         sortedSaloonCars = listToSort;
       });
@@ -57,8 +57,8 @@ class _ViewMorePageState extends State<ViewMorePage> {
         });
       }
     }
-
-    print(listToSort.map((e) => (e.name)));
+    print(isSortByLowestRatingChecked.value.toString());
+    print(sortedSaloonCars.map((e) => (e.name)));
   }
 
   @override
@@ -296,12 +296,13 @@ class _ViewMorePageState extends State<ViewMorePage> {
                                                       value:
                                                           isSortByLowestRatingChecked
                                                               .value,
-                                                      onChanged: (checked) {
+                                                      onChanged:
+                                                          (bool? checked) {
                                                         sortByLowestRating();
+
                                                         isSortByLowestRatingChecked
                                                                 .value =
-                                                            !isSortByLowestRatingChecked
-                                                                .value;
+                                                            checked ?? false;
                                                       }),
                                                 ],
                                               );
