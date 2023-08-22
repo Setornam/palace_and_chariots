@@ -16,7 +16,7 @@ import 'package:palace_and_chariots/src/rentals/presentation/widgets/vehicle_det
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_gallery_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/rooms_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/search_result_page.dart';
-import 'package:palace_and_chariots/src/rentals/presentation/widgets/view_more_page.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/view_more_cars_page.dart';
 import 'package:palace_and_chariots/src/security/pages/security_page.dart';
 import 'package:palace_and_chariots/src/sign_in/presentation/pages/sign_in_page.dart';
 import 'package:palace_and_chariots/src/sign_up/presentation/pages/sign_up_page.dart';

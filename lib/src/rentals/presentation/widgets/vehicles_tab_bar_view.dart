@@ -4,7 +4,9 @@ import 'package:palace_and_chariots/injection_container.dart';
 import 'package:palace_and_chariots/shared/data/image_assets.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/pages/checkout_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/vehicle_details_page.dart';
-import 'package:palace_and_chariots/src/rentals/presentation/widgets/view_more_page.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/view_more_bus_page%20copy.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/view_more_cars_page.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/view_more_jets_page.dart';
 import 'package:palace_and_chariots/src/rentals/vehicle/domain/entities/vehicle.dart';
 import 'package:palace_and_chariots/src/rentals/vehicle/presentation/bloc/vehicle_bloc.dart';
 
@@ -297,6 +299,8 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                               builder: (BuildContext context) =>
                                                   ViewMorePage(
                                                     saloonCars: saloonList,
+                                                    buses: [],
+                                                    privateJets: [],
                                                   )));
                                     },
                                     child: Text(
@@ -1553,9 +1557,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                   otherFeatures: [],
                                                                                   transmission: saloonList[index].transmission,
                                                                                   category: saloonList[index].category,
-                                                                                )
-                                                                                
-                                                                                ));
+                                                                                )));
                                                                   },
                                                                   child:
                                                                       Container(
@@ -1701,8 +1703,9 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                               MaterialPageRoute(
                                                   builder:
                                                       (BuildContext context) =>
-                                                          ViewMorePage(
-                                                              buses: busList)));
+                                                          ViewMoreBusesPage(
+                                                            buses: busList,
+                                                          )));
                                         },
                                         child: Text(
                                           'See More',
@@ -2854,8 +2857,9 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (BuildContext context) =>
-                                            ViewMorePage(
-                                                privateJets: jetList)));
+                                            ViewMoreJetsPage(
+                                              privateJets: jetList,
+                                            )));
                               },
                               child: Text(
                                 'See More',
