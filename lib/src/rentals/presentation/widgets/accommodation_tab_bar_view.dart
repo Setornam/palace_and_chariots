@@ -886,7 +886,12 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                 MaterialPageRoute(
                                                     builder: (BuildContext
                                                             context) =>
-                                                        const SearchResultPage()));
+                                                        SearchResultPage(
+                                                          hotels: hotels,
+                                                          searchQuery:
+                                                              destinationController
+                                                                  .text,
+                                                        )));
                                           },
                                           child: const Text('Search')),
                                     )
@@ -1779,7 +1784,12 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                     MaterialPageRoute(
                                                         builder: (BuildContext
                                                                 context) =>
-                                                            const SearchResultPage()));
+                                                            SearchResultPage(
+                                                              hotels: hotels,
+                                                              searchQuery:
+                                                                  destinationController
+                                                                      .text,
+                                                            )));
                                               },
                                               child: const Text('Search')),
                                         )

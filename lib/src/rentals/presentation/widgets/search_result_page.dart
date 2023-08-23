@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/accommodation_details_.dart';
 
+import '../../accommodation/domain/entities/accommodation.dart';
+
 class SearchResultPage extends StatefulWidget {
-  const SearchResultPage({super.key});
+  final List<Accommodation> hotels;
+  final String searchQuery;
+  const SearchResultPage(
+      {super.key, required this.hotels, required this.searchQuery});
 
   @override
   State<SearchResultPage> createState() => _SearchResultPageState();
@@ -14,6 +19,20 @@ class _SearchResultPageState extends State<SearchResultPage> {
   ValueNotifier<bool> isSortByLowerPriceChecked = ValueNotifier(false);
   ValueNotifier<bool> isSortByHighestRatingChecked = ValueNotifier(false);
   ValueNotifier<bool> isSortByLowestRatingChecked = ValueNotifier(false);
+
+  searchForHotels(String location) {
+    List<Accommodation> result =
+        widget.hotels.where((hotel) => hotel.location == location).toList();
+
+    print(result.first.location);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    searchForHotels(widget.searchQuery);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -263,8 +282,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
           ),
         ),
       ),
-      body:
-       SizedBox(
+      body: SizedBox(
         height: 680,
         child: ListView.builder(
             itemCount: 7,
@@ -422,12 +440,10 @@ class _SearchResultPageState extends State<SearchResultPage> {
                       )
                     ],
                   ),
-                
                 ),
               );
             }),
       ),
-   
     );
   }
 }
