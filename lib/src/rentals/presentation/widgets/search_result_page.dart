@@ -6,9 +6,21 @@ import '../../accommodation/domain/entities/accommodation.dart';
 
 class SearchResultPage extends StatefulWidget {
   final List<Accommodation> hotels;
-  final String searchQuery;
+  final String searchQuery,
+      startDate,
+      endDate,
+      numberOfRooms,
+      numberOfAdults,
+      numberOfChildren;
   const SearchResultPage(
-      {super.key, required this.hotels, required this.searchQuery});
+      {super.key,
+      required this.hotels,
+      required this.searchQuery,
+      required this.startDate,
+      required this.endDate,
+      required this.numberOfRooms,
+      required this.numberOfAdults,
+      required this.numberOfChildren});
 
   @override
   State<SearchResultPage> createState() => _SearchResultPageState();
@@ -20,18 +32,25 @@ class _SearchResultPageState extends State<SearchResultPage> {
   ValueNotifier<bool> isSortByHighestRatingChecked = ValueNotifier(false);
   ValueNotifier<bool> isSortByLowestRatingChecked = ValueNotifier(false);
 
-  searchForHotels(String location) {
-    List<Accommodation> result =
-        widget.hotels.where((hotel) => hotel.location == location).toList();
+  late final List<Accommodation> searchResult;
 
-    print(result.first.location);
+  searchForHotels(String location) {
+    try {
+      List<Accommodation> result = widget.hotels
+          .where((hotel) => hotel.location.contains(location))
+          .toList();
+
+      return result;
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    searchForHotels(widget.searchQuery);
+    searchResult = searchForHotels(widget.searchQuery);
   }
 
   @override
@@ -285,7 +304,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
       body: SizedBox(
         height: 680,
         child: ListView.builder(
-            itemCount: 7,
+            itemCount: searchResult.length,
             itemBuilder: (BuildContext context, index) {
               return Padding(
                 padding:
@@ -296,7 +315,14 @@ class _SearchResultPageState extends State<SearchResultPage> {
                         context,
                         MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                AccommodationDetailsPage()));
+                                AccommodationDetailsPage(
+                                  accommodation: searchResult[index],
+                                  endDate: widget.endDate,
+                                  numberOfAdults: widget.numberOfAdults,
+                                  numberOfChildren: widget.numberOfChildren,
+                                  numberOfRooms: widget.numberOfRooms,
+                                  startDate: widget.startDate,
+                                )));
                   },
                   child: Row(
                     children: [
@@ -339,9 +365,9 @@ class _SearchResultPageState extends State<SearchResultPage> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const Text(
-                                      'Accra City Hotel',
-                                      style: TextStyle(
+                                    Text(
+                                      searchResult[index].name,
+                                      style: const TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 15,
                                           color: Colors.black87),
@@ -366,7 +392,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
                                       color: Color(0xfff8c123),
                                     ),
                                     Text(
-                                      ' 4.5',
+                                      searchResult[index].rating,
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium,
@@ -382,7 +408,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
                                 Row(
                                   children: [
                                     Text(
-                                      'Superior room: 1 bed',
+                                      searchResult[index].facilities.first,
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium,
@@ -391,7 +417,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
                                 ),
                                 Row(
                                   children: [
-                                    Text('300 (USD)',
+                                    Text('${searchResult[index].price} (USD)',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyMedium!

@@ -2,11 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/pages/checkout_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/accommodation_gallery.dart';
-import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_gallery_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/rooms_page.dart';
 
+import '../../accommodation/domain/entities/accommodation.dart';
+
 class AccommodationDetailsPage extends StatefulWidget {
-  const AccommodationDetailsPage({super.key});
+  final Accommodation? accommodation;
+  final String? startDate,
+      endDate,
+      numberOfRooms,
+      numberOfAdults,
+      numberOfChildren;
+  const AccommodationDetailsPage(
+      {super.key,
+      this.accommodation,
+      this.startDate,
+      this.endDate,
+      this.numberOfRooms,
+      this.numberOfAdults,
+      this.numberOfChildren});
 
   @override
   State<AccommodationDetailsPage> createState() =>
@@ -110,12 +124,12 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Row(
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Accra City Hotel',
-                                  style: TextStyle(
+                                  widget.accommodation!.name,
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15,
                                       color: Colors.black87),
@@ -132,7 +146,7 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                                       color: Color(0xfff8c123),
                                     ),
                                     Text(
-                                      ' 4.5',
+                                      widget.accommodation!.rating,
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium,
@@ -165,7 +179,7 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                                                   color: Colors.black87),
                                             ),
                                             Text(
-                                              ' Fri, 12 April 2023 ',
+                                              widget.startDate!,
                                               style: TextStyle(
                                                   color:
                                                       lightColorScheme.primary),
@@ -184,7 +198,7 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                                                 color: Colors.black87),
                                           ),
                                           Text(
-                                            ' Fri, 12 April 2023 ',
+                                            widget.endDate!,
                                             style: TextStyle(
                                                 color:
                                                     lightColorScheme.primary),
@@ -207,7 +221,7 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                                         fontSize: 15, color: Colors.black87),
                                   ),
                                   Text(
-                                    '1 room - 2 adults - No children',
+                                    '${widget.numberOfRooms} rooms - ${widget.numberOfAdults} adults  ${widget.numberOfChildren} children',
                                     style: TextStyle(
                                         color: lightColorScheme.primary),
                                   )
@@ -223,7 +237,7 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'US\$ 300',
+                                    'US\$ ${widget.accommodation!.price}',
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
@@ -429,8 +443,9 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      const RoomsPage()));
+                                  builder: (BuildContext context) => RoomsPage(
+                                        rooms: widget.accommodation!.rooms,
+                                      )));
                         },
                         child: const Text('select rooms')),
                   ),

@@ -39,7 +39,9 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            AccommodationDetailsPage()));
+                            AccommodationDetailsPage()
+                            
+                            ));
               },
               child: Row(
                 children: [

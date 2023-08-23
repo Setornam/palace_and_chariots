@@ -891,6 +891,22 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                           searchQuery:
                                                               destinationController
                                                                   .text,
+                                                          endDate:
+                                                              _endDate.value,
+                                                          numberOfAdults:
+                                                              numberOfAdults
+                                                                  .value
+                                                                  .toString(),
+                                                          numberOfChildren:
+                                                              numberOfChildren
+                                                                  .value
+                                                                  .toString(),
+                                                          numberOfRooms:
+                                                              numberOfRooms
+                                                                  .value
+                                                                  .toString(),
+                                                          startDate:
+                                                              _startDate.value,
                                                         )));
                                           },
                                           child: const Text('Search')),
@@ -1789,6 +1805,24 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                               searchQuery:
                                                                   destinationController
                                                                       .text,
+                                                              endDate:
+                                                                  _apartmentBookEndDate
+                                                                      .value,
+                                                              numberOfAdults:
+                                                                  numberOfAdultsApartment
+                                                                      .value
+                                                                      .toString(),
+                                                              numberOfChildren:
+                                                                  numberOfChildrenApartment
+                                                                      .value
+                                                                      .toString(),
+                                                              numberOfRooms:
+                                                                  numberOfRoomsApartment
+                                                                      .value
+                                                                      .toString(),
+                                                              startDate:
+                                                                  _apartmentBookStartDate
+                                                                      .value,
                                                             )));
                                               },
                                               child: const Text('Search')),

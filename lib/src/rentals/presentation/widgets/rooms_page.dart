@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
 import '../../../checkout/presentation/pages/accommodation_checkout_page.dart';
+import '../../accommodation/domain/entities/room.dart';
 
 class RoomsPage extends StatefulWidget {
-  const RoomsPage({super.key});
+  final List<Room> rooms;
+  const RoomsPage({super.key, required this.rooms});
 
   @override
   State<RoomsPage> createState() => _RoomsPageState();
@@ -29,7 +31,7 @@ class _RoomsPageState extends State<RoomsPage> {
           child: Column(
             children: [
               ...List.generate(
-                2,
+                widget.rooms.length,
                 (index) => Padding(
                   padding: EdgeInsets.symmetric(vertical: 15),
                   child: Column(
@@ -40,7 +42,7 @@ class _RoomsPageState extends State<RoomsPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Column(
+                            Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
@@ -85,7 +87,7 @@ class _RoomsPageState extends State<RoomsPage> {
                                   children: [
                                     Icon(Icons.bed),
                                     Text(
-                                      '1 extra large double fold bed',
+                                      widget.rooms[index].facilities.first,
                                       style: TextStyle(
                                           fontSize: 15, color: Colors.black87),
                                     ),
@@ -176,7 +178,7 @@ class _RoomsPageState extends State<RoomsPage> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('\$300 (USD)',
+                              Text('\$${widget.rooms[index].price} (USD)',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium!
@@ -223,7 +225,8 @@ class _RoomsPageState extends State<RoomsPage> {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.center,
                                                   children: [
-                                                    Text('\$300 (USD)',
+                                                    Text(
+                                                        '\$${widget.rooms[index].price} (USD)',
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .bodyMedium!
@@ -270,7 +273,7 @@ class _RoomsPageState extends State<RoomsPage> {
                                                                       context) =>
                                                                   AccommodationCheckoutPage()));
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       'Submit',
                                                       style: TextStyle(
                                                           color: Colors.white),
