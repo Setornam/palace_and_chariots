@@ -4,7 +4,7 @@ import 'package:palace_and_chariots/injection_container.dart';
 import 'package:palace_and_chariots/shared/data/image_assets.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/pages/checkout_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/vehicle_details_page.dart';
-import 'package:palace_and_chariots/src/rentals/presentation/widgets/view_more_bus_page%20copy.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/view_more_bus_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/view_more_cars_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/view_more_jets_page.dart';
 import 'package:palace_and_chariots/src/rentals/vehicle/domain/entities/vehicle.dart';
@@ -3096,7 +3096,9 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
             return const Center(
               child: Text('Sorry no vehicles '),
             );
-          }),
+          }
+          
+          ),
     );
   }
 }
