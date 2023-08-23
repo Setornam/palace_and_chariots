@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/destination_search_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/search_result_page.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -20,6 +21,18 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
   ValueNotifier<int> numberOfRooms = ValueNotifier(0);
   ValueNotifier<int> numberOfAdults = ValueNotifier(0);
   ValueNotifier<int> numberOfChildren = ValueNotifier(0);
+
+  final ValueNotifier<DateTime> _selectedDay = ValueNotifier(DateTime.now());
+  final ValueNotifier<DateTime> _focusedDay = ValueNotifier(DateTime.now());
+
+  final ValueNotifier<String> _startDate = ValueNotifier('start date');
+  final ValueNotifier<String> _endDate = ValueNotifier('end date');
+
+  final ValueNotifier<String> _numberOfRooms = ValueNotifier('');
+  final ValueNotifier<String> _numberOfAdults = ValueNotifier('');
+  final ValueNotifier<String> _numberOfChildren = ValueNotifier('');
+
+  TextEditingController destinationController = TextEditingController();
 
   String isActiveAccommodation = "Apartments";
 
@@ -128,160 +141,368 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                         bottom: BorderSide(
                                             color: lightColorScheme.primary,
                                             width: 0.011)),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(7))),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(7))),
                                 child: Column(
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (BuildContext
-                                                          context) =>
-                                                      DestinationSearchPage()));
-                                        },
-                                        child: Row(
-                                          children: [
-                                            const Icon(
-                                                Icons.location_on_outlined,
-                                                size: 18,
-                                                color: Colors.black54),
-                                            Text(
-                                              '   Enter destination',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium,
-                                            )
-                                          ],
+                                      padding: const EdgeInsets.only(
+                                          left: 5, right: 15),
+                                      child: TextField(
+                                        decoration: InputDecoration(
+                                          filled: false,
+                                          focusedBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: lightColorScheme
+                                                      .primary)),
+                                          contentPadding:
+                                              const EdgeInsets.only(top: 10),
+                                          hintText: 'Enter Destination',
+                                          constraints:
+                                              const BoxConstraints.tightFor(
+                                                  height: 40),
+                                          floatingLabelBehavior:
+                                              FloatingLabelBehavior.never,
+                                          prefixIcon: const Icon(
+                                              Icons.location_on_outlined,
+                                              size: 18,
+                                              color: Colors.black54),
                                         ),
+                                        controller: destinationController,
                                       ),
                                     ),
-                                    Divider(),
+                                    const Divider(),
 
                                     //date
                                     Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          showModalBottomSheet(
-                                              constraints:
-                                                  const BoxConstraints.tightFor(
-                                                      height: 398),
-                                              context: context,
-                                              builder: (BuildContext context) =>
-                                                  SizedBox(
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 10),
-                                                      child: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Center(
-                                                            child: Container(
-                                                              color:
-                                                                  Colors.black,
-                                                              height: 2,
-                                                              width: 50,
-                                                            ),
-                                                          ),
-                                                          Text(
-                                                            '   Select Date',
-                                                            style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                color:
-                                                                    lightColorScheme
-                                                                        .primary),
-                                                          ),
-                                                          TableCalendar(
-                                                            firstDay:
-                                                                DateTime.utc(
-                                                                    2010,
-                                                                    10,
-                                                                    16),
-                                                            lastDay:
-                                                                DateTime.utc(
-                                                                    2030,
-                                                                    3,
-                                                                    14),
-                                                            focusedDay:
-                                                                DateTime.now(),
-                                                            rowHeight: 32,
-                                                          ),
-                                                          Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10, right: 5, bottom: 5),
+                                      child: Row(children: [
+                                        ///start date
+                                        GestureDetector(
+                                          onTap: () {
+                                            showModalBottomSheet(
+                                                constraints:
+                                                    const BoxConstraints
+                                                        .tightFor(height: 398),
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        SizedBox(
+                                                          child: Padding(
                                                             padding:
                                                                 const EdgeInsets
-                                                                    .only(
-                                                              top: 10,
-                                                            ),
-                                                            child: Column(
-                                                              children: [
-                                                                Container(
-                                                                  color: lightColorScheme
-                                                                      .primary
-                                                                      .withOpacity(
-                                                                          .2),
-                                                                  width: MediaQuery
-                                                                          .sizeOf(
-                                                                              context)
-                                                                      .width,
-                                                                  height: 40,
-                                                                  child: Center(
-                                                                      child:
-                                                                          const Text(
-                                                                    '12 April - 12 April',
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .center,
-                                                                  )),
-                                                                ),
-                                                                SizedBox(
-                                                                  width: MediaQuery
-                                                                          .sizeOf(
-                                                                              context)
-                                                                      .width,
-                                                                  child: ElevatedButton(
-                                                                      style: ElevatedButton.styleFrom(
-                                                                        backgroundColor:
-                                                                            lightColorScheme.primary,
-                                                                        minimumSize:
-                                                                            const Size.fromHeight(40),
+                                                                        .only(
+                                                                    top: 10),
+                                                            child:
+                                                                ValueListenableBuilder(
+                                                              builder: (BuildContext
+                                                                      context,
+                                                                  value,
+                                                                  Widget?
+                                                                      child) {
+                                                                return Stack(
+                                                                    children: [
+                                                                      Column(
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
+                                                                        children: [
+                                                                          Center(
+                                                                            child:
+                                                                                Container(
+                                                                              color: Colors.black,
+                                                                              height: 2,
+                                                                              width: 50,
+                                                                            ),
+                                                                          ),
+                                                                          Text(
+                                                                            '   Select Date',
+                                                                            style:
+                                                                                TextStyle(fontWeight: FontWeight.bold, color: lightColorScheme.primary),
+                                                                          ),
+                                                                          ValueListenableBuilder(
+                                                                            builder: (BuildContext context,
+                                                                                value,
+                                                                                Widget? child) {
+                                                                              return TableCalendar(
+                                                                                  headerStyle: const HeaderStyle(formatButtonVisible: false),
+                                                                                  calendarStyle: CalendarStyle(
+                                                                                    isTodayHighlighted: false,
+                                                                                    selectedTextStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                                                                    selectedDecoration: BoxDecoration(color: lightColorScheme.primary, shape: BoxShape.circle),
+                                                                                  ),
+                                                                                  firstDay: DateTime.utc(2010, 10, 16),
+                                                                                  lastDay: DateTime.utc(2030, 3, 14),
+                                                                                  focusedDay: _focusedDay.value,
+                                                                                  rowHeight: 32,
+                                                                                  selectedDayPredicate: (day) {
+                                                                                    return isSameDay(_selectedDay.value, day);
+
+                                                                                    // Return true if the day is within the selected range.
+                                                                                    // return _rangeStart != null &&
+                                                                                    //     _rangeEnd != null &&
+                                                                                    //     day.isAfter(_rangeStart!) &&
+                                                                                    //     day.isBefore(_rangeEnd!);
+                                                                                  },
+                                                                                  onDaySelected: (selectedDay, focusedDay) {
+                                                                                    setState(() {
+                                                                                      _focusedDay.value = focusedDay;
+                                                                                      _selectedDay.value = selectedDay;
+                                                                                    });
+                                                                                  });
+                                                                            },
+                                                                            valueListenable:
+                                                                                _focusedDay,
+                                                                          ),
+                                                                        ],
                                                                       ),
-                                                                      onPressed: () {},
-                                                                      child: const Text('Apply')),
-                                                                )
-                                                              ],
+                                                                      Positioned(
+                                                                        bottom:
+                                                                            0,
+                                                                        child:
+                                                                            Padding(
+                                                                          padding:
+                                                                              const EdgeInsets.only(
+                                                                            top:
+                                                                                10,
+                                                                          ),
+                                                                          child:
+                                                                              Column(
+                                                                            children: [
+                                                                              Container(
+                                                                                color: lightColorScheme.primary.withOpacity(.2),
+                                                                                width: MediaQuery.sizeOf(context).width,
+                                                                                height: 40,
+                                                                                child: Center(
+                                                                                    child: Text(
+                                                                                  DateFormat('dd MMMM').format(_selectedDay.value),
+                                                                                  textAlign: TextAlign.center,
+                                                                                )),
+                                                                              ),
+                                                                              InkWell(
+                                                                                onTap: () {
+                                                                                  _startDate.value = DateFormat('dd MMMM').format(_selectedDay.value);
+                                                                                  Navigator.pop(context);
+                                                                                },
+                                                                                child: Container(
+                                                                                  color: lightColorScheme.primary,
+                                                                                  width: MediaQuery.sizeOf(context).width,
+                                                                                  height: 40,
+                                                                                  child: const Center(
+                                                                                      child: Text(
+                                                                                    'Select Date',
+                                                                                    style: TextStyle(color: Colors.white),
+                                                                                    textAlign: TextAlign.center,
+                                                                                  )),
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ]);
+                                                              },
+                                                              valueListenable:
+                                                                  _selectedDay,
                                                             ),
                                                           ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ));
-                                        },
-                                        child: Row(
-                                          children: [
-                                            const Icon(
-                                                Icons.calendar_today_outlined,
-                                                size: 18,
-                                                color: Colors.black54),
-                                            Text(
-                                              '   Fri 28 Apr - Sat, 29 Apr',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium,
-                                            )
-                                          ],
+                                                        ));
+                                          },
+                                          child: Row(
+                                            children: [
+                                              const Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: 10, right: 18),
+                                                child: Icon(
+                                                    Icons
+                                                        .calendar_today_outlined,
+                                                    size: 18,
+                                                    color: Colors.black54),
+                                              ),
+                                              Row(
+                                                children: [
+                                                  ValueListenableBuilder(
+                                                    builder:
+                                                        (BuildContext context,
+                                                            value,
+                                                            Widget? child) {
+                                                      return Text(
+                                                        _startDate.value,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium,
+                                                      );
+                                                    },
+                                                    valueListenable: _startDate,
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      ),
+
+                                        const Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 10),
+                                          child: Text('-'),
+                                        ),
+
+                                        ///end date
+                                        GestureDetector(
+                                          onTap: () {
+                                            showModalBottomSheet(
+                                                constraints:
+                                                    const BoxConstraints
+                                                        .tightFor(height: 398),
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        SizedBox(
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    top: 10),
+                                                            child:
+                                                                ValueListenableBuilder(
+                                                              builder: (BuildContext
+                                                                      context,
+                                                                  value,
+                                                                  Widget?
+                                                                      child) {
+                                                                return Stack(
+                                                                    children: [
+                                                                      Column(
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
+                                                                        children: [
+                                                                          Center(
+                                                                            child:
+                                                                                Container(
+                                                                              color: Colors.black,
+                                                                              height: 2,
+                                                                              width: 50,
+                                                                            ),
+                                                                          ),
+                                                                          Text(
+                                                                            '   Select Date',
+                                                                            style:
+                                                                                TextStyle(fontWeight: FontWeight.bold, color: lightColorScheme.primary),
+                                                                          ),
+                                                                          ValueListenableBuilder(
+                                                                            builder: (BuildContext context,
+                                                                                value,
+                                                                                Widget? child) {
+                                                                              return TableCalendar(
+                                                                                  headerStyle: const HeaderStyle(formatButtonVisible: false),
+                                                                                  calendarStyle: CalendarStyle(
+                                                                                    isTodayHighlighted: false,
+                                                                                    selectedTextStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                                                                    selectedDecoration: BoxDecoration(color: lightColorScheme.primary, shape: BoxShape.circle),
+                                                                                  ),
+                                                                                  firstDay: DateTime.utc(2010, 10, 16),
+                                                                                  lastDay: DateTime.utc(2030, 3, 14),
+                                                                                  focusedDay: _focusedDay.value,
+                                                                                  rowHeight: 32,
+                                                                                  selectedDayPredicate: (day) {
+                                                                                    return isSameDay(_selectedDay.value, day);
+
+                                                                                    // Return true if the day is within the selected range.
+                                                                                    // return _rangeStart != null &&
+                                                                                    //     _rangeEnd != null &&
+                                                                                    //     day.isAfter(_rangeStart!) &&
+                                                                                    //     day.isBefore(_rangeEnd!);
+                                                                                  },
+                                                                                  onDaySelected: (selectedDay, focusedDay) {
+                                                                                    setState(() {
+                                                                                      _focusedDay.value = focusedDay;
+                                                                                      _selectedDay.value = selectedDay;
+                                                                                    });
+                                                                                  });
+                                                                            },
+                                                                            valueListenable:
+                                                                                _focusedDay,
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                      Positioned(
+                                                                        bottom:
+                                                                            0,
+                                                                        child:
+                                                                            Padding(
+                                                                          padding:
+                                                                              const EdgeInsets.only(
+                                                                            top:
+                                                                                10,
+                                                                          ),
+                                                                          child:
+                                                                              Column(
+                                                                            children: [
+                                                                              Container(
+                                                                                color: lightColorScheme.primary.withOpacity(.2),
+                                                                                width: MediaQuery.sizeOf(context).width,
+                                                                                height: 40,
+                                                                                child: Center(
+                                                                                    child: Text(
+                                                                                  DateFormat('dd MMMM').format(_selectedDay.value),
+                                                                                  textAlign: TextAlign.center,
+                                                                                )),
+                                                                              ),
+                                                                              InkWell(
+                                                                                onTap: () {
+                                                                                  _endDate.value = DateFormat('dd MMMM').format(_selectedDay.value);
+                                                                                  Navigator.pop(context);
+                                                                                },
+                                                                                child: Container(
+                                                                                  color: lightColorScheme.primary,
+                                                                                  width: MediaQuery.sizeOf(context).width,
+                                                                                  height: 40,
+                                                                                  child: const Center(
+                                                                                      child: Text(
+                                                                                    'Select Date',
+                                                                                    style: TextStyle(color: Colors.white),
+                                                                                    textAlign: TextAlign.center,
+                                                                                  )),
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ]);
+                                                              },
+                                                              valueListenable:
+                                                                  _selectedDay,
+                                                            ),
+                                                          ),
+                                                        ));
+                                          },
+                                          child: Row(
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  ValueListenableBuilder(
+                                                    builder:
+                                                        (BuildContext context,
+                                                            value,
+                                                            Widget? child) {
+                                                      return Text(
+                                                        _endDate.value,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium,
+                                                      );
+                                                    },
+                                                    valueListenable: _endDate,
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ]),
                                     ),
-                                    Divider(),
+                                    const Divider(),
 
                                     //room size
                                     Padding(
@@ -354,7 +575,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                           MainAxisAlignment
                                                                               .spaceBetween,
                                                                       children: [
-                                                                        Text(
+                                                                        const Text(
                                                                             'Rooms'),
                                                                         Row(
                                                                           children: [
@@ -368,11 +589,11 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                                 )),
                                                                             Text(
                                                                               numberOfRooms.value.toString(),
-                                                                              style: TextStyle(color: Colors.black87),
+                                                                              style: const TextStyle(color: Colors.black87),
                                                                             ),
                                                                             IconButton(
                                                                                 onPressed: () {
-                                                                                  numberOfRooms.value--;
+                                                                                  numberOfRooms.value >= 0 ? numberOfRooms.value-- : numberOfRooms.value = 0;
                                                                                 },
                                                                                 icon: Icon(
                                                                                   Icons.remove_circle_outline,
@@ -406,7 +627,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                           MainAxisAlignment
                                                                               .spaceBetween,
                                                                       children: [
-                                                                        Text(
+                                                                        const Text(
                                                                             'Adults'),
                                                                         Row(
                                                                           children: [
@@ -420,11 +641,11 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                                 )),
                                                                             Text(
                                                                               numberOfAdults.value.toString(),
-                                                                              style: TextStyle(color: Colors.black87),
+                                                                              style: const TextStyle(color: Colors.black87),
                                                                             ),
                                                                             IconButton(
                                                                                 onPressed: () {
-                                                                                  numberOfAdults.value--;
+                                                                                  numberOfAdults.value >= 0 ? numberOfAdults.value-- : numberOfAdults.value = 0;
                                                                                 },
                                                                                 icon: Icon(
                                                                                   Icons.remove_circle_outline,
@@ -458,7 +679,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                           MainAxisAlignment
                                                                               .spaceBetween,
                                                                       children: [
-                                                                        Text(
+                                                                        const Text(
                                                                             'Children'),
                                                                         Row(
                                                                           children: [
@@ -472,11 +693,11 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                                 )),
                                                                             Text(
                                                                               numberOfChildren.value.toString(),
-                                                                              style: TextStyle(color: Colors.black87),
+                                                                              style: const TextStyle(color: Colors.black87),
                                                                             ),
                                                                             IconButton(
                                                                                 onPressed: () {
-                                                                                  numberOfChildren.value--;
+                                                                                  numberOfChildren.value > 0 ? numberOfChildren.value-- : numberOfChildren.value = 0;
                                                                                 },
                                                                                 icon: Icon(
                                                                                   Icons.remove_circle_outline,
@@ -501,28 +722,34 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                             context)
                                                                         .width,
                                                                     height: 40,
-                                                                    child: const Center(
+                                                                    child: Center(
                                                                         child: Text(
-                                                                      '12 April - 12 April',
+                                                                      '${numberOfRooms.value} rooms - ${numberOfAdults.value} Adults - ${numberOfChildren.value} Children',
                                                                       textAlign:
                                                                           TextAlign
                                                                               .center,
                                                                     )),
                                                                   ),
-                                                                  SizedBox(
+
+                                                                  ///apply
+                                                                  Container(
+                                                                    color: lightColorScheme
+                                                                        .primary,
                                                                     width: MediaQuery.sizeOf(
                                                                             context)
                                                                         .width,
-                                                                    child: ElevatedButton(
-                                                                        style: ElevatedButton.styleFrom(
-                                                                          backgroundColor:
-                                                                              lightColorScheme.primary,
-                                                                          minimumSize:
-                                                                              const Size.fromHeight(40),
-                                                                        ),
-                                                                        onPressed: () {},
-                                                                        child: const Text('Apply')),
-                                                                  )
+                                                                    height: 40,
+                                                                    child: const Center(
+                                                                        child: Text(
+                                                                      'Apply',
+                                                                      style: TextStyle(
+                                                                          color:
+                                                                              Colors.white),
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                    )),
+                                                                  ),
                                                                 ],
                                                               ),
                                                             ],
@@ -561,9 +788,9 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                 MaterialPageRoute(
                                                     builder: (BuildContext
                                                             context) =>
-                                                        SearchResultPage()));
+                                                        const SearchResultPage()));
                                           },
-                                          child: Text('Search')),
+                                          child: const Text('Search')),
                                     )
                                   ],
                                 ),
@@ -640,13 +867,14 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                       children: [
                                                         Text(
                                                           hotels[index].name,
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontSize: 15,
-                                                              color: Colors
-                                                                  .black87),
+                                                          style:
+                                                              const TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 15,
+                                                                  color: Colors
+                                                                      .black87),
                                                         ),
                                                         Text(
                                                           hotels[index]
@@ -728,7 +956,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                             bottom: BorderSide(
                                                 color: lightColorScheme.primary,
                                                 width: 0.011)),
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(7))),
                                     child: Column(
                                       children: [
@@ -741,7 +969,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                   MaterialPageRoute(
                                                       builder: (BuildContext
                                                               context) =>
-                                                          DestinationSearchPage()));
+                                                          const DestinationSearchPage()));
                                             },
                                             child: Row(
                                               children: [
@@ -759,7 +987,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                             ),
                                           ),
                                         ),
-                                        Divider(),
+                                        const Divider(),
 
                                         //date
                                         Padding(
@@ -837,8 +1065,8 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                               MediaQuery.sizeOf(context).width,
                                                                           height:
                                                                               40,
-                                                                          child: Center(
-                                                                              child: const Text(
+                                                                          child: const Center(
+                                                                              child: Text(
                                                                             '12 April - 12 April',
                                                                             textAlign:
                                                                                 TextAlign.center,
@@ -880,7 +1108,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                             ),
                                           ),
                                         ),
-                                        Divider(),
+                                        const Divider(),
 
                                         //room size
                                         Padding(
@@ -956,7 +1184,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                           mainAxisAlignment:
                                                                               MainAxisAlignment.spaceBetween,
                                                                           children: [
-                                                                            Text('Rooms'),
+                                                                            const Text('Rooms'),
                                                                             Row(
                                                                               children: [
                                                                                 IconButton(
@@ -969,7 +1197,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                                     )),
                                                                                 Text(
                                                                                   numberOfRooms.value.toString(),
-                                                                                  style: TextStyle(color: Colors.black87),
+                                                                                  style: const TextStyle(color: Colors.black87),
                                                                                 ),
                                                                                 IconButton(
                                                                                     onPressed: () {
@@ -1006,7 +1234,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                           mainAxisAlignment:
                                                                               MainAxisAlignment.spaceBetween,
                                                                           children: [
-                                                                            Text('Adults'),
+                                                                            const Text('Adults'),
                                                                             Row(
                                                                               children: [
                                                                                 IconButton(
@@ -1019,7 +1247,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                                     )),
                                                                                 Text(
                                                                                   numberOfAdults.value.toString(),
-                                                                                  style: TextStyle(color: Colors.black87),
+                                                                                  style: const TextStyle(color: Colors.black87),
                                                                                 ),
                                                                                 IconButton(
                                                                                     onPressed: () {
@@ -1056,7 +1284,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                           mainAxisAlignment:
                                                                               MainAxisAlignment.spaceBetween,
                                                                           children: [
-                                                                            Text('Children'),
+                                                                            const Text('Children'),
                                                                             Row(
                                                                               children: [
                                                                                 IconButton(
@@ -1069,7 +1297,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                                     )),
                                                                                 Text(
                                                                                   numberOfChildren.value.toString(),
-                                                                                  style: TextStyle(color: Colors.black87),
+                                                                                  style: const TextStyle(color: Colors.black87),
                                                                                 ),
                                                                                 IconButton(
                                                                                     onPressed: () {
@@ -1155,9 +1383,9 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                     MaterialPageRoute(
                                                         builder: (BuildContext
                                                                 context) =>
-                                                            SearchResultPage()));
+                                                            const SearchResultPage()));
                                               },
-                                              child: Text('Search')),
+                                              child: const Text('Search')),
                                         )
                                       ],
                                     ),
