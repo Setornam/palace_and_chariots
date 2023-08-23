@@ -22,17 +22,24 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
   ValueNotifier<int> numberOfAdults = ValueNotifier(0);
   ValueNotifier<int> numberOfChildren = ValueNotifier(0);
 
+  ValueNotifier<int> numberOfRoomsApartment = ValueNotifier(0);
+  ValueNotifier<int> numberOfAdultsApartment = ValueNotifier(0);
+  ValueNotifier<int> numberOfChildrenApartment = ValueNotifier(0);
+
   final ValueNotifier<DateTime> _selectedDay = ValueNotifier(DateTime.now());
   final ValueNotifier<DateTime> _focusedDay = ValueNotifier(DateTime.now());
 
   final ValueNotifier<String> _startDate = ValueNotifier('start date');
   final ValueNotifier<String> _endDate = ValueNotifier('end date');
 
-  final ValueNotifier<String> _numberOfRooms = ValueNotifier('');
-  final ValueNotifier<String> _numberOfAdults = ValueNotifier('');
-  final ValueNotifier<String> _numberOfChildren = ValueNotifier('');
+  final ValueNotifier<String> _apartmentBookStartDate =
+      ValueNotifier('start date');
+  final ValueNotifier<String> _apartmentBookEndDate = ValueNotifier('end date');
 
   TextEditingController destinationController = TextEditingController();
+
+  TextEditingController destinationControllerApartment =
+      TextEditingController();
 
   String isActiveAccommodation = "Apartments";
 
@@ -723,32 +730,76 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                         .width,
                                                                     height: 40,
                                                                     child: Center(
-                                                                        child: Text(
-                                                                      '${numberOfRooms.value} rooms - ${numberOfAdults.value} Adults - ${numberOfChildren.value} Children',
-                                                                      textAlign:
-                                                                          TextAlign
+                                                                        child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
                                                                               .center,
+                                                                      children: [
+                                                                        ValueListenableBuilder(
+                                                                          builder: (BuildContext context,
+                                                                              value,
+                                                                              Widget? child) {
+                                                                            return Text(
+                                                                              '${numberOfRooms.value} rooms - ',
+                                                                              textAlign: TextAlign.center,
+                                                                            );
+                                                                          },
+                                                                          valueListenable:
+                                                                              numberOfRooms,
+                                                                        ),
+                                                                        ValueListenableBuilder(
+                                                                          builder: (BuildContext context,
+                                                                              value,
+                                                                              Widget? child) {
+                                                                            return Text(
+                                                                              '${numberOfAdults.value} Adults -',
+                                                                              textAlign: TextAlign.center,
+                                                                            );
+                                                                          },
+                                                                          valueListenable:
+                                                                              numberOfAdults,
+                                                                        ),
+                                                                        ValueListenableBuilder(
+                                                                          builder: (BuildContext context,
+                                                                              value,
+                                                                              Widget? child) {
+                                                                            return Text(
+                                                                              '${numberOfChildren.value} Children',
+                                                                              textAlign: TextAlign.center,
+                                                                            );
+                                                                          },
+                                                                          valueListenable:
+                                                                              numberOfChildren,
+                                                                        ),
+                                                                      ],
                                                                     )),
                                                                   ),
 
                                                                   ///apply
-                                                                  Container(
-                                                                    color: lightColorScheme
-                                                                        .primary,
-                                                                    width: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .width,
-                                                                    height: 40,
-                                                                    child: const Center(
-                                                                        child: Text(
-                                                                      'Apply',
-                                                                      style: TextStyle(
-                                                                          color:
-                                                                              Colors.white),
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .center,
-                                                                    )),
+                                                                  InkWell(
+                                                                    onTap: () {
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                    },
+                                                                    child:
+                                                                        Container(
+                                                                      color: lightColorScheme
+                                                                          .primary,
+                                                                      width: MediaQuery.sizeOf(
+                                                                              context)
+                                                                          .width,
+                                                                      height:
+                                                                          40,
+                                                                      child: const Center(
+                                                                          child: Text(
+                                                                        'Apply',
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.white),
+                                                                        textAlign:
+                                                                            TextAlign.center,
+                                                                      )),
+                                                                    ),
                                                                   ),
                                                                 ],
                                                               ),
@@ -759,14 +810,61 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                         },
                                         child: Row(
                                           children: [
-                                            const Icon(Icons.person_2_outlined,
-                                                size: 18,
-                                                color: Colors.black54),
-                                            Text(
-                                              '   1 room - 2 adults - no children ',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium,
+                                            const Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 15),
+                                              child: Icon(
+                                                  Icons.person_2_outlined,
+                                                  size: 18,
+                                                  color: Colors.black54),
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                ValueListenableBuilder(
+                                                  builder:
+                                                      (BuildContext context,
+                                                          value,
+                                                          Widget? child) {
+                                                    return Text(
+                                                      '${numberOfRooms.value} rooms - ',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    );
+                                                  },
+                                                  valueListenable:
+                                                      numberOfRooms,
+                                                ),
+                                                ValueListenableBuilder(
+                                                  builder:
+                                                      (BuildContext context,
+                                                          value,
+                                                          Widget? child) {
+                                                    return Text(
+                                                      '${numberOfAdults.value} Adults -',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    );
+                                                  },
+                                                  valueListenable:
+                                                      numberOfAdults,
+                                                ),
+                                                ValueListenableBuilder(
+                                                  builder:
+                                                      (BuildContext context,
+                                                          value,
+                                                          Widget? child) {
+                                                    return Text(
+                                                      '${numberOfChildren.value} Children',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    );
+                                                  },
+                                                  valueListenable:
+                                                      numberOfChildren,
+                                                ),
+                                              ],
                                             )
                                           ],
                                         ),
@@ -961,152 +1059,361 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                     child: Column(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.all(5.0),
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (BuildContext
-                                                              context) =>
-                                                          const DestinationSearchPage()));
-                                            },
-                                            child: Row(
-                                              children: [
-                                                const Icon(
-                                                    Icons.location_on_outlined,
-                                                    size: 18,
-                                                    color: Colors.black54),
-                                                Text(
-                                                  '   Enter destination',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyMedium,
-                                                )
-                                              ],
+                                          padding: const EdgeInsets.only(
+                                              left: 5, right: 15),
+                                          child: TextField(
+                                            decoration: InputDecoration(
+                                              filled: false,
+                                              focusedBorder:
+                                                  UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color:
+                                                              lightColorScheme
+                                                                  .primary)),
+                                              contentPadding:
+                                                  const EdgeInsets.only(
+                                                      top: 10),
+                                              hintText: 'Enter Destination',
+                                              constraints:
+                                                  const BoxConstraints.tightFor(
+                                                      height: 40),
+                                              floatingLabelBehavior:
+                                                  FloatingLabelBehavior.never,
+                                              prefixIcon: const Icon(
+                                                  Icons.location_on_outlined,
+                                                  size: 18,
+                                                  color: Colors.black54),
                                             ),
+                                            controller:
+                                                destinationControllerApartment,
                                           ),
                                         ),
                                         const Divider(),
 
                                         //date
                                         Padding(
-                                          padding: const EdgeInsets.all(5.0),
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              showModalBottomSheet(
-                                                  constraints:
-                                                      const BoxConstraints
-                                                              .tightFor(
-                                                          height: 398),
-                                                  context: context,
-                                                  builder:
-                                                      (BuildContext context) =>
-                                                          SizedBox(
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      top: 10),
-                                                              child: Column(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Center(
-                                                                    child:
-                                                                        Container(
-                                                                      color: Colors
-                                                                          .black,
-                                                                      height: 2,
-                                                                      width: 50,
-                                                                    ),
-                                                                  ),
-                                                                  Text(
-                                                                    '   Select Date',
-                                                                    style: TextStyle(
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .bold,
-                                                                        color: lightColorScheme
-                                                                            .primary),
-                                                                  ),
-                                                                  TableCalendar(
-                                                                    firstDay:
-                                                                        DateTime.utc(
-                                                                            2010,
-                                                                            10,
-                                                                            16),
-                                                                    lastDay:
-                                                                        DateTime.utc(
-                                                                            2030,
-                                                                            3,
-                                                                            14),
-                                                                    focusedDay:
-                                                                        DateTime
-                                                                            .now(),
-                                                                    rowHeight:
-                                                                        32,
-                                                                  ),
-                                                                  Padding(
-                                                                    padding:
-                                                                        const EdgeInsets
+                                          padding: const EdgeInsets.only(
+                                              left: 10, right: 5, bottom: 5),
+                                          child: Row(children: [
+                                            ///start date
+                                            GestureDetector(
+                                              onTap: () {
+                                                showModalBottomSheet(
+                                                    constraints:
+                                                        const BoxConstraints
+                                                                .tightFor(
+                                                            height: 398),
+                                                    context: context,
+                                                    builder:
+                                                        (BuildContext
+                                                                context) =>
+                                                            SizedBox(
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
                                                                             .only(
-                                                                      top: 10,
-                                                                    ),
-                                                                    child:
-                                                                        Column(
-                                                                      children: [
-                                                                        Container(
-                                                                          color: lightColorScheme
-                                                                              .primary
-                                                                              .withOpacity(.2),
-                                                                          width:
-                                                                              MediaQuery.sizeOf(context).width,
-                                                                          height:
-                                                                              40,
-                                                                          child: const Center(
-                                                                              child: Text(
-                                                                            '12 April - 12 April',
-                                                                            textAlign:
-                                                                                TextAlign.center,
-                                                                          )),
-                                                                        ),
-                                                                        SizedBox(
-                                                                          width:
-                                                                              MediaQuery.sizeOf(context).width,
-                                                                          child: ElevatedButton(
-                                                                              style: ElevatedButton.styleFrom(
-                                                                                backgroundColor: lightColorScheme.primary,
-                                                                                minimumSize: const Size.fromHeight(40),
+                                                                        top:
+                                                                            10),
+                                                                child:
+                                                                    ValueListenableBuilder(
+                                                                  builder: (BuildContext
+                                                                          context,
+                                                                      value,
+                                                                      Widget?
+                                                                          child) {
+                                                                    return Stack(
+                                                                        children: [
+                                                                          Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: [
+                                                                              Center(
+                                                                                child: Container(
+                                                                                  color: Colors.black,
+                                                                                  height: 2,
+                                                                                  width: 50,
+                                                                                ),
                                                                               ),
-                                                                              onPressed: () {},
-                                                                              child: const Text('Apply')),
-                                                                        )
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                ],
+                                                                              Text(
+                                                                                '   Select Date',
+                                                                                style: TextStyle(fontWeight: FontWeight.bold, color: lightColorScheme.primary),
+                                                                              ),
+                                                                              ValueListenableBuilder(
+                                                                                builder: (BuildContext context, value, Widget? child) {
+                                                                                  return TableCalendar(
+                                                                                      headerStyle: const HeaderStyle(formatButtonVisible: false),
+                                                                                      calendarStyle: CalendarStyle(
+                                                                                        isTodayHighlighted: false,
+                                                                                        selectedTextStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                                                                        selectedDecoration: BoxDecoration(color: lightColorScheme.primary, shape: BoxShape.circle),
+                                                                                      ),
+                                                                                      firstDay: DateTime.utc(2010, 10, 16),
+                                                                                      lastDay: DateTime.utc(2030, 3, 14),
+                                                                                      focusedDay: _focusedDay.value,
+                                                                                      rowHeight: 32,
+                                                                                      selectedDayPredicate: (day) {
+                                                                                        return isSameDay(_selectedDay.value, day);
+
+                                                                                        // Return true if the day is within the selected range.
+                                                                                        // return _rangeStart != null &&
+                                                                                        //     _rangeEnd != null &&
+                                                                                        //     day.isAfter(_rangeStart!) &&
+                                                                                        //     day.isBefore(_rangeEnd!);
+                                                                                      },
+                                                                                      onDaySelected: (selectedDay, focusedDay) {
+                                                                                        setState(() {
+                                                                                          _focusedDay.value = focusedDay;
+                                                                                          _selectedDay.value = selectedDay;
+                                                                                        });
+                                                                                      });
+                                                                                },
+                                                                                valueListenable: _focusedDay,
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                          Positioned(
+                                                                            bottom:
+                                                                                0,
+                                                                            child:
+                                                                                Padding(
+                                                                              padding: const EdgeInsets.only(
+                                                                                top: 10,
+                                                                              ),
+                                                                              child: Column(
+                                                                                children: [
+                                                                                  Container(
+                                                                                    color: lightColorScheme.primary.withOpacity(.2),
+                                                                                    width: MediaQuery.sizeOf(context).width,
+                                                                                    height: 40,
+                                                                                    child: Center(
+                                                                                        child: Text(
+                                                                                      DateFormat('dd MMMM').format(_selectedDay.value),
+                                                                                      textAlign: TextAlign.center,
+                                                                                    )),
+                                                                                  ),
+                                                                                  InkWell(
+                                                                                    onTap: () {
+                                                                                      _apartmentBookStartDate.value = DateFormat('dd MMMM').format(_selectedDay.value);
+                                                                                      Navigator.pop(context);
+                                                                                    },
+                                                                                    child: Container(
+                                                                                      color: lightColorScheme.primary,
+                                                                                      width: MediaQuery.sizeOf(context).width,
+                                                                                      height: 40,
+                                                                                      child: const Center(
+                                                                                          child: Text(
+                                                                                        'Select Date',
+                                                                                        style: TextStyle(color: Colors.white),
+                                                                                        textAlign: TextAlign.center,
+                                                                                      )),
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ]);
+                                                                  },
+                                                                  valueListenable:
+                                                                      _selectedDay,
+                                                                ),
                                                               ),
-                                                            ),
-                                                          ));
-                                            },
-                                            child: Row(
-                                              children: [
-                                                const Icon(
-                                                    Icons
-                                                        .calendar_today_outlined,
-                                                    size: 18,
-                                                    color: Colors.black54),
-                                                Text(
-                                                  '   Fri 28 Apr - Sat, 29 Apr',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyMedium,
-                                                )
-                                              ],
+                                                            ));
+                                              },
+                                              child: Row(
+                                                children: [
+                                                  const Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10, right: 18),
+                                                    child: Icon(
+                                                        Icons
+                                                            .calendar_today_outlined,
+                                                        size: 18,
+                                                        color: Colors.black54),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      ValueListenableBuilder(
+                                                        builder: (BuildContext
+                                                                context,
+                                                            value,
+                                                            Widget? child) {
+                                                          return Text(
+                                                            _apartmentBookStartDate
+                                                                .value,
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium,
+                                                          );
+                                                        },
+                                                        valueListenable:
+                                                            _apartmentBookStartDate,
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
                                             ),
-                                          ),
+
+                                            const Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 10),
+                                              child: Text('-'),
+                                            ),
+
+                                            ///end date
+                                            GestureDetector(
+                                              onTap: () {
+                                                showModalBottomSheet(
+                                                    constraints:
+                                                        const BoxConstraints
+                                                                .tightFor(
+                                                            height: 398),
+                                                    context: context,
+                                                    builder:
+                                                        (BuildContext
+                                                                context) =>
+                                                            SizedBox(
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        top:
+                                                                            10),
+                                                                child:
+                                                                    ValueListenableBuilder(
+                                                                  builder: (BuildContext
+                                                                          context,
+                                                                      value,
+                                                                      Widget?
+                                                                          child) {
+                                                                    return Stack(
+                                                                        children: [
+                                                                          Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: [
+                                                                              Center(
+                                                                                child: Container(
+                                                                                  color: Colors.black,
+                                                                                  height: 2,
+                                                                                  width: 50,
+                                                                                ),
+                                                                              ),
+                                                                              Text(
+                                                                                '   Select Date',
+                                                                                style: TextStyle(fontWeight: FontWeight.bold, color: lightColorScheme.primary),
+                                                                              ),
+                                                                              ValueListenableBuilder(
+                                                                                builder: (BuildContext context, value, Widget? child) {
+                                                                                  return TableCalendar(
+                                                                                      headerStyle: const HeaderStyle(formatButtonVisible: false),
+                                                                                      calendarStyle: CalendarStyle(
+                                                                                        isTodayHighlighted: false,
+                                                                                        selectedTextStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                                                                        selectedDecoration: BoxDecoration(color: lightColorScheme.primary, shape: BoxShape.circle),
+                                                                                      ),
+                                                                                      firstDay: DateTime.utc(2010, 10, 16),
+                                                                                      lastDay: DateTime.utc(2030, 3, 14),
+                                                                                      focusedDay: _focusedDay.value,
+                                                                                      rowHeight: 32,
+                                                                                      selectedDayPredicate: (day) {
+                                                                                        return isSameDay(_selectedDay.value, day);
+
+                                                                                        // Return true if the day is within the selected range.
+                                                                                        // return _rangeStart != null &&
+                                                                                        //     _rangeEnd != null &&
+                                                                                        //     day.isAfter(_rangeStart!) &&
+                                                                                        //     day.isBefore(_rangeEnd!);
+                                                                                      },
+                                                                                      onDaySelected: (selectedDay, focusedDay) {
+                                                                                        setState(() {
+                                                                                          _focusedDay.value = focusedDay;
+                                                                                          _selectedDay.value = selectedDay;
+                                                                                        });
+                                                                                      });
+                                                                                },
+                                                                                valueListenable: _focusedDay,
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                          Positioned(
+                                                                            bottom:
+                                                                                0,
+                                                                            child:
+                                                                                Padding(
+                                                                              padding: const EdgeInsets.only(
+                                                                                top: 10,
+                                                                              ),
+                                                                              child: Column(
+                                                                                children: [
+                                                                                  Container(
+                                                                                    color: lightColorScheme.primary.withOpacity(.2),
+                                                                                    width: MediaQuery.sizeOf(context).width,
+                                                                                    height: 40,
+                                                                                    child: Center(
+                                                                                        child: Text(
+                                                                                      DateFormat('dd MMMM').format(_selectedDay.value),
+                                                                                      textAlign: TextAlign.center,
+                                                                                    )),
+                                                                                  ),
+                                                                                  InkWell(
+                                                                                    onTap: () {
+                                                                                      _apartmentBookEndDate.value = DateFormat('dd MMMM').format(_selectedDay.value);
+                                                                                      Navigator.pop(context);
+                                                                                    },
+                                                                                    child: Container(
+                                                                                      color: lightColorScheme.primary,
+                                                                                      width: MediaQuery.sizeOf(context).width,
+                                                                                      height: 40,
+                                                                                      child: const Center(
+                                                                                          child: Text(
+                                                                                        'Select Date',
+                                                                                        style: TextStyle(color: Colors.white),
+                                                                                        textAlign: TextAlign.center,
+                                                                                      )),
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ]);
+                                                                  },
+                                                                  valueListenable:
+                                                                      _selectedDay,
+                                                                ),
+                                                              ),
+                                                            ));
+                                              },
+                                              child: Row(
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      ValueListenableBuilder(
+                                                        builder: (BuildContext
+                                                                context,
+                                                            value,
+                                                            Widget? child) {
+                                                          return Text(
+                                                            _apartmentBookEndDate
+                                                                .value,
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium,
+                                                          );
+                                                        },
+                                                        valueListenable:
+                                                            _apartmentBookEndDate,
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ]),
                                         ),
                                         const Divider(),
 
@@ -1174,7 +1481,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                     child:
                                                                         ValueListenableBuilder(
                                                                       valueListenable:
-                                                                          numberOfRooms,
+                                                                          numberOfRoomsApartment,
                                                                       builder: (BuildContext
                                                                               context,
                                                                           value,
@@ -1189,19 +1496,19 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                               children: [
                                                                                 IconButton(
                                                                                     onPressed: () {
-                                                                                      numberOfRooms.value++;
+                                                                                      numberOfRoomsApartment.value++;
                                                                                     },
                                                                                     icon: Icon(
                                                                                       Icons.add_circle_outline,
                                                                                       color: lightColorScheme.primary,
                                                                                     )),
                                                                                 Text(
-                                                                                  numberOfRooms.value.toString(),
+                                                                                  numberOfRoomsApartment.value.toString(),
                                                                                   style: const TextStyle(color: Colors.black87),
                                                                                 ),
                                                                                 IconButton(
                                                                                     onPressed: () {
-                                                                                      numberOfRooms.value--;
+                                                                                      numberOfRoomsApartment.value > 0 ? numberOfRoomsApartment.value-- : numberOfRoomsApartment.value = 0;
                                                                                     },
                                                                                     icon: Icon(
                                                                                       Icons.remove_circle_outline,
@@ -1224,7 +1531,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                     child:
                                                                         ValueListenableBuilder(
                                                                       valueListenable:
-                                                                          numberOfAdults,
+                                                                          numberOfAdultsApartment,
                                                                       builder: (BuildContext
                                                                               context,
                                                                           value,
@@ -1239,19 +1546,19 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                               children: [
                                                                                 IconButton(
                                                                                     onPressed: () {
-                                                                                      numberOfAdults.value++;
+                                                                                      numberOfAdultsApartment.value++;
                                                                                     },
                                                                                     icon: Icon(
                                                                                       Icons.add_circle_outline,
                                                                                       color: lightColorScheme.primary,
                                                                                     )),
                                                                                 Text(
-                                                                                  numberOfAdults.value.toString(),
+                                                                                  numberOfAdultsApartment.value.toString(),
                                                                                   style: const TextStyle(color: Colors.black87),
                                                                                 ),
                                                                                 IconButton(
                                                                                     onPressed: () {
-                                                                                      numberOfAdults.value--;
+                                                                                      numberOfAdultsApartment.value >= 0 ? numberOfAdultsApartment.value-- : numberOfAdultsApartment.value = 0;
                                                                                     },
                                                                                     icon: Icon(
                                                                                       Icons.remove_circle_outline,
@@ -1289,19 +1596,19 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                               children: [
                                                                                 IconButton(
                                                                                     onPressed: () {
-                                                                                      numberOfChildren.value++;
+                                                                                      numberOfChildrenApartment.value++;
                                                                                     },
                                                                                     icon: Icon(
                                                                                       Icons.add_circle_outline,
                                                                                       color: lightColorScheme.primary,
                                                                                     )),
                                                                                 Text(
-                                                                                  numberOfChildren.value.toString(),
+                                                                                  numberOfChildrenApartment.value.toString(),
                                                                                   style: const TextStyle(color: Colors.black87),
                                                                                 ),
                                                                                 IconButton(
                                                                                     onPressed: () {
-                                                                                      numberOfChildren.value--;
+                                                                                      numberOfChildrenApartment.value > 0 ? numberOfChildrenApartment.value-- : numberOfChildrenApartment.value = 0;
                                                                                     },
                                                                                     icon: Icon(
                                                                                       Icons.remove_circle_outline,
@@ -1325,24 +1632,67 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                             .width,
                                                                         height:
                                                                             40,
-                                                                        child: const Center(
-                                                                            child: Text(
-                                                                          '12 April - 12 April',
-                                                                          textAlign:
-                                                                              TextAlign.center,
+                                                                        child: Center(
+                                                                            child: Row(
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          children: [
+                                                                            ValueListenableBuilder(
+                                                                              builder: (BuildContext context, value, Widget? child) {
+                                                                                return Text(
+                                                                                  '${numberOfRoomsApartment.value} rooms - ',
+                                                                                  textAlign: TextAlign.center,
+                                                                                );
+                                                                              },
+                                                                              valueListenable: numberOfRoomsApartment,
+                                                                            ),
+                                                                            ValueListenableBuilder(
+                                                                              builder: (BuildContext context, value, Widget? child) {
+                                                                                return Text(
+                                                                                  '${numberOfAdultsApartment.value} Adults -',
+                                                                                  textAlign: TextAlign.center,
+                                                                                );
+                                                                              },
+                                                                              valueListenable: numberOfAdultsApartment,
+                                                                            ),
+                                                                            ValueListenableBuilder(
+                                                                              builder: (BuildContext context, value, Widget? child) {
+                                                                                return Text(
+                                                                                  '${numberOfChildrenApartment.value} Children',
+                                                                                  textAlign: TextAlign.center,
+                                                                                );
+                                                                              },
+                                                                              valueListenable: numberOfChildrenApartment,
+                                                                            ),
+                                                                          ],
                                                                         )),
                                                                       ),
-                                                                      SizedBox(
-                                                                        width: MediaQuery.sizeOf(context)
-                                                                            .width,
-                                                                        child: ElevatedButton(
-                                                                            style: ElevatedButton.styleFrom(
-                                                                              backgroundColor: lightColorScheme.primary,
-                                                                              minimumSize: const Size.fromHeight(40),
-                                                                            ),
-                                                                            onPressed: () {},
-                                                                            child: const Text('Apply')),
-                                                                      )
+
+                                                                      ///apply
+                                                                      InkWell(
+                                                                        onTap:
+                                                                            () {
+                                                                          Navigator.pop(
+                                                                              context);
+                                                                        },
+                                                                        child:
+                                                                            Container(
+                                                                          color:
+                                                                              lightColorScheme.primary,
+                                                                          width:
+                                                                              MediaQuery.sizeOf(context).width,
+                                                                          height:
+                                                                              40,
+                                                                          child: const Center(
+                                                                              child: Text(
+                                                                            'Apply',
+                                                                            style:
+                                                                                TextStyle(color: Colors.white),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                          )),
+                                                                        ),
+                                                                      ),
                                                                     ],
                                                                   ),
                                                                 ],
@@ -1352,15 +1702,61 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                             },
                                             child: Row(
                                               children: [
-                                                const Icon(
-                                                    Icons.person_2_outlined,
-                                                    size: 18,
-                                                    color: Colors.black54),
-                                                Text(
-                                                  '   1 room - 2 adults - no children ',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyMedium,
+                                                const Padding(
+                                                  padding:
+                                                      EdgeInsets.only(left: 15),
+                                                  child: Icon(
+                                                      Icons.person_2_outlined,
+                                                      size: 18,
+                                                      color: Colors.black54),
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    ValueListenableBuilder(
+                                                      builder:
+                                                          (BuildContext context,
+                                                              value,
+                                                              Widget? child) {
+                                                        return Text(
+                                                          '${numberOfRoomsApartment.value} rooms - ',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                        );
+                                                      },
+                                                      valueListenable:
+                                                          numberOfRoomsApartment,
+                                                    ),
+                                                    ValueListenableBuilder(
+                                                      builder:
+                                                          (BuildContext context,
+                                                              value,
+                                                              Widget? child) {
+                                                        return Text(
+                                                          '${numberOfAdultsApartment.value} Adults -',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                        );
+                                                      },
+                                                      valueListenable:
+                                                          numberOfAdultsApartment,
+                                                    ),
+                                                    ValueListenableBuilder(
+                                                      builder:
+                                                          (BuildContext context,
+                                                              value,
+                                                              Widget? child) {
+                                                        return Text(
+                                                          '${numberOfChildrenApartment.value} Children',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                        );
+                                                      },
+                                                      valueListenable:
+                                                          numberOfChildrenApartment,
+                                                    ),
+                                                  ],
                                                 )
                                               ],
                                             ),
@@ -1466,9 +1862,10 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                               MainAxisAlignment
                                                                   .spaceBetween,
                                                           children: [
-                                                            const Text(
-                                                              'Superior Twin',
-                                                              style: TextStyle(
+                                                            Text(
+                                                              apartments[index]
+                                                                  .name,
+                                                              style: const TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold,
@@ -1477,7 +1874,10 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                       .black87),
                                                             ),
                                                             Text(
-                                                              ' Available',
+                                                              apartments[index]
+                                                                      .availability
+                                                                  ? "Available"
+                                                                  : "Unavailable",
                                                               style: TextStyle(
                                                                   fontSize: 13,
                                                                   color: lightColorScheme
@@ -1494,7 +1894,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                   0xfff8c123),
                                                             ),
                                                             Text(
-                                                              ' 4.5',
+                                                              '  ${apartments[index].rating}',
                                                               style: Theme.of(
                                                                       context)
                                                                   .textTheme
@@ -1510,7 +1910,9 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                 color: Colors
                                                                     .black54),
                                                             Text(
-                                                              '1 King size bed',
+                                                              apartments[index]
+                                                                  .facilities
+                                                                  .first,
                                                               style: Theme.of(
                                                                       context)
                                                                   .textTheme
