@@ -5,16 +5,18 @@ import 'package:palace_and_chariots/src/rentals/presentation/widgets/accommodati
 import '../../accommodation/domain/entities/accommodation.dart';
 
 class SearchResultPage extends StatefulWidget {
-  final List<Accommodation> hotels;
+  List<Accommodation>? hotels;
+  List<Accommodation>? apartments;
   final String searchQuery,
       startDate,
       endDate,
       numberOfRooms,
       numberOfAdults,
       numberOfChildren;
-  const SearchResultPage(
+  SearchResultPage(
       {super.key,
-      required this.hotels,
+      this.apartments,
+      this.hotels,
       required this.searchQuery,
       required this.startDate,
       required this.endDate,
@@ -36,8 +38,20 @@ class _SearchResultPageState extends State<SearchResultPage> {
 
   searchForHotels(String location) {
     try {
-      List<Accommodation> result = widget.hotels
+      List<Accommodation> result = widget.hotels!
           .where((hotel) => hotel.location.contains(location))
+          .toList();
+
+      return result;
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  searchForApartments(String location) {
+    try {
+      List<Accommodation> result = widget.apartments!
+          .where((apartment) => apartment.location.contains(location))
           .toList();
 
       return result;
@@ -50,7 +64,13 @@ class _SearchResultPageState extends State<SearchResultPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    searchResult = searchForHotels(widget.searchQuery);
+    if (widget.hotels != null) {
+      searchResult = searchForHotels(widget.searchQuery);
+    } else {
+      searchResult = searchForApartments(widget.searchQuery);
+    }
+
+    
   }
 
   @override

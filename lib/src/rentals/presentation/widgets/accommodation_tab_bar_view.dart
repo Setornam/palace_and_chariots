@@ -1801,9 +1801,10 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                         builder: (BuildContext
                                                                 context) =>
                                                             SearchResultPage(
-                                                              hotels: hotels,
+                                                              apartments:
+                                                                  apartments,
                                                               searchQuery:
-                                                                  destinationController
+                                                                  destinationControllerApartment
                                                                       .text,
                                                               endDate:
                                                                   _apartmentBookEndDate
