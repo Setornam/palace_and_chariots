@@ -2,8 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/event_details.dart';
 
+import '../../accommodation/domain/entities/accommodation.dart';
+import '../../event_services/domain/entities/event_service.dart';
+
 class EventSearchResultPage extends StatefulWidget {
-  const EventSearchResultPage({super.key});
+  final List<EventService> eventServices;
+  final String searchQuery, startDate, endDate, numberOfGuests;
+
+  const EventSearchResultPage({
+    super.key,
+    required this.searchQuery,
+    required this.startDate,
+    required this.endDate,
+    required this.numberOfGuests,
+    required this.eventServices,
+  });
 
   @override
   State<EventSearchResultPage> createState() => _EventSearchResultPageState();
@@ -14,6 +27,26 @@ class _EventSearchResultPageState extends State<EventSearchResultPage> {
   ValueNotifier<bool> isSortByLowerPriceChecked = ValueNotifier(false);
   ValueNotifier<bool> isSortByHighestRatingChecked = ValueNotifier(false);
   ValueNotifier<bool> isSortByLowestRatingChecked = ValueNotifier(false);
+
+  late final List<EventService> searchResult;
+
+  searchForEventServices(String location) {
+    try {
+      List<EventService> result = widget.eventServices!
+          .where((eventServices) => eventServices.location.contains(location))
+          .toList();
+
+      return result;
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    searchResult = searchForEventServices(widget.searchQuery);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -266,7 +299,7 @@ class _EventSearchResultPageState extends State<EventSearchResultPage> {
       body: SizedBox(
         height: 680,
         child: ListView.builder(
-            itemCount: 7,
+            itemCount: searchResult.length,
             itemBuilder: (BuildContext context, index) {
               return Padding(
                 padding:
@@ -276,8 +309,13 @@ class _EventSearchResultPageState extends State<EventSearchResultPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                EventDetailsPage()));
+                            builder: (BuildContext context) => EventDetailsPage(
+                                  endDate: widget.endDate,
+                                  startDate: widget.startDate,
+                                  eventService: searchResult[index],
+                                  numberOfGuests: widget.numberOfGuests,
+                                  destination: widget.searchQuery,
+                                )));
                   },
                   child: Row(
                     children: [
@@ -321,15 +359,17 @@ class _EventSearchResultPageState extends State<EventSearchResultPage> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const Text(
-                                      'The Queens Court Event Center',
+                                    Text(
+                                      searchResult[index].name,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 13,
                                           color: Colors.black87),
                                     ),
                                     Text(
-                                      'Available',
+                                      searchResult[index].availability == true
+                                          ? 'Available'
+                                          : 'Unavailable',
                                       style: TextStyle(
                                           fontSize: 12,
                                           color: lightColorScheme.primary),
@@ -356,13 +396,13 @@ class _EventSearchResultPageState extends State<EventSearchResultPage> {
                                         color: Color(0xfff8c123),
                                       ),
                                       Text(
-                                        ' 4.5  ',
+                                        ' ${searchResult[index].rating}  ',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyMedium,
                                       ),
                                       Text(
-                                        ' |   10 reviews',
+                                        ' |   ${searchResult[index].review} reviews',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyMedium,

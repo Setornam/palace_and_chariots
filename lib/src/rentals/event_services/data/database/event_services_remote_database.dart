@@ -2,25 +2,26 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../domain/entities/accommodation.dart';
+import '../../domain/entities/event_service.dart';
 
 ///contracts for interacting with database
-abstract class AccommodationRemoteDatabase {
-  ///retrieves a particular Accommodation instance
-  Future<Accommodation> retrieve(String documentID);
+abstract class EventServiceRemoteDatabase {
+  ///retrieves a particular EventService instance
+  Future<EventService> retrieve(String documentID);
 
   ///List out all agent instances in the database
-  Stream<List<Accommodation>> list();
+  Stream<List<EventService>> list();
 }
 
-class AccommodationRemoteDatabaseImpl implements AccommodationRemoteDatabase {
+class EventServiceRemoteDatabaseImpl implements EventServiceRemoteDatabase {
   @override
-  Stream<List<Accommodation>> list() async* {
+  Stream<List<EventService>> list() async* {
     yield* FirebaseFirestore.instance
-        .collection('accommodation')
+        .collection('event-services')
         .snapshots()
-        .map((event) => event.docs.map<Accommodation>((accommodation) {
-              var data = Accommodation.fromJson(accommodation.data());
+        .map((eventServices) =>
+            eventServices.docs.map<EventService>((eventService) {
+              var data = EventService.fromJson(eventService.data());
               print('eben');
 
               return data;
@@ -28,12 +29,12 @@ class AccommodationRemoteDatabaseImpl implements AccommodationRemoteDatabase {
   }
 
   @override
-  Future<Accommodation> retrieve(String documentID) async {
-    final accommodation = await FirebaseFirestore.instance
-        .collection('accommodation')
+  Future<EventService> retrieve(String documentID) async {
+    final eventService = await FirebaseFirestore.instance
+        .collection('event-services')
         .doc(documentID)
         .get();
 
-    return Accommodation.fromJson(accommodation.data()!);
+    return EventService.fromJson(eventService.data()!);
   }
 }

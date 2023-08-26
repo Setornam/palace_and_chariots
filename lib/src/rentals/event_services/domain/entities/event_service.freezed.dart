@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'accommodation.dart';
+part of 'event_service.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,75 +14,75 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Accommodation _$AccommodationFromJson(Map<String, dynamic> json) {
-  return _Accommodation.fromJson(json);
+EventService _$EventServiceFromJson(Map<String, dynamic> json) {
+  return _EventService.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Accommodation {
+mixin _$EventService {
   /// Document ID
   String get id => throw _privateConstructorUsedError;
 
-  ///name of Accommodation
+  ///name of EventService
   String get name => throw _privateConstructorUsedError;
 
-  ///price of Accommodation
+  ///price of EventService
   String get price => throw _privateConstructorUsedError;
 
-  ///availability of Accommodation
+  ///review of EventService
+  String get review => throw _privateConstructorUsedError;
+
+  ///availability of EventService
   bool get availability => throw _privateConstructorUsedError;
 
-  ///Accommodation  images
+  ///EventService  images
   List<String> get images => throw _privateConstructorUsedError;
 
-  ///Accommodation location
+  ///EventService location
   String get location => throw _privateConstructorUsedError;
 
-  ///Accommodation Facilities
-  List<String> get facilities => throw _privateConstructorUsedError;
+  ///EventService amenities
+  List<Map<String, String>> get amenities => throw _privateConstructorUsedError;
 
-  ///Accommodation Category
+  ///EventService Category
   String get category => throw _privateConstructorUsedError;
 
-  ///Accommodation Rooms
-  List<Room> get rooms => throw _privateConstructorUsedError;
-
-  ///Accommodation rating
+  ///EventService rating
   String get rating => throw _privateConstructorUsedError;
 
-  ///Accommodation popularity
+  ///EventService popularity
   String get popularity => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AccommodationCopyWith<Accommodation> get copyWith =>
+  $EventServiceCopyWith<EventService> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AccommodationCopyWith<$Res> {
-  factory $AccommodationCopyWith(
-          Accommodation value, $Res Function(Accommodation) then) =
-      _$AccommodationCopyWithImpl<$Res, Accommodation>;
+abstract class $EventServiceCopyWith<$Res> {
+  factory $EventServiceCopyWith(
+          EventService value, $Res Function(EventService) then) =
+      _$EventServiceCopyWithImpl<$Res, EventService>;
   @useResult
   $Res call(
       {String id,
       String name,
       String price,
+      String review,
       bool availability,
       List<String> images,
       String location,
-      List<String> facilities,
+      List<Map<String, String>> amenities,
       String category,
-      List<Room> rooms,
       String rating,
       String popularity});
 }
 
 /// @nodoc
-class _$AccommodationCopyWithImpl<$Res, $Val extends Accommodation>
-    implements $AccommodationCopyWith<$Res> {
-  _$AccommodationCopyWithImpl(this._value, this._then);
+class _$EventServiceCopyWithImpl<$Res, $Val extends EventService>
+    implements $EventServiceCopyWith<$Res> {
+  _$EventServiceCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -95,12 +95,12 @@ class _$AccommodationCopyWithImpl<$Res, $Val extends Accommodation>
     Object? id = null,
     Object? name = null,
     Object? price = null,
+    Object? review = null,
     Object? availability = null,
     Object? images = null,
     Object? location = null,
-    Object? facilities = null,
+    Object? amenities = null,
     Object? category = null,
-    Object? rooms = null,
     Object? rating = null,
     Object? popularity = null,
   }) {
@@ -117,6 +117,10 @@ class _$AccommodationCopyWithImpl<$Res, $Val extends Accommodation>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as String,
+      review: null == review
+          ? _value.review
+          : review // ignore: cast_nullable_to_non_nullable
+              as String,
       availability: null == availability
           ? _value.availability
           : availability // ignore: cast_nullable_to_non_nullable
@@ -129,18 +133,14 @@ class _$AccommodationCopyWithImpl<$Res, $Val extends Accommodation>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String,
-      facilities: null == facilities
-          ? _value.facilities
-          : facilities // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      amenities: null == amenities
+          ? _value.amenities
+          : amenities // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, String>>,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as String,
-      rooms: null == rooms
-          ? _value.rooms
-          : rooms // ignore: cast_nullable_to_non_nullable
-              as List<Room>,
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
@@ -154,33 +154,33 @@ class _$AccommodationCopyWithImpl<$Res, $Val extends Accommodation>
 }
 
 /// @nodoc
-abstract class _$$_AccommodationCopyWith<$Res>
-    implements $AccommodationCopyWith<$Res> {
-  factory _$$_AccommodationCopyWith(
-          _$_Accommodation value, $Res Function(_$_Accommodation) then) =
-      __$$_AccommodationCopyWithImpl<$Res>;
+abstract class _$$_EventServiceCopyWith<$Res>
+    implements $EventServiceCopyWith<$Res> {
+  factory _$$_EventServiceCopyWith(
+          _$_EventService value, $Res Function(_$_EventService) then) =
+      __$$_EventServiceCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String id,
       String name,
       String price,
+      String review,
       bool availability,
       List<String> images,
       String location,
-      List<String> facilities,
+      List<Map<String, String>> amenities,
       String category,
-      List<Room> rooms,
       String rating,
       String popularity});
 }
 
 /// @nodoc
-class __$$_AccommodationCopyWithImpl<$Res>
-    extends _$AccommodationCopyWithImpl<$Res, _$_Accommodation>
-    implements _$$_AccommodationCopyWith<$Res> {
-  __$$_AccommodationCopyWithImpl(
-      _$_Accommodation _value, $Res Function(_$_Accommodation) _then)
+class __$$_EventServiceCopyWithImpl<$Res>
+    extends _$EventServiceCopyWithImpl<$Res, _$_EventService>
+    implements _$$_EventServiceCopyWith<$Res> {
+  __$$_EventServiceCopyWithImpl(
+      _$_EventService _value, $Res Function(_$_EventService) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -189,16 +189,16 @@ class __$$_AccommodationCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? price = null,
+    Object? review = null,
     Object? availability = null,
     Object? images = null,
     Object? location = null,
-    Object? facilities = null,
+    Object? amenities = null,
     Object? category = null,
-    Object? rooms = null,
     Object? rating = null,
     Object? popularity = null,
   }) {
-    return _then(_$_Accommodation(
+    return _then(_$_EventService(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -210,6 +210,10 @@ class __$$_AccommodationCopyWithImpl<$Res>
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
+              as String,
+      review: null == review
+          ? _value.review
+          : review // ignore: cast_nullable_to_non_nullable
               as String,
       availability: null == availability
           ? _value.availability
@@ -223,18 +227,14 @@ class __$$_AccommodationCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String,
-      facilities: null == facilities
-          ? _value._facilities
-          : facilities // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      amenities: null == amenities
+          ? _value._amenities
+          : amenities // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, String>>,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as String,
-      rooms: null == rooms
-          ? _value._rooms
-          : rooms // ignore: cast_nullable_to_non_nullable
-              as List<Room>,
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
@@ -250,46 +250,49 @@ class __$$_AccommodationCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_Accommodation implements _Accommodation {
-  _$_Accommodation(
+class _$_EventService implements _EventService {
+  _$_EventService(
       {required this.id,
       required this.name,
       required this.price,
+      required this.review,
       required this.availability,
       required final List<String> images,
       required this.location,
-      required final List<String> facilities,
+      required final List<Map<String, String>> amenities,
       required this.category,
-      required final List<Room> rooms,
       required this.rating,
       required this.popularity})
       : _images = images,
-        _facilities = facilities,
-        _rooms = rooms;
+        _amenities = amenities;
 
-  factory _$_Accommodation.fromJson(Map<String, dynamic> json) =>
-      _$$_AccommodationFromJson(json);
+  factory _$_EventService.fromJson(Map<String, dynamic> json) =>
+      _$$_EventServiceFromJson(json);
 
   /// Document ID
   @override
   final String id;
 
-  ///name of Accommodation
+  ///name of EventService
   @override
   final String name;
 
-  ///price of Accommodation
+  ///price of EventService
   @override
   final String price;
 
-  ///availability of Accommodation
+  ///review of EventService
+  @override
+  final String review;
+
+  ///availability of EventService
   @override
   final bool availability;
 
-  ///Accommodation  images
+  ///EventService  images
   final List<String> _images;
 
-  ///Accommodation  images
+  ///EventService  images
   @override
   List<String> get images {
     if (_images is EqualUnmodifiableListView) return _images;
@@ -297,41 +300,30 @@ class _$_Accommodation implements _Accommodation {
     return EqualUnmodifiableListView(_images);
   }
 
-  ///Accommodation location
+  ///EventService location
   @override
   final String location;
 
-  ///Accommodation Facilities
-  final List<String> _facilities;
+  ///EventService amenities
+  final List<Map<String, String>> _amenities;
 
-  ///Accommodation Facilities
+  ///EventService amenities
   @override
-  List<String> get facilities {
-    if (_facilities is EqualUnmodifiableListView) return _facilities;
+  List<Map<String, String>> get amenities {
+    if (_amenities is EqualUnmodifiableListView) return _amenities;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_facilities);
+    return EqualUnmodifiableListView(_amenities);
   }
 
-  ///Accommodation Category
+  ///EventService Category
   @override
   final String category;
 
-  ///Accommodation Rooms
-  final List<Room> _rooms;
-
-  ///Accommodation Rooms
-  @override
-  List<Room> get rooms {
-    if (_rooms is EqualUnmodifiableListView) return _rooms;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_rooms);
-  }
-
-  ///Accommodation rating
+  ///EventService rating
   @override
   final String rating;
 
-  ///Accommodation popularity
+  ///EventService popularity
   @override
   final String popularity;
 
@@ -339,20 +331,20 @@ class _$_Accommodation implements _Accommodation {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Accommodation &&
+            other is _$_EventService &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.price, price) || other.price == price) &&
+            (identical(other.review, review) || other.review == review) &&
             (identical(other.availability, availability) ||
                 other.availability == availability) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
             (identical(other.location, location) ||
                 other.location == location) &&
             const DeepCollectionEquality()
-                .equals(other._facilities, _facilities) &&
+                .equals(other._amenities, _amenities) &&
             (identical(other.category, category) ||
                 other.category == category) &&
-            const DeepCollectionEquality().equals(other._rooms, _rooms) &&
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.popularity, popularity) ||
                 other.popularity == popularity));
@@ -365,45 +357,45 @@ class _$_Accommodation implements _Accommodation {
       id,
       name,
       price,
+      review,
       availability,
       const DeepCollectionEquality().hash(_images),
       location,
-      const DeepCollectionEquality().hash(_facilities),
+      const DeepCollectionEquality().hash(_amenities),
       category,
-      const DeepCollectionEquality().hash(_rooms),
       rating,
       popularity);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AccommodationCopyWith<_$_Accommodation> get copyWith =>
-      __$$_AccommodationCopyWithImpl<_$_Accommodation>(this, _$identity);
+  _$$_EventServiceCopyWith<_$_EventService> get copyWith =>
+      __$$_EventServiceCopyWithImpl<_$_EventService>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AccommodationToJson(
+    return _$$_EventServiceToJson(
       this,
     );
   }
 }
 
-abstract class _Accommodation implements Accommodation {
-  factory _Accommodation(
+abstract class _EventService implements EventService {
+  factory _EventService(
       {required final String id,
       required final String name,
       required final String price,
+      required final String review,
       required final bool availability,
       required final List<String> images,
       required final String location,
-      required final List<String> facilities,
+      required final List<Map<String, String>> amenities,
       required final String category,
-      required final List<Room> rooms,
       required final String rating,
-      required final String popularity}) = _$_Accommodation;
+      required final String popularity}) = _$_EventService;
 
-  factory _Accommodation.fromJson(Map<String, dynamic> json) =
-      _$_Accommodation.fromJson;
+  factory _EventService.fromJson(Map<String, dynamic> json) =
+      _$_EventService.fromJson;
 
   @override
 
@@ -411,46 +403,46 @@ abstract class _Accommodation implements Accommodation {
   String get id;
   @override
 
-  ///name of Accommodation
+  ///name of EventService
   String get name;
   @override
 
-  ///price of Accommodation
+  ///price of EventService
   String get price;
   @override
 
-  ///availability of Accommodation
+  ///review of EventService
+  String get review;
+  @override
+
+  ///availability of EventService
   bool get availability;
   @override
 
-  ///Accommodation  images
+  ///EventService  images
   List<String> get images;
   @override
 
-  ///Accommodation location
+  ///EventService location
   String get location;
   @override
 
-  ///Accommodation Facilities
-  List<String> get facilities;
+  ///EventService amenities
+  List<Map<String, String>> get amenities;
   @override
 
-  ///Accommodation Category
+  ///EventService Category
   String get category;
   @override
 
-  ///Accommodation Rooms
-  List<Room> get rooms;
-  @override
-
-  ///Accommodation rating
+  ///EventService rating
   String get rating;
   @override
 
-  ///Accommodation popularity
+  ///EventService popularity
   String get popularity;
   @override
   @JsonKey(ignore: true)
-  _$$_AccommodationCopyWith<_$_Accommodation> get copyWith =>
+  _$$_EventServiceCopyWith<_$_EventService> get copyWith =>
       throw _privateConstructorUsedError;
 }

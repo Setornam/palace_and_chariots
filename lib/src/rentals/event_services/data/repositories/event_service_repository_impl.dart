@@ -3,20 +3,20 @@ import 'package:palace_and_chariots/shared/errors/exception.dart';
 import 'package:palace_and_chariots/shared/errors/failure.dart';
 import 'package:palace_and_chariots/shared/network/network.dart';
 
-import '../../domain/entities/accommodation.dart';
-import '../../domain/repository/accommodation_repository.dart';
+import '../../domain/entities/event_service.dart';
+import '../../domain/repository/event_service_repository.dart';
 import '../database/event_services_remote_database.dart';
 
-class AccommodationRepositoryImpl implements AccommodationRepository {
-  AccommodationRepositoryImpl(
+class EventServiceRepositoryImpl implements EventServiceRepository {
+  EventServiceRepositoryImpl(
       {required this.networkInfo, required this.remoteDatabase});
 
   //Dependencies
   NetworkInfo networkInfo;
-  AccommodationRemoteDatabase remoteDatabase;
+  EventServiceRemoteDatabase remoteDatabase;
 
   @override
-  Future<Either<Failure, Stream<List<Accommodation>>>> list() async {
+  Future<Either<Failure, Stream<List<EventService>>>> list() async {
     try {
       await networkInfo.hasInternet();
       final results = remoteDatabase.list();
@@ -27,7 +27,7 @@ class AccommodationRepositoryImpl implements AccommodationRepository {
   }
 
   @override
-  Future<Either<Failure, Accommodation>> retrieve(String documentID) async {
+  Future<Either<Failure, EventService>> retrieve(String documentID) async {
      try {
       await networkInfo.hasInternet();
       final results =await remoteDatabase.retrieve(documentID);

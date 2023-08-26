@@ -2,12 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/pages/checkout_page.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/pages/event_checkout_page.dart';
+import 'package:palace_and_chariots/src/rentals/event_services/domain/entities/event_service.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/event_gallery.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_gallery_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/rooms_page.dart';
 
 class EventDetailsPage extends StatefulWidget {
-  const EventDetailsPage({super.key});
+  final EventService eventService;
+  final String startDate, endDate, destination, numberOfGuests;
+  const EventDetailsPage(
+      {super.key,
+      required this.eventService,
+      required this.startDate,
+      required this.endDate,
+      required this.numberOfGuests,
+      required this.destination});
 
   @override
   State<EventDetailsPage> createState() => _EventDetailsPageState();
@@ -22,7 +31,8 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
         backgroundColor: Colors.white,
         automaticallyImplyLeading: true,
         centerTitle: true,
-        title: Text('Accra, Ghana 13 Apr - 27 Apr',
+        title: Text(
+            '${widget.destination}, ${widget.startDate} - ${widget.endDate}',
             style: Theme.of(context).textTheme.bodyLarge!),
         elevation: 0,
         actions: [
@@ -111,12 +121,12 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Row(
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'The Queens Court Event Center',
-                                  style: TextStyle(
+                                  widget.eventService.name,
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15,
                                       color: Colors.black87),
@@ -133,7 +143,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                       color: Color(0xfff8c123),
                                     ),
                                     Text(
-                                      ' 4.5',
+                                      widget.eventService.rating,
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium,
@@ -166,7 +176,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                                   color: Colors.black87),
                                             ),
                                             Text(
-                                              ' Fri, 12 April 2023 ',
+                                              widget.startDate,
                                               style: TextStyle(
                                                   color:
                                                       lightColorScheme.primary),
@@ -185,7 +195,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                                 color: Colors.black87),
                                           ),
                                           Text(
-                                            ' Fri, 12 April 2023 ',
+                                            widget.endDate,
                                             style: TextStyle(
                                                 color:
                                                     lightColorScheme.primary),
@@ -208,7 +218,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                         fontSize: 15, color: Colors.black87),
                                   ),
                                   Text(
-                                    '150 guests',
+                                    widget.numberOfGuests,
                                     style: TextStyle(
                                         color: lightColorScheme.primary),
                                   )
@@ -244,9 +254,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Image.asset('assets/images/map.png'),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 20),
-                                  child: const Column(
+                                const Padding(
+                                  padding: EdgeInsets.only(left: 20),
+                                  child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
@@ -269,7 +279,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                               ),
                             ),
 
-                            const Padding(
+                            Padding(
                               padding: EdgeInsets.only(top: 5),
                               child: SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
@@ -285,8 +295,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                           children: [
                                             Icon(Icons.family_restroom),
                                             Text(
-                                              'Washrooms',
-                                              style: TextStyle(
+                                              widget.eventService.amenities
+                                                  .first['washrooms']!,
+                                              style: const TextStyle(
                                                   fontSize: 15,
                                                   color: Colors.black87),
                                             ),
@@ -299,8 +310,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                             children: [
                                               Icon(Icons.wifi),
                                               Text(
-                                                'Free Wifi',
-                                                style: TextStyle(
+                                                widget.eventService.amenities
+                                                    .first['free_wifi']!,
+                                                style: const TextStyle(
                                                     fontSize: 15,
                                                     color: Colors.black87),
                                               ),
@@ -311,7 +323,8 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                           children: [
                                             Icon(Icons.power),
                                             Text(
-                                              'Standby generator',
+                                              widget.eventService.amenities
+                                                  .first['standby_generator']!,
                                               style: TextStyle(
                                                   fontSize: 15,
                                                   color: Colors.black87),
@@ -334,7 +347,8 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                                 Icon(Icons
                                                     .baby_changing_station),
                                                 Text(
-                                                  'Changing Rooms',
+                                                  widget.eventService.amenities
+                                                      .first['changing_rooms']!,
                                                   style: TextStyle(
                                                       fontSize: 15,
                                                       color: Colors.black87),
@@ -346,7 +360,8 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                             children: [
                                               Icon(Icons.local_parking),
                                               Text(
-                                                'Free Parking',
+                                                widget.eventService.amenities
+                                                    .first['parking']!,
                                                 style: TextStyle(
                                                     fontSize: 15,
                                                     color: Colors.black87),

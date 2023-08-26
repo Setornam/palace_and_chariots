@@ -1990,5 +1990,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
             );
           }),
     );
+ 
+ 
   }
 }
