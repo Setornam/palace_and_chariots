@@ -79,7 +79,7 @@ class _SecurityPageState extends State<SecurityPage> {
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    PersonalSecurityPage()));
+                                    SecurityDetailPage(security: null,)));
                       },
                       child: Column(
                         children: [

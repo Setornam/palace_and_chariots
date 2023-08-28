@@ -4,15 +4,15 @@ import '../../../shared/theme/color_scheme.dart';
 import '../../checkout/presentation/pages/security_checkout_page.dart';
 import '../security/domain/entities/security.dart';
 
-class PersonalSecurityPage extends StatefulWidget {
+class SecurityDetailPage extends StatefulWidget {
   final Security security;
-  const PersonalSecurityPage({super.key, required this.security});
+  const SecurityDetailPage({super.key, required this.security});
 
   @override
-  State<PersonalSecurityPage> createState() => _PersonalSecurityPageState();
+  State<SecurityDetailPage> createState() => _SecurityDetailPageState();
 }
 
-class _PersonalSecurityPageState extends State<PersonalSecurityPage> {
+class _SecurityDetailPageState extends State<SecurityDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +67,7 @@ class _PersonalSecurityPageState extends State<PersonalSecurityPage> {
                       topRight: Radius.circular(7)),
                   image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage('assets/images/PersonalSecurity.png'))),
+                      image: AssetImage('assets/images/SecurityDetail.png'))),
             ),
              Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
