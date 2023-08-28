@@ -17,7 +17,7 @@ class SecurityRemoteDatabaseImpl implements SecurityRemoteDatabase {
   @override
   Stream<List<Security>> list() async* {
     yield* FirebaseFirestore.instance
-        .collection('event-services')
+        .collection('security-services')
         .snapshots()
         .map((securitys) => securitys.docs.map<Security>((security) {
               var data = Security.fromJson(security.data());

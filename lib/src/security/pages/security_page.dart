@@ -18,8 +18,7 @@ class SecurityPage extends StatefulWidget {
 }
 
 class _SecurityPageState extends State<SecurityPage> {
-
-    final bloc = sl<SecurityBloc>();
+  final bloc = sl<SecurityBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -244,7 +243,7 @@ class _SecurityPageState extends State<SecurityPage> {
               );
             } else {
               if (snapshot.hasError) {
-                print('Error');
+                print(snapshot.error);
               }
             }
 
