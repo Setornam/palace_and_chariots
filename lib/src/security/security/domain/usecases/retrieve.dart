@@ -5,13 +5,13 @@ import 'package:palace_and_chariots/shared/usecase/usecase.dart';
 import '../entities/security.dart';
 import '../repository/event_service_repository.dart';
 
-class RetrieveEventService extends UseCase<EventService, StringParams> {
-  RetrieveEventService(this.repository);
+class RetrieveSecurity extends UseCase<Security, StringParams> {
+  RetrieveSecurity(this.repository);
 
-  final EventServiceRepository repository;
+  final SecurityRepository repository;
 
   @override
-  Future<Either<Failure, EventService>> call(StringParams params) {
+  Future<Either<Failure, Security>> call(StringParams params) {
     // TODO: implement call
    return  repository.retrieve(params.value);
   }

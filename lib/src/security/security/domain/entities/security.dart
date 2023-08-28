@@ -1,68 +1,48 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'event_service.freezed.dart';
+part 'security.freezed.dart';
 
-part 'event_service.g.dart';
+part 'security.g.dart';
 
 // flutter packages run build_runner build --delete-conflicting-outputs
 @freezed
-class EventService with _$EventService {
+class Security with _$Security {
   @JsonSerializable(explicitToJson: true)
-  factory EventService({
+  factory Security({
     /// Document ID
     required String id,
 
-    ///name of EventService
+    ///name of Security
     required String name,
 
-    ///price of EventService
-    required String price,
+    ///price of Security
+    required String description,
 
-    ///review of EventService
-    required String review,
-
-    ///availability of EventService
+    ///availability of Security
     required bool availability,
 
-    ///EventService  images
-    required List<String> images,
+    ///availability of Security
+    required String serviceAvailableFor,
 
-    ///EventService location
-    required String location,
-
-    ///EventService amenities
-    required List<Map<String, String>> amenities,
-
-    ///EventService Category
-    required String category,
-
-    ///EventService rating
-    required String rating,
-
-    ///EventService popularity
-    required String popularity,
-  }) = _EventService;
+    ///Security  image
+    required String image,
+  }) = _Security;
 
   /// Converts json to dart object
-  factory EventService.fromJson(Map<String, dynamic> json) =>
-      _$EventServiceFromJson(json);
+  factory Security.fromJson(Map<String, dynamic> json) =>
+      _$SecurityFromJson(json);
 
   /// String representation
   @override
   String toString() => id;
 
   /// Initial State of Entity
-  factory EventService.initial() => EventService(
+  factory Security.initial() => Security(
         availability: false,
-        category: '',
-        amenities: [],
         id: '',
-        images: [],
-        location: '',
+        image: '',
+        description: '',
         name: '',
-        popularity: '',
-        price: '',
-        rating: '',
-        review: '',
+        serviceAvailableFor: '',
       );
 }

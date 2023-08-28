@@ -5,18 +5,18 @@ import 'package:palace_and_chariots/shared/network/network.dart';
 
 import '../../domain/entities/security.dart';
 import '../../domain/repository/event_service_repository.dart';
-import '../database/event_services_remote_database.dart';
+import '../database/security_remote_database.dart';
 
-class EventServiceRepositoryImpl implements EventServiceRepository {
-  EventServiceRepositoryImpl(
+class SecurityRepositoryImpl implements SecurityRepository {
+  SecurityRepositoryImpl(
       {required this.networkInfo, required this.remoteDatabase});
 
   //Dependencies
   NetworkInfo networkInfo;
-  EventServiceRemoteDatabase remoteDatabase;
+  SecurityRemoteDatabase remoteDatabase;
 
   @override
-  Future<Either<Failure, Stream<List<EventService>>>> list() async {
+  Future<Either<Failure, Stream<List<Security>>>> list() async {
     try {
       await networkInfo.hasInternet();
       final results = remoteDatabase.list();
@@ -27,7 +27,7 @@ class EventServiceRepositoryImpl implements EventServiceRepository {
   }
 
   @override
-  Future<Either<Failure, EventService>> retrieve(String documentID) async {
+  Future<Either<Failure, Security>> retrieve(String documentID) async {
      try {
       await networkInfo.hasInternet();
       final results =await remoteDatabase.retrieve(documentID);
