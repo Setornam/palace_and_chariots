@@ -63,23 +63,28 @@ class _SecurityPageState extends State<SecurityPage> {
       body: StreamBuilder<List<Security>>(
           stream: bloc.securities(),
           builder: (context, snapshot) {
+            List<Security> securityServices = snapshot.requireData;
             if (snapshot.hasData) {
               return Padding(
                 padding: const EdgeInsets.all(14.0),
-                child: GridView(
+                child: GridView.builder(
+                  itemCount: securityServices.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       mainAxisSpacing: 10,
+                      
                       mainAxisExtent: 200,
                       crossAxisSpacing: 30,
                       crossAxisCount: 2),
-                  children: [
-                    GestureDetector(
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
                       onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    SecurityDetailPage(security: null,)));
+                                    SecurityDetailPage(
+                                      security: securityServices[index],
+                                    )));
                       },
                       child: Column(
                         children: [
@@ -96,149 +101,153 @@ class _SecurityPageState extends State<SecurityPage> {
                                     image: AssetImage(
                                         'assets/images/PersonalSecurity.png'))),
                           ),
-                          const Padding(
+                           Padding(
                             padding: EdgeInsets.only(top: 8),
                             child: Text(
-                              'Personal Security',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              securityServices[index].name,
+                              style: const TextStyle(fontWeight: FontWeight.bold),
                             ),
                           )
                         ],
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    HomeSecurityPage()));
-                      },
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 140,
-                            decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    bottomRight: Radius.circular(7),
-                                    bottomLeft: Radius.circular(7),
-                                    topLeft: Radius.circular(7),
-                                    topRight: Radius.circular(7)),
-                                image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(
-                                        'assets/images/homeSecurity.png'))),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 8),
-                            child: Text(
-                              'Home Security',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    FacilitySecurityPage()));
-                      },
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 140,
-                            decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    bottomRight: Radius.circular(7),
-                                    bottomLeft: Radius.circular(7),
-                                    topLeft: Radius.circular(7),
-                                    topRight: Radius.circular(7)),
-                                image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(
-                                        'assets/images/officeSecurity.png'))),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 8),
-                            child: Text(
-                              'Facility Security',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    EventSecurityPage()));
-                      },
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 140,
-                            decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    bottomRight: Radius.circular(7),
-                                    bottomLeft: Radius.circular(7),
-                                    topLeft: Radius.circular(7),
-                                    topRight: Radius.circular(7)),
-                                image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(
-                                        'assets/images/eventSecurity.png'))),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 8),
-                            child: Text(
-                              'Event Security',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    HighProfileSecurityPage()));
-                      },
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 140,
-                            decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    bottomRight: Radius.circular(7),
-                                    bottomLeft: Radius.circular(7),
-                                    topLeft: Radius.circular(7),
-                                    topRight: Radius.circular(7)),
-                                image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(
-                                        'assets/images/highProfileSecurity.png'))),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 8),
-                            child: Text(
-                              'High Profile Security',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
+                    );
+                  },
+                  // children: [
+                  //   GestureDetector(
+                  //     onTap: () {
+                  //       Navigator.push(
+                  //           context,
+                  //           MaterialPageRoute(
+                  //               builder: (BuildContext context) =>
+                  //                   HomeSecurityPage()));
+                  //     },
+                  //     child: Column(
+                  //       children: [
+                  //         Container(
+                  //           height: 140,
+                  //           decoration: const BoxDecoration(
+                  //               borderRadius: BorderRadius.only(
+                  //                   bottomRight: Radius.circular(7),
+                  //                   bottomLeft: Radius.circular(7),
+                  //                   topLeft: Radius.circular(7),
+                  //                   topRight: Radius.circular(7)),
+                  //               image: DecorationImage(
+                  //                   fit: BoxFit.cover,
+                  //                   image: AssetImage(
+                  //                       'assets/images/homeSecurity.png'))),
+                  //         ),
+                  //         const Padding(
+                  //           padding: EdgeInsets.only(top: 8),
+                  //           child: Text(
+                  //             'Home Security',
+                  //             style: TextStyle(fontWeight: FontWeight.bold),
+                  //           ),
+                  //         )
+                  //       ],
+                  //     ),
+                  //   ),
+                  //   GestureDetector(
+                  //     onTap: () {
+                  //       Navigator.push(
+                  //           context,
+                  //           MaterialPageRoute(
+                  //               builder: (BuildContext context) =>
+                  //                   FacilitySecurityPage()));
+                  //     },
+                  //     child: Column(
+                  //       children: [
+                  //         Container(
+                  //           height: 140,
+                  //           decoration: const BoxDecoration(
+                  //               borderRadius: BorderRadius.only(
+                  //                   bottomRight: Radius.circular(7),
+                  //                   bottomLeft: Radius.circular(7),
+                  //                   topLeft: Radius.circular(7),
+                  //                   topRight: Radius.circular(7)),
+                  //               image: DecorationImage(
+                  //                   fit: BoxFit.cover,
+                  //                   image: AssetImage(
+                  //                       'assets/images/officeSecurity.png'))),
+                  //         ),
+                  //         const Padding(
+                  //           padding: EdgeInsets.only(top: 8),
+                  //           child: Text(
+                  //             'Facility Security',
+                  //             style: TextStyle(fontWeight: FontWeight.bold),
+                  //           ),
+                  //         )
+                  //       ],
+                  //     ),
+                  //   ),
+                  //   GestureDetector(
+                  //     onTap: () {
+                  //       Navigator.push(
+                  //           context,
+                  //           MaterialPageRoute(
+                  //               builder: (BuildContext context) =>
+                  //                   EventSecurityPage()));
+                  //     },
+                  //     child: Column(
+                  //       children: [
+                  //         Container(
+                  //           height: 140,
+                  //           decoration: const BoxDecoration(
+                  //               borderRadius: BorderRadius.only(
+                  //                   bottomRight: Radius.circular(7),
+                  //                   bottomLeft: Radius.circular(7),
+                  //                   topLeft: Radius.circular(7),
+                  //                   topRight: Radius.circular(7)),
+                  //               image: DecorationImage(
+                  //                   fit: BoxFit.cover,
+                  //                   image: AssetImage(
+                  //                       'assets/images/eventSecurity.png'))),
+                  //         ),
+                  //         const Padding(
+                  //           padding: EdgeInsets.only(top: 8),
+                  //           child: Text(
+                  //             'Event Security',
+                  //             style: TextStyle(fontWeight: FontWeight.bold),
+                  //           ),
+                  //         )
+                  //       ],
+                  //     ),
+                  //   ),
+                  //   GestureDetector(
+                  //     onTap: () {
+                  //       Navigator.push(
+                  //           context,
+                  //           MaterialPageRoute(
+                  //               builder: (BuildContext context) =>
+                  //                   HighProfileSecurityPage()));
+                  //     },
+                  //     child: Column(
+                  //       children: [
+                  //         Container(
+                  //           height: 140,
+                  //           decoration: const BoxDecoration(
+                  //               borderRadius: BorderRadius.only(
+                  //                   bottomRight: Radius.circular(7),
+                  //                   bottomLeft: Radius.circular(7),
+                  //                   topLeft: Radius.circular(7),
+                  //                   topRight: Radius.circular(7)),
+                  //               image: DecorationImage(
+                  //                   fit: BoxFit.cover,
+                  //                   image: AssetImage(
+                  //                       'assets/images/highProfileSecurity.png'))),
+                  //         ),
+                  //         const Padding(
+                  //           padding: EdgeInsets.only(top: 8),
+                  //           child: Text(
+                  //             'High Profile Security',
+                  //             style: TextStyle(fontWeight: FontWeight.bold),
+                  //           ),
+                  //         )
+                  //       ],
+                  //     ),
+                  //   )
+                  // ],
+               
+               
                 ),
               );
             } else {
