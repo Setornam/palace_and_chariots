@@ -63,15 +63,15 @@ class _SecurityPageState extends State<SecurityPage> {
       body: StreamBuilder<List<Security>>(
           stream: bloc.securities(),
           builder: (context, snapshot) {
-            List<Security> securityServices = snapshot.requireData;
             if (snapshot.hasData) {
+              List<Security> securityServices = snapshot.requireData;
+
               return Padding(
                 padding: const EdgeInsets.all(14.0),
                 child: GridView.builder(
                   itemCount: securityServices.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       mainAxisSpacing: 10,
-                      
                       mainAxisExtent: 200,
                       crossAxisSpacing: 30,
                       crossAxisCount: 2),
@@ -101,11 +101,12 @@ class _SecurityPageState extends State<SecurityPage> {
                                     image: AssetImage(
                                         'assets/images/PersonalSecurity.png'))),
                           ),
-                           Padding(
+                          Padding(
                             padding: EdgeInsets.only(top: 8),
                             child: Text(
                               securityServices[index].name,
-                              style: const TextStyle(fontWeight: FontWeight.bold),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
                             ),
                           )
                         ],
@@ -246,8 +247,6 @@ class _SecurityPageState extends State<SecurityPage> {
                   //     ),
                   //   )
                   // ],
-               
-               
                 ),
               );
             } else {
