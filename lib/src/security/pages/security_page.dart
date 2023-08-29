@@ -19,7 +19,16 @@ class SecurityPage extends StatefulWidget {
 
 class _SecurityPageState extends State<SecurityPage> {
   final bloc = sl<SecurityBloc>();
-  
+
+  final List<Map<String, String>> images = [
+    {
+      'personal': 'assets/images/PersonalSecurity.png',
+      'home': 'assets/images/homeSecurity.png',
+      'event': 'assets/images/eventSecurity.png',
+      'facility': 'assets/images/officeSecurity.png',
+      'high_profile': 'assets/images/highProfileSecurity.png',
+    }
+  ];
 
   @override
   Widget build(BuildContext context) {
