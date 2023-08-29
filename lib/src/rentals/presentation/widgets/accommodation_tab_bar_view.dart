@@ -926,7 +926,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                               ),
                             ),
                             SizedBox(
-                              height: 330,
+                              height: 320,
                               child: ListView.builder(
                                   itemCount: hotels.length,
                                   itemBuilder: (BuildContext context, index) {
@@ -1844,7 +1844,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 330,
+                                  height: 320,
                                   child: ListView.builder(
                                       itemCount: apartments.length,
                                       itemBuilder:
@@ -1990,7 +1990,5 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
             );
           }),
     );
- 
- 
   }
 }

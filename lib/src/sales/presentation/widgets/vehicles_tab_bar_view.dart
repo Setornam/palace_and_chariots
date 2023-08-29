@@ -215,12 +215,12 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                             height: 25,
                                             child: ElevatedButton(
                                               onPressed: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (BuildContext
-                                                                context) =>
-                                                            CheckoutPage()));
+                                                // Navigator.push(
+                                                //     context,
+                                                //     MaterialPageRoute(
+                                                //         builder: (BuildContext
+                                                //                 context) =>
+                                                //             CheckoutPage(color: '', name: '',)));
                                               },
                                               style: ElevatedButton.styleFrom(
                                                 shape:

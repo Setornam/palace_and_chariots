@@ -690,7 +690,7 @@ class _EventTabBarViewState extends State<EventTabBarView> {
                                                         destinationController
                                                             .text,
                                                     startDate: _startDate.value,
-                                                    eventServices: eventsList, 
+                                                    eventServices: eventsList,
                                                   )));
                                     },
                                     child: const Text('Search')),
@@ -729,7 +729,7 @@ class _EventTabBarViewState extends State<EventTabBarView> {
                                           image: DecorationImage(
                                               fit: BoxFit.cover,
                                               image: AssetImage(
-                                                  'assets/images/room.jpg'))),
+                                                  'assets/images/event_space.png'))),
                                       child: const Align(
                                         alignment: Alignment.topLeft,
                                         child: Padding(
@@ -798,11 +798,8 @@ class _EventTabBarViewState extends State<EventTabBarView> {
                                               ),
                                               Row(
                                                 children: [
-                                                  const Icon(Icons.bed,
-                                                      size: 18,
-                                                      color: Colors.black54),
                                                   Text(
-                                                    eventsList[index].review,
+                                                    '${eventsList[index].review} reviews',
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .bodyMedium,

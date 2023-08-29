@@ -606,8 +606,13 @@ class _VehicleDetailsPageState extends State<VehicleDetailsPage> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  CheckoutPage()));
+                              builder: (BuildContext context) => CheckoutPage(
+                                    name: widget.name,
+                                    color: widget.color,
+                                    transmission: widget.transmission!,
+                                    rating: widget.rating,
+                                    seats: widget.numberOfSeats, image: widget.images.first,
+                                  )));
                     },
                     child: Text('Submit')),
               ))

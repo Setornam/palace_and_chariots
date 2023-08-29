@@ -22,7 +22,6 @@ class _ViewMorePageState extends State<ViewMorePage> {
   ValueNotifier<bool> isSortByHighestRatingChecked = ValueNotifier(false);
   ValueNotifier<bool> isSortByLowestRatingChecked = ValueNotifier(false);
   List<Vehicle> sortedSaloonCars = [];
-  
 
   ///sorting functions
   sortByPopularity() {
@@ -583,7 +582,7 @@ class _ViewMorePageState extends State<ViewMorePage> {
                                         sortedSaloonCars[index].seats,
                                     price: sortedSaloonCars[index].price,
                                     rating: sortedSaloonCars[index].rating,
-                                    images: [],
+                                    images: sortedSaloonCars[index].images,
                                     otherFeatures: [],
                                     transmission:
                                         widget.saloonCars[index].transmission,
@@ -594,14 +593,15 @@ class _ViewMorePageState extends State<ViewMorePage> {
                       children: [
                         Container(
                           height: 80,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(7),
                                   topRight: Radius.circular(7)),
                               image: DecorationImage(
                                   fit: BoxFit.cover,
-                                  image: AssetImage(
-                                      'assets/images/benz-front.png'))),
+                                  image: NetworkImage(
+                                    sortedSaloonCars[index].images.first,
+                                  ))),
                           child: const Align(
                             alignment: Alignment.topLeft,
                             child: Padding(

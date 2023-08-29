@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 
+import '../../../rentals/vehicle/domain/entities/vehicle.dart';
 import '../widgets/driver_details_form.dart';
 import '../widgets/user_info_form.dart';
 
 class CheckoutPage extends StatefulWidget {
-  const CheckoutPage({super.key});
+  final String name, color, rating, seats, image, transmission;
+  const CheckoutPage(
+      {super.key,
+      required this.name,
+      required this.color,
+      required this.rating,
+      required this.seats,
+      required this.transmission,
+      required this.image});
 
   @override
   State<CheckoutPage> createState() => _CheckoutPageState();
@@ -33,11 +42,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   Container(
                     height: 80,
                     width: 80,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(7)),
                         image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: AssetImage('assets/images/benz-front.png'))),
+                            image: NetworkImage(widget.image))),
                     child: const Align(
                       alignment: Alignment.topLeft,
                       child: Padding(
@@ -48,8 +57,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Toyota Corolla 2020',
+                      Text(
+                        widget.name,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
@@ -57,8 +66,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       ),
                       Row(
                         children: [
-                          const Text(
-                            'Silver   ',
+                          Text(
+                            '${widget.color}   ',
                             style:
                                 TextStyle(fontSize: 13, color: Colors.black87),
                           ),
@@ -68,12 +77,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             color: Color(0xfff8c123),
                           ),
                           Text(
-                            '4.5',
+                            widget.rating,
                             style: Theme.of(context).textTheme.bodyMedium,
                           )
                         ],
                       ),
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
@@ -86,7 +95,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                   size: 20,
                                 ),
                                 Text(
-                                  '4 seats',
+                                  widget.seats,
                                   style: TextStyle(
                                       fontSize: 15, color: Colors.black87),
                                 ),
@@ -103,7 +112,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                   size: 20,
                                 ),
                                 Text(
-                                  'Auto',
+                                  widget.transmission,
                                   style: TextStyle(
                                       fontSize: 15, color: Colors.black87),
                                 ),
