@@ -19,6 +19,7 @@ class SecurityPage extends StatefulWidget {
 
 class _SecurityPageState extends State<SecurityPage> {
   final bloc = sl<SecurityBloc>();
+  
 
   @override
   Widget build(BuildContext context) {

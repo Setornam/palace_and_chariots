@@ -31,7 +31,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
   String isActiveBrand = "";
 
   final String imagePath =
-      '/vehicles/saloon_cars/bmw.jpeg'; // Replace with your image path
+      '/vehicles/private_jets/jet5.png'; // Replace with your image path
 
   Future<String> getImageUrl() async {
     final Reference storageReference =
@@ -319,7 +319,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                 //display a list of mercedes brand cars
 
                                 SizedBox(
-                                    height: 430,
+                                    height: 400,
                                     child: ListView.builder(
                                         itemCount: mercedesList.length,
                                         itemBuilder:
@@ -2841,251 +2841,294 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                       )
                               ],
                             )
-                          : Container(),
+                          : isActiveVehicle == "Private jet"
+                              ?
 
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text('Best jets'),
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            ViewMoreJetsPage(
-                                              privateJets: jetList,
-                                            )));
-                              },
-                              child: Text(
-                                'See More',
-                                style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    color: lightColorScheme.primary),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 430,
-                        child: ListView.builder(
-                            itemCount: jetList.length,
-                            itemBuilder: (BuildContext context, index) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 10),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                VehicleDetailsPage(
-                                                  color: jetList[index].color,
-                                                  name: jetList[index].name,
-                                                  luggage:
-                                                      jetList[index].luggage,
-                                                  numberOfSeats:
-                                                      jetList[index].seats,
-                                                  price: jetList[index].price,
-                                                  rating: jetList[index].rating,
-                                                  images: [],
-                                                  otherFeatures: [],
-                                                  transmission: '',
-                                                  category:
-                                                      jetList[index].category,
-                                                  height: jetList[index].height,
-                                                  length: jetList[index].length,
-                                                  speed: jetList[index].speed,
-                                                  range: jetList[index].range,
-                                                )));
-                                  },
-                                  child: Container(
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          height: 80,
-                                          width: 80,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                      topLeft:
-                                                          Radius.circular(7),
-                                                      bottomLeft:
-                                                          Radius.circular(7)),
-                                              image: DecorationImage(
-                                                  fit: BoxFit.cover,
-                                                  image: NetworkImage(
-                                                      jetList[index]
-                                                          .images
-                                                          .first
-                                                          .toString()))),
-                                          child: const Align(
-                                            alignment: Alignment.topLeft,
-                                            child: Padding(
-                                              padding: EdgeInsets.all(5.0),
-                                              child: Icon(
-                                                size: 18,
-                                                Icons.favorite_outline,
-                                                color: Colors.white,
-                                              ),
+                              //private jet
+                              Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 8),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const Text('Best jets'),
+                                          InkWell(
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          ViewMoreJetsPage(
+                                                            privateJets:
+                                                                jetList,
+                                                          )));
+                                            },
+                                            child: Text(
+                                              'See More',
+                                              style: TextStyle(
+                                                  decoration:
+                                                      TextDecoration.underline,
+                                                  color:
+                                                      lightColorScheme.primary),
                                             ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Container(
-                                            height: 80,
-                                            decoration: const BoxDecoration(
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(7),
-                                                    bottomLeft:
-                                                        Radius.circular(7)),
-                                                color: Color(0xffe7e7f4)),
-                                            child: Padding(
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 430,
+                                      child: ListView.builder(
+                                          itemCount: jetList.length,
+                                          itemBuilder:
+                                              (BuildContext context, index) {
+                                            return Padding(
                                               padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Column(
-                                                children: [
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 10),
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              VehicleDetailsPage(
+                                                                color: jetList[
+                                                                        index]
+                                                                    .color,
+                                                                name: jetList[
+                                                                        index]
+                                                                    .name,
+                                                                luggage: jetList[
+                                                                        index]
+                                                                    .luggage,
+                                                                numberOfSeats:
+                                                                    jetList[index]
+                                                                        .seats,
+                                                                price: jetList[
+                                                                        index]
+                                                                    .price,
+                                                                rating: jetList[
+                                                                        index]
+                                                                    .rating,
+                                                                images: jetList[
+                                                                        index]
+                                                                    .images,
+                                                                otherFeatures: [],
+                                                                transmission:
+                                                                    '',
+                                                                category: jetList[
+                                                                        index]
+                                                                    .category,
+                                                                height: jetList[
+                                                                        index]
+                                                                    .height,
+                                                                length: jetList[
+                                                                        index]
+                                                                    .length,
+                                                                speed: jetList[
+                                                                        index]
+                                                                    .speed,
+                                                                range: jetList[
+                                                                        index]
+                                                                    .range,
+                                                              )));
+                                                },
+                                                child: Container(
+                                                  child: Row(
                                                     children: [
-                                                      Text(
-                                                        jetList[index].name,
-                                                        style: const TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 15,
-                                                            color:
-                                                                Colors.black87),
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          const Icon(
-                                                            Icons.star,
-                                                            color: Color(
-                                                                0xfff8c123),
+                                                      Container(
+                                                        height: 80,
+                                                        width: 80,
+                                                        decoration: BoxDecoration(
+                                                            borderRadius: const BorderRadius
+                                                                    .only(
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        7),
+                                                                bottomLeft: Radius
+                                                                    .circular(
+                                                                        7)),
+                                                            image: DecorationImage(
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                                image: NetworkImage(
+                                                                    jetList[index]
+                                                                        .images
+                                                                        .first
+                                                                        .toString()))),
+                                                        child: const Align(
+                                                          alignment:
+                                                              Alignment.topLeft,
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    5.0),
+                                                            child: Icon(
+                                                              size: 18,
+                                                              Icons
+                                                                  .favorite_outline,
+                                                              color:
+                                                                  Colors.white,
+                                                            ),
                                                           ),
-                                                          Text(
-                                                            jetList[index]
-                                                                .rating,
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .bodyMedium,
-                                                          )
-                                                        ],
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        child: Container(
+                                                          height: 80,
+                                                          decoration: const BoxDecoration(
+                                                              borderRadius: BorderRadius.only(
+                                                                  topLeft: Radius
+                                                                      .circular(
+                                                                          7),
+                                                                  bottomLeft: Radius
+                                                                      .circular(
+                                                                          7)),
+                                                              color: Color(
+                                                                  0xffe7e7f4)),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8.0),
+                                                            child: Column(
+                                                              children: [
+                                                                Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  children: [
+                                                                    Text(
+                                                                      jetList[index]
+                                                                          .name,
+                                                                      style: const TextStyle(
+                                                                          fontWeight: FontWeight
+                                                                              .bold,
+                                                                          fontSize:
+                                                                              15,
+                                                                          color:
+                                                                              Colors.black87),
+                                                                    ),
+                                                                    Row(
+                                                                      children: [
+                                                                        const Icon(
+                                                                          Icons
+                                                                              .star,
+                                                                          color:
+                                                                              Color(0xfff8c123),
+                                                                        ),
+                                                                        Text(
+                                                                          jetList[index]
+                                                                              .rating,
+                                                                          style: Theme.of(context)
+                                                                              .textTheme
+                                                                              .bodyMedium,
+                                                                        )
+                                                                      ],
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                                Row(
+                                                                  children: [
+                                                                    Text(
+                                                                      '${jetList[index].color} |',
+                                                                      style: const TextStyle(
+                                                                          fontSize:
+                                                                              13,
+                                                                          color:
+                                                                              Colors.black87),
+                                                                    ),
+                                                                    Text(
+                                                                      jetList[index].availability ==
+                                                                              true
+                                                                          ? "  Available"
+                                                                          : "   Unavailable",
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              13,
+                                                                          color:
+                                                                              lightColorScheme.primary),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: const EdgeInsets
+                                                                              .only(
+                                                                          top:
+                                                                              5),
+                                                                      child:
+                                                                          Row(
+                                                                        children: [
+                                                                          Text(
+                                                                            'GHS ${jetList[index].price}',
+                                                                            style: TextStyle(
+                                                                                fontWeight: FontWeight.bold,
+                                                                                fontSize: 15,
+                                                                                color: lightColorScheme.primary),
+                                                                          ),
+                                                                          const Text(
+                                                                            ' |  Per day',
+                                                                            style:
+                                                                                TextStyle(fontSize: 13, color: Colors.black87),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+
+                                                                    //order button
+                                                                    SizedBox(
+                                                                      height:
+                                                                          25,
+                                                                      child:
+                                                                          ElevatedButton(
+                                                                        onPressed:
+                                                                            () {
+                                                                          Navigator.push(
+                                                                              context,
+                                                                              MaterialPageRoute(builder: (BuildContext context) => const CheckoutPage()));
+                                                                        },
+                                                                        style: ElevatedButton
+                                                                            .styleFrom(
+                                                                          shape:
+                                                                              const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+                                                                          backgroundColor:
+                                                                              lightColorScheme.primary,
+                                                                          elevation:
+                                                                              0,
+                                                                        ),
+                                                                        child:
+                                                                            const Text(
+                                                                          'Order',
+                                                                          style:
+                                                                              TextStyle(fontSize: 11),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
                                                       )
                                                     ],
                                                   ),
-                                                  Row(
-                                                    children: [
-                                                      Text(
-                                                        '${jetList[index].color} |',
-                                                        style: const TextStyle(
-                                                            fontSize: 13,
-                                                            color:
-                                                                Colors.black87),
-                                                      ),
-                                                      Text(
-                                                        jetList[index]
-                                                                    .availability ==
-                                                                true
-                                                            ? "  Available"
-                                                            : "   Unavailable",
-                                                        style: TextStyle(
-                                                            fontSize: 13,
-                                                            color:
-                                                                lightColorScheme
-                                                                    .primary),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(top: 5),
-                                                        child: Row(
-                                                          children: [
-                                                            Text(
-                                                              'GHS ${jetList[index].price}',
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontSize: 15,
-                                                                  color: lightColorScheme
-                                                                      .primary),
-                                                            ),
-                                                            const Text(
-                                                              ' |  Per day',
-                                                              style: TextStyle(
-                                                                  fontSize: 13,
-                                                                  color: Colors
-                                                                      .black87),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-
-                                                      //order button
-                                                      SizedBox(
-                                                        height: 25,
-                                                        child: ElevatedButton(
-                                                          onPressed: () {
-                                                            Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(
-                                                                    builder: (BuildContext
-                                                                            context) =>
-                                                                        const CheckoutPage()));
-                                                          },
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                            shape: const RoundedRectangleBorder(
-                                                                borderRadius: BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            5))),
-                                                            backgroundColor:
-                                                                lightColorScheme
-                                                                    .primary,
-                                                            elevation: 0,
-                                                          ),
-                                                          child: const Text(
-                                                            'Order',
-                                                            style: TextStyle(
-                                                                fontSize: 11),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
+                                                ),
                                               ),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              );
-                            }),
-                      )
-                    ],
-                  )
+                                            );
+                                          }),
+                                    )
+                                  ],
+                                )
+                              : Container()
                 ],
               );
             } else {
@@ -3096,9 +3139,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
             return const Center(
               child: Text('Sorry no vehicles '),
             );
-          }
-          
-          ),
+          }),
     );
   }
 }

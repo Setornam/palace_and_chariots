@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../shared/theme/color_scheme.dart';
 
 class ItemGalleryPage extends StatefulWidget {
-  const ItemGalleryPage({super.key});
+  final List<String> images;
+
+  const ItemGalleryPage({super.key, required this.images});
 
   @override
   State<ItemGalleryPage> createState() => _ItemGalleryPageState();
@@ -29,9 +31,8 @@ class _ItemGalleryPageState extends State<ItemGalleryPage> {
         ),
         body: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: 
-          GridView.builder(
-              itemCount: 7,
+          child: GridView.builder(
+              itemCount: widget.images.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisExtent: 100,
@@ -41,11 +42,11 @@ class _ItemGalleryPageState extends State<ItemGalleryPage> {
               itemBuilder: (BuildContext context, index) {
                 return Container(
                   height: 70,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage('assets/images/benz-front.png'))),
+                          image: NetworkImage(widget.images[index]))),
                   child: const Align(
                     alignment: Alignment.topLeft,
                     child: Padding(
@@ -54,7 +55,6 @@ class _ItemGalleryPageState extends State<ItemGalleryPage> {
                   ),
                 );
               }),
-       
         ));
   }
 }

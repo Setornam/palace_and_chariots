@@ -377,7 +377,7 @@ class _ViewMorePageState extends State<ViewMorePage> {
                         ),
                       ),
                       Text(
-                        '15 properties',
+                        '2 properties',
                         style: Theme.of(context).textTheme.bodyMedium,
                       )
                     ],

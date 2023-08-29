@@ -406,7 +406,7 @@ class _ViewMoreJetsPageState extends State<ViewMoreJetsPage> {
                                   numberOfSeats: sortedPrivateJets[index].seats,
                                   price: sortedPrivateJets[index].price,
                                   rating: sortedPrivateJets[index].rating,
-                                  images: [],
+                                  images: sortedPrivateJets[index].images,
                                   otherFeatures: [],
                                   transmission: '',
                                   category: sortedPrivateJets[index].category,
@@ -421,14 +421,14 @@ class _ViewMoreJetsPageState extends State<ViewMoreJetsPage> {
                     children: [
                       Container(
                         height: 80,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(7),
                                 topRight: Radius.circular(7)),
                             image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: AssetImage(
-                                    'assets/images/benz-front.png'))),
+                                image: NetworkImage(
+                                    sortedPrivateJets[index].images.first))),
                         child: const Align(
                           alignment: Alignment.topLeft,
                           child: Padding(
