@@ -8,7 +8,7 @@ import '../widgets/event_security.dart';
 import '../widgets/facility_security.dart';
 import '../widgets/high_profile_security.dart';
 import '../widgets/home_security.dart';
-import '../widgets/personal_security.dart';
+import '../widgets/security_detail_page.dart';
 
 class SecurityPage extends StatefulWidget {
   const SecurityPage({super.key});
