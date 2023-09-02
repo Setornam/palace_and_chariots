@@ -35,9 +35,6 @@ mixin _$Tourism {
   ///Tourism location
   String get location => throw _privateConstructorUsedError;
 
-  ///Tourism Facilities
-  List<String> get facilities => throw _privateConstructorUsedError;
-
   ///Tourism duration
   String get duration => throw _privateConstructorUsedError;
 
@@ -66,7 +63,6 @@ abstract class $TourismCopyWith<$Res> {
       String price,
       List<String> images,
       String location,
-      List<String> facilities,
       String duration,
       String overview,
       String rating,
@@ -91,7 +87,6 @@ class _$TourismCopyWithImpl<$Res, $Val extends Tourism>
     Object? price = null,
     Object? images = null,
     Object? location = null,
-    Object? facilities = null,
     Object? duration = null,
     Object? overview = null,
     Object? rating = null,
@@ -118,10 +113,6 @@ class _$TourismCopyWithImpl<$Res, $Val extends Tourism>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String,
-      facilities: null == facilities
-          ? _value.facilities
-          : facilities // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -155,7 +146,6 @@ abstract class _$$_TourismCopyWith<$Res> implements $TourismCopyWith<$Res> {
       String price,
       List<String> images,
       String location,
-      List<String> facilities,
       String duration,
       String overview,
       String rating,
@@ -177,7 +167,6 @@ class __$$_TourismCopyWithImpl<$Res>
     Object? price = null,
     Object? images = null,
     Object? location = null,
-    Object? facilities = null,
     Object? duration = null,
     Object? overview = null,
     Object? rating = null,
@@ -204,10 +193,6 @@ class __$$_TourismCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String,
-      facilities: null == facilities
-          ? _value._facilities
-          : facilities // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -238,13 +223,11 @@ class _$_Tourism implements _Tourism {
       required this.price,
       required final List<String> images,
       required this.location,
-      required final List<String> facilities,
       required this.duration,
       required this.overview,
       required this.rating,
       required this.reviews})
-      : _images = images,
-        _facilities = facilities;
+      : _images = images;
 
   factory _$_Tourism.fromJson(Map<String, dynamic> json) =>
       _$$_TourismFromJson(json);
@@ -276,17 +259,6 @@ class _$_Tourism implements _Tourism {
   @override
   final String location;
 
-  ///Tourism Facilities
-  final List<String> _facilities;
-
-  ///Tourism Facilities
-  @override
-  List<String> get facilities {
-    if (_facilities is EqualUnmodifiableListView) return _facilities;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_facilities);
-  }
-
   ///Tourism duration
   @override
   final String duration;
@@ -314,8 +286,6 @@ class _$_Tourism implements _Tourism {
             const DeepCollectionEquality().equals(other._images, _images) &&
             (identical(other.location, location) ||
                 other.location == location) &&
-            const DeepCollectionEquality()
-                .equals(other._facilities, _facilities) &&
             (identical(other.duration, duration) ||
                 other.duration == duration) &&
             (identical(other.overview, overview) ||
@@ -333,7 +303,6 @@ class _$_Tourism implements _Tourism {
       price,
       const DeepCollectionEquality().hash(_images),
       location,
-      const DeepCollectionEquality().hash(_facilities),
       duration,
       overview,
       rating,
@@ -360,7 +329,6 @@ abstract class _Tourism implements Tourism {
       required final String price,
       required final List<String> images,
       required final String location,
-      required final List<String> facilities,
       required final String duration,
       required final String overview,
       required final String rating,
@@ -388,10 +356,6 @@ abstract class _Tourism implements Tourism {
 
   ///Tourism location
   String get location;
-  @override
-
-  ///Tourism Facilities
-  List<String> get facilities;
   @override
 
   ///Tourism duration

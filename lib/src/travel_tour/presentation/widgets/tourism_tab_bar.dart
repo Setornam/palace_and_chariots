@@ -26,7 +26,7 @@ class _TourismTabBarViewState extends State<TourismTabBarView> {
             return SizedBox(
               height: 680,
               child: ListView.builder(
-                  itemCount: 7,
+                  itemCount: tourisms.length,
                   itemBuilder: (BuildContext context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(

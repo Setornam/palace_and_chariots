@@ -24,9 +24,6 @@ class Tourism with _$Tourism {
     ///Tourism location
     required String location,
 
-    ///Tourism Facilities
-    required List<String> facilities,
-
     ///Tourism duration
     required String duration,
 
@@ -50,7 +47,6 @@ class Tourism with _$Tourism {
 
   /// Initial State of Entity
   factory Tourism.initial() => Tourism(
-        facilities: [],
         id: '',
         images: [],
         location: '',

@@ -13,9 +13,6 @@ _$_Tourism _$$_TourismFromJson(Map<String, dynamic> json) => _$_Tourism(
       images:
           (json['images'] as List<dynamic>).map((e) => e as String).toList(),
       location: json['location'] as String,
-      facilities: (json['facilities'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
       duration: json['duration'] as String,
       overview: json['overview'] as String,
       rating: json['rating'] as String,
@@ -29,7 +26,6 @@ Map<String, dynamic> _$$_TourismToJson(_$_Tourism instance) =>
       'price': instance.price,
       'images': instance.images,
       'location': instance.location,
-      'facilities': instance.facilities,
       'duration': instance.duration,
       'overview': instance.overview,
       'rating': instance.rating,
