@@ -268,7 +268,9 @@ class _SecurityPageState extends State<SecurityPage> {
             return Center(
               child: CircularProgressIndicator(),
             );
-          }),
+          }
+          
+          ),
     );
   }
 }

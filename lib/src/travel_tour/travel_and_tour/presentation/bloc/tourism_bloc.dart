@@ -20,8 +20,8 @@ class TourismBloc {
 
     yield* result.fold((failure) async* {
       yield <Tourism>[];
-    }, (Tourism) async* {
-      yield* Tourism;
+    }, (tourism) async* {
+      yield* tourism;
     });
   }
 

@@ -13,6 +13,6 @@ class RetrieveTourism extends UseCase<Tourism, StringParams> {
   @override
   Future<Either<Failure, Tourism>> call(StringParams params) {
     // TODO: implement call
-   return  repository.retrieve(params.value);
+    return repository.retrieve(params.value);
   }
 }

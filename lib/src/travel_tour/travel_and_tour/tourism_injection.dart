@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:palace_and_chariots/src/travel_tour/travel_and_tour/presentation/bloc/accommodation_bloc.dart';
+import 'package:palace_and_chariots/src/travel_tour/travel_and_tour/presentation/bloc/tourism_bloc.dart';
 
 import 'data/database/tourism_remote_database.dart';
 import 'data/repositories/tourism_repository_impl.dart';

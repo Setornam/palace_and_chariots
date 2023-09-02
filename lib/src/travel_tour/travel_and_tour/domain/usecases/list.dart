@@ -13,6 +13,6 @@ class ListTourisms extends UseCase<Stream<List<Tourism>>, NoParams> {
   @override
   Future<Either<Failure, Stream<List<Tourism>>>> call(NoParams params) {
     // TODO: implement call
-   return  repository.list();
+    return repository.list();
   }
 }
