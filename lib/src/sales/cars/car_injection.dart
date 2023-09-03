@@ -14,12 +14,10 @@ void initCar() {
   sl
 
     ///Bloc
-    ..registerFactory(
-        () => CarBloc(listCars: sl(), retrieveCar: sl()))
+    ..registerFactory(() => CarBloc(listCars: sl(), retrieveCar: sl()))
 
     ///Remote Database
-    ..registerLazySingleton<CarRemoteDatabase>(
-        CarRemoteDatabaseImpl.new)
+    ..registerLazySingleton<CarRemoteDatabase>(CarRemoteDatabaseImpl.new)
 
     ///Register repositories
     ..registerLazySingleton<CarRepository>(

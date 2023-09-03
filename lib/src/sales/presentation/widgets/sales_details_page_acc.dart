@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/pages/checkout_page.dart';
-import 'package:palace_and_chariots/src/sales/presentation/widgets/sales_gallery_page.dart';
+import 'package:palace_and_chariots/src/sales/presentation/widgets/gallery_page.dart';
 
 import '../../../checkout/presentation/pages/sales_checkout_page.dart';
 import 'accomoodation_sales_gallery_page.dart';

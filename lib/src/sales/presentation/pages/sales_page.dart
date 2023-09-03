@@ -3,7 +3,8 @@ import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/sales/presentation/widgets/accommodation_tab_bar_view.dart';
 import 'package:palace_and_chariots/src/sales/presentation/widgets/vehicles_tab_bar_view.dart';
 
-
+import '../../../rentals/presentation/widgets/vehicles_tab_bar_view.dart';
+import '../widgets/cars_tab_bar_view.dart';
 
 class SalesPage extends StatefulWidget {
   const SalesPage({super.key});
@@ -94,17 +95,11 @@ class _SalesPageState extends State<SalesPage> {
               Tab(
                 text: 'Accommodation',
               ),
-             
             ],
           ),
         ),
-       
-        body: const TabBarView(
-          children: [
-            VehiclesTabBarView(),
-            AccommodationTabBarView()
-           
-          ],
+        body: TabBarView(
+          children: [CarsTabBarView(), AccommodationTabBarView()],
         ),
       ),
     );

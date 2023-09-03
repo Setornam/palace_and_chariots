@@ -23,6 +23,9 @@ class Car with _$Car {
     ///price of Car
     required String price,
 
+    ///availability of car
+    required bool availability,
+
     ///Car  images
     required List<String> images,
 
@@ -81,5 +84,6 @@ class Car with _$Car {
       condition: '',
       maker: '',
       numberOfCylinders: '',
-      trim: '');
+      trim: '',
+      availability: false);
 }

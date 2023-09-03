@@ -32,6 +32,9 @@ mixin _$Car {
   ///price of Car
   String get price => throw _privateConstructorUsedError;
 
+  ///availability of car
+  bool get availability => throw _privateConstructorUsedError;
+
   ///Car  images
   List<String> get images => throw _privateConstructorUsedError;
 
@@ -81,6 +84,7 @@ abstract class $CarCopyWith<$Res> {
       String name,
       String color,
       String price,
+      bool availability,
       List<String> images,
       CarBrand? brand,
       String? transmission,
@@ -113,6 +117,7 @@ class _$CarCopyWithImpl<$Res, $Val extends Car> implements $CarCopyWith<$Res> {
     Object? name = null,
     Object? color = null,
     Object? price = null,
+    Object? availability = null,
     Object? images = null,
     Object? brand = freezed,
     Object? transmission = freezed,
@@ -143,6 +148,10 @@ class _$CarCopyWithImpl<$Res, $Val extends Car> implements $CarCopyWith<$Res> {
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as String,
+      availability: null == availability
+          ? _value.availability
+          : availability // ignore: cast_nullable_to_non_nullable
+              as bool,
       images: null == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
@@ -218,6 +227,7 @@ abstract class _$$_CarCopyWith<$Res> implements $CarCopyWith<$Res> {
       String name,
       String color,
       String price,
+      bool availability,
       List<String> images,
       CarBrand? brand,
       String? transmission,
@@ -248,6 +258,7 @@ class __$$_CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res, _$_Car>
     Object? name = null,
     Object? color = null,
     Object? price = null,
+    Object? availability = null,
     Object? images = null,
     Object? brand = freezed,
     Object? transmission = freezed,
@@ -278,6 +289,10 @@ class __$$_CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res, _$_Car>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as String,
+      availability: null == availability
+          ? _value.availability
+          : availability // ignore: cast_nullable_to_non_nullable
+              as bool,
       images: null == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
@@ -339,6 +354,7 @@ class _$_Car implements _Car {
       required this.name,
       required this.color,
       required this.price,
+      required this.availability,
       required final List<String> images,
       this.brand,
       this.transmission,
@@ -370,6 +386,10 @@ class _$_Car implements _Car {
   ///price of Car
   @override
   final String price;
+
+  ///availability of car
+  @override
+  final bool availability;
 
   ///Car  images
   final List<String> _images;
@@ -433,6 +453,8 @@ class _$_Car implements _Car {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.price, price) || other.price == price) &&
+            (identical(other.availability, availability) ||
+                other.availability == availability) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
             (identical(other.brand, brand) || other.brand == brand) &&
             (identical(other.transmission, transmission) ||
@@ -460,6 +482,7 @@ class _$_Car implements _Car {
       name,
       color,
       price,
+      availability,
       const DeepCollectionEquality().hash(_images),
       brand,
       transmission,
@@ -493,6 +516,7 @@ abstract class _Car implements Car {
       required final String name,
       required final String color,
       required final String price,
+      required final bool availability,
       required final List<String> images,
       final CarBrand? brand,
       final String? transmission,
@@ -524,6 +548,10 @@ abstract class _Car implements Car {
 
   ///price of Car
   String get price;
+  @override
+
+  ///availability of car
+  bool get availability;
   @override
 
   ///Car  images

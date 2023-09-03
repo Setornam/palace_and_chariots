@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:palace_and_chariots/src/sales/presentation/widgets/sales_details_page.dart';
+import 'package:palace_and_chariots/src/sales/presentation/widgets/cars_details_page.dart';
 import 'package:palace_and_chariots/src/sales/presentation/widgets/sales_details_page_acc.dart';
 
 import '../../../../shared/theme/color_scheme.dart';

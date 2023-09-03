@@ -8,8 +8,7 @@ import '../../domain/repository/car_repository.dart';
 import '../database/car_remote_database.dart';
 
 class CarRepositoryImpl implements CarRepository {
-  CarRepositoryImpl(
-      {required this.networkInfo, required this.remoteDatabase});
+  CarRepositoryImpl({required this.networkInfo, required this.remoteDatabase});
 
   //Dependencies
   NetworkInfo networkInfo;
@@ -28,9 +27,9 @@ class CarRepositoryImpl implements CarRepository {
 
   @override
   Future<Either<Failure, Car>> retrieve(String documentID) async {
-     try {
+    try {
       await networkInfo.hasInternet();
-      final results =await remoteDatabase.retrieve(documentID);
+      final results = await remoteDatabase.retrieve(documentID);
       return Right(results);
     } on DeviceException catch (error) {
       return Left(Failure(error.message));

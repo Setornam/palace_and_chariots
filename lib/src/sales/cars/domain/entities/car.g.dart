@@ -11,6 +11,7 @@ _$_Car _$$_CarFromJson(Map<String, dynamic> json) => _$_Car(
       name: json['name'] as String,
       color: json['color'] as String,
       price: json['price'] as String,
+      availability: json['availability'] as bool,
       images:
           (json['images'] as List<dynamic>).map((e) => e as String).toList(),
       brand: json['brand'] == null
@@ -33,6 +34,7 @@ Map<String, dynamic> _$$_CarToJson(_$_Car instance) => <String, dynamic>{
       'name': instance.name,
       'color': instance.color,
       'price': instance.price,
+      'availability': instance.availability,
       'images': instance.images,
       'brand': instance.brand?.toJson(),
       'transmission': instance.transmission,
