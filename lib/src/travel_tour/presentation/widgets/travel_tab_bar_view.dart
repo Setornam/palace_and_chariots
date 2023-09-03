@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/destination_search_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/search_result_page.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -14,9 +15,18 @@ class TravelTabBarView extends StatefulWidget {
 }
 
 class _TravelTabBarViewState extends State<TravelTabBarView> {
-  ValueNotifier<int> numberOfRooms = ValueNotifier(0);
   ValueNotifier<int> numberOfAdults = ValueNotifier(0);
   ValueNotifier<int> numberOfChildren = ValueNotifier(0);
+
+  ValueNotifier<int> numberOfRoomsApartment = ValueNotifier(0);
+  ValueNotifier<int> numberOfAdultsApartment = ValueNotifier(0);
+  ValueNotifier<int> numberOfChildrenApartment = ValueNotifier(0);
+
+  final ValueNotifier<DateTime> _selectedDay = ValueNotifier(DateTime.now());
+  final ValueNotifier<DateTime> _focusedDay = ValueNotifier(DateTime.now());
+
+  final ValueNotifier<String> _startDate = ValueNotifier('start date');
+  final ValueNotifier<String> _endDate = ValueNotifier('end date');
 
   List<Map<String, String>> locations = [
     {'name': 'Accra', 'image': 'assets/images/accra.png'},
@@ -56,7 +66,11 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    DestinationSearchPage()));
+                                    DestinationSearchPage()
+                                    
+                                    )
+                                    
+                                    );
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -117,97 +131,389 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
 
                   //date
                   Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        showModalBottomSheet(
-                            constraints:
-                                const BoxConstraints.tightFor(height: 398),
-                            context: context,
-                            builder: (BuildContext context) => SizedBox(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 10),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Center(
-                                          child: Container(
-                                            color: Colors.black,
-                                            height: 2,
-                                            width: 50,
-                                          ),
-                                        ),
-                                        Text(
-                                          '   Select Date',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: lightColorScheme.primary),
-                                        ),
-                                        TableCalendar(
-                                          firstDay: DateTime.utc(2010, 10, 16),
-                                          lastDay: DateTime.utc(2030, 3, 14),
-                                          focusedDay: DateTime.now(),
-                                          rowHeight: 32,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                            top: 10,
-                                          ),
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                color: lightColorScheme.primary
-                                                    .withOpacity(.2),
-                                                width:
-                                                    MediaQuery.sizeOf(context)
-                                                        .width,
-                                                height: 40,
-                                                child: Center(
-                                                    child: const Text(
-                                                  '12 April - 12 April',
-                                                  textAlign: TextAlign.center,
-                                                )),
-                                              ),
-                                              SizedBox(
-                                                width:
-                                                    MediaQuery.sizeOf(context)
-                                                        .width,
-                                                child: ElevatedButton(
-                                                    style: ElevatedButton
-                                                        .styleFrom(
-                                                      backgroundColor:
-                                                          lightColorScheme
-                                                              .primary,
-                                                      minimumSize:
-                                                          const Size.fromHeight(
-                                                              40),
-                                                    ),
-                                                    onPressed: () {},
-                                                    child: const Text('Apply')),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ));
-                      },
-                      child: Row(
-                        children: [
-                          const Icon(Icons.calendar_today_outlined,
-                              size: 18, color: Colors.black54),
-                          Text(
-                            '   Fri 28 Apr - Sat, 29 Apr',
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Divider(),
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 5, bottom: 5),
+                    child: Row(children: [
+                      ///start date
+                      GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                              constraints:
+                                  const BoxConstraints.tightFor(height: 398),
+                              context: context,
+                              builder: (BuildContext context) => SizedBox(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 10),
+                                      child: ValueListenableBuilder(
+                                        builder: (BuildContext context, value,
+                                            Widget? child) {
+                                          return Stack(children: [
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Center(
+                                                  child: Container(
+                                                    color: Colors.black,
+                                                    height: 2,
+                                                    width: 50,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  '   Select Date',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: lightColorScheme
+                                                          .primary),
+                                                ),
+                                                ValueListenableBuilder(
+                                                  builder:
+                                                      (BuildContext context,
+                                                          value,
+                                                          Widget? child) {
+                                                    return TableCalendar(
+                                                        headerStyle:
+                                                            const HeaderStyle(
+                                                                formatButtonVisible:
+                                                                    false),
+                                                        calendarStyle:
+                                                            CalendarStyle(
+                                                          isTodayHighlighted:
+                                                              false,
+                                                          selectedTextStyle:
+                                                              TextStyle(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                          selectedDecoration:
+                                                              BoxDecoration(
+                                                                  color: lightColorScheme
+                                                                      .primary,
+                                                                  shape: BoxShape
+                                                                      .circle),
+                                                        ),
+                                                        firstDay: DateTime.utc(
+                                                            2010, 10, 16),
+                                                        lastDay: DateTime.utc(
+                                                            2030, 3, 14),
+                                                        focusedDay:
+                                                            _focusedDay.value,
+                                                        rowHeight: 32,
+                                                        selectedDayPredicate:
+                                                            (day) {
+                                                          return isSameDay(
+                                                              _selectedDay
+                                                                  .value,
+                                                              day);
 
+                                                          // Return true if the day is within the selected range.
+                                                          // return _rangeStart != null &&
+                                                          //     _rangeEnd != null &&
+                                                          //     day.isAfter(_rangeStart!) &&
+                                                          //     day.isBefore(_rangeEnd!);
+                                                        },
+                                                        onDaySelected:
+                                                            (selectedDay,
+                                                                focusedDay) {
+                                                          setState(() {
+                                                            _focusedDay.value =
+                                                                focusedDay;
+                                                            _selectedDay.value =
+                                                                selectedDay;
+                                                          });
+                                                        });
+                                                  },
+                                                  valueListenable: _focusedDay,
+                                                ),
+                                              ],
+                                            ),
+                                            Positioned(
+                                              bottom: 0,
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                  top: 10,
+                                                ),
+                                                child: Column(
+                                                  children: [
+                                                    Container(
+                                                      color: lightColorScheme
+                                                          .primary
+                                                          .withOpacity(.2),
+                                                      width: MediaQuery.sizeOf(
+                                                              context)
+                                                          .width,
+                                                      height: 40,
+                                                      child: Center(
+                                                          child: Text(
+                                                        DateFormat('dd MMMM')
+                                                            .format(_selectedDay
+                                                                .value),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      )),
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        _startDate.value =
+                                                            DateFormat(
+                                                                    'dd MMMM')
+                                                                .format(
+                                                                    _selectedDay
+                                                                        .value);
+                                                        Navigator.pop(context);
+                                                      },
+                                                      child: Container(
+                                                        color: lightColorScheme
+                                                            .primary,
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                    context)
+                                                                .width,
+                                                        height: 40,
+                                                        child: const Center(
+                                                            child: Text(
+                                                          'Select Date',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white),
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                        )),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ]);
+                                        },
+                                        valueListenable: _selectedDay,
+                                      ),
+                                    ),
+                                  ));
+                        },
+                        child: Row(
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.only(left: 10, right: 18),
+                              child: Icon(Icons.calendar_today_outlined,
+                                  size: 18, color: Colors.black54),
+                            ),
+                            Row(
+                              children: [
+                                ValueListenableBuilder(
+                                  builder: (BuildContext context, value,
+                                      Widget? child) {
+                                    return Text(
+                                      _startDate.value,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    );
+                                  },
+                                  valueListenable: _startDate,
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Text('-'),
+                      ),
+
+                      ///end date
+                      GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                              constraints:
+                                  const BoxConstraints.tightFor(height: 398),
+                              context: context,
+                              builder: (BuildContext context) => SizedBox(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 10),
+                                      child: ValueListenableBuilder(
+                                        builder: (BuildContext context, value,
+                                            Widget? child) {
+                                          return Stack(children: [
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Center(
+                                                  child: Container(
+                                                    color: Colors.black,
+                                                    height: 2,
+                                                    width: 50,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  '   Select Date',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: lightColorScheme
+                                                          .primary),
+                                                ),
+                                                ValueListenableBuilder(
+                                                  builder:
+                                                      (BuildContext context,
+                                                          value,
+                                                          Widget? child) {
+                                                    return TableCalendar(
+                                                        headerStyle:
+                                                            const HeaderStyle(
+                                                                formatButtonVisible:
+                                                                    false),
+                                                        calendarStyle:
+                                                            CalendarStyle(
+                                                          isTodayHighlighted:
+                                                              false,
+                                                          selectedTextStyle:
+                                                              TextStyle(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                          selectedDecoration:
+                                                              BoxDecoration(
+                                                                  color: lightColorScheme
+                                                                      .primary,
+                                                                  shape: BoxShape
+                                                                      .circle),
+                                                        ),
+                                                        firstDay: DateTime.utc(
+                                                            2010, 10, 16),
+                                                        lastDay: DateTime.utc(
+                                                            2030, 3, 14),
+                                                        focusedDay:
+                                                            _focusedDay.value,
+                                                        rowHeight: 32,
+                                                        selectedDayPredicate:
+                                                            (day) {
+                                                          return isSameDay(
+                                                              _selectedDay
+                                                                  .value,
+                                                              day);
+
+                                                          // Return true if the day is within the selected range.
+                                                          // return _rangeStart != null &&
+                                                          //     _rangeEnd != null &&
+                                                          //     day.isAfter(_rangeStart!) &&
+                                                          //     day.isBefore(_rangeEnd!);
+                                                        },
+                                                        onDaySelected:
+                                                            (selectedDay,
+                                                                focusedDay) {
+                                                          setState(() {
+                                                            _focusedDay.value =
+                                                                focusedDay;
+                                                            _selectedDay.value =
+                                                                selectedDay;
+                                                          });
+                                                        });
+                                                  },
+                                                  valueListenable: _focusedDay,
+                                                ),
+                                              ],
+                                            ),
+                                            Positioned(
+                                              bottom: 0,
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                  top: 10,
+                                                ),
+                                                child: Column(
+                                                  children: [
+                                                    Container(
+                                                      color: lightColorScheme
+                                                          .primary
+                                                          .withOpacity(.2),
+                                                      width: MediaQuery.sizeOf(
+                                                              context)
+                                                          .width,
+                                                      height: 40,
+                                                      child: Center(
+                                                          child: Text(
+                                                        DateFormat('dd MMMM')
+                                                            .format(_selectedDay
+                                                                .value),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      )),
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        _endDate.value =
+                                                            DateFormat(
+                                                                    'dd MMMM')
+                                                                .format(
+                                                                    _selectedDay
+                                                                        .value);
+                                                        Navigator.pop(context);
+                                                      },
+                                                      child: Container(
+                                                        color: lightColorScheme
+                                                            .primary,
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                    context)
+                                                                .width,
+                                                        height: 40,
+                                                        child: const Center(
+                                                            child: Text(
+                                                          'Select Date',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white),
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                        )),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ]);
+                                        },
+                                        valueListenable: _selectedDay,
+                                      ),
+                                    ),
+                                  ));
+                        },
+                        child: Row(
+                          children: [
+                            Row(
+                              children: [
+                                ValueListenableBuilder(
+                                  builder: (BuildContext context, value,
+                                      Widget? child) {
+                                    return Text(
+                                      _endDate.value,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    );
+                                  },
+                                  valueListenable: _endDate,
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ]),
+                  ),
+                  const Divider(),
+
+                  //Passenger size
                   Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: GestureDetector(
@@ -237,7 +543,7 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                                           ),
                                         ),
                                         Text(
-                                          '   Passengers',
+                                          '   Select Passengers',
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               color: lightColorScheme.primary),
@@ -256,7 +562,7 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: [
-                                                  Text('Adults'),
+                                                  const Text('Adults'),
                                                   Row(
                                                     children: [
                                                       IconButton(
@@ -274,14 +580,19 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                                                       Text(
                                                         numberOfAdults.value
                                                             .toString(),
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                             color:
                                                                 Colors.black87),
                                                       ),
                                                       IconButton(
                                                           onPressed: () {
                                                             numberOfAdults
-                                                                .value--;
+                                                                        .value >=
+                                                                    0
+                                                                ? numberOfAdults
+                                                                    .value--
+                                                                : numberOfAdults
+                                                                    .value = 0;
                                                           },
                                                           icon: Icon(
                                                             Icons
@@ -311,7 +622,7 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: [
-                                                  Text('Children'),
+                                                  const Text('Children'),
                                                   Row(
                                                     children: [
                                                       IconButton(
@@ -329,14 +640,19 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                                                       Text(
                                                         numberOfChildren.value
                                                             .toString(),
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                             color:
                                                                 Colors.black87),
                                                       ),
                                                       IconButton(
                                                           onPressed: () {
                                                             numberOfChildren
-                                                                .value--;
+                                                                        .value >
+                                                                    0
+                                                                ? numberOfChildren
+                                                                    .value--
+                                                                : numberOfChildren
+                                                                    .value = 0;
                                                           },
                                                           icon: Icon(
                                                             Icons
@@ -361,28 +677,63 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                                               width: MediaQuery.sizeOf(context)
                                                   .width,
                                               height: 40,
-                                              child: const Center(
-                                                  child: Text(
-                                                '12 April - 12 April',
-                                                textAlign: TextAlign.center,
+                                              child: Center(
+                                                  child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  ValueListenableBuilder(
+                                                    builder:
+                                                        (BuildContext context,
+                                                            value,
+                                                            Widget? child) {
+                                                      return Text(
+                                                        '${numberOfAdults.value} Adults -',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      );
+                                                    },
+                                                    valueListenable:
+                                                        numberOfAdults,
+                                                  ),
+                                                  ValueListenableBuilder(
+                                                    builder:
+                                                        (BuildContext context,
+                                                            value,
+                                                            Widget? child) {
+                                                      return Text(
+                                                        '${numberOfChildren.value} Children',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      );
+                                                    },
+                                                    valueListenable:
+                                                        numberOfChildren,
+                                                  ),
+                                                ],
                                               )),
                                             ),
-                                            SizedBox(
-                                              width: MediaQuery.sizeOf(context)
-                                                  .width,
-                                              child: ElevatedButton(
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                    backgroundColor:
-                                                        lightColorScheme
-                                                            .primary,
-                                                    minimumSize:
-                                                        const Size.fromHeight(
-                                                            40),
-                                                  ),
-                                                  onPressed: () {},
-                                                  child: const Text('Apply')),
-                                            )
+
+                                            ///apply
+                                            InkWell(
+                                              onTap: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Container(
+                                                color: lightColorScheme.primary,
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                        .width,
+                                                height: 40,
+                                                child: const Center(
+                                                    child: Text(
+                                                  'Apply',
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                  textAlign: TextAlign.center,
+                                                )),
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       ],
@@ -392,11 +743,35 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                       },
                       child: Row(
                         children: [
-                          const Icon(Icons.person_2_outlined,
-                              size: 18, color: Colors.black54),
-                          Text(
-                            '  - 2 adults - no children ',
-                            style: Theme.of(context).textTheme.bodyMedium,
+                          const Padding(
+                            padding: EdgeInsets.only(left: 15, right: 18),
+                            child: Icon(Icons.person_2_outlined,
+                                size: 18, color: Colors.black54),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ValueListenableBuilder(
+                                builder: (BuildContext context, value,
+                                    Widget? child) {
+                                  return Text(
+                                    '${numberOfAdults.value} Adults   -     ',
+                                    textAlign: TextAlign.center,
+                                  );
+                                },
+                                valueListenable: numberOfAdults,
+                              ),
+                              ValueListenableBuilder(
+                                builder: (BuildContext context, value,
+                                    Widget? child) {
+                                  return Text(
+                                    '${numberOfChildren.value} Children',
+                                    textAlign: TextAlign.center,
+                                  );
+                                },
+                                valueListenable: numberOfChildren,
+                              ),
+                            ],
                           )
                         ],
                       ),
@@ -417,7 +792,7 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                                   builder: (BuildContext context) =>
                                       TravelCheckoutPage()));
                         },
-                        child: Text('Next')),
+                        child: const Text('Next')),
                   )
                 ],
               ),

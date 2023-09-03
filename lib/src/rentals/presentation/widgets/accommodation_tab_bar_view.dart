@@ -911,6 +911,8 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                           },
                                           child: const Text('Search')),
                                     )
+                                 
+                                 
                                   ],
                                 ),
                               ),

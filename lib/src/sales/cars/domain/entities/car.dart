@@ -1,0 +1,85 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'car_brand.dart';
+
+part 'car.freezed.dart';
+
+part 'car.g.dart';
+
+// flutter packages run build_runner build --delete-conflicting-outputs
+@freezed
+class Car with _$Car {
+  @JsonSerializable(explicitToJson: true)
+  factory Car({
+    /// Document ID
+    required String id,
+
+    ///name of Car
+    required String name,
+
+    ///color of Car
+    required String color,
+
+    ///price of Car
+    required String price,
+
+    ///Car  images
+    required List<String> images,
+
+    ///Car brand
+    CarBrand? brand,
+
+    ///Car transmission
+    String? transmission,
+
+    ///number of seats
+    required String seats,
+
+    ///condition
+    required String condition,
+
+    /// maker
+    required String maker,
+
+    ///number of seats
+    required String engineSize,
+    required String trim,
+
+    ///number of seats
+    required String numberOfCylinders,
+
+    ///Car rating
+    required String rating,
+
+    ///Car popularity
+    required String popularity,
+
+    ///Car speed
+    String? speed,
+  }) = _Car;
+
+  /// Converts json to dart object
+  factory Car.fromJson(Map<String, dynamic> json) => _$CarFromJson(json);
+
+  /// String representation
+  @override
+  String toString() => id;
+
+  /// Initial State of Entity
+  factory Car.initial() => Car(
+      id: '',
+      images: [],
+      name: '',
+      popularity: '',
+      price: '',
+      rating: '',
+      seats: '',
+      transmission: '',
+      color: '',
+      brand: CarBrand.initial(),
+      engineSize: '',
+      condition: '',
+      maker: '',
+      numberOfCylinders: '',
+      trim: '');
+}
