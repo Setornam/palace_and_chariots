@@ -4,10 +4,12 @@ import 'package:palace_and_chariots/src/checkout/presentation/pages/checkout_pag
 import 'package:palace_and_chariots/src/sales/presentation/widgets/gallery_page.dart';
 
 import '../../../checkout/presentation/pages/sales_checkout_page.dart';
+import '../../accommodation/domain/entities/house.dart';
 import 'accomoodation_sales_gallery_page.dart';
 
 class SalesDetailsPageAccommodation extends StatefulWidget {
-  const SalesDetailsPageAccommodation({super.key});
+  final House accommodation;
+  const SalesDetailsPageAccommodation({super.key, required this.accommodation});
 
   @override
   State<SalesDetailsPageAccommodation> createState() =>
@@ -25,7 +27,7 @@ class _SalesDetailsPageAccommodationState
         automaticallyImplyLeading: true,
         centerTitle: true,
         title: Text(
-          'Accmmodation Details',
+          widget.accommodation.name,
           style: Theme.of(context)
               .textTheme
               .bodyLarge!
@@ -114,67 +116,60 @@ class _SalesDetailsPageAccommodationState
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       child: Column(
                         children: [
-                          const Row(
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Furnised 3 bedroom house',
-                                style: TextStyle(
+                                widget.accommodation.name,
+                                style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15,
                                     color: Colors.black87),
                               ),
-                              // Text(
-                              //   'GHS 530',
-                              //   style: TextStyle(
-                              //       fontWeight: FontWeight.bold,
-                              //       fontSize: 15,
-                              //       color: lightColorScheme.primary),
-                              // ),
                             ],
                           ),
-
-                          //Vehicle details
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 20),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Column(
+                                Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Icon(
+                                        const Icon(
                                           Icons.bed_outlined,
                                           color: Colors.black87,
                                           size: 20,
                                         ),
                                         Text(
-                                          '4 beds',
-                                          style: TextStyle(
+                                          widget
+                                              .accommodation.amenities['bed']!,
+                                          style: const TextStyle(
                                               fontSize: 15,
                                               color: Colors.black87),
                                         ),
                                       ],
                                     ),
                                     Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 20),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 20),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Icon(
+                                          const Icon(
                                             Icons.bathtub_outlined,
                                             color: Colors.black54,
                                             size: 20,
                                           ),
                                           Text(
-                                            '5 baths',
-                                            style: TextStyle(
+                                            widget.accommodation
+                                                .amenities['bath']!,
+                                            style: const TextStyle(
                                                 fontSize: 15,
                                                 color: Colors.black87),
                                           ),
@@ -185,14 +180,15 @@ class _SalesDetailsPageAccommodationState
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Icon(
+                                        const Icon(
                                           Icons.local_parking_rounded,
                                           color: Colors.black54,
                                           size: 20,
                                         ),
                                         Text(
-                                          'Parking',
-                                          style: TextStyle(
+                                          widget.accommodation
+                                              .amenities['parking']!,
+                                          style: const TextStyle(
                                               fontSize: 15,
                                               color: Colors.black87),
                                         ),
@@ -212,13 +208,13 @@ class _SalesDetailsPageAccommodationState
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Row(
+                                    Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Column(
                                           children: [
-                                            Padding(
+                                            const Padding(
                                               padding:
                                                   EdgeInsets.only(bottom: 5),
                                               child: Text(
@@ -229,17 +225,18 @@ class _SalesDetailsPageAccommodationState
                                               ),
                                             ),
                                             Text(
-                                              'Newly Built',
+                                              widget.accommodation.condition,
                                             )
                                           ],
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(left: 65),
+                                          padding:
+                                              const EdgeInsets.only(left: 65),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Padding(
+                                              const Padding(
                                                 padding:
                                                     EdgeInsets.only(bottom: 5),
                                                 child: Text(
@@ -250,7 +247,8 @@ class _SalesDetailsPageAccommodationState
                                                 ),
                                               ),
                                               Text(
-                                                '23 sqm',
+                                                widget
+                                                    .accommodation.propertySize,
                                               )
                                             ],
                                           ),
@@ -259,7 +257,7 @@ class _SalesDetailsPageAccommodationState
                                     ),
                                     Container(
                                         width: 180, child: const Divider()),
-                                    const Row(
+                                    Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
@@ -267,7 +265,7 @@ class _SalesDetailsPageAccommodationState
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Padding(
+                                            const Padding(
                                               padding:
                                                   EdgeInsets.only(bottom: 5),
                                               child: Text(
@@ -278,17 +276,18 @@ class _SalesDetailsPageAccommodationState
                                               ),
                                             ),
                                             Text(
-                                              'Semi-Furnished',
+                                              widget.accommodation.furnishing,
                                             )
                                           ],
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(left: 65),
+                                          padding:
+                                              const EdgeInsets.only(left: 40),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Padding(
+                                              const Padding(
                                                 padding:
                                                     EdgeInsets.only(bottom: 5),
                                                 child: Text(
@@ -299,40 +298,42 @@ class _SalesDetailsPageAccommodationState
                                                 ),
                                               ),
                                               Text(
-                                                'Available',
+                                                widget.accommodation.outHouse,
                                               )
                                             ],
                                           ),
                                         )
                                       ],
                                     ),
-                                    Container(
+                                    SizedBox(
                                         width: 180, child: const Divider()),
-                                    const Padding(
+                                    Padding(
                                       padding: EdgeInsets.only(top: 10),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding:
-                                                    EdgeInsets.only(bottom: 5),
-                                                child: Text(
-                                                  'Facilities',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ),
-                                              Text(
-                                                'Air Conditioning, Turbo, \nHot Water, Electricity',
-                                              )
-                                            ],
+                                          const Padding(
+                                            padding: EdgeInsets.only(bottom: 5),
+                                            child: Text(
+                                              'Facilities',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
                                           ),
+                                          Container(
+                                            width: 200,
+                                            child: Wrap(
+                                              children: [
+                                                ...List.generate(
+                                                    widget.accommodation
+                                                        .facilities.length,
+                                                    (index) => Text(widget
+                                                        .accommodation
+                                                        .facilities[index]))
+                                              ],
+                                            ),
+                                          )
                                         ],
                                       ),
                                     ),
@@ -343,7 +344,6 @@ class _SalesDetailsPageAccommodationState
                               ],
                             ),
                           ),
-
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -469,7 +469,7 @@ class _SalesDetailsPageAccommodationState
                                             ]);
                                           });
                                     },
-                                    icon: Icon(Icons.message),
+                                    icon: const Icon(Icons.message),
                                     label: const Text('Start Chat')),
                               )
                             ],

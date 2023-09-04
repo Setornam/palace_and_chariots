@@ -1,40 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:palace_and_chariots/src/sales/presentation/widgets/house_details_page.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
-import '../../cars/domain/entities/car.dart';
-import 'cars_details_page.dart';
+import '../../accommodation/domain/entities/house.dart';
 
-class ViewMoreCarsPage extends StatefulWidget {
-  final List<Car> cars;
-  const ViewMoreCarsPage({
+class ViewMoreHouses extends StatefulWidget {
+  final List<House> houses;
+  const ViewMoreHouses({
     super.key,
-    required this.cars,
+    required this.houses,
   });
 
   @override
-  State<ViewMoreCarsPage> createState() => _ViewMoreCarsPageState();
+  State<ViewMoreHouses> createState() => _ViewMoreHousesState();
 }
 
-class _ViewMoreCarsPageState extends State<ViewMoreCarsPage> {
+class _ViewMoreHousesState extends State<ViewMoreHouses> {
   ValueNotifier<bool> isSortByPopularityChecked = ValueNotifier(false);
   ValueNotifier<bool> isSortByLowerPriceChecked = ValueNotifier(false);
   ValueNotifier<bool> isSortByHighestRatingChecked = ValueNotifier(false);
   ValueNotifier<bool> isSortByLowestRatingChecked = ValueNotifier(false);
-  List<Car> sortedCars = [];
+  List<House> sortedhouses = [];
 
   ///sorting functions
   sortByPopularity() {
-    List<Car>? listToSort = widget.cars;
+    List<House>? listToSort = widget.houses;
     listToSort.sort((a, b) =>
         (double.parse(a.popularity)).compareTo(double.parse(b.popularity)));
     if (isSortByPopularityChecked.value == false) {
       setState(() {
-        sortedCars = listToSort;
+        sortedhouses = listToSort;
       });
     } else {
       if (isSortByPopularityChecked.value == true) {
         setState(() {
-          sortedCars = widget.cars;
+          sortedhouses = widget.houses;
         });
       }
     }
@@ -42,17 +42,17 @@ class _ViewMoreCarsPageState extends State<ViewMoreCarsPage> {
   }
 
   sortByPrice() {
-    List<Car>? listToSort = widget.cars;
+    List<House>? listToSort = widget.houses;
     listToSort.sort(
         (a, b) => (double.parse(a.price)).compareTo(double.parse(b.price)));
     if (isSortByLowerPriceChecked.value == false) {
       setState(() {
-        sortedCars = listToSort;
+        sortedhouses = listToSort;
       });
     } else {
       if (isSortByLowerPriceChecked.value == true) {
         setState(() {
-          sortedCars = widget.cars;
+          sortedhouses = widget.houses;
         });
       }
     }
@@ -60,18 +60,18 @@ class _ViewMoreCarsPageState extends State<ViewMoreCarsPage> {
   }
 
   sortByHighestRating() {
-    List<Car>? listToSort = widget.cars;
+    List<House>? listToSort = widget.houses;
     listToSort.sort(
         (a, b) => (double.parse(b.rating)).compareTo(double.parse(a.rating)));
 
     if (isSortByHighestRatingChecked.value == false) {
       setState(() {
-        sortedCars = listToSort;
+        sortedhouses = listToSort;
       });
     } else {
       if (isSortByHighestRatingChecked.value == true) {
         setState(() {
-          sortedCars = widget.cars;
+          sortedhouses = widget.houses;
         });
       }
     }
@@ -79,29 +79,29 @@ class _ViewMoreCarsPageState extends State<ViewMoreCarsPage> {
   }
 
   sortByLowestRating() {
-    List<Car>? listToSort = widget.cars;
+    List<House>? listToSort = widget.houses;
     listToSort.sort(
         (a, b) => (double.parse(a.rating)).compareTo(double.parse(b.rating)));
 
     if (isSortByLowestRatingChecked.value == false) {
       setState(() {
-        sortedCars = listToSort;
+        sortedhouses = listToSort;
       });
     } else {
       if (isSortByLowestRatingChecked.value == true) {
         setState(() {
-          sortedCars = widget.cars;
+          sortedhouses = widget.houses;
         });
       }
     }
     // print(isSortByLowestRatingChecked.value.toString());
-    print(sortedCars.map((e) => (e.name)));
+    print(sortedhouses.map((e) => (e.name)));
   }
 
   @override
   void initState() {
     super.initState();
-    sortedCars = widget.cars;
+    sortedhouses = widget.houses;
   }
 
   @override
@@ -387,11 +387,183 @@ class _ViewMoreCarsPageState extends State<ViewMoreCarsPage> {
         ),
         body: Padding(
             padding: const EdgeInsets.all(8.0),
+            // child: isSortByLowestRatingChecked.value == false
+            //     ? GridView.builder(
+            //         itemCount: widget.houses!.length,
+            //         gridDelegate:
+            //             const SliverGridDelegateWithFixedCrossAxisCount(
+            //                 crossAxisCount: 2,
+            //                 crossAxisSpacing: 15,
+            //                 mainAxisSpacing: 15,
+            //                 mainAxisExtent: 180),
+            //         itemBuilder: (BuildContext context, index) {
+            //           return GestureDetector(
+            //             onTap: () {
+            //               Navigator.push(
+            //                   context,
+            //                   MaterialPageRoute(
+            //                       builder: (BuildContext context) =>
+            //                           HouseDetailsPage(
+            //                             color:
+            //                                 widget.houses![index].color,
+            //                             name:
+            //                                 widget.houses![index].name,
+            //                             luggage: widget
+            //                                 .houses![index].luggage,
+            //                             numberOfSeats:
+            //                                 widget.houses![index].seats,
+            //                             price:
+            //                                 widget.houses![index].price,
+            //                             rating: widget
+            //                                 .houses![index].rating,
+            //                             images: [],
+            //                             otherFeatures: [],
+            //                             transmission: widget
+            //                                 .houses![index]
+            //                                 .transmission,
+            //                             category: widget
+            //                                 .houses![index].category,
+            //                           )));
+            //             },
+            //             child: Column(
+            //               children: [
+            //                 Container(
+            //                   height: 80,
+            //                   decoration: const BoxDecoration(
+            //                       borderRadius: BorderRadius.only(
+            //                           topLeft: Radius.circular(7),
+            //                           topRight: Radius.circular(7)),
+            //                       image: DecorationImage(
+            //                           fit: BoxFit.cover,
+            //                           image: AssetImage(
+            //                               'assets/images/benz-front.png'))),
+            //                   child: const Align(
+            //                     alignment: Alignment.topLeft,
+            //                     child: Padding(
+            //                       padding: EdgeInsets.all(5.0),
+            //                       child: Icon(
+            //                         size: 18,
+            //                         Icons.favorite_outline,
+            //                         color: Colors.white,
+            //                       ),
+            //                     ),
+            //                   ),
+            //                 ),
+            //                 Expanded(
+            //                   child: Container(
+            //                     height: 80,
+            //                     decoration: const BoxDecoration(
+            //                         borderRadius: BorderRadius.only(
+            //                             bottomRight: Radius.circular(7),
+            //                             bottomLeft: Radius.circular(7)),
+            //                         color: Color(0xffe7e7f4)),
+            //                     child: Padding(
+            //                       padding: const EdgeInsets.all(8.0),
+            //                       child: Column(
+            //                         children: [
+            //                           Row(
+            //                             mainAxisAlignment:
+            //                                 MainAxisAlignment.spaceBetween,
+            //                             children: [
+            //                               Text(
+            //                                 widget.houses![index].name,
+            //                                 style: TextStyle(
+            //                                     fontWeight: FontWeight.bold,
+            //                                     fontSize: 12,
+            //                                     color: Colors.black87),
+            //                               ),
+            //                               Padding(
+            //                                 padding: const EdgeInsets.only(
+            //                                     bottom: 10),
+            //                                 child: Row(
+            //                                   children: [
+            //                                     const Icon(
+            //                                       Icons.star,
+            //                                       size: 18,
+            //                                       color: Color(0xfff8c123),
+            //                                     ),
+            //                                     Text(
+            //                                       widget.houses![index]
+            //                                           .rating,
+            //                                       style: Theme.of(context)
+            //                                           .textTheme
+            //                                           .bodySmall,
+            //                                     )
+            //                                   ],
+            //                                 ),
+            //                               )
+            //                             ],
+            //                           ),
+            //                           Padding(
+            //                             padding: const EdgeInsets.symmetric(
+            //                                 vertical: 5),
+            //                             child: Row(
+            //                               children: [
+            //                                 Text(
+            //                                   '${widget.houses![index].color} |',
+            //                                   style: TextStyle(
+            //                                       fontSize: 13,
+            //                                       color: Colors.black87),
+            //                                 ),
+            //                                 Text(
+            //                                   widget.houses![index]
+            //                                           .availability
+            //                                       ? " Available"
+            //                                       : " Unavailable",
+            //                                   style: TextStyle(
+            //                                       fontSize: 13,
+            //                                       color: lightColorScheme
+            //                                           .primary),
+            //                                 ),
+            //                               ],
+            //                             ),
+            //                           ),
+            //                           Row(
+            //                             mainAxisAlignment:
+            //                                 MainAxisAlignment.spaceBetween,
+            //                             children: [
+            //                               Padding(
+            //                                 padding: const EdgeInsets.only(
+            //                                     top: 5),
+            //                                 child: Row(
+            //                                   children: [
+            //                                     Text(
+            //                                       'GHS ${widget.houses![index].price}',
+            //                                       style: TextStyle(
+            //                                           fontWeight:
+            //                                               FontWeight.bold,
+            //                                           fontSize: 15,
+            //                                           color:
+            //                                               lightColorScheme
+            //                                                   .primary),
+            //                                     ),
+            //                                     const Text(
+            //                                       ' |  Per day',
+            //                                       style: TextStyle(
+            //                                           fontSize: 13,
+            //                                           color:
+            //                                               Colors.black87),
+            //                                     ),
+            //                                   ],
+            //                                 ),
+            //                               ),
+            //                             ],
+            //                           ),
+            //                         ],
+            //                       ),
+            //                     ),
+            //                   ),
+            //                 )
+            //               ],
+            //             ),
+            //           );
+            //         })
+
             child: GridView.builder(
-                itemCount: sortedCars.length,
+                itemCount: sortedhouses.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 10,
+                    crossAxisSpacing: 15,
                     mainAxisSpacing: 15,
                     mainAxisExtent: 180),
                 itemBuilder: (BuildContext context, index) {
@@ -400,8 +572,9 @@ class _ViewMoreCarsPageState extends State<ViewMoreCarsPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (BuildContext context) => CarDetailsPage(
-                                    car: sortedCars[index],
+                              builder: (BuildContext context) =>
+                                  SalesDetailsPageAccommodation(
+                                    accommodation: sortedhouses[index],
                                   )));
                     },
                     child: Column(
@@ -415,7 +588,7 @@ class _ViewMoreCarsPageState extends State<ViewMoreCarsPage> {
                               image: DecorationImage(
                                   fit: BoxFit.cover,
                                   image: NetworkImage(
-                                    sortedCars[index].images.first,
+                                    sortedhouses[index].images.first,
                                   ))),
                           child: const Align(
                             alignment: Alignment.topLeft,
@@ -445,55 +618,17 @@ class _ViewMoreCarsPageState extends State<ViewMoreCarsPage> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
-                                        sortedCars[index].name,
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 12,
-                                            color: Colors.black87),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 10),
-                                        child: Row(
-                                          children: [
-                                            const Icon(
-                                              Icons.star,
-                                              size: 18,
-                                              color: Color(0xfff8c123),
-                                            ),
-                                            Text(
-                                              sortedCars[index].rating,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodySmall,
-                                            )
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 5),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          '${sortedCars[index].color} |',
-                                          style: TextStyle(
-                                              fontSize: 13,
+                                      SizedBox(
+                                        width: 150,
+                                        child: Text(
+                                          sortedhouses[index].name,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12,
                                               color: Colors.black87),
                                         ),
-                                        Text(
-                                          sortedCars[index].availability
-                                              ? " Available"
-                                              : " Unavailable",
-                                          style: TextStyle(
-                                              fontSize: 13,
-                                              color: lightColorScheme.primary),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                   Row(
                                     mainAxisAlignment:
@@ -504,23 +639,30 @@ class _ViewMoreCarsPageState extends State<ViewMoreCarsPage> {
                                         child: Row(
                                           children: [
                                             Text(
-                                              'GHS ${sortedCars[index].price}',
+                                              'GHS ${sortedhouses[index].price}',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 15,
                                                   color:
                                                       lightColorScheme.primary),
                                             ),
-                                            const Text(
-                                              ' |  Per day',
-                                              style: TextStyle(
-                                                  fontSize: 13,
-                                                  color: Colors.black87),
-                                            ),
                                           ],
                                         ),
                                       ),
                                     ],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5),
+                                    child: SizedBox(
+                                      width: 155,
+                                      child: Text(
+                                        ' ${sortedhouses[index].condition} | ${sortedhouses[index].amenities['bedrooms']} | ${sortedhouses[index].facilities.first}  ',
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),

@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
 
-class SalesGalleryPage extends StatefulWidget {
-  const SalesGalleryPage({super.key});
+class GalleryPage extends StatefulWidget {
+  final List<String> images;
+  const GalleryPage({super.key, required this.images});
 
   @override
-  State<SalesGalleryPage> createState() => _SalesGalleryPageState();
+  State<GalleryPage> createState() => _GalleryPageState();
 }
 
-class _SalesGalleryPageState extends State<SalesGalleryPage> {
+class _GalleryPageState extends State<GalleryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +30,8 @@ class _SalesGalleryPageState extends State<SalesGalleryPage> {
         ),
         body: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: 
-          GridView.builder(
-              itemCount: 7,
+          child: GridView.builder(
+              itemCount: widget.images.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisExtent: 100,
@@ -41,11 +41,11 @@ class _SalesGalleryPageState extends State<SalesGalleryPage> {
               itemBuilder: (BuildContext context, index) {
                 return Container(
                   height: 70,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage('assets/images/benz-front.png'))),
+                          image: NetworkImage(widget.images[index]))),
                   child: const Align(
                     alignment: Alignment.topLeft,
                     child: Padding(
@@ -54,7 +54,6 @@ class _SalesGalleryPageState extends State<SalesGalleryPage> {
                   ),
                 );
               }),
-       
         ));
   }
 }

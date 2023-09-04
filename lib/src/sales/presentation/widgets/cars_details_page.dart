@@ -48,7 +48,18 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                 padding: const EdgeInsets.all(14.0),
                 child: Column(
                   children: [
-                    Image.asset('assets/images/benz-front1.png'),
+                    Container(
+                      height: 100,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(7)),
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(
+                                widget.car.images[0],
+                              ))),
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 5, bottom: 15),
                       child: Row(
@@ -56,42 +67,49 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                         children: [
                           Container(
                             height: 80,
-                            width: 150,
-                            decoration: const BoxDecoration(
+                            width: 185,
+                            decoration: BoxDecoration(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(7)),
+                                    const BorderRadius.all(Radius.circular(7)),
                                 image: DecorationImage(
                                     fit: BoxFit.cover,
-                                    image: AssetImage(
-                                        'assets/images/benz-front.png'))),
+                                    image: NetworkImage(
+                                      widget.car.images[1],
+                                    ))),
                           ),
-                          Container(
-                            height: 80,
-                            width: 150,
-                            decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(7)),
-                                image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(
-                                        'assets/images/benz-front.png'))),
-                            child: Padding(
-                              padding: const EdgeInsets.all(2.0),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              const SalesGalleryPage()));
-                                },
-                                child: Container(
-                                  color: Colors.black.withOpacity(.5),
-                                  child: const Center(
-                                    child: Text(
-                                      '+5',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 30),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Container(
+                              height: 80,
+                              width: 120,
+                              decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(7)),
+                                  image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(
+                                        widget.car.images[2],
+                                      ))),
+                              child: Padding(
+                                padding: const EdgeInsets.all(2.0),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                GalleryPage(
+                                                  images: widget.car.images,
+                                                )));
+                                  },
+                                  child: Container(
+                                    color: Colors.black.withOpacity(.5),
+                                    child: Center(
+                                      child: Text(
+                                        '+ ${widget.car.images.length}',
+                                        style: const TextStyle(
+                                            color: Colors.white, fontSize: 30),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -105,12 +123,12 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       child: Column(
                         children: [
-                          const Row(
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Toyota Corolla 2020',
-                                style: TextStyle(
+                                widget.car.name,
+                                style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15,
                                     color: Colors.black87),
@@ -131,41 +149,41 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Column(
+                                Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Icon(
+                                        const Icon(
                                           Icons.person_2_outlined,
                                           color: Colors.black87,
                                           size: 20,
                                         ),
                                         Text(
-                                          '4 seats',
-                                          style: TextStyle(
+                                          widget.car.seats,
+                                          style: const TextStyle(
                                               fontSize: 15,
                                               color: Colors.black87),
                                         ),
                                       ],
                                     ),
                                     Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 20),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 20),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Icon(
+                                          const Icon(
                                             Icons.settings,
                                             color: Colors.black54,
                                             size: 20,
                                           ),
                                           Text(
-                                            'Auto',
-                                            style: TextStyle(
+                                            widget.car.transmission!,
+                                            style: const TextStyle(
                                                 fontSize: 15,
                                                 color: Colors.black87),
                                           ),
@@ -176,14 +194,14 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Icon(
+                                        const Icon(
                                           Icons.speed,
                                           color: Colors.black54,
                                           size: 20,
                                         ),
                                         Text(
-                                          'Speed 466 kts',
-                                          style: TextStyle(
+                                          widget.car.speed,
+                                          style: const TextStyle(
                                               fontSize: 15,
                                               color: Colors.black87),
                                         ),
@@ -203,13 +221,15 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Row(
+                                    Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
-                                            Padding(
+                                            const Padding(
                                               padding:
                                                   EdgeInsets.only(bottom: 5),
                                               child: Text(
@@ -220,17 +240,18 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                               ),
                                             ),
                                             Text(
-                                              'No faults',
+                                              widget.car.condition,
                                             )
                                           ],
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(left: 65),
+                                          padding:
+                                              const EdgeInsets.only(left: 65),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Padding(
+                                              const Padding(
                                                 padding:
                                                     EdgeInsets.only(bottom: 5),
                                                 child: Text(
@@ -241,7 +262,7 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                                 ),
                                               ),
                                               Text(
-                                                'Toyota',
+                                                widget.car.maker,
                                               )
                                             ],
                                           ),
@@ -250,7 +271,7 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                     ),
                                     Container(
                                         width: 180, child: const Divider()),
-                                    const Row(
+                                    Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
@@ -258,7 +279,7 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Padding(
+                                            const Padding(
                                               padding:
                                                   EdgeInsets.only(bottom: 5),
                                               child: Text(
@@ -269,17 +290,18 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                               ),
                                             ),
                                             Text(
-                                              '3000 cc',
+                                              widget.car.engineSize,
                                             )
                                           ],
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(left: 65),
+                                          padding:
+                                              const EdgeInsets.only(left: 65),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Padding(
+                                              const Padding(
                                                 padding:
                                                     EdgeInsets.only(bottom: 5),
                                                 child: Text(
@@ -290,7 +312,7 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                                 ),
                                               ),
                                               Text(
-                                                '2012',
+                                                widget.car.year,
                                               )
                                             ],
                                           ),
@@ -299,7 +321,7 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                     ),
                                     Container(
                                         width: 180, child: const Divider()),
-                                    const Row(
+                                    Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
@@ -307,7 +329,7 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Padding(
+                                            const Padding(
                                               padding:
                                                   EdgeInsets.only(bottom: 5),
                                               child: Text(
@@ -318,7 +340,7 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                               ),
                                             ),
                                             Text(
-                                              '4Matic sedan AWD (3.0L V6)',
+                                              widget.car.trim,
                                             )
                                           ],
                                         ),
@@ -326,7 +348,7 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                     ),
                                     Container(
                                         width: 180, child: const Divider()),
-                                    const Row(
+                                    Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
@@ -334,7 +356,7 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Padding(
+                                            const Padding(
                                               padding:
                                                   EdgeInsets.only(bottom: 5),
                                               child: Text(
@@ -345,40 +367,40 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                               ),
                                             ),
                                             Text(
-                                              '4',
+                                              widget.car.numberOfCylinders,
                                             )
                                           ],
                                         ),
                                       ],
                                     ),
-                                    const Padding(
-                                      padding: EdgeInsets.only(top: 10),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding:
-                                                    EdgeInsets.only(bottom: 5),
-                                                child: Text(
-                                                  'Facilities',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ),
-                                              Text(
-                                                'Air Conditioning, Turbo, \nHot Water, Electricity',
-                                              )
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
+                                    // const Padding(
+                                    //   padding: EdgeInsets.only(top: 10),
+                                    //   child: Row(
+                                    //     mainAxisAlignment:
+                                    //         MainAxisAlignment.spaceBetween,
+                                    //     children: [
+                                    //       Column(
+                                    //         crossAxisAlignment:
+                                    //             CrossAxisAlignment.start,
+                                    //         children: [
+                                    //           Padding(
+                                    //             padding:
+                                    //                 EdgeInsets.only(bottom: 5),
+                                    //             child: Text(
+                                    //               'Facilities',
+                                    //               style: TextStyle(
+                                    //                   fontWeight:
+                                    //                       FontWeight.bold),
+                                    //             ),
+                                    //           ),
+                                    //           Text(
+                                    //             'Air Conditioning, Turbo, \nHot Water, Electricity',
+                                    //           )
+                                    //         ],
+                                    //       ),
+                                    //     ],
+                                    //   ),
+                                    // ),
                                     Container(
                                         width: 180, child: const Divider()),
                                   ],
@@ -512,7 +534,7 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                             ]);
                                           });
                                     },
-                                    icon: Icon(Icons.message),
+                                    icon: const Icon(Icons.message),
                                     label: const Text('Start Chat')),
                               )
                             ],

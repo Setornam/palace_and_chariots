@@ -32,7 +32,7 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
   String isActiveBrand = "";
 
   final String imagePath =
-      '/Cars/saloon_cars/bmw3.jpeg'; // Replace with your image path
+      '/Vehicles/saloon_cars/bmw3.jpeg'; // Replace with your image path
 
   Future<String> getImageUrl() async {
     final Reference storageReference =
@@ -45,7 +45,7 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
   @override
   void initState() {
     super.initState();
-    getImageUrl();
+    // getImageUrl();
   }
 
   @override
@@ -59,1383 +59,1481 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
               //list of Cars
               List<Car> carList = List.from(snapshot.requireData);
 
-              
+              List<Car> lexusList =
+                  List.from(carList.where((car) => car.brand!.name == 'lexus'));
 
-              List<Car> lexusList = List.from(carList.where((car) =>
-                  car.brand!.name == 'lexus'));
+              List<Car> mercedesList = List.from(
+                  carList.where((car) => car.brand!.name == 'Mercedes'));
 
-              List<Car> mercedesList = List.from(carList.where(
-                  (car) =>
-                      car.brand!.name == 'Mercedes'));
+              List<Car> BMWList =
+                  List.from(carList.where((car) => car.brand!.name == 'BMW'));
 
-              List<Car> BMWList = List.from(carList.where((car) =>
-                  car.brand!.name == 'BMW'));
+              List<Car> kiaList =
+                  List.from(carList.where((car) => car.brand!.name == 'KIA'));
 
-              List<Car> kiaList = List.from(carList.where((car) =>
-                  car.brand!.name == 'KIA'));
-
-              List<Car> hondaList = List.from(carList.where((car) =>
-                  car.brand!.name == 'Honda'));
-
-              
+              List<Car> hondaList =
+                  List.from(carList.where((car) => car.brand!.name == 'Honda'));
 
               return Column(
                 children: [
-                  
                   ///Car brands
                   ///
-                    Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isActiveBrand = "Mercedes";
+                            });
+                          },
+                          child: Column(
                             children: [
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    isActiveBrand = "Mercedes";
-                                  });
-                                },
-                                child: Column(
-                                  children: [
-                                    Image.asset(ImageAssets.mercedesLogo),
-                                    const Text('Mercedes')
-                                  ],
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    isActiveBrand = "BMW";
-                                  });
-                                },
-                                child: Column(
-                                  children: [
-                                    Image.asset(ImageAssets.BMWLogo),
-                                    const Text('BMW')
-                                  ],
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    isActiveBrand = "Lexus";
-                                  });
-                                },
-                                child: Column(
-                                  children: [
-                                    Image.asset(ImageAssets.lexusLogo),
-                                    const Text('Lexus')
-                                  ],
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    isActiveBrand = "KIA";
-                                  });
-                                },
-                                child: Column(
-                                  children: [
-                                    Image.asset(ImageAssets.kiaLogo),
-                                    const Text('KIA')
-                                  ],
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    isActiveBrand = "Honda";
-                                  });
-                                },
-                                child: Column(
-                                  children: [
-                                    Image.asset(ImageAssets.hondaLogo),
-                                    const Text('Honda')
-                                  ],
-                                ),
-                              )
+                              Image.asset(ImageAssets.mercedesLogo),
+                              const Text('Mercedes')
                             ],
                           ),
                         ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isActiveBrand = "BMW";
+                            });
+                          },
+                          child: Column(
+                            children: [
+                              Image.asset(ImageAssets.BMWLogo),
+                              const Text('BMW')
+                            ],
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isActiveBrand = "Lexus";
+                            });
+                          },
+                          child: Column(
+                            children: [
+                              Image.asset(ImageAssets.lexusLogo),
+                              const Text('Lexus')
+                            ],
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isActiveBrand = "KIA";
+                            });
+                          },
+                          child: Column(
+                            children: [
+                              Image.asset(ImageAssets.kiaLogo),
+                              const Text('KIA')
+                            ],
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isActiveBrand = "Honda";
+                            });
+                          },
+                          child: Column(
+                            children: [
+                              Image.asset(ImageAssets.hondaLogo),
+                              const Text('Honda')
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
 
-                
-
-                      Column(
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text('Best cars'),
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (BuildContext context) =>
-                                                  ViewMoreCarsPage(
-                                                    cars: carList,
-                                                   
-                                                  )));
-                                    },
-                                    child: Text(
-                                      'See More',
-                                      style: TextStyle(
-                                          decoration: TextDecoration.underline,
-                                          color: lightColorScheme.primary),
-                                    ),
-                                  )
-                                ],
+                            const Text('Best cars'),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            ViewMoreCarsPage(
+                                              cars: carList,
+                                            )));
+                              },
+                              child: Text(
+                                'See More',
+                                style: TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    color: lightColorScheme.primary),
                               ),
-                            ),
-                            isActiveBrand == "Mercedes"
-                                ?
+                            )
+                          ],
+                        ),
+                      ),
+                      isActiveBrand == "Mercedes"
+                          ?
 
-                                //display a list of mercedes brand cars
+                          //display a list of mercedes brand cars
 
-                                SizedBox(
-                                    height: 400,
-                                    child: ListView.builder(
-                                        itemCount: mercedesList.length,
-                                        itemBuilder:
-                                            (BuildContext context, index) {
-                                          return Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 10),
-                                            child: GestureDetector(
-                                              onTap: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (BuildContext
-                                                                context) =>
-                                                            CarDetailsPage(
-                                                            car: mercedesList[index],
-                                                            )));
-                                              },
-                                              child: Container(
-                                                child: Row(
-                                                  children: [
-                                                    Container(
-                                                      height: 80,
-                                                      width: 80,
-                                                      decoration: BoxDecoration(
-                                                          borderRadius:
-                                                              const BorderRadius
-                                                                      .only(
-                                                                  topLeft: Radius
-                                                                      .circular(
-                                                                          7),
-                                                                  bottomLeft: Radius
-                                                                      .circular(
-                                                                          7)),
-                                                          image: DecorationImage(
-                                                              fit: BoxFit.cover,
-                                                              image: NetworkImage(
+                          SizedBox(
+                              height: 400,
+                              child: ListView.builder(
+                                  itemCount: mercedesList.length,
+                                  itemBuilder: (BuildContext context, index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (BuildContext
+                                                          context) =>
+                                                      CarDetailsPage(
+                                                        car:
+                                                            mercedesList[index],
+                                                      )));
+                                        },
+                                        child: Container(
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                height: 80,
+                                                width: 80,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        const BorderRadius.only(
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    7),
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                    7)),
+                                                    image: DecorationImage(
+                                                        fit: BoxFit.cover,
+                                                        image: NetworkImage(
+                                                            mercedesList[index]
+                                                                .images
+                                                                .first
+                                                                .toString()))),
+                                                child: const Align(
+                                                  alignment: Alignment.topLeft,
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsets.all(5.0),
+                                                    child: Icon(
+                                                      size: 18,
+                                                      Icons.favorite_outline,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Container(
+                                                  height: 80,
+                                                  decoration: const BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                              topLeft: Radius
+                                                                  .circular(7),
+                                                              bottomLeft: Radius
+                                                                  .circular(7)),
+                                                      color: Color(0xffe7e7f4)),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: Column(
+                                                      children: [
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Text(
+                                                              mercedesList[
+                                                                      index]
+                                                                  .name,
+                                                              style: const TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 15,
+                                                                  color: Colors
+                                                                      .black87),
+                                                            ),
+                                                            Row(
+                                                              children: [
+                                                                const Icon(
+                                                                  Icons.star,
+                                                                  color: Color(
+                                                                      0xfff8c123),
+                                                                ),
+                                                                Text(
                                                                   mercedesList[
                                                                           index]
-                                                                      .images
-                                                                      .first
-                                                                      .toString()))),
-                                                      child: const Align(
-                                                        alignment:
-                                                            Alignment.topLeft,
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  5.0),
-                                                          child: Icon(
-                                                            size: 18,
-                                                            Icons
-                                                                .favorite_outline,
-                                                            color: Colors.white,
-                                                          ),
+                                                                      .rating,
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .bodyMedium,
+                                                                )
+                                                              ],
+                                                            )
+                                                          ],
                                                         ),
-                                                      ),
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              '${mercedesList[index].color} |',
+                                                              style: const TextStyle(
+                                                                  fontSize: 13,
+                                                                  color: Colors
+                                                                      .black87),
+                                                            ),
+                                                            Text(
+                                                              snapshot.requireData[index]
+                                                                          .availability ==
+                                                                      true
+                                                                  ? "  Available"
+                                                                  : "   Unavailable",
+                                                              style: TextStyle(
+                                                                  fontSize: 13,
+                                                                  color: lightColorScheme
+                                                                      .primary),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      top: 5),
+                                                              child: Row(
+                                                                children: [
+                                                                  Text(
+                                                                    'GHS ${mercedesList[index].price}',
+                                                                    style: TextStyle(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        fontSize:
+                                                                            15,
+                                                                        color: lightColorScheme
+                                                                            .primary),
+                                                                  ),
+                                                                  const Text(
+                                                                    ' |  Per day',
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            13,
+                                                                        color: Colors
+                                                                            .black87),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+
+                                                            //order button
+                                                            SizedBox(
+                                                              height: 25,
+                                                              child:
+                                                                  ElevatedButton(
+                                                                onPressed: () {
+                                                                  Navigator.push(
+                                                                      context,
+                                                                      MaterialPageRoute(
+                                                                          builder: (BuildContext context) => CheckoutPage(
+                                                                              name: mercedesList[index].name,
+                                                                              color: mercedesList[index].color,
+                                                                              rating: mercedesList[index].rating,
+                                                                              seats: mercedesList[index].seats,
+                                                                              transmission: mercedesList[index].transmission!,
+                                                                              image: mercedesList[index].images.first)));
+                                                                },
+                                                                style: ElevatedButton
+                                                                    .styleFrom(
+                                                                  shape: const RoundedRectangleBorder(
+                                                                      borderRadius:
+                                                                          BorderRadius.all(
+                                                                              Radius.circular(5))),
+                                                                  backgroundColor:
+                                                                      lightColorScheme
+                                                                          .primary,
+                                                                  elevation: 0,
+                                                                ),
+                                                                child:
+                                                                    const Text(
+                                                                  'Order',
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          11),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
                                                     ),
-                                                    Expanded(
-                                                      child: Container(
-                                                        height: 80,
-                                                        decoration: const BoxDecoration(
-                                                            borderRadius: BorderRadius.only(
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }),
+                            )
+                          : isActiveBrand == "lexus"
+                              ?
+
+                              //display a list of alllexus brand cars
+
+                              SizedBox(
+                                  height: 430,
+                                  child: ListView.builder(
+                                      itemCount: lexusList.length,
+                                      itemBuilder:
+                                          (BuildContext context, index) {
+                                        return Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 10),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          CarDetailsPage(
+                                                            car: lexusList[
+                                                                index],
+                                                          )));
+                                            },
+                                            child: Container(
+                                              child: Row(
+                                                children: [
+                                                  Container(
+                                                    height: 80,
+                                                    width: 80,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            const BorderRadius
+                                                                    .only(
                                                                 topLeft: Radius
                                                                     .circular(
                                                                         7),
                                                                 bottomLeft: Radius
                                                                     .circular(
                                                                         7)),
-                                                            color: Color(
-                                                                0xffe7e7f4)),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(8.0),
-                                                          child: Column(
-                                                            children: [
-                                                              Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceBetween,
-                                                                children: [
-                                                                  Text(
-                                                                    mercedesList[
-                                                                            index]
-                                                                        .name,
-                                                                    style: const TextStyle(
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .bold,
-                                                                        fontSize:
-                                                                            15,
-                                                                        color: Colors
-                                                                            .black87),
-                                                                  ),
-                                                                  Row(
-                                                                    children: [
-                                                                      const Icon(
-                                                                        Icons
-                                                                            .star,
-                                                                        color: Color(
-                                                                            0xfff8c123),
-                                                                      ),
-                                                                      Text(
-                                                                        mercedesList[index]
-                                                                            .rating,
-                                                                        style: Theme.of(context)
-                                                                            .textTheme
-                                                                            .bodyMedium,
-                                                                      )
-                                                                    ],
-                                                                  )
-                                                                ],
-                                                              ),
-                                                              Row(
-                                                                children: [
-                                                                  Text(
-                                                                    '${mercedesList[index].color} |',
-                                                                    style: const TextStyle(
-                                                                        fontSize:
-                                                                            13,
-                                                                        color: Colors
-                                                                            .black87),
-                                                                  ),
-                                                                  Text(
-                                                                    snapshot.requireData[index].availability ==
-                                                                            true
-                                                                        ? "  Available"
-                                                                        : "   Unavailable",
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                            13,
-                                                                        color: lightColorScheme
-                                                                            .primary),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceBetween,
-                                                                children: [
-                                                                  Padding(
-                                                                    padding: const EdgeInsets
-                                                                            .only(
-                                                                        top: 5),
-                                                                    child: Row(
-                                                                      children: [
-                                                                        Text(
-                                                                          'GHS ${mercedesList[index].price}',
-                                                                          style: TextStyle(
-                                                                              fontWeight: FontWeight.bold,
-                                                                              fontSize: 15,
-                                                                              color: lightColorScheme.primary),
-                                                                        ),
-                                                                        const Text(
-                                                                          ' |  Per day',
-                                                                          style: TextStyle(
-                                                                              fontSize: 13,
-                                                                              color: Colors.black87),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-
-                                                                  //order button
-                                                                  SizedBox(
-                                                                    height: 25,
-                                                                    child:
-                                                                        ElevatedButton(
-                                                                      onPressed:
-                                                                          () {
-                                                                        Navigator.push(
-                                                                            context,
-                                                                            MaterialPageRoute(builder: (BuildContext context) => CheckoutPage(name: mercedesList[index].name, color: mercedesList[index].color, rating: mercedesList[index].rating, seats: mercedesList[index].seats, transmission: mercedesList[index].transmission!, image: mercedesList[index].images.first)));
-                                                                      },
-                                                                      style: ElevatedButton
-                                                                          .styleFrom(
-                                                                        shape: const RoundedRectangleBorder(
-                                                                            borderRadius:
-                                                                                BorderRadius.all(Radius.circular(5))),
-                                                                        backgroundColor:
-                                                                            lightColorScheme.primary,
-                                                                        elevation:
-                                                                            0,
-                                                                      ),
-                                                                      child:
-                                                                          const Text(
-                                                                        'Order',
-                                                                        style: TextStyle(
-                                                                            fontSize:
-                                                                                11),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ],
-                                                          ),
+                                                        image: DecorationImage(
+                                                            fit: BoxFit.cover,
+                                                            image: NetworkImage(
+                                                                lexusList[index]
+                                                                    .images
+                                                                    .first
+                                                                    .toString()))),
+                                                    child: const Align(
+                                                      alignment:
+                                                          Alignment.topLeft,
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsets.all(5.0),
+                                                        child: Icon(
+                                                          size: 18,
+                                                          Icons
+                                                              .favorite_outline,
+                                                          color: Colors.white,
                                                         ),
                                                       ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        }),
-                                  )
-                                : isActiveBrand == "lexus"
-                                    ?
-
-                                    //display a list of alllexus brand cars
-
-                                    SizedBox(
-                                        height: 430,
-                                        child: ListView.builder(
-                                            itemCount: lexusList.length,
-                                            itemBuilder:
-                                                (BuildContext context, index) {
-                                              return Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 10),
-                                                child: GestureDetector(
-                                                  onTap: () {
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (BuildContext
-                                                                    context) =>
-                                                                CarDetailsPage(car: lexusList[index],
-                                                                 
-                                                                )));
-                                                  },
-                                                  child: Container(
-                                                    child: Row(
-                                                      children: [
-                                                        Container(
-                                                          height: 80,
-                                                          width: 80,
-                                                          decoration: BoxDecoration(
-                                                              borderRadius: const BorderRadius
-                                                                      .only(
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Container(
+                                                      height: 80,
+                                                      decoration: const BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius.only(
                                                                   topLeft: Radius
                                                                       .circular(
                                                                           7),
                                                                   bottomLeft: Radius
                                                                       .circular(
                                                                           7)),
-                                                              image: DecorationImage(
-                                                                  fit: BoxFit
-                                                                      .cover,
-                                                                  image: NetworkImage(
+                                                          color: Color(
+                                                              0xffe7e7f4)),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Column(
+                                                          children: [
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Text(
+                                                                  lexusList[
+                                                                          index]
+                                                                      .name,
+                                                                  style: const TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          15,
+                                                                      color: Colors
+                                                                          .black87),
+                                                                ),
+                                                                Row(
+                                                                  children: [
+                                                                    const Icon(
+                                                                      Icons
+                                                                          .star,
+                                                                      color: Color(
+                                                                          0xfff8c123),
+                                                                    ),
+                                                                    Text(
                                                                       lexusList[
                                                                               index]
-                                                                          .images
-                                                                          .first
-                                                                          .toString()))),
-                                                          child: const Align(
-                                                            alignment: Alignment
-                                                                .topLeft,
-                                                            child: Padding(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(5.0),
-                                                              child: Icon(
-                                                                size: 18,
-                                                                Icons
-                                                                    .favorite_outline,
-                                                                color: Colors
-                                                                    .white,
-                                                              ),
+                                                                          .rating,
+                                                                      style: Theme.of(
+                                                                              context)
+                                                                          .textTheme
+                                                                          .bodyMedium,
+                                                                    )
+                                                                  ],
+                                                                )
+                                                              ],
+                                                            ),
+                                                            Row(
+                                                              children: [
+                                                                Text(
+                                                                  '${lexusList[index].color} |',
+                                                                  style: const TextStyle(
+                                                                      fontSize:
+                                                                          13,
+                                                                      color: Colors
+                                                                          .black87),
+                                                                ),
+                                                                Text(
+                                                                  snapshot.requireData[index]
+                                                                              .availability ==
+                                                                          true
+                                                                      ? "  Available"
+                                                                      : "   Unavailable",
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          13,
+                                                                      color: lightColorScheme
+                                                                          .primary),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      top: 5),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Text(
+                                                                        'GHS ${lexusList[index].price}',
+                                                                        style: TextStyle(
+                                                                            fontWeight: FontWeight
+                                                                                .bold,
+                                                                            fontSize:
+                                                                                15,
+                                                                            color:
+                                                                                lightColorScheme.primary),
+                                                                      ),
+                                                                      const Text(
+                                                                        ' |  Per day',
+                                                                        style: TextStyle(
+                                                                            fontSize:
+                                                                                13,
+                                                                            color:
+                                                                                Colors.black87),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+
+                                                                //order button
+                                                                SizedBox(
+                                                                  height: 25,
+                                                                  child:
+                                                                      ElevatedButton(
+                                                                    onPressed:
+                                                                        () {
+                                                                      Navigator.push(
+                                                                          context,
+                                                                          MaterialPageRoute(
+                                                                              builder: (BuildContext context) => CheckoutPage(name: lexusList[index].name, color: lexusList[index].color, rating: lexusList[index].rating, seats: lexusList[index].seats, transmission: lexusList[index].transmission!, image: lexusList[index].images.first)));
+                                                                    },
+                                                                    style: ElevatedButton
+                                                                        .styleFrom(
+                                                                      shape: const RoundedRectangleBorder(
+                                                                          borderRadius:
+                                                                              BorderRadius.all(Radius.circular(5))),
+                                                                      backgroundColor:
+                                                                          lightColorScheme
+                                                                              .primary,
+                                                                      elevation:
+                                                                          0,
+                                                                    ),
+                                                                    child:
+                                                                        const Text(
+                                                                      'Order',
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              11),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }),
+                                )
+                              : isActiveBrand == "BMW"
+                                  ? SizedBox(
+                                      height: 430,
+                                      child: ListView.builder(
+                                          itemCount: BMWList.length,
+                                          itemBuilder:
+                                              (BuildContext context, index) {
+                                            return Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 10),
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              CarDetailsPage(
+                                                                  car: BMWList[
+                                                                      index])));
+                                                },
+                                                child: Container(
+                                                  child: Row(
+                                                    children: [
+                                                      Container(
+                                                        height: 80,
+                                                        width: 80,
+                                                        decoration: BoxDecoration(
+                                                            borderRadius: const BorderRadius
+                                                                    .only(
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        7),
+                                                                bottomLeft: Radius
+                                                                    .circular(
+                                                                        7)),
+                                                            image: DecorationImage(
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                                image: NetworkImage(
+                                                                    BMWList[index]
+                                                                        .images
+                                                                        .first
+                                                                        .toString()))),
+                                                        child: const Align(
+                                                          alignment:
+                                                              Alignment.topLeft,
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    5.0),
+                                                            child: Icon(
+                                                              size: 18,
+                                                              Icons
+                                                                  .favorite_outline,
+                                                              color:
+                                                                  Colors.white,
                                                             ),
                                                           ),
                                                         ),
-                                                        Expanded(
-                                                          child: Container(
+                                                      ),
+                                                      Expanded(
+                                                        child: Container(
+                                                          height: 80,
+                                                          decoration: const BoxDecoration(
+                                                              borderRadius: BorderRadius.only(
+                                                                  topLeft: Radius
+                                                                      .circular(
+                                                                          7),
+                                                                  bottomLeft: Radius
+                                                                      .circular(
+                                                                          7)),
+                                                              color: Color(
+                                                                  0xffe7e7f4)),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8.0),
+                                                            child: Column(
+                                                              children: [
+                                                                Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  children: [
+                                                                    Text(
+                                                                      BMWList[index]
+                                                                          .name,
+                                                                      style: const TextStyle(
+                                                                          fontWeight: FontWeight
+                                                                              .bold,
+                                                                          fontSize:
+                                                                              15,
+                                                                          color:
+                                                                              Colors.black87),
+                                                                    ),
+                                                                    Row(
+                                                                      children: [
+                                                                        const Icon(
+                                                                          Icons
+                                                                              .star,
+                                                                          color:
+                                                                              Color(0xfff8c123),
+                                                                        ),
+                                                                        Text(
+                                                                          BMWList[index]
+                                                                              .rating,
+                                                                          style: Theme.of(context)
+                                                                              .textTheme
+                                                                              .bodyMedium,
+                                                                        )
+                                                                      ],
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                                Row(
+                                                                  children: [
+                                                                    Text(
+                                                                      '${BMWList[index].color} |',
+                                                                      style: const TextStyle(
+                                                                          fontSize:
+                                                                              13,
+                                                                          color:
+                                                                              Colors.black87),
+                                                                    ),
+                                                                    Text(
+                                                                      snapshot.requireData[index].availability ==
+                                                                              true
+                                                                          ? "  Available"
+                                                                          : "   Unavailable",
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              13,
+                                                                          color:
+                                                                              lightColorScheme.primary),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: const EdgeInsets
+                                                                              .only(
+                                                                          top:
+                                                                              5),
+                                                                      child:
+                                                                          Row(
+                                                                        children: [
+                                                                          Text(
+                                                                            'GHS ${BMWList[index].price}',
+                                                                            style: TextStyle(
+                                                                                fontWeight: FontWeight.bold,
+                                                                                fontSize: 15,
+                                                                                color: lightColorScheme.primary),
+                                                                          ),
+                                                                          const Text(
+                                                                            ' |  Per day',
+                                                                            style:
+                                                                                TextStyle(fontSize: 13, color: Colors.black87),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+
+                                                                    //order button
+                                                                    SizedBox(
+                                                                      height:
+                                                                          25,
+                                                                      child:
+                                                                          ElevatedButton(
+                                                                        onPressed:
+                                                                            () {
+                                                                          Navigator.push(
+                                                                              context,
+                                                                              MaterialPageRoute(builder: (BuildContext context) => CheckoutPage(name: BMWList[index].name, color: BMWList[index].color, rating: BMWList[index].rating, seats: BMWList[index].seats, transmission: BMWList[index].transmission!, image: BMWList[index].images.first)));
+                                                                        },
+                                                                        style: ElevatedButton
+                                                                            .styleFrom(
+                                                                          shape:
+                                                                              const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+                                                                          backgroundColor:
+                                                                              lightColorScheme.primary,
+                                                                          elevation:
+                                                                              0,
+                                                                        ),
+                                                                        child:
+                                                                            const Text(
+                                                                          'Order',
+                                                                          style:
+                                                                              TextStyle(fontSize: 11),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          }),
+                                    )
+
+                                  //Lexus cars
+                                  : isActiveBrand == "Lexus"
+                                      ? SizedBox(
+                                          height: 430,
+                                          child: ListView.builder(
+                                              itemCount: lexusList.length,
+                                              itemBuilder:
+                                                  (BuildContext context,
+                                                      index) {
+                                                return Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(vertical: 10),
+                                                  child: GestureDetector(
+                                                    onTap: () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (BuildContext
+                                                                      context) =>
+                                                                  CarDetailsPage(
+                                                                      car: lexusList[
+                                                                          index])));
+                                                    },
+                                                    child: Container(
+                                                      child: Row(
+                                                        children: [
+                                                          Container(
                                                             height: 80,
-                                                            decoration: const BoxDecoration(
-                                                                borderRadius: BorderRadius.only(
+                                                            width: 80,
+                                                            decoration: BoxDecoration(
+                                                                borderRadius: const BorderRadius
+                                                                        .only(
                                                                     topLeft: Radius
                                                                         .circular(
                                                                             7),
                                                                     bottomLeft:
                                                                         Radius.circular(
                                                                             7)),
-                                                                color: Color(
-                                                                    0xffe7e7f4)),
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(8.0),
-                                                              child: Column(
-                                                                children: [
-                                                                  Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: [
-                                                                      Text(
-                                                                        lexusList[index]
-                                                                            .name,
-                                                                        style: const TextStyle(
-                                                                            fontWeight: FontWeight
-                                                                                .bold,
-                                                                            fontSize:
-                                                                                15,
-                                                                            color:
-                                                                                Colors.black87),
-                                                                      ),
-                                                                      Row(
-                                                                        children: [
-                                                                          const Icon(
-                                                                            Icons.star,
-                                                                            color:
-                                                                                Color(0xfff8c123),
-                                                                          ),
-                                                                          Text(
-                                                                            lexusList[index].rating,
-                                                                            style:
-                                                                                Theme.of(context).textTheme.bodyMedium,
-                                                                          )
-                                                                        ],
-                                                                      )
-                                                                    ],
-                                                                  ),
-                                                                  Row(
-                                                                    children: [
-                                                                      Text(
-                                                                        '${lexusList[index].color} |',
-                                                                        style: const TextStyle(
-                                                                            fontSize:
-                                                                                13,
-                                                                            color:
-                                                                                Colors.black87),
-                                                                      ),
-                                                                      Text(
-                                                                        snapshot.requireData[index].availability ==
-                                                                                true
-                                                                            ? "  Available"
-                                                                            : "   Unavailable",
-                                                                        style: TextStyle(
-                                                                            fontSize:
-                                                                                13,
-                                                                            color:
-                                                                                lightColorScheme.primary),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                  Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: [
-                                                                      Padding(
-                                                                        padding:
-                                                                            const EdgeInsets.only(top: 5),
-                                                                        child:
-                                                                            Row(
-                                                                          children: [
-                                                                            Text(
-                                                                              'GHS ${lexusList[index].price}',
-                                                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: lightColorScheme.primary),
-                                                                            ),
-                                                                            const Text(
-                                                                              ' |  Per day',
-                                                                              style: TextStyle(fontSize: 13, color: Colors.black87),
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-
-                                                                      //order button
-                                                                      SizedBox(
-                                                                        height:
-                                                                            25,
-                                                                        child:
-                                                                            ElevatedButton(
-                                                                          onPressed:
-                                                                              () {
-                                                                            Navigator.push(context,
-                                                                                MaterialPageRoute(builder: (BuildContext context) => CheckoutPage(name: lexusList[index].name, color: lexusList[index].color, rating: lexusList[index].rating, seats: lexusList[index].seats, transmission: lexusList[index].transmission!, image: lexusList[index].images.first)));
-                                                                          },
-                                                                          style:
-                                                                              ElevatedButton.styleFrom(
-                                                                            shape:
-                                                                                const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
-                                                                            backgroundColor:
-                                                                                lightColorScheme.primary,
-                                                                            elevation:
-                                                                                0,
-                                                                          ),
-                                                                          child:
-                                                                              const Text(
-                                                                            'Order',
-                                                                            style:
-                                                                                TextStyle(fontSize: 11),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ],
+                                                                image: DecorationImage(
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                    image: NetworkImage(lexusList[
+                                                                            index]
+                                                                        .images
+                                                                        .first
+                                                                        .toString()))),
+                                                            child: const Align(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .topLeft,
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
+                                                                            5.0),
+                                                                child: Icon(
+                                                                  size: 18,
+                                                                  Icons
+                                                                      .favorite_outline,
+                                                                  color: Colors
+                                                                      .white,
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
-                                                        )
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            }),
-                                      )
-                                    : isActiveBrand == "BMW"
-                                        ? SizedBox(
-                                            height: 430,
-                                            child: ListView.builder(
-                                                itemCount: BMWList.length,
-                                                itemBuilder:
-                                                    (BuildContext context,
-                                                        index) {
-                                                  return Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        vertical: 10),
-                                                    child: GestureDetector(
-                                                      onTap: () {
-                                                        Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder: (BuildContext
-                                                                        context) =>CarDetailsPage(car: BMWList[index])));
-                                                                    
-                                                     
-                                                     
-                                                     
-                                                      },
-                                                      child: Container(
-                                                        child: Row(
-                                                          children: [
-                                                            Container(
+                                                          Expanded(
+                                                            child: Container(
                                                               height: 80,
-                                                              width: 80,
-                                                              decoration: BoxDecoration(
-                                                                  borderRadius: const BorderRadius
-                                                                          .only(
+                                                              decoration: const BoxDecoration(
+                                                                  borderRadius: BorderRadius.only(
                                                                       topLeft: Radius
                                                                           .circular(
                                                                               7),
                                                                       bottomLeft:
                                                                           Radius.circular(
                                                                               7)),
-                                                                  image: DecorationImage(
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                      image: NetworkImage(BMWList[
-                                                                              index]
-                                                                          .images
-                                                                          .first
-                                                                          .toString()))),
-                                                              child:
-                                                                  const Align(
-                                                                alignment:
-                                                                    Alignment
-                                                                        .topLeft,
-                                                                child: Padding(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .all(
-                                                                              5.0),
-                                                                  child: Icon(
-                                                                    size: 18,
-                                                                    Icons
-                                                                        .favorite_outline,
-                                                                    color: Colors
-                                                                        .white,
-                                                                  ),
+                                                                  color: Color(
+                                                                      0xffe7e7f4)),
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .all(
+                                                                        8.0),
+                                                                child: Column(
+                                                                  children: [
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        Text(
+                                                                          lexusList[index]
+                                                                              .name,
+                                                                          style: const TextStyle(
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontSize: 15,
+                                                                              color: Colors.black87),
+                                                                        ),
+                                                                        Row(
+                                                                          children: [
+                                                                            const Icon(
+                                                                              Icons.star,
+                                                                              color: Color(0xfff8c123),
+                                                                            ),
+                                                                            Text(
+                                                                              lexusList[index].rating,
+                                                                              style: Theme.of(context).textTheme.bodyMedium,
+                                                                            )
+                                                                          ],
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                    Row(
+                                                                      children: [
+                                                                        Text(
+                                                                          '${lexusList[index].color} |',
+                                                                          style: const TextStyle(
+                                                                              fontSize: 13,
+                                                                              color: Colors.black87),
+                                                                        ),
+                                                                        Text(
+                                                                          snapshot.requireData[index].availability == true
+                                                                              ? "  Available"
+                                                                              : "   Unavailable",
+                                                                          style: TextStyle(
+                                                                              fontSize: 13,
+                                                                              color: lightColorScheme.primary),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding:
+                                                                              const EdgeInsets.only(top: 5),
+                                                                          child:
+                                                                              Row(
+                                                                            children: [
+                                                                              Text(
+                                                                                'GHS ${lexusList[index].price}',
+                                                                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: lightColorScheme.primary),
+                                                                              ),
+                                                                              const Text(
+                                                                                ' |  Per day',
+                                                                                style: TextStyle(fontSize: 13, color: Colors.black87),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+
+                                                                        //order button
+                                                                        SizedBox(
+                                                                          height:
+                                                                              25,
+                                                                          child:
+                                                                              ElevatedButton(
+                                                                            onPressed:
+                                                                                () {
+                                                                              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CheckoutPage(name: lexusList[index].name, color: lexusList[index].color, rating: lexusList[index].rating, seats: lexusList[index].seats, transmission: lexusList[index].transmission!, image: lexusList[index].images.first)));
+                                                                            },
+                                                                            style:
+                                                                                ElevatedButton.styleFrom(
+                                                                              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+                                                                              backgroundColor: lightColorScheme.primary,
+                                                                              elevation: 0,
+                                                                            ),
+                                                                            child:
+                                                                                const Text(
+                                                                              'Order',
+                                                                              style: TextStyle(fontSize: 11),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ],
                                                                 ),
                                                               ),
                                                             ),
-                                                            Expanded(
-                                                              child: Container(
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              }),
+                                        )
+
+                                      //kia
+                                      : isActiveBrand == "KIA"
+                                          ? SizedBox(
+                                              height: 430,
+                                              child: ListView.builder(
+                                                  itemCount: kiaList.length,
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          index) {
+                                                    return Padding(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          vertical: 10),
+                                                      child: GestureDetector(
+                                                        onTap: () {
+                                                          Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder: (BuildContext
+                                                                          context) =>
+                                                                      CarDetailsPage(
+                                                                        car: kiaList[
+                                                                            index],
+                                                                      )));
+                                                        },
+                                                        child: Container(
+                                                          child: Row(
+                                                            children: [
+                                                              Container(
                                                                 height: 80,
-                                                                decoration: const BoxDecoration(
-                                                                    borderRadius: BorderRadius.only(
+                                                                width: 80,
+                                                                decoration: BoxDecoration(
+                                                                    borderRadius: const BorderRadius
+                                                                            .only(
                                                                         topLeft:
                                                                             Radius.circular(
                                                                                 7),
                                                                         bottomLeft:
                                                                             Radius.circular(
                                                                                 7)),
-                                                                    color: Color(
-                                                                        0xffe7e7f4)),
-                                                                child: Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                              .all(
-                                                                          8.0),
-                                                                  child: Column(
-                                                                    children: [
-                                                                      Row(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.spaceBetween,
-                                                                        children: [
-                                                                          Text(
-                                                                            BMWList[index].name,
-                                                                            style: const TextStyle(
-                                                                                fontWeight: FontWeight.bold,
-                                                                                fontSize: 15,
-                                                                                color: Colors.black87),
-                                                                          ),
-                                                                          Row(
-                                                                            children: [
-                                                                              const Icon(
-                                                                                Icons.star,
-                                                                                color: Color(0xfff8c123),
-                                                                              ),
-                                                                              Text(
-                                                                                BMWList[index].rating,
-                                                                                style: Theme.of(context).textTheme.bodyMedium,
-                                                                              )
-                                                                            ],
-                                                                          )
-                                                                        ],
-                                                                      ),
-                                                                      Row(
-                                                                        children: [
-                                                                          Text(
-                                                                            '${BMWList[index].color} |',
-                                                                            style:
-                                                                                const TextStyle(fontSize: 13, color: Colors.black87),
-                                                                          ),
-                                                                          Text(
-                                                                            snapshot.requireData[index].availability == true
-                                                                                ? "  Available"
-                                                                                : "   Unavailable",
-                                                                            style:
-                                                                                TextStyle(fontSize: 13, color: lightColorScheme.primary),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                      Row(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.spaceBetween,
-                                                                        children: [
-                                                                          Padding(
-                                                                            padding:
-                                                                                const EdgeInsets.only(top: 5),
-                                                                            child:
-                                                                                Row(
-                                                                              children: [
-                                                                                Text(
-                                                                                  'GHS ${BMWList[index].price}',
-                                                                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: lightColorScheme.primary),
-                                                                                ),
-                                                                                const Text(
-                                                                                  ' |  Per day',
-                                                                                  style: TextStyle(fontSize: 13, color: Colors.black87),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          ),
-
-                                                                          //order button
-                                                                          SizedBox(
-                                                                            height:
-                                                                                25,
-                                                                            child:
-                                                                                ElevatedButton(
-                                                                              onPressed: () {
-                                                                                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CheckoutPage(name: BMWList[index].name, color: BMWList[index].color, rating: BMWList[index].rating, seats: BMWList[index].seats, transmission: BMWList[index].transmission!, image: BMWList[index].images.first)));
-                                                                              },
-                                                                              style: ElevatedButton.styleFrom(
-                                                                                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
-                                                                                backgroundColor: lightColorScheme.primary,
-                                                                                elevation: 0,
-                                                                              ),
-                                                                              child: const Text(
-                                                                                'Order',
-                                                                                style: TextStyle(fontSize: 11),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ],
+                                                                    image: DecorationImage(
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                        image: NetworkImage(kiaList[index]
+                                                                            .images
+                                                                            .first
+                                                                            .toString()))),
+                                                                child:
+                                                                    const Align(
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .topLeft,
+                                                                  child:
+                                                                      Padding(
+                                                                    padding:
+                                                                        EdgeInsets.all(
+                                                                            5.0),
+                                                                    child: Icon(
+                                                                      size: 18,
+                                                                      Icons
+                                                                          .favorite_outline,
+                                                                      color: Colors
+                                                                          .white,
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                }),
-                                          )
-
-                                        //Lexus cars
-                                        : isActiveBrand == "Lexus"
-                                            ? SizedBox(
-                                                height: 430,
-                                                child: ListView.builder(
-                                                    itemCount: lexusList.length,
-                                                    itemBuilder:
-                                                        (BuildContext context,
-                                                            index) {
-                                                      return Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                vertical: 10),
-                                                        child: GestureDetector(
-                                                          onTap: () {
-                                                            Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(
-                                                                    builder: (BuildContext
-                                                                            context) =>CarDetailsPage(car: lexusList[index])));
-                                                                        
-                                                         
-                                                          },
-                                                          child: Container(
-                                                            child: Row(
-                                                              children: [
-                                                                Container(
+                                                              Expanded(
+                                                                child:
+                                                                    Container(
                                                                   height: 80,
-                                                                  width: 80,
-                                                                  decoration: BoxDecoration(
-                                                                      borderRadius: const BorderRadius
-                                                                              .only(
+                                                                  decoration: const BoxDecoration(
+                                                                      borderRadius: BorderRadius.only(
                                                                           topLeft: Radius.circular(
                                                                               7),
                                                                           bottomLeft: Radius.circular(
                                                                               7)),
-                                                                      image: DecorationImage(
-                                                                          fit: BoxFit
-                                                                              .cover,
-                                                                          image: NetworkImage(lexusList[index]
-                                                                              .images
-                                                                              .first
-                                                                              .toString()))),
+                                                                      color: Color(
+                                                                          0xffe7e7f4)),
                                                                   child:
-                                                                      const Align(
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .topLeft,
+                                                                      Padding(
+                                                                    padding:
+                                                                        const EdgeInsets.all(
+                                                                            8.0),
                                                                     child:
-                                                                        Padding(
-                                                                      padding:
-                                                                          EdgeInsets.all(
-                                                                              5.0),
-                                                                      child:
-                                                                          Icon(
-                                                                        size:
-                                                                            18,
-                                                                        Icons
-                                                                            .favorite_outline,
-                                                                        color: Colors
-                                                                            .white,
-                                                                      ),
+                                                                        Column(
+                                                                      children: [
+                                                                        Row(
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.spaceBetween,
+                                                                          children: [
+                                                                            Text(
+                                                                              kiaList[index].name,
+                                                                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black87),
+                                                                            ),
+                                                                            Row(
+                                                                              children: [
+                                                                                const Icon(
+                                                                                  Icons.star,
+                                                                                  color: Color(0xfff8c123),
+                                                                                ),
+                                                                                Text(
+                                                                                  kiaList[index].rating,
+                                                                                  style: Theme.of(context).textTheme.bodyMedium,
+                                                                                )
+                                                                              ],
+                                                                            )
+                                                                          ],
+                                                                        ),
+                                                                        Row(
+                                                                          children: [
+                                                                            Text(
+                                                                              '${kiaList[index].color} |',
+                                                                              style: const TextStyle(fontSize: 13, color: Colors.black87),
+                                                                            ),
+                                                                            Text(
+                                                                              snapshot.requireData[index].availability == true ? "  Available" : "   Unavailable",
+                                                                              style: TextStyle(fontSize: 13, color: lightColorScheme.primary),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                        Row(
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.spaceBetween,
+                                                                          children: [
+                                                                            Padding(
+                                                                              padding: const EdgeInsets.only(top: 5),
+                                                                              child: Row(
+                                                                                children: [
+                                                                                  Text(
+                                                                                    'GHS ${kiaList[index].price}',
+                                                                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: lightColorScheme.primary),
+                                                                                  ),
+                                                                                  const Text(
+                                                                                    ' |  Per day',
+                                                                                    style: TextStyle(fontSize: 13, color: Colors.black87),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ),
+
+                                                                            //order button
+                                                                            SizedBox(
+                                                                              height: 25,
+                                                                              child: ElevatedButton(
+                                                                                onPressed: () {
+                                                                                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CheckoutPage(name: kiaList[index].name, color: kiaList[index].color, rating: kiaList[index].rating, seats: kiaList[index].seats, transmission: kiaList[index].transmission!, image: kiaList[index].images.first)));
+                                                                                },
+                                                                                style: ElevatedButton.styleFrom(
+                                                                                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+                                                                                  backgroundColor: lightColorScheme.primary,
+                                                                                  elevation: 0,
+                                                                                ),
+                                                                                child: const Text(
+                                                                                  'Order',
+                                                                                  style: TextStyle(fontSize: 11),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ],
                                                                     ),
                                                                   ),
                                                                 ),
-                                                                Expanded(
-                                                                  child:
-                                                                      Container(
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }),
+                                            )
+                                          : isActiveBrand == "Honda"
+                                              ? SizedBox(
+                                                  height: 430,
+                                                  child: ListView.builder(
+                                                      itemCount:
+                                                          hondaList.length,
+                                                      itemBuilder:
+                                                          (BuildContext context,
+                                                              index) {
+                                                        return Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical: 10),
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () {
+                                                              Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                      builder: (BuildContext
+                                                                              context) =>
+                                                                          CarDetailsPage(
+                                                                            car:
+                                                                                hondaList[index],
+                                                                          )));
+                                                            },
+                                                            child: Container(
+                                                              child: Row(
+                                                                children: [
+                                                                  Container(
                                                                     height: 80,
-                                                                    decoration: const BoxDecoration(
-                                                                        borderRadius: BorderRadius.only(
+                                                                    width: 80,
+                                                                    decoration: BoxDecoration(
+                                                                        borderRadius: const BorderRadius.only(
                                                                             topLeft: Radius.circular(
                                                                                 7),
                                                                             bottomLeft: Radius.circular(
                                                                                 7)),
-                                                                        color: Color(
-                                                                            0xffe7e7f4)),
+                                                                        image: DecorationImage(
+                                                                            fit:
+                                                                                BoxFit.cover,
+                                                                            image: NetworkImage(hondaList[index].images.first.toString()))),
                                                                     child:
-                                                                        Padding(
-                                                                      padding:
-                                                                          const EdgeInsets.all(
-                                                                              8.0),
+                                                                        const Align(
+                                                                      alignment:
+                                                                          Alignment
+                                                                              .topLeft,
                                                                       child:
-                                                                          Column(
-                                                                        children: [
-                                                                          Row(
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.spaceBetween,
-                                                                            children: [
-                                                                              Text(
-                                                                                lexusList[index].name,
-                                                                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black87),
-                                                                              ),
-                                                                              Row(
-                                                                                children: [
-                                                                                  const Icon(
-                                                                                    Icons.star,
-                                                                                    color: Color(0xfff8c123),
-                                                                                  ),
-                                                                                  Text(
-                                                                                    lexusList[index].rating,
-                                                                                    style: Theme.of(context).textTheme.bodyMedium,
-                                                                                  )
-                                                                                ],
-                                                                              )
-                                                                            ],
-                                                                          ),
-                                                                          Row(
-                                                                            children: [
-                                                                              Text(
-                                                                                '${lexusList[index].color} |',
-                                                                                style: const TextStyle(fontSize: 13, color: Colors.black87),
-                                                                              ),
-                                                                              Text(
-                                                                                snapshot.requireData[index].availability == true ? "  Available" : "   Unavailable",
-                                                                                style: TextStyle(fontSize: 13, color: lightColorScheme.primary),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                          Row(
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.spaceBetween,
-                                                                            children: [
-                                                                              Padding(
-                                                                                padding: const EdgeInsets.only(top: 5),
-                                                                                child: Row(
-                                                                                  children: [
-                                                                                    Text(
-                                                                                      'GHS ${lexusList[index].price}',
-                                                                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: lightColorScheme.primary),
-                                                                                    ),
-                                                                                    const Text(
-                                                                                      ' |  Per day',
-                                                                                      style: TextStyle(fontSize: 13, color: Colors.black87),
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
-                                                                              ),
-
-                                                                              //order button
-                                                                              SizedBox(
-                                                                                height: 25,
-                                                                                child: ElevatedButton(
-                                                                                  onPressed: () {
-                                                                                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CheckoutPage(name: lexusList[index].name, color: lexusList[index].color, rating: lexusList[index].rating, seats: lexusList[index].seats, transmission: lexusList[index].transmission!, image: lexusList[index].images.first)));
-                                                                                  },
-                                                                                  style: ElevatedButton.styleFrom(
-                                                                                    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
-                                                                                    backgroundColor: lightColorScheme.primary,
-                                                                                    elevation: 0,
-                                                                                  ),
-                                                                                  child: const Text(
-                                                                                    'Order',
-                                                                                    style: TextStyle(fontSize: 11),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ],
+                                                                          Padding(
+                                                                        padding:
+                                                                            EdgeInsets.all(5.0),
+                                                                        child:
+                                                                            Icon(
+                                                                          size:
+                                                                              18,
+                                                                          Icons
+                                                                              .favorite_outline,
+                                                                          color:
+                                                                              Colors.white,
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ),
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      );
-                                                    }),
-                                              )
-
-                                            //kia
-                                            : isActiveBrand == "KIA"
-                                                ? SizedBox(
-                                                    height: 430,
-                                                    child: ListView.builder(
-                                                        itemCount:
-                                                            kiaList.length,
-                                                        itemBuilder:
-                                                            (BuildContext
-                                                                    context,
-                                                                index) {
-                                                          return Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .symmetric(
-                                                                    vertical:
-                                                                        10),
-                                                            child:
-                                                                GestureDetector(
-                                                              onTap: () {
-                                                                Navigator.push(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                        builder: (BuildContext
-                                                                                context) =>
-                                                                            CarDetailsPage(car: kiaList[index],
-                                                                            
-                                                                            )));
-                                                              },
-                                                              child: Container(
-                                                                child: Row(
-                                                                  children: [
-                                                                    Container(
+                                                                  Expanded(
+                                                                    child:
+                                                                        Container(
                                                                       height:
                                                                           80,
-                                                                      width: 80,
-                                                                      decoration: BoxDecoration(
-                                                                          borderRadius: const BorderRadius.only(
-                                                                              topLeft: Radius.circular(
-                                                                                  7),
-                                                                              bottomLeft: Radius.circular(
-                                                                                  7)),
-                                                                          image: DecorationImage(
-                                                                              fit: BoxFit.cover,
-                                                                              image: NetworkImage(kiaList[index].images.first.toString()))),
+                                                                      decoration: const BoxDecoration(
+                                                                          borderRadius: BorderRadius.only(
+                                                                              topLeft: Radius.circular(7),
+                                                                              bottomLeft: Radius.circular(7)),
+                                                                          color: Color(0xffe7e7f4)),
                                                                       child:
-                                                                          const Align(
-                                                                        alignment:
-                                                                            Alignment.topLeft,
+                                                                          Padding(
+                                                                        padding:
+                                                                            const EdgeInsets.all(8.0),
                                                                         child:
-                                                                            Padding(
-                                                                          padding:
-                                                                              EdgeInsets.all(5.0),
-                                                                          child:
-                                                                              Icon(
-                                                                            size:
-                                                                                18,
-                                                                            Icons.favorite_outline,
-                                                                            color:
-                                                                                Colors.white,
-                                                                          ),
+                                                                            Column(
+                                                                          children: [
+                                                                            Row(
+                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                              children: [
+                                                                                Text(
+                                                                                  hondaList[index].name,
+                                                                                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black87),
+                                                                                ),
+                                                                                Row(
+                                                                                  children: [
+                                                                                    const Icon(
+                                                                                      Icons.star,
+                                                                                      color: Color(0xfff8c123),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      hondaList[index].rating,
+                                                                                      style: Theme.of(context).textTheme.bodyMedium,
+                                                                                    )
+                                                                                  ],
+                                                                                )
+                                                                              ],
+                                                                            ),
+                                                                            Row(
+                                                                              children: [
+                                                                                Text(
+                                                                                  '${hondaList[index].color} |',
+                                                                                  style: const TextStyle(fontSize: 13, color: Colors.black87),
+                                                                                ),
+                                                                                Text(
+                                                                                  hondaList[index].availability == true ? "  Available" : "   Unavailable",
+                                                                                  style: TextStyle(fontSize: 13, color: lightColorScheme.primary),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                            Row(
+                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                              children: [
+                                                                                Padding(
+                                                                                  padding: const EdgeInsets.only(top: 5),
+                                                                                  child: Row(
+                                                                                    children: [
+                                                                                      Text(
+                                                                                        'GHS ${hondaList[index].price}',
+                                                                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: lightColorScheme.primary),
+                                                                                      ),
+                                                                                      const Text(
+                                                                                        ' |  Per day',
+                                                                                        style: TextStyle(fontSize: 13, color: Colors.black87),
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
+                                                                                ),
+
+                                                                                //order button
+                                                                                SizedBox(
+                                                                                  height: 25,
+                                                                                  child: ElevatedButton(
+                                                                                    onPressed: () {
+                                                                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CheckoutPage(name: hondaList[index].name, color: hondaList[index].color, rating: hondaList[index].rating, seats: hondaList[index].seats, transmission: hondaList[index].transmission!, image: hondaList[index].images.first)));
+                                                                                    },
+                                                                                    style: ElevatedButton.styleFrom(
+                                                                                      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+                                                                                      backgroundColor: lightColorScheme.primary,
+                                                                                      elevation: 0,
+                                                                                    ),
+                                                                                    child: const Text(
+                                                                                      'Order',
+                                                                                      style: TextStyle(fontSize: 11),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ],
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                    Expanded(
-                                                                      child:
-                                                                          Container(
-                                                                        height:
-                                                                            80,
-                                                                        decoration: const BoxDecoration(
-                                                                            borderRadius:
-                                                                                BorderRadius.only(topLeft: Radius.circular(7), bottomLeft: Radius.circular(7)),
-                                                                            color: Color(0xffe7e7f4)),
-                                                                        child:
-                                                                            Padding(
-                                                                          padding:
-                                                                              const EdgeInsets.all(8.0),
-                                                                          child:
-                                                                              Column(
-                                                                            children: [
-                                                                              Row(
-                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                children: [
-                                                                                  Text(
-                                                                                    kiaList[index].name,
-                                                                                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black87),
-                                                                                  ),
-                                                                                  Row(
-                                                                                    children: [
-                                                                                      const Icon(
-                                                                                        Icons.star,
-                                                                                        color: Color(0xfff8c123),
-                                                                                      ),
-                                                                                      Text(
-                                                                                        kiaList[index].rating,
-                                                                                        style: Theme.of(context).textTheme.bodyMedium,
-                                                                                      )
-                                                                                    ],
-                                                                                  )
-                                                                                ],
-                                                                              ),
-                                                                              Row(
-                                                                                children: [
-                                                                                  Text(
-                                                                                    '${kiaList[index].color} |',
-                                                                                    style: const TextStyle(fontSize: 13, color: Colors.black87),
-                                                                                  ),
-                                                                                  Text(
-                                                                                    snapshot.requireData[index].availability == true ? "  Available" : "   Unavailable",
-                                                                                    style: TextStyle(fontSize: 13, color: lightColorScheme.primary),
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                              Row(
-                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                children: [
-                                                                                  Padding(
-                                                                                    padding: const EdgeInsets.only(top: 5),
-                                                                                    child: Row(
-                                                                                      children: [
-                                                                                        Text(
-                                                                                          'GHS ${kiaList[index].price}',
-                                                                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: lightColorScheme.primary),
-                                                                                        ),
-                                                                                        const Text(
-                                                                                          ' |  Per day',
-                                                                                          style: TextStyle(fontSize: 13, color: Colors.black87),
-                                                                                        ),
-                                                                                      ],
-                                                                                    ),
-                                                                                  ),
-
-                                                                                  //order button
-                                                                                  SizedBox(
-                                                                                    height: 25,
-                                                                                    child: ElevatedButton(
-                                                                                      onPressed: () {
-                                                                                        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CheckoutPage(name: kiaList[index].name, color: kiaList[index].color, rating: kiaList[index].rating, seats: kiaList[index].seats, transmission: kiaList[index].transmission!, image: kiaList[index].images.first)));
-                                                                                      },
-                                                                                      style: ElevatedButton.styleFrom(
-                                                                                        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
-                                                                                        backgroundColor: lightColorScheme.primary,
-                                                                                        elevation: 0,
-                                                                                      ),
-                                                                                      child: const Text(
-                                                                                        'Order',
-                                                                                        style: TextStyle(fontSize: 11),
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    )
-                                                                  ],
-                                                                ),
+                                                                  )
+                                                                ],
                                                               ),
                                                             ),
-                                                          );
-                                                        }),
-                                                  )
-                                                : isActiveBrand == "Honda"
-                                                    ? SizedBox(
-                                                        height: 430,
-                                                        child: ListView.builder(
-                                                            itemCount: hondaList
-                                                                .length,
-                                                            itemBuilder:
-                                                                (BuildContext
-                                                                        context,
-                                                                    index) {
-                                                              return Padding(
-                                                                padding: const EdgeInsets
-                                                                        .symmetric(
-                                                                    vertical:
-                                                                        10),
-                                                                child:
-                                                                    GestureDetector(
-                                                                  onTap: () {
-                                                                    Navigator.push(
-                                                                        context,
-                                                                        MaterialPageRoute(
-                                                                            builder: (BuildContext context) => CarDetailsPage(car: hondaList[index],
-                                                                                  
-                                                                                )));
-                                                                  },
-                                                                  child:
-                                                                      Container(
-                                                                    child: Row(
-                                                                      children: [
-                                                                        Container(
-                                                                          height:
-                                                                              80,
-                                                                          width:
-                                                                              80,
-                                                                          decoration: BoxDecoration(
-                                                                              borderRadius: const BorderRadius.only(topLeft: Radius.circular(7), bottomLeft: Radius.circular(7)),
-                                                                              image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(hondaList[index].images.first.toString()))),
-                                                                          child:
-                                                                              const Align(
-                                                                            alignment:
-                                                                                Alignment.topLeft,
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: EdgeInsets.all(5.0),
-                                                                              child: Icon(
-                                                                                size: 18,
-                                                                                Icons.favorite_outline,
-                                                                                color: Colors.white,
-                                                                              ),
-                                                                            ),
-                                                                          ),
+                                                          ),
+                                                        );
+                                                      }),
+                                                )
+                                              : SizedBox(
+                                                  height: 430,
+                                                  child: ListView.builder(
+                                                      itemCount: carList.length,
+                                                      itemBuilder:
+                                                          (BuildContext context,
+                                                              index) {
+                                                        return Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical: 10),
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () {
+                                                              Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                      builder: (BuildContext
+                                                                              context) =>
+                                                                          CarDetailsPage(
+                                                                            car:
+                                                                                carList[index],
+                                                                          )));
+                                                            },
+                                                            child: Container(
+                                                              child: Row(
+                                                                children: [
+                                                                  Container(
+                                                                    height: 80,
+                                                                    width: 80,
+                                                                    decoration: BoxDecoration(
+                                                                        borderRadius: const BorderRadius.only(
+                                                                            topLeft: Radius.circular(
+                                                                                7),
+                                                                            bottomLeft: Radius.circular(
+                                                                                7)),
+                                                                        image: DecorationImage(
+                                                                            fit:
+                                                                                BoxFit.cover,
+                                                                            image: NetworkImage(carList[index].images.first.toString()))),
+                                                                    child:
+                                                                        const Align(
+                                                                      alignment:
+                                                                          Alignment
+                                                                              .topLeft,
+                                                                      child:
+                                                                          Padding(
+                                                                        padding:
+                                                                            EdgeInsets.all(5.0),
+                                                                        child:
+                                                                            Icon(
+                                                                          size:
+                                                                              18,
+                                                                          Icons
+                                                                              .favorite_outline,
+                                                                          color:
+                                                                              Colors.white,
                                                                         ),
-                                                                        Expanded(
-                                                                          child:
-                                                                              Container(
-                                                                            height:
-                                                                                80,
-                                                                            decoration:
-                                                                                const BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(7), bottomLeft: Radius.circular(7)), color: Color(0xffe7e7f4)),
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: const EdgeInsets.all(8.0),
-                                                                              child: Column(
-                                                                                children: [
-                                                                                  Row(
-                                                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                    children: [
-                                                                                      Text(
-                                                                                        hondaList[index].name,
-                                                                                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black87),
-                                                                                      ),
-                                                                                      Row(
-                                                                                        children: [
-                                                                                          const Icon(
-                                                                                            Icons.star,
-                                                                                            color: Color(0xfff8c123),
-                                                                                          ),
-                                                                                          Text(
-                                                                                            BMWList[index].rating,
-                                                                                            style: Theme.of(context).textTheme.bodyMedium,
-                                                                                          )
-                                                                                        ],
-                                                                                      )
-                                                                                    ],
-                                                                                  ),
-                                                                                  Row(
-                                                                                    children: [
-                                                                                      Text(
-                                                                                        '${hondaList[index].color} |',
-                                                                                        style: const TextStyle(fontSize: 13, color: Colors.black87),
-                                                                                      ),
-                                                                                      Text(
-                                                                                        hondaList[index].availability == true ? "  Available" : "   Unavailable",
-                                                                                        style: TextStyle(fontSize: 13, color: lightColorScheme.primary),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                  Row(
-                                                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                    children: [
-                                                                                      Padding(
-                                                                                        padding: const EdgeInsets.only(top: 5),
-                                                                                        child: Row(
-                                                                                          children: [
-                                                                                            Text(
-                                                                                              'GHS ${hondaList[index].price}',
-                                                                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: lightColorScheme.primary),
-                                                                                            ),
-                                                                                            const Text(
-                                                                                              ' |  Per day',
-                                                                                              style: TextStyle(fontSize: 13, color: Colors.black87),
-                                                                                            ),
-                                                                                          ],
-                                                                                        ),
-                                                                                      ),
-
-                                                                                      //order button
-                                                                                      SizedBox(
-                                                                                        height: 25,
-                                                                                        child: ElevatedButton(
-                                                                                          onPressed: () {
-                                                                                            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CheckoutPage(name: hondaList[index].name, color: hondaList[index].color, rating: hondaList[index].rating, seats: hondaList[index].seats, transmission: hondaList[index].transmission!, image: hondaList[index].images.first)));
-                                                                                          },
-                                                                                          style: ElevatedButton.styleFrom(
-                                                                                            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
-                                                                                            backgroundColor: lightColorScheme.primary,
-                                                                                            elevation: 0,
-                                                                                          ),
-                                                                                          child: const Text(
-                                                                                            'Order',
-                                                                                            style: TextStyle(fontSize: 11),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        )
-                                                                      ],
+                                                                      ),
                                                                     ),
                                                                   ),
-                                                                ),
-                                                              );
-                                                            }),
-                                                      )
-                                                    : SizedBox(
-                                                        height: 430,
-                                                        child: ListView.builder(
-                                                            itemCount:
-                                                                carList
-                                                                    .length,
-                                                            itemBuilder:
-                                                                (BuildContext
-                                                                        context,
-                                                                    index) {
-                                                              return Padding(
-                                                                padding: const EdgeInsets
-                                                                        .symmetric(
-                                                                    vertical:
-                                                                        10),
-                                                                child:
-                                                                    GestureDetector(
-                                                                  onTap: () {
-                                                                    Navigator.push(
-                                                                        context,
-                                                                        MaterialPageRoute(
-                                                                            builder: (BuildContext context) => CarDetailsPage(
-                                                                                 car: carList[index],
-                                                                                )));
-                                                                  },
-                                                                  child:
-                                                                      Container(
-                                                                    child: Row(
-                                                                      children: [
+                                                                  Expanded(
+                                                                    child:
                                                                         Container(
-                                                                          height:
-                                                                              80,
-                                                                          width:
-                                                                              80,
-                                                                          decoration: BoxDecoration(
-                                                                              borderRadius: const BorderRadius.only(topLeft: Radius.circular(7), bottomLeft: Radius.circular(7)),
-                                                                              image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(carList[index].images.first.toString()))),
-                                                                          child:
-                                                                              const Align(
-                                                                            alignment:
-                                                                                Alignment.topLeft,
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: EdgeInsets.all(5.0),
-                                                                              child: Icon(
-                                                                                size: 18,
-                                                                                Icons.favorite_outline,
-                                                                                color: Colors.white,
-                                                                              ),
+                                                                      height:
+                                                                          80,
+                                                                      decoration: const BoxDecoration(
+                                                                          borderRadius: BorderRadius.only(
+                                                                              topLeft: Radius.circular(7),
+                                                                              bottomLeft: Radius.circular(7)),
+                                                                          color: Color(0xffe7e7f4)),
+                                                                      child:
+                                                                          Padding(
+                                                                        padding:
+                                                                            const EdgeInsets.all(8.0),
+                                                                        child:
+                                                                            Column(
+                                                                          children: [
+                                                                            Row(
+                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                              children: [
+                                                                                Text(
+                                                                                  carList[index].name,
+                                                                                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black87),
+                                                                                ),
+                                                                                Row(
+                                                                                  children: [
+                                                                                    const Icon(
+                                                                                      Icons.star,
+                                                                                      color: Color(0xfff8c123),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      carList[index].rating,
+                                                                                      style: Theme.of(context).textTheme.bodyMedium,
+                                                                                    )
+                                                                                  ],
+                                                                                )
+                                                                              ],
                                                                             ),
-                                                                          ),
-                                                                        ),
-                                                                        Expanded(
-                                                                          child:
-                                                                              Container(
-                                                                            height:
-                                                                                80,
-                                                                            decoration:
-                                                                                const BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(7), bottomLeft: Radius.circular(7)), color: Color(0xffe7e7f4)),
-                                                                            child:
+                                                                            Row(
+                                                                              children: [
+                                                                                Text(
+                                                                                  '${carList[index].color} |',
+                                                                                  style: const TextStyle(fontSize: 13, color: Colors.black87),
+                                                                                ),
+                                                                                Text(
+                                                                                  carList[index].availability == true ? "  Available" : "   Unavailable",
+                                                                                  style: TextStyle(fontSize: 13, color: lightColorScheme.primary),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                            Row(
+                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                              children: [
                                                                                 Padding(
-                                                                              padding: const EdgeInsets.all(8.0),
-                                                                              child: Column(
-                                                                                children: [
-                                                                                  Row(
-                                                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                  padding: const EdgeInsets.only(top: 5),
+                                                                                  child: Row(
                                                                                     children: [
                                                                                       Text(
-                                                                                        carList[index].name,
-                                                                                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black87),
+                                                                                        'GHS ${carList[index].price}',
+                                                                                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: lightColorScheme.primary),
                                                                                       ),
-                                                                                      Row(
-                                                                                        children: [
-                                                                                          const Icon(
-                                                                                            Icons.star,
-                                                                                            color: Color(0xfff8c123),
-                                                                                          ),
-                                                                                          Text(
-                                                                                            carList[index].rating,
-                                                                                            style: Theme.of(context).textTheme.bodyMedium,
-                                                                                          )
-                                                                                        ],
-                                                                                      )
-                                                                                    ],
-                                                                                  ),
-                                                                                  Row(
-                                                                                    children: [
-                                                                                      Text(
-                                                                                        '${carList[index].color} |',
-                                                                                        style: const TextStyle(fontSize: 13, color: Colors.black87),
-                                                                                      ),
-                                                                                      Text(
-                                                                                        carList[index].availability == true ? "  Available" : "   Unavailable",
-                                                                                        style: TextStyle(fontSize: 13, color: lightColorScheme.primary),
+                                                                                      const Text(
+                                                                                        ' |  Per day',
+                                                                                        style: TextStyle(fontSize: 13, color: Colors.black87),
                                                                                       ),
                                                                                     ],
                                                                                   ),
-                                                                                  Row(
-                                                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                    children: [
-                                                                                      Padding(
-                                                                                        padding: const EdgeInsets.only(top: 5),
-                                                                                        child: Row(
-                                                                                          children: [
-                                                                                            Text(
-                                                                                              'GHS ${carList[index].price}',
-                                                                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: lightColorScheme.primary),
-                                                                                            ),
-                                                                                            const Text(
-                                                                                              ' |  Per day',
-                                                                                              style: TextStyle(fontSize: 13, color: Colors.black87),
-                                                                                            ),
-                                                                                          ],
-                                                                                        ),
-                                                                                      ),
+                                                                                ),
 
-                                                                                      //order button
-                                                                                      SizedBox(
-                                                                                        height: 25,
-                                                                                        child: ElevatedButton(
-                                                                                          onPressed: () {
-                                                                                            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CheckoutPage(name: carList[index].name, color: carList[index].color, rating: carList[index].rating, seats: carList[index].seats, transmission: carList[index].transmission!, image: carList[index].images.first)));
-                                                                                          },
-                                                                                          style: ElevatedButton.styleFrom(
-                                                                                            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
-                                                                                            backgroundColor: lightColorScheme.primary,
-                                                                                            elevation: 0,
-                                                                                          ),
-                                                                                          child: const Text(
-                                                                                            'Order',
-                                                                                            style: TextStyle(fontSize: 11),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                    ],
+                                                                                //order button
+                                                                                SizedBox(
+                                                                                  height: 25,
+                                                                                  child: ElevatedButton(
+                                                                                    onPressed: () {
+                                                                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CheckoutPage(name: carList[index].name, color: carList[index].color, rating: carList[index].rating, seats: carList[index].seats, transmission: carList[index].transmission!, image: carList[index].images.first)));
+                                                                                    },
+                                                                                    style: ElevatedButton.styleFrom(
+                                                                                      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+                                                                                      backgroundColor: lightColorScheme.primary,
+                                                                                      elevation: 0,
+                                                                                    ),
+                                                                                    child: const Text(
+                                                                                      'Order',
+                                                                                      style: TextStyle(fontSize: 11),
+                                                                                    ),
                                                                                   ),
-                                                                                ],
-                                                                              ),
+                                                                                ),
+                                                                              ],
                                                                             ),
-                                                                          ),
-                                                                        )
-                                                                      ],
+                                                                          ],
+                                                                        ),
+                                                                      ),
                                                                     ),
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            }),
-                                                      )
-                          ],
-                        )
-                      
-                      
-                    
-                        
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }),
+                                                )
+                    ],
+                  )
                 ],
               );
             } else {
@@ -1446,7 +1544,8 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
             return const Center(
               child: Text('Sorry no Cars '),
             );
-          }),
+          }
+          ),
     );
   }
 }

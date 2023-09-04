@@ -17,16 +17,17 @@ _$_Car _$$_CarFromJson(Map<String, dynamic> json) => _$_Car(
       brand: json['brand'] == null
           ? null
           : CarBrand.fromJson(json['brand'] as Map<String, dynamic>),
-      transmission: json['transmission'] as String?,
+      transmission: json['transmission'] as String,
       seats: json['seats'] as String,
       condition: json['condition'] as String,
       maker: json['maker'] as String,
       engineSize: json['engineSize'] as String,
       trim: json['trim'] as String,
+      year: json['year'] as String,
       numberOfCylinders: json['numberOfCylinders'] as String,
       rating: json['rating'] as String,
       popularity: json['popularity'] as String,
-      speed: json['speed'] as String?,
+      speed: json['speed'] as String,
     );
 
 Map<String, dynamic> _$$_CarToJson(_$_Car instance) => <String, dynamic>{
@@ -43,6 +44,7 @@ Map<String, dynamic> _$$_CarToJson(_$_Car instance) => <String, dynamic>{
       'maker': instance.maker,
       'engineSize': instance.engineSize,
       'trim': instance.trim,
+      'year': instance.year,
       'numberOfCylinders': instance.numberOfCylinders,
       'rating': instance.rating,
       'popularity': instance.popularity,

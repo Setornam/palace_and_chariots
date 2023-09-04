@@ -33,7 +33,7 @@ class Car with _$Car {
     CarBrand? brand,
 
     ///Car transmission
-    String? transmission,
+    required String transmission,
 
     ///number of seats
     required String seats,
@@ -47,6 +47,7 @@ class Car with _$Car {
     ///number of seats
     required String engineSize,
     required String trim,
+    required String year,
 
     ///number of seats
     required String numberOfCylinders,
@@ -58,7 +59,7 @@ class Car with _$Car {
     required String popularity,
 
     ///Car speed
-    String? speed,
+    required String speed,
   }) = _Car;
 
   /// Converts json to dart object
@@ -85,5 +86,6 @@ class Car with _$Car {
       maker: '',
       numberOfCylinders: '',
       trim: '',
-      availability: false);
+      availability: false,
+      year: '', speed: '');
 }
