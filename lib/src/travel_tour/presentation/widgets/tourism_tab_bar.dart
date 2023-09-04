@@ -82,8 +82,8 @@ class _TourismTabBarViewState extends State<TourismTabBarView> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Text(
-                                            'Cape Coast Tour',
+                                          Text(
+                                            tourisms[index].name,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 15,
@@ -98,7 +98,7 @@ class _TourismTabBarViewState extends State<TourismTabBarView> {
                                             size: 18,
                                           ),
                                           Text(
-                                            ' 40 hours | ',
+                                            ' ${tourisms[index].duration} | ',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium,
@@ -109,13 +109,13 @@ class _TourismTabBarViewState extends State<TourismTabBarView> {
                                             color: Color(0xfff8c123),
                                           ),
                                           Text(
-                                            ' 4.5',
+                                            tourisms[index].rating,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium,
                                           ),
                                           Text(
-                                            ' | 10 reviews',
+                                            ' | ${tourisms[index].reviews} reviews',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium,
@@ -134,7 +134,7 @@ class _TourismTabBarViewState extends State<TourismTabBarView> {
                                       ),
                                       Row(
                                         children: [
-                                          Text('300 (USD)',
+                                          Text('${tourisms[index].price} (USD)',
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyMedium!
