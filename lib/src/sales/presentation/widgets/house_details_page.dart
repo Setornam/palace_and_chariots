@@ -54,11 +54,12 @@ class _SalesDetailsPageAccommodationState
                     Container(
                       height: 100,
                       width: MediaQuery.of(context).size.width * 0.85,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(7)),
                           image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: AssetImage('assets/images/room.jpg'))),
+                              image: NetworkImage(
+                                  widget.accommodation.images.first))),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 5, bottom: 15),
@@ -68,24 +69,24 @@ class _SalesDetailsPageAccommodationState
                           Container(
                             height: 80,
                             width: 150,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(7)),
                                 image: DecorationImage(
                                     fit: BoxFit.cover,
-                                    image:
-                                        AssetImage('assets/images/room.jpg'))),
+                                    image: NetworkImage(
+                                        widget.accommodation.images[1]))),
                           ),
                           Container(
                             height: 80,
                             width: 150,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(7)),
                                 image: DecorationImage(
                                     fit: BoxFit.cover,
-                                    image:
-                                        AssetImage('assets/images/room.jpg'))),
+                                    image: NetworkImage(
+                                        widget.accommodation.images[2]))),
                             child: Padding(
                               padding: const EdgeInsets.all(2.0),
                               child: GestureDetector(
@@ -94,13 +95,16 @@ class _SalesDetailsPageAccommodationState
                                       context,
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              const AccmmodationSalesGalleryPage()));
+                                              GalleryPage(
+                                                images:
+                                                    widget.accommodation.images,
+                                              )));
                                 },
                                 child: Container(
                                   color: Colors.black.withOpacity(.5),
-                                  child: const Center(
+                                  child: Center(
                                     child: Text(
-                                      '+5',
+                                      '+ ${widget.accommodation.images.length.toString()}',
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 30),
                                     ),

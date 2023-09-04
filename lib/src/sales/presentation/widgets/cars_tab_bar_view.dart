@@ -32,7 +32,7 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
   String isActiveBrand = "";
 
   final String imagePath =
-      '/Vehicles/saloon_cars/bmw3.jpeg'; // Replace with your image path
+      '/sales/accommodation/house4.png'; // Replace with your image path
 
   Future<String> getImageUrl() async {
     final Reference storageReference =
@@ -45,7 +45,7 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
   @override
   void initState() {
     super.initState();
-    // getImageUrl();
+    getImageUrl();
   }
 
   @override
@@ -1544,8 +1544,7 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
             return const Center(
               child: Text('Sorry no Cars '),
             );
-          }
-          ),
+          }),
     );
   }
 }

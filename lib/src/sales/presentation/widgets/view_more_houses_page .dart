@@ -563,7 +563,7 @@ class _ViewMoreHousesState extends State<ViewMoreHouses> {
                 itemCount: sortedhouses.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 15,
+                    crossAxisSpacing: 12,
                     mainAxisSpacing: 15,
                     mainAxisExtent: 180),
                 itemBuilder: (BuildContext context, index) {

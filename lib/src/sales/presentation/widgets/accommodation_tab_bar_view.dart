@@ -79,14 +79,14 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                 Container(
                                   height: 115,
                                   width: 80,
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                       borderRadius: BorderRadius.only(
                                           topLeft: Radius.circular(7),
                                           bottomLeft: Radius.circular(7)),
                                       image: DecorationImage(
                                           fit: BoxFit.cover,
-                                          image: AssetImage(
-                                              'assets/images/room.jpg'))),
+                                          image: NetworkImage(
+                                              houses[index].images.first))),
                                   child: const Align(
                                     alignment: Alignment.topLeft,
                                     child: Padding(
