@@ -6,9 +6,11 @@ import 'package:palace_and_chariots/src/rentals/presentation/widgets/rooms_page.
 import 'package:palace_and_chariots/src/travel_tour/presentation/widgets/tourism_gallery.dart';
 
 import '../../../checkout/presentation/pages/tourism_checkout_page.dart';
+import '../../travel_and_tour/domain/entities/tourism.dart';
 
 class TourismDetailsPage extends StatefulWidget {
-  const TourismDetailsPage({super.key});
+  final Tourism tourism;
+  const TourismDetailsPage({super.key, required this.tourism});
 
   @override
   State<TourismDetailsPage> createState() => _TourismDetailsPageState();
@@ -111,11 +113,11 @@ class _TourismDetailsPageState extends State<TourismDetailsPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Row(
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'The Cape Coast Day tour',
+                                  widget.tourism.name,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15,
@@ -135,7 +137,7 @@ class _TourismDetailsPageState extends State<TourismDetailsPage> {
                                   ),
                                   Row(
                                     children: [
-                                      Text('300 (USD)',
+                                      Text('${widget.tourism.price} (USD)',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium!
@@ -159,8 +161,8 @@ class _TourismDetailsPageState extends State<TourismDetailsPage> {
                                     color: Colors.black87),
                               ),
                             ),
-                            const Text(
-                              'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ipsum Lorem ipsum Lorem ipsum Lorem ipsum ipsum Lorem ipsum Lorem ipsum Lorem ipsum ipsum Lorem ipsum Lorem ipsum Lorem ipsum ipsum Lorem ipsum Lorem ipsum Lorem ipsum ipsum Lorem ipsum Lorem ipsum Lorem ipsum ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumb Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
+                            Text(
+                              widget.tourism.overview,
                               style: TextStyle(
                                   fontSize: 12, color: Colors.black87),
                             ),

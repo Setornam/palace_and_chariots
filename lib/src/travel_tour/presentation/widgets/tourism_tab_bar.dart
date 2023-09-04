@@ -37,7 +37,9 @@ class _TourismTabBarViewState extends State<TourismTabBarView> {
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      TourismDetailsPage()));
+                                      TourismDetailsPage(
+                                        tourism: tourisms[index],
+                                      )));
                         },
                         child: Row(
                           children: [
