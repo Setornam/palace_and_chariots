@@ -66,11 +66,7 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    DestinationSearchPage()
-                                    
-                                    )
-                                    
-                                    );
+                                    DestinationSearchPage()));
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -790,7 +786,10 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      TravelCheckoutPage()));
+                                      TravelCheckoutPage(
+                                        endDate: _endDate.value,
+                                        startDate: _startDate.value,
+                                      )));
                         },
                         child: const Text('Next')),
                   )

@@ -6,7 +6,12 @@ import 'package:palace_and_chariots/src/checkout/presentation/pages/security_che
 import '../widgets/travel_user_form.dart';
 
 class TravelCheckoutPage extends StatefulWidget {
-  const TravelCheckoutPage({super.key});
+  final String startDate, endDate;
+  const TravelCheckoutPage({
+    super.key,
+    required this.startDate,
+    required this.endDate,
+  });
 
   @override
   State<TravelCheckoutPage> createState() => _TravelCheckoutPageState();
@@ -49,9 +54,9 @@ class _TravelCheckoutPageState extends State<TravelCheckoutPage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.symmetric(vertical: 7),
-                      child: Text('Depart May 7, 2023'),
+                      child: Text('Depart ${widget.startDate}'),
                     ),
                     Row(
                       children: [
@@ -89,9 +94,9 @@ class _TravelCheckoutPageState extends State<TravelCheckoutPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.symmetric(vertical: 7),
-                        child: Text('Return May 7, 2023'),
+                        child: Text('Return ${widget.endDate}'),
                       ),
                       Row(
                         children: [

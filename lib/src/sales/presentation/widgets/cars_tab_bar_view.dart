@@ -32,7 +32,7 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
   String isActiveBrand = "";
 
   final String imagePath =
-      '/sales/accommodation/house4.png'; // Replace with your image path
+      '/security-services/personal-security.png'; // Replace with your image path
 
   Future<String> getImageUrl() async {
     final Reference storageReference =

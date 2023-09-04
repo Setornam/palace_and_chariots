@@ -100,7 +100,7 @@ class _SecurityPageState extends State<SecurityPage> {
                         children: [
                           Container(
                             height: 140,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                     bottomRight: Radius.circular(7),
                                     bottomLeft: Radius.circular(7),
@@ -108,8 +108,8 @@ class _SecurityPageState extends State<SecurityPage> {
                                     topRight: Radius.circular(7)),
                                 image: DecorationImage(
                                     fit: BoxFit.cover,
-                                    image: AssetImage(
-                                        'assets/images/PersonalSecurity.png'))),
+                                    image: NetworkImage(
+                                        securityServices[index].image))),
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 8),
@@ -268,9 +268,7 @@ class _SecurityPageState extends State<SecurityPage> {
             return Center(
               child: CircularProgressIndicator(),
             );
-          }
-          
-          ),
+          }),
     );
   }
 }

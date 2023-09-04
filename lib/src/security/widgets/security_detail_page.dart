@@ -59,7 +59,7 @@ class _SecurityDetailPageState extends State<SecurityDetailPage> {
           children: [
             Container(
               height: 140,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                       bottomRight: Radius.circular(7),
                       bottomLeft: Radius.circular(7),
@@ -67,16 +67,16 @@ class _SecurityDetailPageState extends State<SecurityDetailPage> {
                       topRight: Radius.circular(7)),
                   image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage('assets/images/SecurityDetail.png'))),
+                      image: NetworkImage(widget.security.image))),
             ),
-             Padding(
+            Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Text(
-            widget.security.name,
+                widget.security.name,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),
-             Text(widget.security.description),
+            Text(widget.security.description),
             const Padding(
               padding: EdgeInsets.only(top: 40, bottom: 10),
               child: Text(
