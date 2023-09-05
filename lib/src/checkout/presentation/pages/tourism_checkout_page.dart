@@ -285,19 +285,28 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                           minimumSize: const Size.fromHeight(50),
                         ),
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      const TourismCheckoutPage()));
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            backgroundColor: Colors.green[300],
+                            content: const Text(
+                              'Your booking has been placed successfully',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            margin: EdgeInsets.only(
+                                bottom:
+                                    MediaQuery.of(context).size.height * 0.85,
+                                right: 20,
+                                left: 20),
+                          ));
                         },
                         child: const Text('Submit')),
                   ),
                 )
               ],
             ),
-         
-         
           ),
         ),
       ),

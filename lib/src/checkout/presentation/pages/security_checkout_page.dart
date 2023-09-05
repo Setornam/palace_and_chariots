@@ -40,7 +40,23 @@ class _SecurityCheckoutPageState extends State<SecurityCheckoutPage> {
                         backgroundColor: lightColorScheme.primary,
                         minimumSize: const Size.fromHeight(50),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          backgroundColor: Colors.green[300],
+                          content: const Text(
+                            'Your order has been placed successfully',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          behavior: SnackBarBehavior.floating,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          margin: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).size.height * 0.85,
+                              right: 20,
+                              left: 20),
+                        ));
+                      },
                       child: Text('Submit')),
                 )
               ],

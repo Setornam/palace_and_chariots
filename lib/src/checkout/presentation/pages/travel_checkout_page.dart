@@ -94,7 +94,7 @@ class _TravelCheckoutPageState extends State<TravelCheckoutPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
+                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 7),
                         child: Text('Return ${widget.endDate}'),
                       ),
