@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
+import 'package:palace_and_chariots/shared/utils/validator.dart';
 
 class DriverDetailsForm extends StatefulWidget {
   const DriverDetailsForm({super.key});
@@ -38,6 +39,7 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Form(
+        autovalidateMode: AutovalidateMode.always,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -70,7 +72,7 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
             Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: DropdownButtonFormField(
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                     contentPadding:
                         EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -81,6 +83,12 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey),
                         borderRadius: BorderRadius.all(Radius.circular(5))),
+
+                         errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide: BorderSide(
+                                color: theme.colorScheme.error, width: 2),
+                          ),
                     fillColor: Colors.white,
                   ),
                   hint: const Text('please select'),
@@ -96,7 +104,8 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
               ),
             ),
             TextFormField(
-              decoration: const InputDecoration(
+              validator: Validator.name,
+              decoration:  InputDecoration(
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -104,8 +113,15 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.lightBlue),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
+                     errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide: BorderSide(
+                                color: theme.colorScheme.error, width: 2),
+                          ),
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
+                    
+                    
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 fillColor: Colors.white,
               ),
@@ -120,7 +136,8 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
               ),
             ),
             TextFormField(
-              decoration: const InputDecoration(
+              validator: Validator.email,
+              decoration:  InputDecoration(
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -128,6 +145,11 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.lightBlue),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
+                     errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide: BorderSide(
+                                color: theme.colorScheme.error, width: 2),
+                          ),
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -148,9 +170,13 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
             Padding(
                 padding: const EdgeInsets.only(top: 1, bottom: 10),
                 child: SizedBox(
-                  height: 50,
+                  height: 70,
                   child: IntlPhoneField(
+                      validator: (phoneNumber) =>
+                          Validator.phoneNumber(phoneNumber?.number),
                       decoration: InputDecoration(
+                        
+
                           alignLabelWithHint: true,
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.lightBlue),
@@ -161,7 +187,7 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5))),
                           errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius: BorderRadius.circular(5),
                             borderSide: BorderSide(
                                 color: theme.colorScheme.error, width: 2),
                           ),
@@ -193,6 +219,7 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
             Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: DropdownButtonFormField(
+                
                   decoration: const InputDecoration(
                     contentPadding:
                         EdgeInsets.symmetric(horizontal: 30, vertical: 14),
@@ -219,7 +246,8 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
               ),
             ),
             TextFormField(
-              decoration: const InputDecoration(
+              validator: Validator.license,
+              decoration:  InputDecoration(
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -230,6 +258,12 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
+
+                     errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide: BorderSide(
+                                color: theme.colorScheme.error, width: 2),
+                          ),
                 fillColor: Colors.white,
               ),
             ),

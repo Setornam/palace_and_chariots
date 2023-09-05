@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
+import 'package:palace_and_chariots/shared/utils/validator.dart';
 
 class SecurityForm extends StatefulWidget {
   const SecurityForm({super.key});
@@ -14,6 +15,8 @@ class _SecurityFormState extends State<SecurityForm> {
   String phoneNumber = "";
   late String country = '';
   late String Security = '';
+
+  final nameController = TextEditingController();
 
   bool isSavedToAccount = false;
 
@@ -31,6 +34,7 @@ class _SecurityFormState extends State<SecurityForm> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Form(
+        autovalidateMode: AutovalidateMode.always,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -42,11 +46,17 @@ class _SecurityFormState extends State<SecurityForm> {
               ),
             ),
             TextFormField(
-              decoration: const InputDecoration(
+              controller: nameController,
+              validator: Validator.name,
+              decoration: InputDecoration(
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
                 labelStyle: TextStyle(color: Colors.grey),
+                errorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide:
+                        BorderSide(color: theme.colorScheme.error, width: 2)),
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.lightBlue),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -65,11 +75,16 @@ class _SecurityFormState extends State<SecurityForm> {
               ),
             ),
             TextFormField(
-              decoration: const InputDecoration(
+              validator: Validator.name,
+              decoration: InputDecoration(
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
                 labelStyle: TextStyle(color: Colors.grey),
+                errorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide:
+                        BorderSide(color: theme.colorScheme.error, width: 2)),
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.lightBlue),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -88,7 +103,8 @@ class _SecurityFormState extends State<SecurityForm> {
               ),
             ),
             TextFormField(
-              decoration: const InputDecoration(
+              validator: Validator.email,
+              decoration: InputDecoration(
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -96,6 +112,10 @@ class _SecurityFormState extends State<SecurityForm> {
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.lightBlue),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
+                errorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide:
+                        BorderSide(color: theme.colorScheme.error, width: 2)),
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -114,6 +134,7 @@ class _SecurityFormState extends State<SecurityForm> {
             Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: DropdownButtonFormField(
+                  // validator: Validator.name,
                   decoration: const InputDecoration(
                     contentPadding:
                         EdgeInsets.symmetric(horizontal: 30, vertical: 14),
@@ -145,8 +166,10 @@ class _SecurityFormState extends State<SecurityForm> {
             Padding(
                 padding: const EdgeInsets.only(top: 1, bottom: 10),
                 child: SizedBox(
-                  height: 50,
+                  height: 70,
                   child: IntlPhoneField(
+                      validator: (phoneNumber) =>
+                          Validator.phoneNumber(phoneNumber?.number),
                       decoration: InputDecoration(
                           alignLabelWithHint: true,
                           focusedBorder: const OutlineInputBorder(
@@ -158,7 +181,7 @@ class _SecurityFormState extends State<SecurityForm> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5))),
                           errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius: BorderRadius.circular(5),
                             borderSide: BorderSide(
                                 color: theme.colorScheme.error, width: 2),
                           ),

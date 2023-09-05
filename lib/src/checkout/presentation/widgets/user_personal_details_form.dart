@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 
+import '../../../../shared/utils/validator.dart';
+
 class userPersonalDetailsForm extends StatefulWidget {
   const userPersonalDetailsForm({super.key});
 
@@ -32,6 +34,7 @@ class _userPersonalDetailsFormState extends State<userPersonalDetailsForm> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Form(
+        autovalidateMode: AutovalidateMode.always,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -43,7 +46,8 @@ class _userPersonalDetailsFormState extends State<userPersonalDetailsForm> {
               ),
             ),
             TextFormField(
-              decoration: const InputDecoration(
+              validator: Validator.name,
+              decoration: InputDecoration(
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -51,6 +55,11 @@ class _userPersonalDetailsFormState extends State<userPersonalDetailsForm> {
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.lightBlue),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
+                errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5),
+                  borderSide:
+                      BorderSide(color: theme.colorScheme.error, width: 2),
+                ),
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -66,7 +75,8 @@ class _userPersonalDetailsFormState extends State<userPersonalDetailsForm> {
               ),
             ),
             TextFormField(
-              decoration: const InputDecoration(
+              validator: Validator.name,
+              decoration: InputDecoration(
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -74,6 +84,11 @@ class _userPersonalDetailsFormState extends State<userPersonalDetailsForm> {
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.lightBlue),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
+                errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5),
+                  borderSide:
+                      BorderSide(color: theme.colorScheme.error, width: 2),
+                ),
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -89,7 +104,8 @@ class _userPersonalDetailsFormState extends State<userPersonalDetailsForm> {
               ),
             ),
             TextFormField(
-              decoration: const InputDecoration(
+              validator: Validator.email,
+              decoration: InputDecoration(
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -97,6 +113,11 @@ class _userPersonalDetailsFormState extends State<userPersonalDetailsForm> {
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.lightBlue),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
+                errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5),
+                  borderSide:
+                      BorderSide(color: theme.colorScheme.error, width: 2),
+                ),
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -146,8 +167,10 @@ class _userPersonalDetailsFormState extends State<userPersonalDetailsForm> {
             Padding(
                 padding: const EdgeInsets.only(top: 1, bottom: 10),
                 child: SizedBox(
-                  height: 50,
+                  height: 70,
                   child: IntlPhoneField(
+                      validator: (phoneNumber) =>
+                          Validator.phoneNumber(phoneNumber?.number),
                       decoration: InputDecoration(
                           alignLabelWithHint: true,
                           focusedBorder: OutlineInputBorder(
@@ -159,7 +182,7 @@ class _userPersonalDetailsFormState extends State<userPersonalDetailsForm> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5))),
                           errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius: BorderRadius.circular(5),
                             borderSide: BorderSide(
                                 color: theme.colorScheme.error, width: 2),
                           ),

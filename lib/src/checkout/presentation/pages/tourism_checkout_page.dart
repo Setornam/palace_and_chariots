@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
+import 'package:palace_and_chariots/shared/utils/validator.dart';
 
 class TourismCheckoutPage extends StatefulWidget {
   const TourismCheckoutPage({super.key});
@@ -14,6 +15,8 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
   String phoneNumber = "";
   late String country = '';
   late String Security = '';
+
+  final formKey = GlobalKey<FormState>();
 
   bool isSecuritySelected = false;
   bool isHotelPickupSelected = false;
@@ -46,6 +49,7 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Form(
+          key: formKey,
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,7 +62,8 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                   ),
                 ),
                 TextFormField(
-                  decoration: const InputDecoration(
+                  validator: Validator.name,
+                  decoration: InputDecoration(
                     contentPadding:
                         EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -69,6 +74,11 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey),
                         borderRadius: BorderRadius.all(Radius.circular(5))),
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide:
+                          BorderSide(color: theme.colorScheme.error, width: 2),
+                    ),
                     fillColor: Colors.white,
                   ),
                 ),
@@ -81,7 +91,8 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                   ),
                 ),
                 TextFormField(
-                  decoration: const InputDecoration(
+                  validator: Validator.name,
+                  decoration: InputDecoration(
                     contentPadding:
                         EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -92,6 +103,11 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey),
                         borderRadius: BorderRadius.all(Radius.circular(5))),
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide:
+                          BorderSide(color: theme.colorScheme.error, width: 2),
+                    ),
                     fillColor: Colors.white,
                   ),
                 ),
@@ -104,7 +120,8 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                   ),
                 ),
                 TextFormField(
-                  decoration: const InputDecoration(
+                  validator: Validator.email,
+                  decoration: InputDecoration(
                     contentPadding:
                         EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -115,6 +132,11 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey),
                         borderRadius: BorderRadius.all(Radius.circular(5))),
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide:
+                          BorderSide(color: theme.colorScheme.error, width: 2),
+                    ),
                     fillColor: Colors.white,
                   ),
                 ),
@@ -130,7 +152,7 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10),
                   child: DropdownButtonFormField(
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         contentPadding:
                             EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                         floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -138,6 +160,11 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.lightBlue),
                             borderRadius: BorderRadius.all(Radius.circular(5))),
+                        errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5),
+                          borderSide: BorderSide(
+                              color: theme.colorScheme.error, width: 2),
+                        ),
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey),
                             borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -162,8 +189,10 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                 Padding(
                     padding: const EdgeInsets.only(top: 1, bottom: 10),
                     child: SizedBox(
-                      height: 50,
+                      height: 70,
                       child: IntlPhoneField(
+                          validator: (phone) =>
+                              Validator.phoneNumber(phoneNumber),
                           decoration: InputDecoration(
                               alignLabelWithHint: true,
                               focusedBorder: const OutlineInputBorder(
@@ -176,7 +205,7 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(5))),
                               errorBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius: BorderRadius.circular(5),
                                 borderSide: BorderSide(
                                     color: theme.colorScheme.error, width: 2),
                               ),
@@ -285,22 +314,24 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                           minimumSize: const Size.fromHeight(50),
                         ),
                         onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            backgroundColor: Colors.green[300],
-                            content: const Text(
-                              'Your booking has been placed successfully',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            behavior: SnackBarBehavior.floating,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            margin: EdgeInsets.only(
-                                bottom:
-                                    MediaQuery.of(context).size.height * 0.85,
-                                right: 20,
-                                left: 20),
-                          ));
+                          if (!formKey.currentState!.validate()) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              backgroundColor: Colors.green[300],
+                              content: const Text(
+                                'Your booking has been placed successfully',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              behavior: SnackBarBehavior.floating,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              margin: EdgeInsets.only(
+                                  bottom:
+                                      MediaQuery.of(context).size.height * 0.85,
+                                  right: 20,
+                                  left: 20),
+                            ));
+                          }
                         },
                         child: const Text('Submit')),
                   ),

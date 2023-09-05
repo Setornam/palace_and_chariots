@@ -2,16 +2,53 @@
 class Validator {
   /// Validates Full Name and needs to be more than 4 characters
   static String? name(String? value) {
-    const pattern = r'(^[a-zA-Z ]*$)';
-    final regExp = RegExp(pattern);
-    if (regExp.hasMatch(value!) && value.trim().length > 4) {
-      return null;
-    } else if (value.trim().length < 4) {
-      return 'Full name must be more than 5 characters';
-    } else {
-      return 'Name must be alphabets only';
+    if (value!.trim().isEmpty) {
+      return ' name is required';
     }
+    return null;
   }
+
+  static String? license(String? value) {
+    if (value!.trim().isEmpty) {
+      return ' License is required';
+    }
+    return null;
+  }
+
+  static String? address(String? value) {
+    if (value!.trim().isEmpty) {
+      return ' Address is required';
+    }
+    return null;
+  }
+
+  static String? city(String? value) {
+    if (value!.trim().isEmpty) {
+      return ' City is required';
+    }
+    return null;
+  }
+
+  static String? title(String? value) {
+    if (value!.trim().isEmpty) {
+      return ' Title is required';
+    }
+    return null;
+  }
+
+  static String? email(String? value) {
+    if (value!.trim().isEmpty) {
+      return ' Email is required';
+    }
+    return null;
+  }
+
+  // static String? country(dynamic value) {
+  //   if (value.trim().isEmpty) {
+  //     return ' Country is required';
+  //   }
+  //   return null;
+  // }
 
   /// Pattern checks for valid phone Numbers
   static String? phoneNumber(String? value) {
