@@ -68,8 +68,11 @@ class _EventTabBarViewState extends State<EventTabBarView> {
                                   bottom: BorderSide(
                                       color: lightColorScheme.primary,
                                       width: 0.011)),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(7))),
+                              borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(10),
+                                  topRight: Radius.circular(10),
+                                  bottomLeft: Radius.circular(29),
+                                  bottomRight: Radius.circular(29))),
                           child: Column(
                             children: [
                               Padding(
@@ -670,31 +673,33 @@ class _EventTabBarViewState extends State<EventTabBarView> {
                                     ),
                                   )),
 
-                              SizedBox(
-                                width: MediaQuery.sizeOf(context).width,
-                                child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: lightColorScheme.primary,
-                                      minimumSize: const Size.fromHeight(40),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (BuildContext context) =>
-                                                  EventSearchResultPage(
-                                                    endDate: _endDate.value,
-                                                    numberOfGuests:
-                                                        numberGuests.value,
-                                                    searchQuery:
-                                                        destinationController
-                                                            .text,
-                                                    startDate: _startDate.value,
-                                                    eventServices: eventsList,
-                                                  )));
-                                    },
-                                    child: const Text('Search')),
-                              )
+                              ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: lightColorScheme.primary,
+                                    minimumSize: const Size.fromHeight(40),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(10),
+                                            bottomRight: Radius.circular(10))),
+                                    elevation: 0,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                EventSearchResultPage(
+                                                  endDate: _endDate.value,
+                                                  numberOfGuests:
+                                                      numberGuests.value,
+                                                  searchQuery:
+                                                      destinationController
+                                                          .text,
+                                                  startDate: _startDate.value,
+                                                  eventServices: eventsList,
+                                                )));
+                                  },
+                                  child: const Text('Search'))
                             ],
                           ),
                         ),

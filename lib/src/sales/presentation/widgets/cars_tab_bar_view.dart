@@ -246,10 +246,12 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                                   decoration: const BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.only(
-                                                              topLeft: Radius
+                                                              topRight: Radius
                                                                   .circular(7),
-                                                              bottomLeft: Radius
-                                                                  .circular(7)),
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          7)),
                                                       color: Color(0xffe7e7f4)),
                                                   child: Padding(
                                                     padding:
@@ -408,7 +410,8 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                               //display a list of alllexus brand cars
 
                               SizedBox(
-                                  height: 430,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.59,
                                   child: ListView.builder(
                                       itemCount: lexusList.length,
                                       itemBuilder:
@@ -472,11 +475,11 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                                       decoration: const BoxDecoration(
                                                           borderRadius:
                                                               BorderRadius.only(
-                                                                  topLeft: Radius
+                                                                  topRight: Radius
                                                                       .circular(
                                                                           7),
-                                                                  bottomLeft: Radius
-                                                                      .circular(
+                                                                  bottomRight:
+                                                                      Radius.circular(
                                                                           7)),
                                                           color: Color(
                                                               0xffe7e7f4)),
@@ -630,7 +633,9 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                 )
                               : isActiveBrand == "BMW"
                                   ? SizedBox(
-                                      height: 430,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.59,
                                       child: ListView.builder(
                                           itemCount: BMWList.length,
                                           itemBuilder:
@@ -695,10 +700,10 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                                           height: 80,
                                                           decoration: const BoxDecoration(
                                                               borderRadius: BorderRadius.only(
-                                                                  topLeft: Radius
+                                                                  topRight: Radius
                                                                       .circular(
                                                                           7),
-                                                                  bottomLeft: Radius
+                                                                  bottomRight: Radius
                                                                       .circular(
                                                                           7)),
                                                               color: Color(
@@ -843,7 +848,10 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                   //Lexus cars
                                   : isActiveBrand == "Lexus"
                                       ? SizedBox(
-                                          height: 430,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.59,
                                           child: ListView.builder(
                                               itemCount: lexusList.length,
                                               itemBuilder:
@@ -910,10 +918,10 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                                               height: 80,
                                                               decoration: const BoxDecoration(
                                                                   borderRadius: BorderRadius.only(
-                                                                      topLeft: Radius
-                                                                          .circular(
+                                                                      topRight:
+                                                                          Radius.circular(
                                                                               7),
-                                                                      bottomLeft:
+                                                                      bottomRight:
                                                                           Radius.circular(
                                                                               7)),
                                                                   color: Color(
@@ -1034,7 +1042,10 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                       //kia
                                       : isActiveBrand == "KIA"
                                           ? SizedBox(
-                                              height: 430,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.59,
                                               child: ListView.builder(
                                                   itemCount: kiaList.length,
                                                   itemBuilder:
@@ -1104,9 +1115,9 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                                                   height: 80,
                                                                   decoration: const BoxDecoration(
                                                                       borderRadius: BorderRadius.only(
-                                                                          topLeft: Radius.circular(
+                                                                          topRight: Radius.circular(
                                                                               7),
-                                                                          bottomLeft: Radius.circular(
+                                                                          bottomRight: Radius.circular(
                                                                               7)),
                                                                       color: Color(
                                                                           0xffe7e7f4)),
@@ -1206,7 +1217,10 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                             )
                                           : isActiveBrand == "Honda"
                                               ? SizedBox(
-                                                  height: 430,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.59,
                                                   child: ListView.builder(
                                                       itemCount:
                                                           hondaList.length,
@@ -1275,8 +1289,8 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                                                           80,
                                                                       decoration: const BoxDecoration(
                                                                           borderRadius: BorderRadius.only(
-                                                                              topLeft: Radius.circular(7),
-                                                                              bottomLeft: Radius.circular(7)),
+                                                                              topRight: Radius.circular(7),
+                                                                              bottomRight: Radius.circular(7)),
                                                                           color: Color(0xffe7e7f4)),
                                                                       child:
                                                                           Padding(
@@ -1370,7 +1384,10 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                                       }),
                                                 )
                                               : SizedBox(
-                                                  height: 430,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.59,
                                                   child: ListView.builder(
                                                       itemCount: carList.length,
                                                       itemBuilder:
@@ -1438,8 +1455,8 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                                                           80,
                                                                       decoration: const BoxDecoration(
                                                                           borderRadius: BorderRadius.only(
-                                                                              topLeft: Radius.circular(7),
-                                                                              bottomLeft: Radius.circular(7)),
+                                                                              topRight: Radius.circular(7),
+                                                                              bottomRight: Radius.circular(7)),
                                                                           color: Color(0xffe7e7f4)),
                                                                       child:
                                                                           Padding(

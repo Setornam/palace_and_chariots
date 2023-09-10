@@ -360,8 +360,14 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                   mercedesList[
                                                                           index]
                                                                       .rating,
-                                                              images: [],
-                                                              otherFeatures: [],
+                                                              images:
+                                                                  mercedesList[
+                                                                          index]
+                                                                      .images,
+                                                              otherFeatures:
+                                                                  mercedesList[
+                                                                          index]
+                                                                      .otherFeatures!,
                                                               transmission:
                                                                   mercedesList[
                                                                           index]
@@ -372,192 +378,200 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                       .category,
                                                             )));
                                               },
-                                              child: Container(
-                                                child: Row(
-                                                  children: [
-                                                    Container(
-                                                      height: 80,
-                                                      width: 80,
-                                                      decoration: BoxDecoration(
-                                                          borderRadius:
-                                                              const BorderRadius
-                                                                      .only(
-                                                                  topLeft: Radius
-                                                                      .circular(
-                                                                          7),
-                                                                  bottomLeft: Radius
-                                                                      .circular(
-                                                                          7)),
-                                                          image: DecorationImage(
-                                                              fit: BoxFit.cover,
-                                                              image: NetworkImage(
-                                                                  mercedesList[
-                                                                          index]
-                                                                      .images
-                                                                      .first
-                                                                      .toString()))),
-                                                      child: const Align(
-                                                        alignment:
-                                                            Alignment.topLeft,
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  5.0),
-                                                          child: Icon(
-                                                            size: 18,
-                                                            Icons
-                                                                .favorite_outline,
-                                                            color: Colors.white,
-                                                          ),
+                                              child: Row(
+                                                children: [
+                                                  Container(
+                                                    height: 80,
+                                                    width: 80,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            const BorderRadius
+                                                                    .only(
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        8),
+                                                                bottomLeft: Radius
+                                                                    .circular(
+                                                                        8)),
+                                                        image: DecorationImage(
+                                                            fit: BoxFit.cover,
+                                                            image: NetworkImage(
+                                                                mercedesList[
+                                                                        index]
+                                                                    .images
+                                                                    .first
+                                                                    .toString()))),
+                                                    child: const Align(
+                                                      alignment:
+                                                          Alignment.topLeft,
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsets.all(5.0),
+                                                        child: Icon(
+                                                          size: 18,
+                                                          Icons
+                                                              .favorite_outline,
+                                                          color: Colors.white,
                                                         ),
                                                       ),
                                                     ),
-                                                    Expanded(
-                                                      child: Container(
-                                                        height: 80,
-                                                        decoration: const BoxDecoration(
-                                                            borderRadius: BorderRadius.only(
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        7),
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        7)),
-                                                            color: Color(
-                                                                0xffe7e7f4)),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(8.0),
-                                                          child: Column(
-                                                            children: [
-                                                              Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceBetween,
-                                                                children: [
-                                                                  Text(
-                                                                    mercedesList[
-                                                                            index]
-                                                                        .name,
-                                                                    style: const TextStyle(
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .bold,
-                                                                        fontSize:
-                                                                            15,
-                                                                        color: Colors
-                                                                            .black87),
-                                                                  ),
-                                                                  Row(
-                                                                    children: [
-                                                                      const Icon(
-                                                                        Icons
-                                                                            .star,
-                                                                        color: Color(
-                                                                            0xfff8c123),
-                                                                      ),
-                                                                      Text(
-                                                                        mercedesList[index]
-                                                                            .rating,
-                                                                        style: Theme.of(context)
-                                                                            .textTheme
-                                                                            .bodyMedium,
-                                                                      )
-                                                                    ],
-                                                                  )
-                                                                ],
-                                                              ),
-                                                              Row(
-                                                                children: [
-                                                                  Text(
-                                                                    '${mercedesList[index].color} |',
-                                                                    style: const TextStyle(
-                                                                        fontSize:
-                                                                            13,
-                                                                        color: Colors
-                                                                            .black87),
-                                                                  ),
-                                                                  Text(
-                                                                    snapshot.requireData[index].availability ==
-                                                                            true
-                                                                        ? "  Available"
-                                                                        : "   Unavailable",
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                            13,
-                                                                        color: lightColorScheme
-                                                                            .primary),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceBetween,
-                                                                children: [
-                                                                  Padding(
-                                                                    padding: const EdgeInsets
-                                                                            .only(
-                                                                        top: 5),
-                                                                    child: Row(
-                                                                      children: [
-                                                                        Text(
-                                                                          'GHS ${mercedesList[index].price}',
-                                                                          style: TextStyle(
-                                                                              fontWeight: FontWeight.bold,
-                                                                              fontSize: 15,
-                                                                              color: lightColorScheme.primary),
-                                                                        ),
-                                                                        const Text(
-                                                                          ' |  Per day',
-                                                                          style: TextStyle(
-                                                                              fontSize: 13,
-                                                                              color: Colors.black87),
-                                                                        ),
-                                                                      ],
+                                                  ),
+                                                  Expanded(
+                                                    child: Container(
+                                                      height: 80,
+                                                      decoration: const BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius.only(
+                                                                  topRight: Radius
+                                                                      .circular(
+                                                                          8),
+                                                                  bottomRight:
+                                                                      Radius.circular(
+                                                                          8)),
+                                                          color: Color(
+                                                              0xffe7e7f4)),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Column(
+                                                          children: [
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Text(
+                                                                  mercedesList[
+                                                                          index]
+                                                                      .name,
+                                                                  style: const TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          15,
+                                                                      color: Colors
+                                                                          .black87),
+                                                                ),
+                                                                Row(
+                                                                  children: [
+                                                                    const Icon(
+                                                                      Icons
+                                                                          .star,
+                                                                      color: Color(
+                                                                          0xfff8c123),
                                                                     ),
-                                                                  ),
-
-                                                                  //order button
-                                                                  SizedBox(
-                                                                    height: 25,
-                                                                    child:
-                                                                        ElevatedButton(
-                                                                      onPressed:
-                                                                          () {
-                                                                        Navigator.push(
-                                                                            context,
-                                                                            MaterialPageRoute(builder: (BuildContext context) => CheckoutPage(name: mercedesList[index].name, color: mercedesList[index].color, rating: mercedesList[index].rating, seats: mercedesList[index].seats, transmission: mercedesList[index].transmission!, image: mercedesList[index].images.first)));
-                                                                      },
-                                                                      style: ElevatedButton
-                                                                          .styleFrom(
-                                                                        shape: const RoundedRectangleBorder(
-                                                                            borderRadius:
-                                                                                BorderRadius.all(Radius.circular(5))),
-                                                                        backgroundColor:
-                                                                            lightColorScheme.primary,
-                                                                        elevation:
-                                                                            0,
+                                                                    Text(
+                                                                      mercedesList[
+                                                                              index]
+                                                                          .rating,
+                                                                      style: Theme.of(
+                                                                              context)
+                                                                          .textTheme
+                                                                          .bodyMedium,
+                                                                    )
+                                                                  ],
+                                                                )
+                                                              ],
+                                                            ),
+                                                            Row(
+                                                              children: [
+                                                                Text(
+                                                                  '${mercedesList[index].color} |',
+                                                                  style: const TextStyle(
+                                                                      fontSize:
+                                                                          13,
+                                                                      color: Colors
+                                                                          .black87),
+                                                                ),
+                                                                Text(
+                                                                  snapshot.requireData[index]
+                                                                              .availability ==
+                                                                          true
+                                                                      ? "  Available"
+                                                                      : "   Unavailable",
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          13,
+                                                                      color: lightColorScheme
+                                                                          .primary),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      top: 5),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Text(
+                                                                        'GHS ${mercedesList[index].price}',
+                                                                        style: TextStyle(
+                                                                            fontWeight: FontWeight
+                                                                                .bold,
+                                                                            fontSize:
+                                                                                15,
+                                                                            color:
+                                                                                lightColorScheme.primary),
                                                                       ),
-                                                                      child:
-                                                                          const Text(
-                                                                        'Order',
+                                                                      const Text(
+                                                                        ' |  Per day',
                                                                         style: TextStyle(
                                                                             fontSize:
-                                                                                11),
+                                                                                13,
+                                                                            color:
+                                                                                Colors.black87),
                                                                       ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+
+                                                                //order button
+                                                                SizedBox(
+                                                                  height: 25,
+                                                                  child:
+                                                                      ElevatedButton(
+                                                                    onPressed:
+                                                                        () {
+                                                                      Navigator.push(
+                                                                          context,
+                                                                          MaterialPageRoute(
+                                                                              builder: (BuildContext context) => CheckoutPage(name: mercedesList[index].name, color: mercedesList[index].color, rating: mercedesList[index].rating, seats: mercedesList[index].seats, transmission: mercedesList[index].transmission!, image: mercedesList[index].images.first)));
+                                                                    },
+                                                                    style: ElevatedButton
+                                                                        .styleFrom(
+                                                                      shape: const RoundedRectangleBorder(
+                                                                          borderRadius:
+                                                                              BorderRadius.all(Radius.circular(5))),
+                                                                      backgroundColor:
+                                                                          lightColorScheme
+                                                                              .primary,
+                                                                      elevation:
+                                                                          0,
+                                                                    ),
+                                                                    child:
+                                                                        const Text(
+                                                                      'Order',
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              11),
                                                                     ),
                                                                   ),
-                                                                ],
-                                                              ),
-                                                            ],
-                                                          ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ],
                                                         ),
                                                       ),
-                                                    )
-                                                  ],
-                                                ),
+                                                    ),
+                                                  )
+                                                ],
                                               ),
                                             ),
                                           );
@@ -569,7 +583,9 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                     //display a list of alllexus brand cars
 
                                     SizedBox(
-                                        height: 430,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.53,
                                         child: ListView.builder(
                                             itemCount: lexusList.length,
                                             itemBuilder:
@@ -627,10 +643,10 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                       .only(
                                                                   topLeft: Radius
                                                                       .circular(
-                                                                          7),
+                                                                          8),
                                                                   bottomLeft: Radius
                                                                       .circular(
-                                                                          7)),
+                                                                          8)),
                                                               image: DecorationImage(
                                                                   fit: BoxFit
                                                                       .cover,
@@ -662,12 +678,12 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                             height: 80,
                                                             decoration: const BoxDecoration(
                                                                 borderRadius: BorderRadius.only(
-                                                                    topLeft: Radius
+                                                                    topRight: Radius
                                                                         .circular(
-                                                                            7),
-                                                                    bottomLeft:
+                                                                            8),
+                                                                    bottomRight:
                                                                         Radius.circular(
-                                                                            7)),
+                                                                            8)),
                                                                 color: Color(
                                                                     0xffe7e7f4)),
                                                             child: Padding(
@@ -798,7 +814,10 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                       )
                                     : isActiveBrand == "BMW"
                                         ? SizedBox(
-                                            height: 430,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.53,
                                             child: ListView.builder(
                                                 itemCount: BMWList.length,
                                                 itemBuilder:
@@ -837,8 +856,12 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                       transmission:
                                                                           BMWList[index]
                                                                               .transmission,
-                                                                      images: [],
-                                                                      otherFeatures: [],
+                                                                      images: BMWList[
+                                                                              index]
+                                                                          .images,
+                                                                      otherFeatures:
+                                                                          BMWList[index]
+                                                                              .otherFeatures!,
                                                                       category:
                                                                           BMWList[index]
                                                                               .category,
@@ -855,10 +878,10 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                           .only(
                                                                       topLeft: Radius
                                                                           .circular(
-                                                                              7),
+                                                                              8),
                                                                       bottomLeft:
                                                                           Radius.circular(
-                                                                              7)),
+                                                                              8)),
                                                                   image: DecorationImage(
                                                                       fit: BoxFit
                                                                           .cover,
@@ -892,12 +915,12 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                 height: 80,
                                                                 decoration: const BoxDecoration(
                                                                     borderRadius: BorderRadius.only(
-                                                                        topLeft:
+                                                                        topRight:
                                                                             Radius.circular(
-                                                                                7),
-                                                                        bottomLeft:
+                                                                                8),
+                                                                        bottomRight:
                                                                             Radius.circular(
-                                                                                7)),
+                                                                                8)),
                                                                     color: Color(
                                                                         0xffe7e7f4)),
                                                                 child: Padding(
@@ -1008,7 +1031,10 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                         //Lexus cars
                                         : isActiveBrand == "Lexus"
                                             ? SizedBox(
-                                                height: 430,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.53,
                                                 child: ListView.builder(
                                                     itemCount: lexusList.length,
                                                     itemBuilder:
@@ -1039,8 +1065,10 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                               lexusList[index].price,
                                                                           rating:
                                                                               lexusList[index].rating,
-                                                                          images: [],
-                                                                          otherFeatures: [],
+                                                                          images:
+                                                                              lexusList[index].images,
+                                                                          otherFeatures:
+                                                                              lexusList[index].otherFeatures!,
                                                                           transmission:
                                                                               lexusList[index].transmission,
                                                                           category:
@@ -1057,9 +1085,9 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                       borderRadius: const BorderRadius
                                                                               .only(
                                                                           topLeft: Radius.circular(
-                                                                              7),
+                                                                              8),
                                                                           bottomLeft: Radius.circular(
-                                                                              7)),
+                                                                              8)),
                                                                       image: DecorationImage(
                                                                           fit: BoxFit
                                                                               .cover,
@@ -1095,9 +1123,9 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                     height: 80,
                                                                     decoration: const BoxDecoration(
                                                                         borderRadius: BorderRadius.only(
-                                                                            topLeft: Radius.circular(
+                                                                            topRight: Radius.circular(
                                                                                 7),
-                                                                            bottomLeft: Radius.circular(
+                                                                            bottomRight: Radius.circular(
                                                                                 7)),
                                                                         color: Color(
                                                                             0xffe7e7f4)),
@@ -1199,7 +1227,11 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                             //kia
                                             : isActiveBrand == "KIA"
                                                 ? SizedBox(
-                                                    height: 430,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.53,
                                                     child: ListView.builder(
                                                         itemCount:
                                                             kiaList.length,
@@ -1229,7 +1261,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                               price: kiaList[index].price,
                                                                               rating: kiaList[index].rating,
                                                                               images: kiaList[index].images,
-                                                                              otherFeatures: [],
+                                                                              otherFeatures: kiaList[index].otherFeatures!,
                                                                               transmission: kiaList[index].transmission,
                                                                               category: kiaList[index].category,
                                                                             )));
@@ -1371,7 +1403,11 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                   )
                                                 : isActiveBrand == "Honda"
                                                     ? SizedBox(
-                                                        height: 430,
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height *
+                                                            0.53,
                                                         child: ListView.builder(
                                                             itemCount: hondaList
                                                                 .length,
@@ -1397,8 +1433,8 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                   numberOfSeats: hondaList[index].seats,
                                                                                   price: hondaList[index].price,
                                                                                   rating: hondaList[index].rating,
-                                                                                  images: [],
-                                                                                  otherFeatures: [],
+                                                                                  images: hondaList[index].images,
+                                                                                  otherFeatures: hondaList[index].otherFeatures!,
                                                                                   transmission: hondaList[index].transmission,
                                                                                   category: hondaList[index].category,
                                                                                 )));
@@ -1436,7 +1472,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                             height:
                                                                                 80,
                                                                             decoration:
-                                                                                const BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(7), bottomLeft: Radius.circular(7)), color: Color(0xffe7e7f4)),
+                                                                                const BoxDecoration(borderRadius: BorderRadius.only(topRight: Radius.circular(8), bottomRight: Radius.circular(8)), color: Color(0xffe7e7f4)),
                                                                             child:
                                                                                 Padding(
                                                                               padding: const EdgeInsets.all(8.0),
@@ -1527,7 +1563,11 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                             }),
                                                       )
                                                     : SizedBox(
-                                                        height: 430,
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height *
+                                                            0.53,
                                                         child: ListView.builder(
                                                             itemCount:
                                                                 saloonList
@@ -1570,7 +1610,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                           width:
                                                                               80,
                                                                           decoration: BoxDecoration(
-                                                                              borderRadius: const BorderRadius.only(topLeft: Radius.circular(7), bottomLeft: Radius.circular(7)),
+                                                                              borderRadius: const BorderRadius.only(topLeft: Radius.circular(8), bottomLeft: Radius.circular(8)),
                                                                               image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(saloonList[index].images.first.toString()))),
                                                                           child:
                                                                               const Align(
@@ -1593,7 +1633,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                             height:
                                                                                 80,
                                                                             decoration:
-                                                                                const BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(7), bottomLeft: Radius.circular(7)), color: Color(0xffe7e7f4)),
+                                                                                const BoxDecoration(borderRadius: BorderRadius.only(topRight: Radius.circular(8), bottomRight: Radius.circular(8)), color: Color(0xffe7e7f4)),
                                                                             child:
                                                                                 Padding(
                                                                               padding: const EdgeInsets.all(8.0),
@@ -1725,7 +1765,9 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                     //display a list of alllexus brand buses
 
                                     SizedBox(
-                                        height: 430,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.53,
                                         child: ListView.builder(
                                             itemCount: lexusBusList.length,
                                             itemBuilder:
@@ -1783,10 +1825,10 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                       .only(
                                                                   topLeft: Radius
                                                                       .circular(
-                                                                          7),
+                                                                          8),
                                                                   bottomLeft: Radius
                                                                       .circular(
-                                                                          7)),
+                                                                          8)),
                                                               image: DecorationImage(
                                                                   fit: BoxFit
                                                                       .cover,
@@ -1818,12 +1860,12 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                             height: 80,
                                                             decoration: const BoxDecoration(
                                                                 borderRadius: BorderRadius.only(
-                                                                    topLeft: Radius
+                                                                    topRight: Radius
                                                                         .circular(
-                                                                            7),
-                                                                    bottomLeft:
+                                                                            8),
+                                                                    bottomRight:
                                                                         Radius.circular(
-                                                                            7)),
+                                                                            8)),
                                                                 color: Color(
                                                                     0xffe7e7f4)),
                                                             child: Padding(
@@ -1963,7 +2005,10 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                       )
                                     : isActiveBrand == "BMW"
                                         ? SizedBox(
-                                            height: 430,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.53,
                                             child: ListView.builder(
                                                 itemCount: BMWBusList.length,
                                                 itemBuilder:
@@ -2020,10 +2065,10 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                           .only(
                                                                       topLeft: Radius
                                                                           .circular(
-                                                                              7),
+                                                                              8),
                                                                       bottomLeft:
                                                                           Radius.circular(
-                                                                              7)),
+                                                                              8)),
                                                                   image: DecorationImage(
                                                                       fit: BoxFit
                                                                           .cover,
@@ -2057,12 +2102,12 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                 height: 80,
                                                                 decoration: const BoxDecoration(
                                                                     borderRadius: BorderRadius.only(
-                                                                        topLeft:
+                                                                        topRight:
                                                                             Radius.circular(
-                                                                                7),
-                                                                        bottomLeft:
+                                                                                8),
+                                                                        bottomRight:
                                                                             Radius.circular(
-                                                                                7)),
+                                                                                8)),
                                                                     color: Color(
                                                                         0xffe7e7f4)),
                                                                 child: Padding(
@@ -2173,7 +2218,10 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                         //Lexus cars
                                         : isActiveBrand == "Lexus"
                                             ? SizedBox(
-                                                height: 430,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.53,
                                                 child: ListView.builder(
                                                     itemCount:
                                                         lexusBusList.length,
@@ -2223,9 +2271,9 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                       borderRadius: const BorderRadius
                                                                               .only(
                                                                           topLeft: Radius.circular(
-                                                                              7),
+                                                                              8),
                                                                           bottomLeft: Radius.circular(
-                                                                              7)),
+                                                                              8)),
                                                                       image: DecorationImage(
                                                                           fit: BoxFit
                                                                               .cover,
@@ -2261,10 +2309,10 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                     height: 80,
                                                                     decoration: const BoxDecoration(
                                                                         borderRadius: BorderRadius.only(
-                                                                            topLeft: Radius.circular(
-                                                                                7),
-                                                                            bottomLeft: Radius.circular(
-                                                                                7)),
+                                                                            topRight: Radius.circular(
+                                                                                8),
+                                                                            bottomRight: Radius.circular(
+                                                                                8)),
                                                                         color: Color(
                                                                             0xffe7e7f4)),
                                                                     child:
@@ -2375,7 +2423,11 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                             //kia
                                             : isActiveBrand == "KIA"
                                                 ? SizedBox(
-                                                    height: 430,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.53,
                                                     child: ListView.builder(
                                                         itemCount:
                                                             kiaBusList.length,
@@ -2557,7 +2609,11 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                   )
                                                 : isActiveBrand == "Honda"
                                                     ? SizedBox(
-                                                        height: 430,
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height *
+                                                            0.53,
                                                         child: ListView.builder(
                                                             itemCount:
                                                                 hondaBusList
@@ -2600,7 +2656,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                           width:
                                                                               80,
                                                                           decoration: BoxDecoration(
-                                                                              borderRadius: const BorderRadius.only(topLeft: Radius.circular(7), bottomLeft: Radius.circular(7)),
+                                                                              borderRadius: const BorderRadius.only(topLeft: Radius.circular(8), bottomLeft: Radius.circular(8)),
                                                                               image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(hondaBusList[index].images.first.toString()))),
                                                                           child:
                                                                               const Align(
@@ -2623,7 +2679,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                             height:
                                                                                 80,
                                                                             decoration:
-                                                                                const BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(7), bottomLeft: Radius.circular(7)), color: Color(0xffe7e7f4)),
+                                                                                const BoxDecoration(borderRadius: BorderRadius.only(topRight: Radius.circular(7), bottomRight: Radius.circular(7)), color: Color(0xffe7e7f4)),
                                                                             child:
                                                                                 Padding(
                                                                               padding: const EdgeInsets.all(8.0),
@@ -2714,7 +2770,11 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                             }),
                                                       )
                                                     : SizedBox(
-                                                        height: 430,
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height *
+                                                            0.53,
                                                         child: ListView.builder(
                                                             itemCount:
                                                                 busList.length,
@@ -2756,7 +2816,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                           width:
                                                                               80,
                                                                           decoration: BoxDecoration(
-                                                                              borderRadius: const BorderRadius.only(topLeft: Radius.circular(7), bottomLeft: Radius.circular(7)),
+                                                                              borderRadius: const BorderRadius.only(topLeft: Radius.circular(8), bottomLeft: Radius.circular(8)),
                                                                               image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(busList[index].images.first.toString()))),
                                                                           child:
                                                                               const Align(
@@ -2779,7 +2839,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                             height:
                                                                                 80,
                                                                             decoration:
-                                                                                const BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(7), bottomLeft: Radius.circular(7)), color: Color(0xffe7e7f4)),
+                                                                                const BoxDecoration(borderRadius: BorderRadius.only(topRight: Radius.circular(8), bottomRight: Radius.circular(8)), color: Color(0xffe7e7f4)),
                                                                             child:
                                                                                 Padding(
                                                                               padding: const EdgeInsets.all(8.0),
@@ -2909,7 +2969,9 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                       ),
                                     ),
                                     SizedBox(
-                                      height: 430,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.53,
                                       child: ListView.builder(
                                           itemCount: jetList.length,
                                           itemBuilder:
@@ -2978,10 +3040,10 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                     .only(
                                                                 topLeft: Radius
                                                                     .circular(
-                                                                        7),
+                                                                        8),
                                                                 bottomLeft: Radius
                                                                     .circular(
-                                                                        7)),
+                                                                        8)),
                                                             image: DecorationImage(
                                                                 fit: BoxFit
                                                                     .cover,
@@ -3012,12 +3074,12 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                           height: 80,
                                                           decoration: const BoxDecoration(
                                                               borderRadius: BorderRadius.only(
-                                                                  topLeft: Radius
+                                                                  topRight: Radius
                                                                       .circular(
-                                                                          7),
-                                                                  bottomLeft: Radius
+                                                                          8),
+                                                                  bottomRight: Radius
                                                                       .circular(
-                                                                          7)),
+                                                                          8)),
                                                               color: Color(
                                                                   0xffe7e7f4)),
                                                           child: Padding(
@@ -3167,7 +3229,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
               }
             }
             return const Center(
-              child: Text('Sorry no vehicles '),
+              child: CircularProgressIndicator.adaptive(),
             );
           }),
     );

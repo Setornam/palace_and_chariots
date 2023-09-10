@@ -53,7 +53,7 @@ class _SalesDetailsPageAccommodationState
                   children: [
                     Container(
                       height: 100,
-                      width: MediaQuery.of(context).size.width * 0.85,
+                      width: double.infinity,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(7)),
                           image: DecorationImage(
@@ -68,7 +68,7 @@ class _SalesDetailsPageAccommodationState
                         children: [
                           Container(
                             height: 80,
-                            width: 150,
+                            width: MediaQuery.of(context).size.width * 0.48,
                             decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(7)),
@@ -79,7 +79,7 @@ class _SalesDetailsPageAccommodationState
                           ),
                           Container(
                             height: 80,
-                            width: 150,
+                            width: MediaQuery.of(context).size.width * 0.43,
                             decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(7)),

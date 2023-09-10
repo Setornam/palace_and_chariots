@@ -55,7 +55,11 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                       right: BorderSide(color: lightColorScheme.primary),
                       bottom: BorderSide(
                           color: lightColorScheme.primary, width: 0.011)),
-                  borderRadius: BorderRadius.all(Radius.circular(7))),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(29),
+                      bottomRight: Radius.circular(29))),
               child: Column(
                 children: [
                   Padding(
@@ -319,7 +323,7 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                       ),
 
                       const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        padding: EdgeInsets.symmetric(horizontal: 40),
                         child: Text('-'),
                       ),
 
@@ -684,7 +688,7 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                                                             value,
                                                             Widget? child) {
                                                       return Text(
-                                                        '${numberOfAdults.value} Adults -',
+                                                        '${numberOfAdults.value}   Adults       -         ',
                                                         textAlign:
                                                             TextAlign.center,
                                                       );
@@ -751,7 +755,7 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                                 builder: (BuildContext context, value,
                                     Widget? child) {
                                   return Text(
-                                    '${numberOfAdults.value} Adults   -     ',
+                                    '${numberOfAdults.value} Adults    -        ',
                                     textAlign: TextAlign.center,
                                   );
                                 },
@@ -774,25 +778,28 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                     ),
                   ),
 
-                  SizedBox(
-                    width: MediaQuery.sizeOf(context).width,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: lightColorScheme.primary,
-                          minimumSize: const Size.fromHeight(40),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      TravelCheckoutPage(
-                                        endDate: _endDate.value,
-                                        startDate: _startDate.value,
-                                      )));
-                        },
-                        child: const Text('Next')),
-                  )
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(8),
+                                bottomRight: Radius.circular(8),
+                                topLeft: Radius.circular(0),
+                                topRight: Radius.zero)),
+                        backgroundColor: lightColorScheme.primary,
+                        minimumSize: const Size.fromHeight(40),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    TravelCheckoutPage(
+                                      endDate: _endDate.value,
+                                      startDate: _startDate.value,
+                                    )));
+                      },
+                      child: const Text('Next'))
                 ],
               ),
             ),

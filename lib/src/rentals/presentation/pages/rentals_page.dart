@@ -4,6 +4,7 @@ import 'package:palace_and_chariots/src/rentals/presentation/widgets/event_tab_b
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/vehicles_tab_bar_view.dart';
 
 import '../widgets/accommodation_tab_bar_view.dart';
+import '../widgets/search_page.dart';
 
 class RentalsPage extends StatefulWidget {
   const RentalsPage({super.key});
@@ -12,18 +13,18 @@ class RentalsPage extends StatefulWidget {
   State<RentalsPage> createState() => _RentalsPageState();
 }
 
-class _RentalsPageState extends State<RentalsPage> with SingleTickerProviderStateMixin {
-
+class _RentalsPageState extends State<RentalsPage>
+    with SingleTickerProviderStateMixin {
   bool _showSearchBar = false;
 
   late TabController _tabController;
 
-  static const List<Tab> tabs = <Tab> [
+  static const List<Tab> tabs = <Tab>[
     Tab(text: 'Vehicles'),
     Tab(text: 'Accommodation'),
     Tab(text: 'Event Services')
   ];
-  
+
   @override
   void initState() {
     super.initState();
@@ -32,7 +33,6 @@ class _RentalsPageState extends State<RentalsPage> with SingleTickerProviderStat
       length: tabs.length,
     );
   }
-
 
   @override
   void dispose() {
@@ -79,29 +79,39 @@ class _RentalsPageState extends State<RentalsPage> with SingleTickerProviderStat
                   )
                 ],
               ),
-              const SizedBox(
-                height: 50,
-                child: TextField(
-                  decoration: InputDecoration(
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 30, vertical: 35),
-                    suffixIcon: Padding(
-                      padding: EdgeInsets.only(right: 20),
-                      child: Icon(
-                        Icons.search,
-                        color: Colors.grey,
+              GestureDetector(
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => SearchPage())),
+                child: const SizedBox(
+                  height: 50,
+                  child: TextField(
+                    enabled: false,
+                    decoration: InputDecoration(
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 35),
+                      suffixIcon: Padding(
+                        padding: EdgeInsets.only(right: 20),
+                        child: Icon(
+                          Icons.search,
+                          color: Colors.grey,
+                        ),
                       ),
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      labelText: 'What are you searching for?',
+                      labelStyle: TextStyle(color: Colors.grey),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.lightBlue),
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      disabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xffe7e9f4)),
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xffe7e9f4)),
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      fillColor: Color(0xffe7e9f4),
                     ),
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    labelText: 'What are you searching for?',
-                    labelStyle: TextStyle(color: Colors.grey),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.lightBlue),
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xffe7e9f4)),
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                    fillColor: Color(0xffe7e9f4),
                   ),
                 ),
               ),
@@ -127,7 +137,6 @@ class _RentalsPageState extends State<RentalsPage> with SingleTickerProviderStat
             ],
           ),
         ),
-       
         body: const TabBarView(
           children: [
             VehiclesTabBarView(),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/sales/presentation/widgets/accommodation_tab_bar_view.dart';
-import 'package:palace_and_chariots/src/sales/presentation/widgets/vehicles_tab_bar_view.dart';
 
 import '../../../rentals/presentation/widgets/vehicles_tab_bar_view.dart';
 import '../widgets/cars_tab_bar_view.dart';

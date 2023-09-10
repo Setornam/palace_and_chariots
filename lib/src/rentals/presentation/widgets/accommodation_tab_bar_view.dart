@@ -147,9 +147,12 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                             color: lightColorScheme.primary),
                                         bottom: BorderSide(
                                             color: lightColorScheme.primary,
-                                            width: 0.011)),
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(7))),
+                                            width: 0.0111)),
+                                    borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10),
+                                        bottomLeft: Radius.circular(29),
+                                        bottomRight: Radius.circular(29))),
                                 child: Column(
                                   children: [
                                     Padding(
@@ -350,7 +353,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
 
                                         const Padding(
                                           padding: EdgeInsets.symmetric(
-                                              horizontal: 10),
+                                              horizontal: 40),
                                           child: Text('-'),
                                         ),
 
@@ -740,7 +743,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                               value,
                                                                               Widget? child) {
                                                                             return Text(
-                                                                              '${numberOfRooms.value} rooms - ',
+                                                                              '${numberOfRooms.value} rooms      -           ',
                                                                               textAlign: TextAlign.center,
                                                                             );
                                                                           },
@@ -752,7 +755,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                               value,
                                                                               Widget? child) {
                                                                             return Text(
-                                                                              '${numberOfAdults.value} Adults -',
+                                                                              '${numberOfAdults.value} Adults    -          ',
                                                                               textAlign: TextAlign.center,
                                                                             );
                                                                           },
@@ -828,7 +831,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                           value,
                                                           Widget? child) {
                                                     return Text(
-                                                      '${numberOfRooms.value} rooms - ',
+                                                      '${numberOfRooms.value} rooms     -         ',
                                                       textAlign:
                                                           TextAlign.center,
                                                     );
@@ -842,7 +845,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                           value,
                                                           Widget? child) {
                                                     return Text(
-                                                      '${numberOfAdults.value} Adults -',
+                                                      '${numberOfAdults.value} Adults     -         ',
                                                       textAlign:
                                                           TextAlign.center,
                                                     );
@@ -871,48 +874,47 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                       ),
                                     ),
 
-                                    SizedBox(
-                                      width: MediaQuery.sizeOf(context).width,
-                                      child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                lightColorScheme.primary,
-                                            minimumSize:
-                                                const Size.fromHeight(40),
-                                          ),
-                                          onPressed: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (BuildContext
-                                                            context) =>
-                                                        SearchResultPage(
-                                                          hotels: hotels,
-                                                          searchQuery:
-                                                              destinationController
-                                                                  .text,
-                                                          endDate:
-                                                              _endDate.value,
-                                                          numberOfAdults:
-                                                              numberOfAdults
-                                                                  .value
-                                                                  .toString(),
-                                                          numberOfChildren:
-                                                              numberOfChildren
-                                                                  .value
-                                                                  .toString(),
-                                                          numberOfRooms:
-                                                              numberOfRooms
-                                                                  .value
-                                                                  .toString(),
-                                                          startDate:
-                                                              _startDate.value,
-                                                        )));
-                                          },
-                                          child: const Text('Search')),
-                                    )
-                                 
-                                 
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.only(
+                                                  bottomLeft:
+                                                      Radius.circular(10),
+                                                  bottomRight:
+                                                      Radius.circular(10))),
+                                          elevation: 0,
+                                          backgroundColor:
+                                              lightColorScheme.primary,
+                                          minimumSize:
+                                              const Size.fromHeight(40),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (BuildContext
+                                                          context) =>
+                                                      SearchResultPage(
+                                                        hotels: hotels,
+                                                        searchQuery:
+                                                            destinationController
+                                                                .text,
+                                                        endDate: _endDate.value,
+                                                        numberOfAdults:
+                                                            numberOfAdults.value
+                                                                .toString(),
+                                                        numberOfChildren:
+                                                            numberOfChildren
+                                                                .value
+                                                                .toString(),
+                                                        numberOfRooms:
+                                                            numberOfRooms.value
+                                                                .toString(),
+                                                        startDate:
+                                                            _startDate.value,
+                                                      )));
+                                        },
+                                        child: const Text('Search'))
                                   ],
                                 ),
                               ),
@@ -1077,8 +1079,11 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                             bottom: BorderSide(
                                                 color: lightColorScheme.primary,
                                                 width: 0.011)),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(7))),
+                                        borderRadius: const BorderRadius.only(
+                                            topLeft: Radius.circular(10),
+                                            topRight: Radius.circular(10),
+                                            bottomLeft: Radius.circular(29),
+                                            bottomRight: Radius.circular(29))),
                                     child: Column(
                                       children: [
                                         Padding(
@@ -1281,7 +1286,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
 
                                             const Padding(
                                               padding: EdgeInsets.symmetric(
-                                                  horizontal: 10),
+                                                  horizontal: 40),
                                               child: Text('-'),
                                             ),
 
@@ -1663,7 +1668,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                             ValueListenableBuilder(
                                                                               builder: (BuildContext context, value, Widget? child) {
                                                                                 return Text(
-                                                                                  '${numberOfRoomsApartment.value} rooms - ',
+                                                                                  '${numberOfRoomsApartment.value} rooms      -        ',
                                                                                   textAlign: TextAlign.center,
                                                                                 );
                                                                               },
@@ -1672,7 +1677,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                             ValueListenableBuilder(
                                                                               builder: (BuildContext context, value, Widget? child) {
                                                                                 return Text(
-                                                                                  '${numberOfAdultsApartment.value} Adults -',
+                                                                                  '${numberOfAdultsApartment.value} Adults      -       ',
                                                                                   textAlign: TextAlign.center,
                                                                                 );
                                                                               },
@@ -1743,7 +1748,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                               value,
                                                               Widget? child) {
                                                         return Text(
-                                                          '${numberOfRoomsApartment.value} rooms - ',
+                                                          '${numberOfRoomsApartment.value}   rooms    -    ',
                                                           textAlign:
                                                               TextAlign.center,
                                                         );
@@ -1757,7 +1762,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                               value,
                                                               Widget? child) {
                                                         return Text(
-                                                          '${numberOfAdultsApartment.value} Adults -',
+                                                          '${numberOfAdultsApartment.value} Adults    -      ',
                                                           textAlign:
                                                               TextAlign.center,
                                                         );
@@ -1786,50 +1791,56 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                           ),
                                         ),
 
-                                        SizedBox(
-                                          width:
-                                              MediaQuery.sizeOf(context).width,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                backgroundColor:
-                                                    lightColorScheme.primary,
-                                                minimumSize:
-                                                    const Size.fromHeight(40),
-                                              ),
-                                              onPressed: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (BuildContext
-                                                                context) =>
-                                                            SearchResultPage(
-                                                              apartments:
-                                                                  apartments,
-                                                              searchQuery:
-                                                                  destinationControllerApartment
-                                                                      .text,
-                                                              endDate:
-                                                                  _apartmentBookEndDate
-                                                                      .value,
-                                                              numberOfAdults:
-                                                                  numberOfAdultsApartment
-                                                                      .value
-                                                                      .toString(),
-                                                              numberOfChildren:
-                                                                  numberOfChildrenApartment
-                                                                      .value
-                                                                      .toString(),
-                                                              numberOfRooms:
-                                                                  numberOfRoomsApartment
-                                                                      .value
-                                                                      .toString(),
-                                                              startDate:
-                                                                  _apartmentBookStartDate
-                                                                      .value,
-                                                            )));
-                                              },
-                                              child: const Text('Search')),
-                                        )
+                                        ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor:
+                                                  lightColorScheme.primary,
+                                              minimumSize:
+                                                  const Size.fromHeight(40),
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  10),
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  10))),
+                                              elevation: 0,
+                                            ),
+                                            onPressed: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          SearchResultPage(
+                                                            apartments:
+                                                                apartments,
+                                                            searchQuery:
+                                                                destinationControllerApartment
+                                                                    .text,
+                                                            endDate:
+                                                                _apartmentBookEndDate
+                                                                    .value,
+                                                            numberOfAdults:
+                                                                numberOfAdultsApartment
+                                                                    .value
+                                                                    .toString(),
+                                                            numberOfChildren:
+                                                                numberOfChildrenApartment
+                                                                    .value
+                                                                    .toString(),
+                                                            numberOfRooms:
+                                                                numberOfRoomsApartment
+                                                                    .value
+                                                                    .toString(),
+                                                            startDate:
+                                                                _apartmentBookStartDate
+                                                                    .value,
+                                                          )));
+                                            },
+                                            child: const Text('Search'))
                                       ],
                                     ),
                                   ),

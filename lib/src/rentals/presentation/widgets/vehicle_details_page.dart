@@ -33,6 +33,7 @@ class _VehicleDetailsPageState extends State<VehicleDetailsPage> {
   DateTime pickUpDate = DateTime.now();
   DateTime dropOffDate = DateTime.now();
   DateFormat dateFormat = DateFormat("EEEE, d MMMM");
+
   TimeOfDay pickUpTime = TimeOfDay.now();
   TimeOfDay dropOffTime = TimeOfDay.now();
 
@@ -71,21 +72,21 @@ class _VehicleDetailsPageState extends State<VehicleDetailsPage> {
                   children: [
                     Container(
                       height: 150,
-                      width: MediaQuery.of(context).size.width * .82,
+                      width: MediaQuery.of(context).size.width * .87,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(7)),
                           image: DecorationImage(
-                              fit: BoxFit.cover,
+                              fit: BoxFit.fitWidth,
                               image: NetworkImage(widget.images[0]))),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 5, bottom: 15),
+                      padding: const EdgeInsets.only(top: 10, bottom: 15),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
                             height: 80,
-                            width: 150,
+                            width: MediaQuery.of(context).size.width * .45,
                             decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(7)),
@@ -95,7 +96,7 @@ class _VehicleDetailsPageState extends State<VehicleDetailsPage> {
                           ),
                           Container(
                             height: 80,
-                            width: 150,
+                            width: MediaQuery.of(context).size.width * .40,
                             decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(7)),
@@ -141,14 +142,14 @@ class _VehicleDetailsPageState extends State<VehicleDetailsPage> {
                                 widget.name,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 15,
+                                    fontSize: 18,
                                     color: Colors.black87),
                               ),
                               Text(
                                 'GHS ${widget.price}',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 15,
+                                    fontSize: 18,
                                     color: lightColorScheme.primary),
                               ),
                             ],
@@ -295,326 +296,339 @@ class _VehicleDetailsPageState extends State<VehicleDetailsPage> {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 70),
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: Color(0xffE7E7F4),
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(12),
-                        topLeft: Radius.circular(12)),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 50,
-                          child: TextField(
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 30, vertical: 50),
-                              suffixIcon: Padding(
-                                padding: EdgeInsets.only(right: 20),
-                              ),
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.never,
-                              labelText: 'Enter pick up location',
-                              labelStyle: TextStyle(color: Colors.grey),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.lightBlue),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5))),
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Color(0xffe7e9f4)),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5))),
-                              fillColor: Colors.white,
-                            ),
-                          ),
-                        ),
-
-                        //pick up
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              //pick up date
-                              Container(
-                                decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 7, horizontal: 7),
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      final DateTime? picked =
-                                          await showDatePicker(
-                                        context: context,
-                                        initialDate: pickUpDate,
-                                        firstDate: DateTime(2000),
-                                        lastDate: DateTime(2101),
-                                      );
-                                      if (picked != null &&
-                                          picked != pickUpDate) {
-                                        setState(() {
-                                          pickUpDate = picked;
-                                        });
-                                      }
-                                    },
-                                    child: Column(
-                                      children: [
-                                        const Row(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 20),
-                                              child: Icon(Icons
-                                                  .calendar_today_outlined),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 25),
-                                              child: Text(
-                                                'Pick up date',
-                                                style: TextStyle(
-                                                    color: Colors.grey),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(left: 35),
-                                          child: Text(
-                                            dateFormat.format(pickUpDate),
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-
-                              //pick up time
-                              Container(
-                                decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 7, horizontal: 7),
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      final TimeOfDay? picked =
-                                          await showTimePicker(
-                                        context: context,
-                                        initialTime: pickUpTime,
-                                      );
-                                      if (picked != null &&
-                                          picked != pickUpTime) {
-                                        setState(() {
-                                          pickUpTime = picked;
-                                        });
-                                      }
-                                    },
-                                    child: Column(
-                                      children: [
-                                        const Row(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 20),
-                                              child: Icon(Icons.access_time),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 25),
-                                              child: Text(
-                                                'Pick up time',
-                                                style: TextStyle(
-                                                    color: Colors.grey),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(left: 5),
-                                          child: Text(
-                                            '${pickUpTime.hourOfPeriod}:${pickUpTime.minute.toString().padLeft(2, '0')} ${pickUpTime.period == DayPeriod.am ? 'AM' : 'PM'}',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-
-                        //drop off
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 7, horizontal: 7),
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      final DateTime? picked =
-                                          await showDatePicker(
-                                        context: context,
-                                        initialDate: pickUpDate,
-                                        firstDate: DateTime(2000),
-                                        lastDate: DateTime(2101),
-                                      );
-                                      if (picked != null &&
-                                          picked != pickUpDate) {
-                                        setState(() {
-                                          dropOffDate = picked;
-                                        });
-                                      }
-                                    },
-                                    child: Column(
-                                      children: [
-                                        const Row(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 20),
-                                              child: Icon(Icons
-                                                  .calendar_today_outlined),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 25),
-                                              child: Text(
-                                                'Drop off date',
-                                                style: TextStyle(
-                                                    color: Colors.grey),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(left: 35),
-                                          child: Text(
-                                            dateFormat.format(dropOffDate),
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-
-                              //drop off time
-                              Container(
-                                decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 7, horizontal: 7),
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      final TimeOfDay? picked =
-                                          await showTimePicker(
-                                        context: context,
-                                        initialTime: dropOffTime,
-                                      );
-                                      if (picked != null &&
-                                          picked != dropOffTime) {
-                                        setState(() {
-                                          dropOffTime = picked;
-                                        });
-                                      }
-                                    },
-                                    child: Column(
-                                      children: [
-                                        const Row(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 20),
-                                              child: Icon(Icons.access_time),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 15),
-                                              child: Text(
-                                                'Drop off time',
-                                                style: TextStyle(
-                                                    color: Colors.grey),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(left: 5),
-                                          child: Text(
-                                            '${dropOffTime.hourOfPeriod}:${dropOffTime.minute.toString().padLeft(2, '0')} ${dropOffTime.period == DayPeriod.am ? 'AM' : 'PM'}',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              )
             ],
           ),
           Positioned(
               bottom: 0,
-              child: SizedBox(
-                width: MediaQuery.sizeOf(context).width,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      minimumSize: const Size.fromHeight(50),
+              child: Column(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.99,
+                    decoration: const BoxDecoration(
+                      color: Color(0xffE7E7F4),
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(12),
+                          topLeft: Radius.circular(12)),
                     ),
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => CheckoutPage(
-                                    name: widget.name,
-                                    color: widget.color,
-                                    transmission: widget.transmission!,
-                                    rating: widget.rating,
-                                    seats: widget.numberOfSeats, image: widget.images.first,
-                                  )));
-                    },
-                    child: Text('Submit')),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 50,
+                            width: 400,
+                            child: TextField(
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 30, vertical: 50),
+                                suffixIcon: Padding(
+                                  padding: EdgeInsets.only(right: 20),
+                                ),
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.never,
+                                labelText: 'Enter pick up location',
+                                labelStyle: TextStyle(color: Colors.grey),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.lightBlue),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))),
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Color(0xffe7e9f4)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))),
+                                fillColor: Colors.white,
+                              ),
+                            ),
+                          ),
+
+                          //pick up
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                //pick up date
+                                Container(
+                                  decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5))),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 7, horizontal: 7),
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        final DateTime? picked =
+                                            await showDatePicker(
+                                          context: context,
+                                          initialDate: pickUpDate,
+                                          firstDate: DateTime(2000),
+                                          lastDate: DateTime(2101),
+                                        );
+                                        if (picked != null &&
+                                            picked != pickUpDate) {
+                                          setState(() {
+                                            pickUpDate = picked;
+                                          });
+                                        }
+                                      },
+                                      child: Column(
+                                        children: [
+                                          const Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 10),
+                                                child: Icon(Icons
+                                                    .calendar_today_outlined),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 30),
+                                                child: Text(
+                                                  'Pick up date',
+                                                  style: TextStyle(
+                                                      color: Colors.grey),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(left: 20),
+                                            child: Text(
+                                              DateFormat(
+                                                      "E, d'th' MMM", 'en_US')
+                                                  .format(pickUpDate),
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                //pick up time
+                                Container(
+                                  decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5))),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 7, horizontal: 7),
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        final TimeOfDay? picked =
+                                            await showTimePicker(
+                                          context: context,
+                                          initialTime: pickUpTime,
+                                        );
+                                        if (picked != null &&
+                                            picked != pickUpTime) {
+                                          setState(() {
+                                            pickUpTime = picked;
+                                          });
+                                        }
+                                      },
+                                      child: Column(
+                                        children: [
+                                          const Row(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 15),
+                                                child: Icon(Icons.access_time),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 20),
+                                                child: Text(
+                                                  'Pick up time',
+                                                  style: TextStyle(
+                                                      color: Colors.grey),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(left: 0),
+                                            child: Text(
+                                              '${pickUpTime.hourOfPeriod}:${pickUpTime.minute.toString().padLeft(2, '0')} ${pickUpTime.period == DayPeriod.am ? 'AM' : 'PM'}',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+
+                          //drop off
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5))),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 7, horizontal: 7),
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        final DateTime? picked =
+                                            await showDatePicker(
+                                          context: context,
+                                          initialDate: pickUpDate,
+                                          firstDate: DateTime(2000),
+                                          lastDate: DateTime(2101),
+                                        );
+                                        if (picked != null &&
+                                            picked != pickUpDate) {
+                                          setState(() {
+                                            dropOffDate = picked;
+                                          });
+                                        }
+                                      },
+                                      child: Column(
+                                        children: [
+                                          const Row(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 10),
+                                                child: Icon(Icons
+                                                    .calendar_today_outlined),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 30),
+                                                child: Text(
+                                                  'Drop off date',
+                                                  style: TextStyle(
+                                                      color: Colors.grey),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(left: 20),
+                                            child: Text(
+                                              DateFormat(
+                                                      "E, d'th' MMM", 'en_US')
+                                                  .format(dropOffDate),
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                //drop off time
+                                Container(
+                                  decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5))),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 7, horizontal: 7),
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        final TimeOfDay? picked =
+                                            await showTimePicker(
+                                          context: context,
+                                          initialTime: dropOffTime,
+                                        );
+                                        if (picked != null &&
+                                            picked != dropOffTime) {
+                                          setState(() {
+                                            dropOffTime = picked;
+                                          });
+                                        }
+                                      },
+                                      child: Column(
+                                        children: [
+                                          const Row(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 15),
+                                                child: Icon(Icons.access_time),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 15),
+                                                child: Text(
+                                                  'Drop off time',
+                                                  style: TextStyle(
+                                                      color: Colors.grey),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(left: 0),
+                                            child: Text(
+                                              '${dropOffTime.hourOfPeriod}:${dropOffTime.minute.toString().padLeft(2, '0')} ${dropOffTime.period == DayPeriod.am ? 'AM' : 'PM'}',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  //btn
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).width,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green,
+                          minimumSize: const Size.fromHeight(50),
+                        ),
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      CheckoutPage(
+                                        name: widget.name,
+                                        color: widget.color,
+                                        transmission: widget.transmission!,
+                                        rating: widget.rating,
+                                        seats: widget.numberOfSeats,
+                                        image: widget.images.first,
+                                      )));
+                        },
+                        child: const Text('Submit')),
+                  ),
+                ],
               ))
         ],
       ),

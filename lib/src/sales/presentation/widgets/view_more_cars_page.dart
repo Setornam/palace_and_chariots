@@ -263,7 +263,7 @@ class _ViewMoreCarsPageState extends State<ViewMoreCarsPage> {
                                                           isSortByLowerPriceChecked
                                                               .value,
                                                       onChanged: (checked) {
-                                                        sortByLowestRating();
+                                                        sortByPrice();
                                                         isSortByLowerPriceChecked
                                                                 .value =
                                                             !isSortByLowerPriceChecked

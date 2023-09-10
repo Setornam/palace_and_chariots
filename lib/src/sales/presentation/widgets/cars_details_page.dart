@@ -67,7 +67,7 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                         children: [
                           Container(
                             height: 80,
-                            width: 185,
+                            width: MediaQuery.of(context).size.width * 0.48,
                             decoration: BoxDecoration(
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(7)),
@@ -81,7 +81,7 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                             padding: const EdgeInsets.only(left: 10),
                             child: Container(
                               height: 80,
-                              width: 120,
+                              width: MediaQuery.of(context).size.width * 0.4,
                               decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(7)),

@@ -44,6 +44,9 @@ class _ViewMorePageState extends State<ViewMorePage> {
 
   sortByPrice() {
     List<Vehicle>? listToSort = widget.saloonCars;
+
+    Vehicle vehicle = listToSort.first;
+
     listToSort.sort(
         (a, b) => (double.parse(a.price)).compareTo(double.parse(b.price)));
     if (isSortByLowerPriceChecked.value == false) {
@@ -264,7 +267,7 @@ class _ViewMorePageState extends State<ViewMorePage> {
                                                           isSortByLowerPriceChecked
                                                               .value,
                                                       onChanged: (checked) {
-                                                        sortByLowestRating();
+                                                        sortByPrice();
                                                         isSortByLowerPriceChecked
                                                                 .value =
                                                             !isSortByLowerPriceChecked

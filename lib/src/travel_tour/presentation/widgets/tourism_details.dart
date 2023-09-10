@@ -63,7 +63,7 @@ class _TourismDetailsPageState extends State<TourismDetailsPage> {
                           children: [
                             Container(
                               height: 80,
-                              width: 200,
+                              width: MediaQuery.of(context).size.width * 0.50,
                               decoration: const BoxDecoration(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(7)),
@@ -74,7 +74,7 @@ class _TourismDetailsPageState extends State<TourismDetailsPage> {
                             ),
                             Container(
                               height: 80,
-                              width: 130,
+                              width: MediaQuery.of(context).size.width * 0.40,
                               decoration: const BoxDecoration(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(7)),
@@ -120,7 +120,7 @@ class _TourismDetailsPageState extends State<TourismDetailsPage> {
                                   widget.tourism.name,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 15,
+                                      fontSize: 18,
                                       color: Colors.black87),
                                 ),
                               ],
