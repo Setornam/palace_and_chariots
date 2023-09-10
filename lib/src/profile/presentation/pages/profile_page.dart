@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:palace_and_chariots/src/profile/presentation/pages/edit_profile_page.dart';
 import 'package:palace_and_chariots/src/profile/presentation/pages/settings_page.dart';
+import 'package:palace_and_chariots/src/sign_in/presentation/pages/sign_in_page.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
 
@@ -30,41 +34,79 @@ class _ProfilePageState extends State<ProfilePage> {
       body: Center(
         child: Column(
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const CircleAvatar(
-                  radius: 60,
-                  backgroundImage: AssetImage('assets/images/profile.png'),
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: Text(
-                    'Esther Fisher',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 20),
-                  child: Text(
-                    'esther@gmail.com',
-                  ),
-                ),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(6))),
-                        backgroundColor: lightColorScheme.primary),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  EditProfilePage()));
-                    },
-                    child: const Text('Edit Profile'))
-              ],
+            FutureBuilder(
+              future: FirebaseFirestore.instance
+                  .collection('users')
+                  .where('id',
+                      isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                  .get(),
+              builder: (BuildContext context, snapshot) {
+                if (snapshot.hasData) {
+                  final List<DocumentSnapshot> documents = snapshot.data!.docs;
+
+                  return SizedBox(
+                    height: 300,
+                    child: ListView(
+                        children: documents
+                            .map((doc) => Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    doc['profile_image_url'] == null ||
+                                            doc['profile_image_url'] == ''
+                                        ? CircleAvatar(
+                                            radius: 60,
+                                            backgroundImage: AssetImage(
+                                                'assets/images/profile.png'))
+                                        : CircleAvatar(
+                                            radius: 60,
+                                            backgroundImage: NetworkImage(
+                                                doc['profile_image_url'])),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 10),
+                                      child: Text(
+                                        '${doc['first_name']}  ${doc['last_name']}',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(bottom: 20),
+                                      child: Text(
+                                        doc['email_address'],
+                                      ),
+                                    ),
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            shape: const RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(6))),
+                                            backgroundColor:
+                                                lightColorScheme.primary),
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder:
+                                                      (BuildContext context) =>
+                                                          EditProfilePage()));
+                                        },
+                                        child: const Text('Edit Profile'))
+                                  ],
+                                ))
+                            .toList()),
+                  );
+                } else {
+                  if (snapshot.hasError) {
+                    return Text('Error');
+                  }
+                }
+
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
             ),
             const Divider(),
             ListTile(
@@ -78,7 +120,14 @@ class _ProfilePageState extends State<ProfilePage> {
               title: const Text('Settings'),
             ),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                var auth = FirebaseAuth.instance;
+                auth.signOut();
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => SignInPage()));
+              },
               leading: const Icon(IconlyBold.logout),
               title: const Text('Log out'),
             )

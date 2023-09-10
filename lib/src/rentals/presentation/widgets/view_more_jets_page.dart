@@ -415,7 +415,9 @@ class _ViewMoreJetsPageState extends State<ViewMoreJetsPage> {
                                   // speed: widget
                                   //     .privateJets![index].speed,
                                   range: sortedPrivateJets[index].range,
-                                )));
+                                )
+                                
+                                ));
                   },
                   child: Column(
                     children: [

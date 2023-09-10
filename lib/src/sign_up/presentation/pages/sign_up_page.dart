@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -24,6 +25,9 @@ class _SignUpPageState extends State<SignUpPage> {
 
   ValueNotifier isPasswordHidden = ValueNotifier(true);
 
+  static CollectionReference users =
+      FirebaseFirestore.instance.collection('users');
+
   @override
   void initState() {
     super.initState();
@@ -34,6 +38,26 @@ class _SignUpPageState extends State<SignUpPage> {
   void dispose() {
     myFocusNode?.dispose();
     super.dispose();
+  }
+
+  Future<void> saveUser(
+    String id,
+    String email,
+  ) {
+    return users
+        .add({
+          'first_name': '',
+          'last_name': '',
+          'phone': '',
+          'email_address': email,
+          'profile_image_url': "",
+          'id': id,
+          'country': '',
+          'date_of_birth': '',
+          'gender': ''
+        })
+        .then((value) => print('saving success'))
+        .catchError((error) => print("Failed to save user: $error"));
   }
 
   void _signUp() async {
@@ -52,6 +76,12 @@ class _SignUpPageState extends State<SignUpPage> {
       setState(() {
         _isLoading = false;
       });
+
+      ///save to database
+      String userId = FirebaseAuth.instance.currentUser!.uid;
+      String? email = FirebaseAuth.instance.currentUser!.email;
+
+      await saveUser(userId, email!);
 
       // ignore: use_build_context_synchronously
       Navigator.pushReplacement(

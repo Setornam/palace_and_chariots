@@ -53,10 +53,10 @@ class MyApp extends StatelessWidget {
       // home: ItemDetailsPage(),
       // home: ViewMorePage(),
       // home: const SignInPage()
-      home: CustomBottomNavigation(),
+      // home: CustomBottomNavigation(),
       // home: RentalsPage(),
       // // home: SecurityPage(),
-      // home: OnboardingPage(),
+      home: OnboardingPage(),
       // home: TravelAndTourPage(),
       // home: SalesPage(),
 

@@ -6,6 +6,7 @@ import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/home/presentation/pages/home.dart';
 
 import '../../../home/presentation/widgets/custom_bottom_nav.dart';
+import '../../../sign_up/presentation/pages/sign_up_page.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage();
@@ -310,12 +311,23 @@ class _SignInPageState extends State<SignInPage> {
                                   color: Colors.white,
                                   fontSize: 14,
                                 )),
-                            Text('Sign up',
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            SignUpPage()));
+                              },
+                              child: Text(
+                                'Sign up',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: lightColorScheme.tertiary,
                                   fontSize: 14,
-                                )),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),

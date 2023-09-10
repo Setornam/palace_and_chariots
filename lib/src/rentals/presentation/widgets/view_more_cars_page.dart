@@ -590,7 +590,9 @@ class _ViewMorePageState extends State<ViewMorePage> {
                                     transmission:
                                         widget.saloonCars[index].transmission,
                                     category: sortedSaloonCars[index].category,
-                                  )));
+                                  )
+                                  
+                                  ));
                     },
                     child: Column(
                       children: [
