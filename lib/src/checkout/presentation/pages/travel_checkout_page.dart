@@ -94,7 +94,7 @@ class _TravelCheckoutPageState extends State<TravelCheckoutPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       Padding(
+                      Padding(
                         padding: EdgeInsets.symmetric(vertical: 7),
                         child: Text('Return ${widget.endDate}'),
                       ),
@@ -128,6 +128,7 @@ class _TravelCheckoutPageState extends State<TravelCheckoutPage> {
                     ],
                   ),
                 ),
+
                 Padding(
                   padding: const EdgeInsets.only(
                     top: 20,
@@ -272,7 +273,10 @@ class _TravelCheckoutPageState extends State<TravelCheckoutPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => TravelUserForm()));
+                                  builder: (context) => TravelUserForm(
+                                        endDate: widget.endDate,
+                                        startDate: widget.startDate,
+                                      )));
                         },
                         child: Text('Next')),
                   ),

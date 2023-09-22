@@ -118,7 +118,7 @@ class _TourismDetailsPageState extends State<TourismDetailsPage> {
                               children: [
                                 Text(
                                   widget.tourism.name,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18,
                                       color: Colors.black87),
@@ -186,7 +186,9 @@ class _TourismDetailsPageState extends State<TourismDetailsPage> {
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      const TourismCheckoutPage()));
+                                      TourismCheckoutPage(
+                                        tourism: widget.tourism,
+                                      )));
                         },
                         child: const Text('Reserve')),
                   ),

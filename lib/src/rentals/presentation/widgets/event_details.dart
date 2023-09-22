@@ -405,7 +405,13 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      const EventCheckoutPage()));
+                                      EventCheckoutPage(
+                                        location: '',
+                                        name: widget.eventService.name,
+                                        rating: widget.eventService.rating,
+                                        review: '10 ',
+                                        image: '',
+                                      )));
                         },
                         child: const Text('Reserve')),
                   ),

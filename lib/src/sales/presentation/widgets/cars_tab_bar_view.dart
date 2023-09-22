@@ -363,12 +363,14 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                                                       context,
                                                                       MaterialPageRoute(
                                                                           builder: (BuildContext context) => CheckoutPage(
-                                                                              name: mercedesList[index].name,
-                                                                              color: mercedesList[index].color,
-                                                                              rating: mercedesList[index].rating,
-                                                                              seats: mercedesList[index].seats,
-                                                                              transmission: mercedesList[index].transmission!,
-                                                                              image: mercedesList[index].images.first)));
+                                                                                name: mercedesList[index].name,
+                                                                                color: mercedesList[index].color,
+                                                                                rating: mercedesList[index].rating,
+                                                                                seats: mercedesList[index].seats,
+                                                                                transmission: mercedesList[index].transmission!,
+                                                                                image: mercedesList[index].images.first,
+                                                                                price: mercedesList[index].price,
+                                                                              )));
                                                                 },
                                                                 style: ElevatedButton
                                                                     .styleFrom(
@@ -402,8 +404,6 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                         ),
                                       ),
                                     );
-                                 
-                                 
                                   }),
                             )
                           : isActiveBrand == "lexus"
@@ -597,7 +597,15 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                                                       Navigator.push(
                                                                           context,
                                                                           MaterialPageRoute(
-                                                                              builder: (BuildContext context) => CheckoutPage(name: lexusList[index].name, color: lexusList[index].color, rating: lexusList[index].rating, seats: lexusList[index].seats, transmission: lexusList[index].transmission!, image: lexusList[index].images.first)));
+                                                                              builder: (BuildContext context) => CheckoutPage(
+                                                                                    name: lexusList[index].name,
+                                                                                    color: lexusList[index].color,
+                                                                                    rating: lexusList[index].rating,
+                                                                                    seats: lexusList[index].seats,
+                                                                                    transmission: lexusList[index].transmission!,
+                                                                                    image: lexusList[index].images.first,
+                                                                                    price: lexusList[index].price,
+                                                                                  )));
                                                                     },
                                                                     style: ElevatedButton
                                                                         .styleFrom(
@@ -813,7 +821,16 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                                                             () {
                                                                           Navigator.push(
                                                                               context,
-                                                                              MaterialPageRoute(builder: (BuildContext context) => CheckoutPage(name: BMWList[index].name, color: BMWList[index].color, rating: BMWList[index].rating, seats: BMWList[index].seats, transmission: BMWList[index].transmission!, image: BMWList[index].images.first)));
+                                                                              MaterialPageRoute(
+                                                                                  builder: (BuildContext context) => CheckoutPage(
+                                                                                        name: BMWList[index].name,
+                                                                                        color: BMWList[index].color,
+                                                                                        rating: BMWList[index].rating,
+                                                                                        seats: BMWList[index].seats,
+                                                                                        transmission: BMWList[index].transmission!,
+                                                                                        image: BMWList[index].images.first,
+                                                                                        price: BMWList[index].price,
+                                                                                      )));
                                                                         },
                                                                         style: ElevatedButton
                                                                             .styleFrom(
@@ -1011,7 +1028,18 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                                                               ElevatedButton(
                                                                             onPressed:
                                                                                 () {
-                                                                              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CheckoutPage(name: lexusList[index].name, color: lexusList[index].color, rating: lexusList[index].rating, seats: lexusList[index].seats, transmission: lexusList[index].transmission!, image: lexusList[index].images.first)));
+                                                                              Navigator.push(
+                                                                                  context,
+                                                                                  MaterialPageRoute(
+                                                                                      builder: (BuildContext context) => CheckoutPage(
+                                                                                            name: lexusList[index].name,
+                                                                                            color: lexusList[index].color,
+                                                                                            rating: lexusList[index].rating,
+                                                                                            seats: lexusList[index].seats,
+                                                                                            transmission: lexusList[index].transmission!,
+                                                                                            image: lexusList[index].images.first,
+                                                                                            price: lexusList[index].price,
+                                                                                          )));
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(
@@ -1190,7 +1218,18 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                                                               height: 25,
                                                                               child: ElevatedButton(
                                                                                 onPressed: () {
-                                                                                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CheckoutPage(name: kiaList[index].name, color: kiaList[index].color, rating: kiaList[index].rating, seats: kiaList[index].seats, transmission: kiaList[index].transmission!, image: kiaList[index].images.first)));
+                                                                                  Navigator.push(
+                                                                                      context,
+                                                                                      MaterialPageRoute(
+                                                                                          builder: (BuildContext context) => CheckoutPage(
+                                                                                                name: kiaList[index].name,
+                                                                                                color: kiaList[index].color,
+                                                                                                rating: kiaList[index].rating,
+                                                                                                seats: kiaList[index].seats,
+                                                                                                transmission: kiaList[index].transmission!,
+                                                                                                image: kiaList[index].images.first,
+                                                                                                price: kiaList[index].price,
+                                                                                              )));
                                                                                 },
                                                                                 style: ElevatedButton.styleFrom(
                                                                                   shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -1358,7 +1397,18 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                                                                   height: 25,
                                                                                   child: ElevatedButton(
                                                                                     onPressed: () {
-                                                                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CheckoutPage(name: hondaList[index].name, color: hondaList[index].color, rating: hondaList[index].rating, seats: hondaList[index].seats, transmission: hondaList[index].transmission!, image: hondaList[index].images.first)));
+                                                                                      Navigator.push(
+                                                                                          context,
+                                                                                          MaterialPageRoute(
+                                                                                              builder: (BuildContext context) => CheckoutPage(
+                                                                                                    name: hondaList[index].name,
+                                                                                                    color: hondaList[index].color,
+                                                                                                    rating: hondaList[index].rating,
+                                                                                                    seats: hondaList[index].seats,
+                                                                                                    transmission: hondaList[index].transmission!,
+                                                                                                    image: hondaList[index].images.first,
+                                                                                                    price: hondaList[index].price,
+                                                                                                  )));
                                                                                     },
                                                                                     style: ElevatedButton.styleFrom(
                                                                                       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -1524,7 +1574,18 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                                                                   height: 25,
                                                                                   child: ElevatedButton(
                                                                                     onPressed: () {
-                                                                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CheckoutPage(name: carList[index].name, color: carList[index].color, rating: carList[index].rating, seats: carList[index].seats, transmission: carList[index].transmission!, image: carList[index].images.first)));
+                                                                                      Navigator.push(
+                                                                                          context,
+                                                                                          MaterialPageRoute(
+                                                                                              builder: (BuildContext context) => CheckoutPage(
+                                                                                                    name: carList[index].name,
+                                                                                                    color: carList[index].color,
+                                                                                                    rating: carList[index].rating,
+                                                                                                    seats: carList[index].seats,
+                                                                                                    transmission: carList[index].transmission!,
+                                                                                                    image: carList[index].images.first,
+                                                                                                    price: carList[index].price,
+                                                                                                  )));
                                                                                     },
                                                                                     style: ElevatedButton.styleFrom(
                                                                                       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),

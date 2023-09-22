@@ -1,12 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 
 import '../../../rentals/vehicle/domain/entities/vehicle.dart';
+import '../../services/order.dart';
 import '../widgets/driver_details_form.dart';
+import '../widgets/success_page.dart';
 import '../widgets/user_info_form.dart';
 
 class CheckoutPage extends StatefulWidget {
-  final String name, color, rating, seats, image, transmission;
+  final String name, color, rating, seats, image, transmission, price;
   const CheckoutPage(
       {super.key,
       required this.name,
@@ -14,7 +18,8 @@ class CheckoutPage extends StatefulWidget {
       required this.rating,
       required this.seats,
       required this.transmission,
-      required this.image});
+      required this.image,
+      required this.price});
 
   @override
   State<CheckoutPage> createState() => _CheckoutPageState();
@@ -234,7 +239,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Sum Total',
                     style: TextStyle(
                         color: Colors.black87, fontWeight: FontWeight.bold),
@@ -253,14 +258,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
               UserInfoForm(),
 
-              Text(
+              const Text(
                 'Terms and conditions',
                 style:
                     TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               ),
 
-              Padding(
-                padding: const EdgeInsets.only(top: 5, bottom: 10),
+              const Padding(
+                padding: EdgeInsets.only(top: 5, bottom: 10),
                 child: Row(
                   children: [
                     Text(
@@ -280,7 +285,30 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       backgroundColor: Colors.green,
                       minimumSize: const Size.fromHeight(50),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
+                      DateTime currentDate = DateTime.now();
+                      String date =
+                          '${currentDate.day}- ${currentDate.month} - ${currentDate.year}';
+
+                      ///add order
+                      await Orders.addOrder(
+                          'order-123',
+                          widget.name,
+                          FirebaseAuth.instance.currentUser!.uid,
+                          'vehicle-rentals',
+                          widget.price,
+                          widget.image,
+                          date,
+                          widget.color,
+                          widget.seats);
+
+                      // ignore: use_build_context_synchronously
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SuccessPage()));
+
+                      // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         backgroundColor: Colors.green[300],
                         content: const Text(

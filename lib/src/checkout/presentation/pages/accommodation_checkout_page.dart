@@ -1,12 +1,24 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/widgets/user_personal_details_form.dart';
 
+import '../../services/order.dart';
 import '../widgets/driver_details_form.dart';
+import '../widgets/success_page.dart';
 import '../widgets/user_info_form.dart';
 
 class AccommodationCheckoutPage extends StatefulWidget {
-  const AccommodationCheckoutPage({super.key});
+  final String name, image, distance, rating, reviews, room, price;
+  const AccommodationCheckoutPage(
+      {super.key,
+      required this.name,
+      required this.distance,
+      required this.rating,
+      required this.reviews,
+      required this.room,
+      required this.price,
+      required this.image});
 
   @override
   State<AccommodationCheckoutPage> createState() =>
@@ -78,7 +90,45 @@ class _AccommodationCheckoutPageState extends State<AccommodationCheckoutPage> {
                               backgroundColor: lightColorScheme.primary,
                               minimumSize: const Size.fromHeight(40),
                             ),
-                            onPressed: () {
+                            onPressed: () async {
+                              DateTime currentDate = DateTime.now();
+                              String date =
+                                  '${currentDate.day}- ${currentDate.month} - ${currentDate.year}';
+                              // await Orders.addOrder();
+                              ///add order
+                              await Orders.addOrder(
+                                'order-123',
+                                widget.name,
+                                FirebaseAuth.instance.currentUser!.uid,
+                                'accommodation-rentals',
+                                widget.price,
+                                widget.image,
+                                date,
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                widget.distance,
+                                '',
+                                '',
+                                '',
+                                widget.rating,
+                                widget.reviews,
+                                '',
+                                widget.room,
+                              );
+
+                              // ignore: use_build_context_synchronously
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SuccessPage()));
+
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
                                 backgroundColor: Colors.green[300],
@@ -97,7 +147,7 @@ class _AccommodationCheckoutPageState extends State<AccommodationCheckoutPage> {
                                     left: 20),
                               ));
                             },
-                            child: Text(
+                            child: const Text(
                               'Submit',
                               style: TextStyle(color: Colors.white),
                             )),

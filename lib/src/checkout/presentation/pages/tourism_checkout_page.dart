@@ -1,10 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/shared/utils/validator.dart';
 
+import '../../../travel_tour/travel_and_tour/domain/entities/tourism.dart';
+import '../../services/order.dart';
+import '../widgets/success_page.dart';
+
 class TourismCheckoutPage extends StatefulWidget {
-  const TourismCheckoutPage({super.key});
+  final Tourism tourism;
+  const TourismCheckoutPage({super.key, required this.tourism});
 
   @override
   State<TourismCheckoutPage> createState() => _TourismCheckoutPageState();
@@ -313,8 +319,45 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                           backgroundColor: lightColorScheme.primary,
                           minimumSize: const Size.fromHeight(50),
                         ),
-                        onPressed: () {
+                        onPressed: () async {
                           if (!formKey.currentState!.validate()) {
+                            DateTime currentDate = DateTime.now();
+                            String date =
+                                '${currentDate.day}- ${currentDate.month} - ${currentDate.year}';
+                            // await Orders.addOrder();
+                            ///add order
+                            await Orders.addOrder(
+                              'order-12463',
+                              widget.tourism.name,
+                              FirebaseAuth.instance.currentUser!.uid,
+                              'tourism',
+                              widget.tourism.price,
+                              widget.tourism.images.first,
+                              date,
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              widget.tourism.duration,
+                              '',
+                              '',
+                              widget.tourism.rating,
+                              widget.tourism.reviews,
+                              '',
+                              '',
+                            );
+
+                            // ignore: use_build_context_synchronously
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SuccessPage()));
+
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               backgroundColor: Colors.green[300],
                               content: const Text(

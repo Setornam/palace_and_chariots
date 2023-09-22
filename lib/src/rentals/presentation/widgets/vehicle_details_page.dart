@@ -623,7 +623,7 @@ class _VehicleDetailsPageState extends State<VehicleDetailsPage> {
                                         transmission: widget.transmission!,
                                         rating: widget.rating,
                                         seats: widget.numberOfSeats,
-                                        image: widget.images.first,
+                                        image: widget.images.first, price:widget.price,
                                       )));
                         },
                         child: const Text('Submit')),

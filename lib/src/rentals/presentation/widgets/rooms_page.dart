@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
 import '../../../checkout/presentation/pages/accommodation_checkout_page.dart';
+import '../../accommodation/domain/entities/accommodation.dart';
 import '../../accommodation/domain/entities/room.dart';
 
 class RoomsPage extends StatefulWidget {
   final List<Room> rooms;
-  const RoomsPage({super.key, required this.rooms});
+  final Accommodation accommodation;
+  const RoomsPage(
+      {super.key, required this.rooms, required this.accommodation});
 
   @override
   State<RoomsPage> createState() => _RoomsPageState();
@@ -271,7 +274,30 @@ class _RoomsPageState extends State<RoomsPage> {
                                                           MaterialPageRoute(
                                                               builder: (BuildContext
                                                                       context) =>
-                                                                  AccommodationCheckoutPage()));
+                                                                  AccommodationCheckoutPage(
+                                                                    distance:
+                                                                        '4km',
+                                                                    image: widget
+                                                                        .accommodation
+                                                                        .images
+                                                                        .first,
+                                                                    name: widget
+                                                                        .accommodation
+                                                                        .name,
+                                                                    price: widget
+                                                                        .accommodation
+                                                                        .price,
+                                                                    rating: widget
+                                                                        .accommodation
+                                                                        .rating,
+                                                                    reviews:
+                                                                        '12',
+                                                                    room: widget
+                                                                        .accommodation
+                                                                        .rooms
+                                                                        .first
+                                                                        .name,
+                                                                  )));
                                                     },
                                                     child: const Text(
                                                       'Submit',

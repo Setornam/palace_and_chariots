@@ -108,8 +108,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 );
               },
             ),
-           
-           
             const Divider(),
             ListTile(
               onTap: () {

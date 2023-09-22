@@ -41,7 +41,9 @@ class _HistoryTabBarViewState extends State<HistoryTabBarView> {
                         builder: (BuildContext context) =>
                             AccommodationDetailsPage()));
               },
-              child: Row(
+              child:
+              
+               Row(
                 children: [
                   Container(
                     height: 120,
@@ -172,6 +174,8 @@ class _HistoryTabBarViewState extends State<HistoryTabBarView> {
                   )
                 ],
               ),
+            
+            
             ),
           ),
 

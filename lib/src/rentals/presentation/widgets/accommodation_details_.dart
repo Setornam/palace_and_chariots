@@ -13,6 +13,7 @@ class AccommodationDetailsPage extends StatefulWidget {
       numberOfRooms,
       numberOfAdults,
       numberOfChildren;
+
   const AccommodationDetailsPage(
       {super.key,
       this.accommodation,
@@ -445,6 +446,7 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                               MaterialPageRoute(
                                   builder: (BuildContext context) => RoomsPage(
                                         rooms: widget.accommodation!.rooms,
+                                        accommodation: widget.accommodation!,
                                       )));
                         },
                         child: const Text('select rooms')),
