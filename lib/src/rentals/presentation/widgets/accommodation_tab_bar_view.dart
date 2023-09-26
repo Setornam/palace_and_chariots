@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/accommodation_details_.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/destination_search_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/search_result_page.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -937,35 +938,28 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                     return Padding(
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 10),
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            height: 80,
-                                            width: 80,
-                                            decoration: const BoxDecoration(
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(7),
-                                                    bottomLeft:
-                                                        Radius.circular(7)),
-                                                image: DecorationImage(
-                                                    fit: BoxFit.cover,
-                                                    image: AssetImage(
-                                                        'assets/images/room.jpg'))),
-                                            child: const Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Padding(
-                                                padding: EdgeInsets.all(5.0),
-                                                child: Icon(
-                                                  size: 18,
-                                                  Icons.favorite_outline,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Container(
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (BuildContext
+                                                          context) =>
+                                                      AccommodationDetailsPage(
+                                                        accommodation:
+                                                            hotels[index],
+                                                        endDate: '',
+                                                        numberOfAdults: '',
+                                                        numberOfChildren: '',
+                                                        numberOfRooms: '',
+                                                        startDate: '',
+                                                      )));
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Container(
                                               height: 80,
+                                              width: 80,
                                               decoration: const BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.only(
@@ -974,84 +968,111 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                           bottomLeft:
                                                               Radius.circular(
                                                                   7)),
-                                                  color: Color(0xffe7e7f4)),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text(
-                                                          hotels[index].name,
-                                                          style:
-                                                              const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontSize: 15,
-                                                                  color: Colors
-                                                                      .black87),
-                                                        ),
-                                                        Text(
-                                                          hotels[index]
-                                                                  .availability
-                                                              ? "Available"
-                                                              : "Unavailable",
-                                                          style: TextStyle(
-                                                              fontSize: 13,
-                                                              color:
-                                                                  lightColorScheme
-                                                                      .primary),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Row(
-                                                      children: [
-                                                        const Icon(
-                                                          Icons.star,
-                                                          size: 18,
-                                                          color:
-                                                              Color(0xfff8c123),
-                                                        ),
-                                                        Text(
-                                                          '  ${hotels[index].rating}',
-                                                          style:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .bodyMedium,
-                                                        )
-                                                      ],
-                                                    ),
-                                                    Row(
-                                                      children: [
-                                                        const Icon(Icons.bed,
-                                                            size: 18,
-                                                            color:
-                                                                Colors.black54),
-                                                        Text(
-                                                          hotels[index]
-                                                              .facilities
-                                                              .first,
-                                                          style:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .bodyMedium,
-                                                        )
-                                                      ],
-                                                    ),
-                                                  ],
+                                                  image: DecorationImage(
+                                                      fit: BoxFit.cover,
+                                                      image: AssetImage(
+                                                          'assets/images/hotel.png'))),
+                                              child: const Align(
+                                                alignment: Alignment.topLeft,
+                                                child: Padding(
+                                                  padding: EdgeInsets.all(5.0),
+                                                  child: Icon(
+                                                    size: 18,
+                                                    Icons.favorite_outline,
+                                                    color: Colors.white,
+                                                  ),
                                                 ),
                                               ),
                                             ),
-                                          )
-                                        ],
+                                            Expanded(
+                                              child: Container(
+                                                height: 80,
+                                                decoration: const BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topLeft: Radius
+                                                                .circular(7),
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                    7)),
+                                                    color: Color(0xffe7e7f4)),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            hotels[index].name,
+                                                            style: const TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 15,
+                                                                color: Colors
+                                                                    .black87),
+                                                          ),
+                                                          Text(
+                                                            hotels[index]
+                                                                    .availability
+                                                                ? "Available"
+                                                                : "Unavailable",
+                                                            style: TextStyle(
+                                                                fontSize: 13,
+                                                                color:
+                                                                    lightColorScheme
+                                                                        .primary),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          const Icon(
+                                                            Icons.star,
+                                                            size: 18,
+                                                            color: Color(
+                                                                0xfff8c123),
+                                                          ),
+                                                          Text(
+                                                            '  ${hotels[index].rating}',
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium,
+                                                          )
+                                                        ],
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          const Icon(Icons.bed,
+                                                              size: 18,
+                                                              color: Colors
+                                                                  .black54),
+                                                          Text(
+                                                            hotels[index]
+                                                                .facilities
+                                                                .first,
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium,
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     );
                                   }),
@@ -1865,39 +1886,30 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                         return Padding(
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 10),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                height: 80,
-                                                width: 80,
-                                                decoration: const BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            topLeft: Radius
-                                                                .circular(7),
-                                                            bottomLeft:
-                                                                Radius.circular(
-                                                                    7)),
-                                                    image: DecorationImage(
-                                                        fit: BoxFit.cover,
-                                                        image: AssetImage(
-                                                            'assets/images/room.jpg'))),
-                                                child: const Align(
-                                                  alignment: Alignment.topLeft,
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsets.all(5.0),
-                                                    child: Icon(
-                                                      size: 18,
-                                                      Icons.favorite_outline,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Container(
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          AccommodationDetailsPage(
+                                                            accommodation:
+                                                                apartments[
+                                                                    index],
+                                                            endDate: '',
+                                                            numberOfAdults: '',
+                                                            numberOfChildren:
+                                                                '',
+                                                            numberOfRooms: '',
+                                                            startDate: '',
+                                                          )));
+                                            },
+                                            child: Row(
+                                              children: [
+                                                Container(
                                                   height: 80,
+                                                  width: 80,
                                                   decoration: const BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.only(
@@ -1905,85 +1917,121 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                   .circular(7),
                                                               bottomLeft: Radius
                                                                   .circular(7)),
-                                                      color: Color(0xffe7e7f4)),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
-                                                    child: Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            Text(
-                                                              apartments[index]
-                                                                  .name,
-                                                              style: const TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontSize: 15,
-                                                                  color: Colors
-                                                                      .black87),
-                                                            ),
-                                                            Text(
-                                                              apartments[index]
-                                                                      .availability
-                                                                  ? "Available"
-                                                                  : "Unavailable",
-                                                              style: TextStyle(
-                                                                  fontSize: 13,
-                                                                  color: lightColorScheme
-                                                                      .primary),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Row(
-                                                          children: [
-                                                            const Icon(
-                                                              Icons.star,
-                                                              size: 18,
-                                                              color: Color(
-                                                                  0xfff8c123),
-                                                            ),
-                                                            Text(
-                                                              '  ${apartments[index].rating}',
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .bodyMedium,
-                                                            )
-                                                          ],
-                                                        ),
-                                                        Row(
-                                                          children: [
-                                                            const Icon(
-                                                                Icons.bed,
-                                                                size: 18,
-                                                                color: Colors
-                                                                    .black54),
-                                                            Text(
-                                                              apartments[index]
-                                                                  .facilities
-                                                                  .first,
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .bodyMedium,
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ],
+                                                      image: DecorationImage(
+                                                          fit: BoxFit.cover,
+                                                          image: AssetImage(
+                                                              'assets/images/room.jpg'))),
+                                                  child: const Align(
+                                                    alignment:
+                                                        Alignment.topLeft,
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.all(5.0),
+                                                      child: Icon(
+                                                        size: 18,
+                                                        Icons.favorite_outline,
+                                                        color: Colors.white,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                              )
-                                            ],
+                                                Expanded(
+                                                  child: Container(
+                                                    height: 80,
+                                                    decoration: const BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        7),
+                                                                bottomLeft: Radius
+                                                                    .circular(
+                                                                        7)),
+                                                        color:
+                                                            Color(0xffe7e7f4)),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                            children: [
+                                                              Text(
+                                                                apartments[
+                                                                        index]
+                                                                    .name,
+                                                                style: const TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontSize:
+                                                                        15,
+                                                                    color: Colors
+                                                                        .black87),
+                                                              ),
+                                                              Text(
+                                                                apartments[index]
+                                                                        .availability
+                                                                    ? "Available"
+                                                                    : "Unavailable",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        13,
+                                                                    color: lightColorScheme
+                                                                        .primary),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              const Icon(
+                                                                Icons.star,
+                                                                size: 18,
+                                                                color: Color(
+                                                                    0xfff8c123),
+                                                              ),
+                                                              Text(
+                                                                '  ${apartments[index].rating}',
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .bodyMedium,
+                                                              )
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              const Icon(
+                                                                  Icons.bed,
+                                                                  size: 18,
+                                                                  color: Colors
+                                                                      .black54),
+                                                              Text(
+                                                                apartments[
+                                                                        index]
+                                                                    .facilities
+                                                                    .first,
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .bodyMedium,
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
                                           ),
                                         );
                                       }),
