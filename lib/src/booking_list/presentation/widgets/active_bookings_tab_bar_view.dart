@@ -1077,7 +1077,7 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                                         Row(
                                                           children: [
                                                             Text(
-                                                              ' | ${doc['serviceAvailableFor']}',
+                                                              ' | ${doc['securityAvailableFor']}',
                                                               style: Theme.of(
                                                                       context)
                                                                   .textTheme

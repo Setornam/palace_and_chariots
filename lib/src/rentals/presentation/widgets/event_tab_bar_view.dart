@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:palace_and_chariots/src/rentals/event_services/domain/entities/event_service.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/destination_search_page.dart';
+import 'package:palace_and_chariots/src/rentals/presentation/widgets/event_details.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/events_search_result_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/search_result_page.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -722,101 +723,121 @@ class _EventTabBarViewState extends State<EventTabBarView> {
                               return Padding(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 10),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      height: 80,
-                                      width: 80,
-                                      decoration: const BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(7),
-                                              bottomLeft: Radius.circular(7)),
-                                          image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: AssetImage(
-                                                  'assets/images/event_space.png'))),
-                                      child: const Align(
-                                        alignment: Alignment.topLeft,
-                                        child: Padding(
-                                          padding: EdgeInsets.all(5.0),
-                                          child: Icon(
-                                            size: 18,
-                                            Icons.favorite_outline,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Container(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                EventDetailsPage(
+                                                  endDate: '',
+                                                  startDate: '',
+                                                  eventService:
+                                                      eventsList[index],
+                                                  numberOfGuests: '',
+                                                  destination: '',
+                                                )));
+                                  },
+                                  child: Row(
+                                    children: [
+                                      Container(
                                         height: 80,
+                                        width: 80,
                                         decoration: const BoxDecoration(
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(7),
                                                 bottomLeft: Radius.circular(7)),
-                                            color: Color(0xffe7e7f4)),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    eventsList[index].name,
-                                                    style: const TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 15,
-                                                        color: Colors.black87),
-                                                  ),
-                                                  Text(
-                                                    eventsList[index]
-                                                            .availability
-                                                        ? "Available"
-                                                        : "Unavailable",
-                                                    style: TextStyle(
-                                                        fontSize: 13,
-                                                        color: lightColorScheme
-                                                            .primary),
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                children: [
-                                                  const Icon(
-                                                    Icons.star,
-                                                    size: 18,
-                                                    color: Color(0xfff8c123),
-                                                  ),
-                                                  Text(
-                                                    '  ${eventsList[index].rating}',
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodyMedium,
-                                                  )
-                                                ],
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Text(
-                                                    '${eventsList[index].review} reviews',
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodyMedium,
-                                                  )
-                                                ],
-                                              ),
-                                            ],
+                                            image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: AssetImage(
+                                                    'assets/images/event_space.png'))),
+                                        child: const Align(
+                                          alignment: Alignment.topLeft,
+                                          child: Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: Icon(
+                                              size: 18,
+                                              Icons.favorite_outline,
+                                              color: Colors.white,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    )
-                                  ],
+                                      Expanded(
+                                        child: Container(
+                                          height: 80,
+                                          decoration: const BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(7),
+                                                  bottomLeft:
+                                                      Radius.circular(7)),
+                                              color: Color(0xffe7e7f4)),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      eventsList[index].name,
+                                                      style: const TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 15,
+                                                          color:
+                                                              Colors.black87),
+                                                    ),
+                                                    Text(
+                                                      eventsList[index]
+                                                              .availability
+                                                          ? "Available"
+                                                          : "Unavailable",
+                                                      style: TextStyle(
+                                                          fontSize: 13,
+                                                          color:
+                                                              lightColorScheme
+                                                                  .primary),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    const Icon(
+                                                      Icons.star,
+                                                      size: 18,
+                                                      color: Color(0xfff8c123),
+                                                    ),
+                                                    Text(
+                                                      '  ${eventsList[index].rating}',
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium,
+                                                    )
+                                                  ],
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      '${eventsList[index].review} reviews',
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium,
+                                                    )
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               );
                             }),
