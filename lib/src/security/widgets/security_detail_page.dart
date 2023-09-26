@@ -100,7 +100,8 @@ class _SecurityDetailPageState extends State<SecurityDetailPage> {
                           context,
                           MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  const SecurityCheckoutPage()));
+                                  SecurityCheckoutPage(
+                                      security: widget.security)));
                     },
                     child: const Text(
                       'Request',

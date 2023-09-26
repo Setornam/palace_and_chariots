@@ -5,24 +5,32 @@ class Orders {
   static CollectionReference orders =
       FirebaseFirestore.instance.collection('orders');
 
-  static Future<void> addOrder(String orderID, String name, String userID,
-      String service, String price, String image, String orderDate,
-      [String? color,
-      String? seats,
-      String? transmission,
-      String? speed,
-      String? flightDepartureDate,
-      String? flightReturnDate,
-      String? flightDeparture,
-      String? flightReturn,
-      String? accommodationDistance,
-      String? tourDuration,
-      String? checkIn,
-      String? checkOut,
-      String? rating,
-      String? review,
-      String? roomsAndGuests,
-      String? roomType]) {
+  static Future<void> addOrder(
+    String orderID,
+    String name,
+    String userID,
+    String service,
+    String price,
+    String image,
+    String orderDate, [
+    String? color,
+    String? seats,
+    String? transmission,
+    String? speed,
+    String? flightDepartureDate,
+    String? flightReturnDate,
+    String? flightDeparture,
+    String? flightReturn,
+    String? accommodationDistance,
+    String? tourDuration,
+    String? checkIn,
+    String? checkOut,
+    String? rating,
+    String? review,
+    String? roomsAndGuests,
+    String? roomType,
+    String? securityAvailableFor,
+  ]) {
     return orders
         .add({
           'order_id': orderID,
@@ -49,6 +57,7 @@ class Orders {
           'room_type': roomType,
           'rating': rating,
           'review': review,
+          'securityAvailableFor': securityAvailableFor
         })
         .then((value) => print('order success'))
         .catchError((error) => print("Failed to order: $error"));

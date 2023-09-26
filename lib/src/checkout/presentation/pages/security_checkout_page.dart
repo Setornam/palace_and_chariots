@@ -1,13 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/widgets/user_personal_details_form.dart';
 
+import '../../../security/security/domain/entities/security.dart';
+import '../../services/order.dart';
 import '../widgets/driver_details_form.dart';
 import '../widgets/security_user_form.dart';
+import '../widgets/success_page.dart';
 import '../widgets/user_info_form.dart';
 
 class SecurityCheckoutPage extends StatefulWidget {
-  const SecurityCheckoutPage({super.key});
+  final Security security;
+  const SecurityCheckoutPage({super.key, required this.security});
 
   @override
   State<SecurityCheckoutPage> createState() => _SecurityCheckoutPageState();
@@ -20,7 +25,7 @@ class _SecurityCheckoutPageState extends State<SecurityCheckoutPage> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text('Personal Info'),
+          title: const Text('Personal Info'),
           centerTitle: true,
           foregroundColor: Colors.black,
           backgroundColor: Colors.white,
@@ -40,22 +45,43 @@ class _SecurityCheckoutPageState extends State<SecurityCheckoutPage> {
                         backgroundColor: lightColorScheme.primary,
                         minimumSize: const Size.fromHeight(50),
                       ),
-                      onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          backgroundColor: Colors.green[300],
-                          content: const Text(
-                            'Your order has been placed successfully',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          behavior: SnackBarBehavior.floating,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          margin: EdgeInsets.only(
-                              bottom: MediaQuery.of(context).size.height * 0.85,
-                              right: 20,
-                              left: 20),
-                        ));
+                      onPressed: () async {
+                        DateTime currentDate = DateTime.now();
+                        String date =
+                            '${currentDate.day}- ${currentDate.month} - ${currentDate.year}';
+                        // await Orders.addOrder();
+                        ///add order
+                        await Orders.addOrder(
+                            'order-123',
+                            widget.security.name,
+                            FirebaseAuth.instance.currentUser!.uid,
+                            'security',
+                            '',
+                            widget.security.image,
+                            date,
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            widget.security.serviceAvailableFor);
+
+                        // ignore: use_build_context_synchronously
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SuccessPage()));
                       },
                       child: Text('Submit')),
                 )
