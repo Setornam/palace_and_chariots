@@ -526,64 +526,61 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                                       ),
                                                       onPressed: () {
                                                         ///initiate a new chat session
-                                                        addMessage() {
-                                                          final _auth =
-                                                              FirebaseAuth
-                                                                  .instance;
-                                                          final _getEmail =
-                                                              _auth.currentUser!
-                                                                  .email;
-                                                          CollectionReference
-                                                              chats =
-                                                              FirebaseFirestore
-                                                                  .instance
-                                                                  .collection(
-                                                                      'chats')
-                                                                  .doc(
-                                                                      'w0CZuRdOr6c95qx4KW2qvJfyYAk2')
-                                                                  .collection(
-                                                                      'chats');
 
-                                                          print(_getEmail);
+                                                        final _auth =
+                                                            FirebaseAuth
+                                                                .instance;
+                                                        final _getEmail = _auth
+                                                            .currentUser!.email;
+                                                        CollectionReference
+                                                            chats =
+                                                            FirebaseFirestore
+                                                                .instance
+                                                                .collection(
+                                                                    'chats')
+                                                                .doc(
+                                                                    'w0CZuRdOr6c95qx4KW2qvJfyYAk2')
+                                                                .collection(
+                                                                    'chats');
 
-                                                          if (messageEditingController
-                                                              .text
-                                                              .isNotEmpty) {
-                                                            chats
-                                                                .add({
-                                                                  'message':
-                                                                      messageEditingController
-                                                                          .text,
-                                                                  'sendBy':
-                                                                      _getEmail,
-                                                                  'created-at':
-                                                                      Timestamp
-                                                                          .now()
-                                                                })
-                                                                .then((value) =>
-                                                                    print(
-                                                                        "chat added"))
-                                                                .catchError(
-                                                                    (error) =>
-                                                                        print(
-                                                                            "Failed to add chat: $error"));
+                                                        print(_getEmail);
 
-                                                            setState(() {
-                                                              messageEditingController
-                                                                  .text = "";
-                                                            });
-                                                          }
+                                                        if (messageEditingController
+                                                            .text.isNotEmpty) {
+                                                          chats
+                                                              .add({
+                                                                'message':
+                                                                    messageEditingController
+                                                                        .text,
+                                                                'sendBy':
+                                                                    _getEmail,
+                                                                'created-at':
+                                                                    Timestamp
+                                                                        .now()
+                                                              })
+                                                              .then((value) =>
+                                                                  print(
+                                                                      "chat added"))
+                                                              .catchError(
+                                                                  (error) => print(
+                                                                      "Failed to add chat: $error"));
+
+                                                          setState(() {
+                                                            messageEditingController
+                                                                .text = "";
+                                                          });
                                                         }
-
-                                                        // Navigator.push(
-                                                        //     context,
-                                                        //     MaterialPageRoute(
-                                                        //         builder: (BuildContext
-                                                        //                 context) =>
-                                                        //             const SalesCheckoutPage())
-
-                                                        //             );
                                                       },
+
+                                                      // Navigator.push(
+                                                      //     context,
+                                                      //     MaterialPageRoute(
+                                                      //         builder: (BuildContext
+                                                      //                 context) =>
+                                                      //             const SalesCheckoutPage())
+
+                                                      //             );
+
                                                       child:
                                                           const Text('Send')),
                                                 ),
