@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:palace_and_chariots/src/chat/presentation/pages/chat_page.dart';
 import 'package:palace_and_chariots/src/chat/presentation/widgets/empty_chat.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
@@ -25,6 +26,6 @@ class _ChatBoxPageState extends State<ChatBoxPage> {
             style: TextStyle(color: lightColorScheme.primary),
           ),
         ),
-        body: EmptyChatWidget());
+        body: Chat(chatRoomId: '1'));
   }
 }

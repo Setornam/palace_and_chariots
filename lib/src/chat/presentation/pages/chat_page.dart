@@ -78,41 +78,39 @@ class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Container(
-        child: Stack(
-          children: [
-            chatMessages(),
-            Container(
-              alignment: Alignment.bottomCenter,
-              width: MediaQuery.of(context).size.width,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-                color: Colors.blueGrey,
-                child: Row(
-                  children: [
-                    Expanded(
-                        child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: TextField(
-                        maxLines: 1,
-                        controller: messageEditingController,
-                        decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.all(12),
-                            hintText: "Message ...",
-                            hintStyle: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                            ),
-                            border: InputBorder.none),
-                      ),
-                    )),
-                    SizedBox(
-                      width: 16,
+      body: Stack(
+        children: [
+          chatMessages(),
+          Container(
+            alignment: Alignment.bottomCenter,
+            width: MediaQuery.of(context).size.width,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+              color: Colors.blueGrey,
+              child: Row(
+                children: [
+                  Expanded(
+                      child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: TextField(
+                      maxLines: 1,
+                      controller: messageEditingController,
+                      decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.all(12),
+                          hintText: "Message ...",
+                          hintStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                          ),
+                          border: InputBorder.none),
                     ),
-                    GestureDetector(
+                  )),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  GestureDetector(
                       onTap: () {
                         addMessage();
                       },
@@ -120,21 +118,18 @@ class _ChatState extends State<Chat> {
                           height: 40,
                           width: 40,
                           decoration: BoxDecoration(
-                              color: lightColorScheme.primary.withOpacity(0.4),
+                              color: lightColorScheme.primary,
                               borderRadius: BorderRadius.circular(40)),
-                          padding: EdgeInsets.all(12),
-                          child: Image.asset(
-                            "assets/images/send.png",
-                            height: 25,
-                            width: 25,
-                          )),
-                    ),
-                  ],
-                ),
+                          padding: EdgeInsets.all(0),
+                          child: const Icon(
+                            Icons.send,
+                            color: Colors.white,
+                          ))),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
