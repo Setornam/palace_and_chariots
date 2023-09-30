@@ -22,7 +22,7 @@ class _ChatState extends State<Chat> {
       .collection('chats')
       .orderBy('created-at')
       .snapshots();
-  TextEditingController messageEditingController = new TextEditingController();
+  TextEditingController messageEditingController = TextEditingController();
 
   Widget chatMessages() {
     return StreamBuilder<QuerySnapshot>(
@@ -86,7 +86,7 @@ class _ChatState extends State<Chat> {
             width: MediaQuery.of(context).size.width,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-              color: Colors.blueGrey,
+              color: Colors.white,
               child: Row(
                 children: [
                   Expanded(
@@ -99,7 +99,7 @@ class _ChatState extends State<Chat> {
                       controller: messageEditingController,
                       decoration: const InputDecoration(
                           contentPadding: EdgeInsets.all(12),
-                          hintText: "Message ...",
+                          hintText: "Type a message here ...",
                           hintStyle: TextStyle(
                             color: Colors.black,
                             fontSize: 16,
@@ -166,23 +166,25 @@ class MessageTile extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: sender == _getEmail()
                 ? const BorderRadius.only(
-                    topLeft: Radius.circular(23),
-                    topRight: Radius.circular(23),
-                    bottomLeft: Radius.circular(23))
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
+                    bottomRight: Radius.circular(10),
+                    bottomLeft: Radius.circular(10))
                 : const BorderRadius.only(
                     topLeft: Radius.circular(23),
                     topRight: Radius.circular(23),
                     bottomRight: Radius.circular(23)),
             gradient: sender == _getEmail()
-                ? LinearGradient(
-                    colors: [const Color(0xff007EF4), const Color(0xff2A75BC)],
+                ? const LinearGradient(
+                    colors: [Color(0xffdfe2fa), Color(0xffdfe2fa)],
                   )
-                : const LinearGradient(
-                    colors: [Color(0xff007EF4), Colors.green])),
+                : const LinearGradient(colors: [
+                    Color(0xffdfe2fa),
+                  ])),
         child: Text(message,
             textAlign: TextAlign.start,
             style: const TextStyle(
-                color: Colors.white,
+                color: Colors.black,
                 fontSize: 16,
                 fontFamily: 'OverpassRegular',
                 fontWeight: FontWeight.w300)),
