@@ -15,6 +15,7 @@ class Chat extends StatefulWidget {
 
 class _ChatState extends State<Chat> {
   late String chatId;
+  final String chatID = FirebaseAuth.instance.currentUser!.uid;
 
   Stream<QuerySnapshot> chats = FirebaseFirestore.instance
       .collection('chats')
