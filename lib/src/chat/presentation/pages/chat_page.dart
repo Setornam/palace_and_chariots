@@ -29,11 +29,13 @@ class _ChatState extends State<Chat> {
       stream: chats,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
-          return displayToastMessage("Error occurred", context);
+          return const Text("Error occurred");
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return displayToastMessage("Loading", context);
+          return const Center(
+            child: CircularProgressIndicator.adaptive(),
+          );
         }
         final data = snapshot.requireData;
 
@@ -78,6 +80,18 @@ class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        foregroundColor: Colors.black,
+        automaticallyImplyLeading: true,
+        toolbarHeight: 50,
+        elevation: 0,
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: Text(
+          'ChatBox',
+          style: TextStyle(color: lightColorScheme.primary),
+        ),
+      ),
       body: Stack(
         children: [
           chatMessages(),
