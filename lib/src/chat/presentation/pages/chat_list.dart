@@ -39,7 +39,10 @@ class _ChatListPageState extends State<ChatListPage> {
                                     price: documents[index]['price'],
                                     rating: documents[index]['rating'],
                                   ))),
-                      leading: CircleAvatar(),
+                      leading: CircleAvatar(
+                        backgroundImage:
+                            NetworkImage(documents[index]['image']),
+                      ),
                       title: Text(
                         documents[index]['name'],
                         style: TextStyle(fontWeight: FontWeight.bold),
