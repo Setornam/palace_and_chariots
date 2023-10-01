@@ -538,12 +538,21 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                                                 .instance
                                                                 .collection(
                                                                     'chats')
-                                                                .doc(
-                                                                    'w0CZuRdOr6c95qx4KW2qvJfyYAk2')
+                                                                .doc('chat1')
                                                                 .collection(
                                                                     'chats');
 
-                                                        print(_getEmail);
+                                                        FirebaseFirestore
+                                                            .instance
+                                                            .collection('chats')
+                                                            .doc('chat1')
+                                                            .set({
+                                                          'user_id':
+                                                              FirebaseAuth
+                                                                  .instance
+                                                                  .currentUser!
+                                                                  .uid
+                                                        });
 
                                                         if (messageEditingController
                                                             .text.isNotEmpty) {
