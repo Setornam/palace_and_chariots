@@ -61,6 +61,7 @@ dependencies:
   flutter_typeahead: ^4.6.2
   autocomplete_textfield: ^2.0.1
   image_picker: ^1.0.4
+  timeago: ^3.5.0
 
 
 dev_dependencies:
