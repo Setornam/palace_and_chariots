@@ -1,3 +1,7 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/pages/checkout_page.dart';
@@ -18,6 +22,19 @@ class SalesDetailsPageAccommodation extends StatefulWidget {
 
 class _SalesDetailsPageAccommodationState
     extends State<SalesDetailsPageAccommodation> {
+  final messageEditingController = TextEditingController();
+
+  String generateRandomId(int length) {
+    final random = Random();
+    const chars =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+    return String.fromCharCodes(Iterable.generate(
+      length,
+      (_) => chars.codeUnitAt(random.nextInt(chars.length)),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -402,6 +419,8 @@ class _SalesDetailsPageAccommodationState
                                                             .symmetric(
                                                         horizontal: 20),
                                                     child: TextFormField(
+                                                      controller:
+                                                          messageEditingController,
                                                       maxLines: 4,
                                                       decoration:
                                                           const InputDecoration(
@@ -459,12 +478,88 @@ class _SalesDetailsPageAccommodationState
                                                             .fromHeight(50),
                                                       ),
                                                       onPressed: () {
-                                                        Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder: (BuildContext
-                                                                        context) =>
-                                                                    const SalesCheckoutPage()));
+                                                        ///initiate a new chat session
+                                                        ///
+                                                        String randomId =
+                                                            generateRandomId(
+                                                                10);
+
+                                                        final _auth =
+                                                            FirebaseAuth
+                                                                .instance;
+                                                        final _getEmail = _auth
+                                                            .currentUser!.email;
+                                                        CollectionReference
+                                                            chats =
+                                                            FirebaseFirestore
+                                                                .instance
+                                                                .collection(
+                                                                    'chats')
+                                                                .doc(randomId)
+                                                                .collection(
+                                                                    'chats');
+
+                                                        FirebaseFirestore
+                                                            .instance
+                                                            .collection('chats')
+                                                            .doc(randomId)
+                                                            .set({
+                                                          'id': randomId,
+                                                          'chat_start_time':
+                                                              DateTime.now(),
+                                                          'image': widget
+                                                              .accommodation
+                                                              .images
+                                                              .first,
+                                                          'name': widget
+                                                              .accommodation
+                                                              .name,
+                                                          'rating': widget
+                                                              .accommodation
+                                                              .rating,
+                                                          'color': '',
+                                                          'price': widget
+                                                              .accommodation
+                                                              .price,
+                                                          'user_id':
+                                                              FirebaseAuth
+                                                                  .instance
+                                                                  .currentUser!
+                                                                  .uid
+                                                        });
+
+                                                        if (messageEditingController
+                                                            .text.isNotEmpty) {
+                                                          chats
+                                                              .add({
+                                                                'message':
+                                                                    messageEditingController
+                                                                        .text,
+                                                                'sendBy':
+                                                                    _getEmail,
+                                                                'created-at':
+                                                                    Timestamp
+                                                                        .now()
+                                                              })
+                                                              .then((value) =>
+                                                                  print(
+                                                                      "chat added"))
+                                                              .catchError(
+                                                                  (error) => print(
+                                                                      "Failed to add chat: $error"));
+
+                                                          setState(() {
+                                                            messageEditingController
+                                                                .text = "";
+                                                          });
+                                                        }
+
+                                                        // Navigator.push(
+                                                        //     context,
+                                                        //     MaterialPageRoute(
+                                                        //         builder: (BuildContext
+                                                        //                 context) =>
+                                                        //             const SalesCheckoutPage()));
                                                       },
                                                       child:
                                                           const Text('Send')),
