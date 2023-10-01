@@ -565,6 +565,7 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                                             .collection('chats')
                                                             .doc(randomId)
                                                             .set({
+                                                          'id': randomId,
                                                           'image': widget
                                                               .car.images.first,
                                                           'name':
