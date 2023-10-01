@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +20,18 @@ class CarDetailsPage extends StatefulWidget {
 
 class _CarDetailsPageState extends State<CarDetailsPage> {
   final messageEditingController = TextEditingController();
+
+  String generateRandomId(int length) {
+    final random = Random();
+    const chars =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+    return String.fromCharCodes(Iterable.generate(
+      length,
+      (_) => chars.codeUnitAt(random.nextInt(chars.length)),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -526,6 +540,10 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                                       ),
                                                       onPressed: () {
                                                         ///initiate a new chat session
+                                                        ///
+                                                        String randomId =
+                                                            generateRandomId(
+                                                                10);
 
                                                         final _auth =
                                                             FirebaseAuth
@@ -538,15 +556,25 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                                                 .instance
                                                                 .collection(
                                                                     'chats')
-                                                                .doc('chat1')
+                                                                .doc(randomId)
                                                                 .collection(
                                                                     'chats');
 
                                                         FirebaseFirestore
                                                             .instance
                                                             .collection('chats')
-                                                            .doc('chat1')
+                                                            .doc(randomId)
                                                             .set({
+                                                          'image': widget
+                                                              .car.images.first,
+                                                          'name':
+                                                              widget.car.name,
+                                                          'rating':
+                                                              widget.car.rating,
+                                                          'color':
+                                                              widget.car.color,
+                                                          'price':
+                                                              widget.car.price,
                                                           'user_id':
                                                               FirebaseAuth
                                                                   .instance
