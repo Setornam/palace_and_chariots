@@ -102,16 +102,51 @@ class _ChatState extends State<Chat> {
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
-          'ChatBox',
+          'Chat box',
           style: TextStyle(color: lightColorScheme.primary),
         ),
       ),
       body: Stack(
         children: [
-          
+          ListTile(
+            leading: Container(
+              height: 80,
+              width: 100,
+              child: Image.network(widget.image),
+            ),
+            title: Text(
+              widget.name,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            ),
+            subtitle: Column(
+              children: [
+                Row(
+                  children: [
+                    Text(widget.color),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                            size: 17,
+                          ),
+                          Text(widget.rating)
+                        ],
+                      ),
+                    )
+                  ],
+                ),
 
-
-          chatMessages(),
+                Text(widget.price)
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 80),
+            child: chatMessages(),
+          ),
           Container(
             alignment: Alignment.bottomCenter,
             width: MediaQuery.of(context).size.width,
