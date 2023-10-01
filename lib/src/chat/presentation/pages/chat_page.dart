@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 
 class Chat extends StatefulWidget {
@@ -56,9 +57,14 @@ class _ChatState extends State<Chat> {
         return ListView.builder(
             itemCount: data.size,
             itemBuilder: (context, index) {
+              DateTime dateTime = data.docs[index]['created-at'].toDate();
+
+              String timeString = DateFormat.jm().format(dateTime);
+
               return MessageTile(
                 message: data.docs[index]['message'],
                 sender: data.docs[index]['sendBy'],
+                time: timeString,
               );
             });
       },
@@ -217,8 +223,10 @@ displayToastMessage(String message, BuildContext context) {
 class MessageTile extends StatelessWidget {
   final String message;
   final String sender;
+  final String time;
 
-  MessageTile({required this.message, required this.sender});
+  const MessageTile(
+      {required this.message, required this.sender, required this.time});
 
   String? _getEmail() {
     var firebaseUser = FirebaseAuth.instance.currentUser;
@@ -256,13 +264,25 @@ class MessageTile extends StatelessWidget {
                 : const LinearGradient(colors: [
                     Color(0xffdfe2fa),
                   ])),
-        child: Text(message,
-            textAlign: TextAlign.start,
-            style: const TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontFamily: 'OverpassRegular',
-                fontWeight: FontWeight.w300)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(message,
+                textAlign: TextAlign.start,
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontFamily: 'OverpassRegular',
+                    fontWeight: FontWeight.w300)),
+            Align(
+                alignment: Alignment.bottomRight,
+                child: Text(
+                  time,
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                ))
+          ],
+        ),
       ),
     );
   }
