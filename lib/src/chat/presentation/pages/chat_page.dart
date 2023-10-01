@@ -40,7 +40,7 @@ class _ChatState extends State<Chat> {
           .collection('chats')
           .doc(widget.id)
           .collection('chats')
-          .orderBy('created-at')
+          .orderBy('created-at', descending: true)
           .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
@@ -54,19 +54,23 @@ class _ChatState extends State<Chat> {
         }
         final data = snapshot.requireData;
 
-        return ListView.builder(
-            itemCount: data.size,
-            itemBuilder: (context, index) {
-              DateTime dateTime = data.docs[index]['created-at'].toDate();
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 60),
+          child: ListView.builder(
+              reverse: true,
+              itemCount: data.size,
+              itemBuilder: (context, index) {
+                DateTime dateTime = data.docs[index]['created-at'].toDate();
 
-              String timeString = DateFormat.jm().format(dateTime);
+                String timeString = DateFormat.jm().format(dateTime);
 
-              return MessageTile(
-                message: data.docs[index]['message'],
-                sender: data.docs[index]['sendBy'],
-                time: timeString,
-              );
-            });
+                return MessageTile(
+                  message: data.docs[index]['message'],
+                  sender: data.docs[index]['sendBy'],
+                  time: timeString,
+                );
+              }),
+        );
       },
     );
   }
