@@ -32,7 +32,7 @@ class _ChatListPageState extends State<ChatListPage> {
           final List<DocumentSnapshot> documents = snapshot.data!.docs;
 
           return SizedBox(
-              height: 300,
+              height: 700,
               child: ListView.builder(
                   itemCount: documents.length,
                   itemBuilder: (BuildContext context, int index) {
