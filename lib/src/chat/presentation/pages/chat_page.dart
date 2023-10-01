@@ -4,10 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 
 class Chat extends StatefulWidget {
-  final String chatRoomId;
   final String chatId = "";
+  final String color, id, image, name, price, rating;
 
-  Chat({required this.chatRoomId});
+  Chat({
+    required this.color,
+    required this.id,
+    required this.image,
+    required this.name,
+    required this.price,
+    required this.rating,
+  });
 
   @override
   _ChatState createState() => _ChatState();
@@ -17,17 +24,23 @@ class _ChatState extends State<Chat> {
   late String chatId;
   final String chatID = FirebaseAuth.instance.currentUser!.uid;
 
-  Stream<QuerySnapshot> chats = FirebaseFirestore.instance
-      .collection('chats')
-      .doc('w0CZuRdOr6c95qx4KW2qvJfyYAk2')
-      .collection('chats')
-      .orderBy('created-at')
-      .snapshots();
+  @override
+  void initState() {
+    super.initState();
+    chatId = widget.id;
+  }
+
+  // Stream<QuerySnapshot> chats =
   TextEditingController messageEditingController = TextEditingController();
 
   Widget chatMessages() {
     return StreamBuilder<QuerySnapshot>(
-      stream: chats,
+      stream: FirebaseFirestore.instance
+          .collection('chats')
+          .doc(widget.id)
+          .collection('chats')
+          .orderBy('created-at')
+          .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return const Text("Error occurred");
@@ -57,7 +70,7 @@ class _ChatState extends State<Chat> {
     final _getEmail = _auth.currentUser!.email;
     CollectionReference chats = FirebaseFirestore.instance
         .collection('chats')
-        .doc('w0CZuRdOr6c95qx4KW2qvJfyYAk2')
+        .doc(widget.id)
         .collection('chats');
 
     print(_getEmail);
@@ -95,6 +108,9 @@ class _ChatState extends State<Chat> {
       ),
       body: Stack(
         children: [
+          
+
+
           chatMessages(),
           Container(
             alignment: Alignment.bottomCenter,

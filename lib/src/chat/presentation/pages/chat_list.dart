@@ -31,11 +31,15 @@ class _ChatListPageState extends State<ChatListPage> {
                       onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  Chat(chatRoomId: ''))),
-                      leading: CircleAvatar(
-                        
-                      ),
+                              builder: (BuildContext context) => Chat(
+                                    color: documents[index]['color'],
+                                    id: documents[index]['id'],
+                                    image: documents[index]['image'],
+                                    name: documents[index]['name'],
+                                    price: documents[index]['price'],
+                                    rating: documents[index]['rating'],
+                                  ))),
+                      leading: CircleAvatar(),
                       title: Text(
                         documents[index]['name'],
                         style: TextStyle(fontWeight: FontWeight.bold),
