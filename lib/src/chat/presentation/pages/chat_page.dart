@@ -119,27 +119,36 @@ class _ChatState extends State<Chat> {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
             subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Text(widget.color),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.star,
-                            color: Colors.amber,
-                            size: 17,
-                          ),
-                          Text(widget.rating)
-                        ],
-                      ),
-                    )
-                  ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Row(
+                    children: [
+                      Text(widget.color),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                              size: 17,
+                            ),
+                            Text(widget.rating)
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-
-                Text(widget.price)
+                Text(
+                  'GHS ${widget.price}',
+                  style: TextStyle(
+                      color: lightColorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13),
+                )
               ],
             ),
           ),
