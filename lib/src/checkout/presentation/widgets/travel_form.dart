@@ -31,10 +31,12 @@ class _SecurityFormState extends State<SecurityForm> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    return Padding(
+    return
+    
+     Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Form(
-        autovalidateMode: AutovalidateMode.always,
+        // autovalidateMode: AutovalidateMode.always,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -224,5 +226,6 @@ class _SecurityFormState extends State<SecurityForm> {
         ),
       ),
     );
+
   }
 }

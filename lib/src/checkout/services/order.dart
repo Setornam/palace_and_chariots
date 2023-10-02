@@ -6,6 +6,7 @@ class Orders {
       FirebaseFirestore.instance.collection('orders');
 
   static Future<void> addOrder(
+    String orderStatus,
     String orderID,
     String name,
     String userID,
@@ -33,6 +34,7 @@ class Orders {
   ]) {
     return orders
         .add({
+          'order_status': orderStatus,
           'order_id': orderID,
           'user_id': userID,
           'service': service,
@@ -57,7 +59,7 @@ class Orders {
           'room_type': roomType,
           'rating': rating,
           'review': review,
-          'securityAvailableFor': securityAvailableFor
+          'securityAvailableFor': securityAvailableFor,
         })
         .then((value) => print('order success'))
         .catchError((error) => print("Failed to order: $error"));

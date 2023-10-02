@@ -34,7 +34,6 @@ class _userPersonalDetailsFormState extends State<userPersonalDetailsForm> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Form(
-        autovalidateMode: AutovalidateMode.always,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

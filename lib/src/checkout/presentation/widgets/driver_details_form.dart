@@ -38,10 +38,11 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    return Padding(
+    return
+     Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Form(
-        autovalidateMode: AutovalidateMode.always,
+        // autovalidateMode: AutovalidateMode.always,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -76,13 +77,13 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
               child: DropdownButtonFormField(
                   decoration: InputDecoration(
                     contentPadding:
-                        EdgeInsets.symmetric(horizontal: 30, vertical: 14),
+                        const EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
-                    labelStyle: TextStyle(color: Colors.grey),
-                    focusedBorder: OutlineInputBorder(
+                    labelStyle: const TextStyle(color: Colors.grey),
+                    focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.lightBlue),
                         borderRadius: BorderRadius.all(Radius.circular(5))),
-                    enabledBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey),
                         borderRadius: BorderRadius.all(Radius.circular(5))),
                     errorBorder: OutlineInputBorder(
@@ -108,10 +109,10 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
               validator: Validator.name,
               decoration: InputDecoration(
                 contentPadding:
-                    EdgeInsets.symmetric(horizontal: 30, vertical: 14),
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
-                labelStyle: TextStyle(color: Colors.grey),
-                focusedBorder: OutlineInputBorder(
+                labelStyle: const TextStyle(color: Colors.grey),
+                focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.lightBlue),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 errorBorder: OutlineInputBorder(
@@ -119,7 +120,7 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
                   borderSide:
                       BorderSide(color: theme.colorScheme.error, width: 2),
                 ),
-                enabledBorder: OutlineInputBorder(
+                enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 fillColor: Colors.white,
@@ -138,10 +139,10 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
               validator: Validator.email,
               decoration: InputDecoration(
                 contentPadding:
-                    EdgeInsets.symmetric(horizontal: 30, vertical: 14),
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
-                labelStyle: TextStyle(color: Colors.grey),
-                focusedBorder: OutlineInputBorder(
+                labelStyle: const TextStyle(color: Colors.grey),
+                focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.lightBlue),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 errorBorder: OutlineInputBorder(
@@ -149,7 +150,7 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
                   borderSide:
                       BorderSide(color: theme.colorScheme.error, width: 2),
                 ),
-                enabledBorder: OutlineInputBorder(
+                enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 fillColor: Colors.white,
@@ -175,7 +176,7 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
                           Validator.phoneNumber(phoneNumber?.number),
                       decoration: InputDecoration(
                           alignLabelWithHint: true,
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.lightBlue),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5))),
@@ -245,13 +246,13 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
               validator: Validator.license,
               decoration: InputDecoration(
                 contentPadding:
-                    EdgeInsets.symmetric(horizontal: 30, vertical: 14),
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
-                labelStyle: TextStyle(color: Colors.grey),
-                focusedBorder: OutlineInputBorder(
+                labelStyle: const TextStyle(color: Colors.grey),
+                focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.lightBlue),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
-                enabledBorder: OutlineInputBorder(
+                enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 errorBorder: OutlineInputBorder(
@@ -263,13 +264,17 @@ class _DriverDetailsFormState extends State<DriverDetailsForm> {
               ),
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(top: 15),
+            const Padding(
+              padding: EdgeInsets.only(top: 15),
               child: Divider(),
             )
           ],
         ),
       ),
     );
+
+
+
+
   }
 }

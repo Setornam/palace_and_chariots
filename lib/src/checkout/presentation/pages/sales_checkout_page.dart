@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 
+import '../../../../shared/utils/validator.dart';
+
 class SalesCheckoutPage extends StatefulWidget {
   const SalesCheckoutPage({super.key});
 
@@ -13,6 +15,8 @@ class _SalesCheckoutPageState extends State<SalesCheckoutPage> {
   TextEditingController phoneNumberController = TextEditingController();
   String phoneNumber = "";
   late String country = '';
+
+  final formKey = GlobalKey<FormState>();
 
   bool isSavedToAccount = false;
 
@@ -42,6 +46,7 @@ class _SalesCheckoutPageState extends State<SalesCheckoutPage> {
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Form(
+          key: formKey,
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,6 +59,7 @@ class _SalesCheckoutPageState extends State<SalesCheckoutPage> {
                   ),
                 ),
                 TextFormField(
+                  validator: Validator.name,
                   decoration: const InputDecoration(
                     contentPadding:
                         EdgeInsets.symmetric(horizontal: 30, vertical: 14),
@@ -77,6 +83,7 @@ class _SalesCheckoutPageState extends State<SalesCheckoutPage> {
                   ),
                 ),
                 TextFormField(
+                  validator: Validator.name,
                   decoration: const InputDecoration(
                     contentPadding:
                         EdgeInsets.symmetric(horizontal: 30, vertical: 14),
@@ -160,6 +167,8 @@ class _SalesCheckoutPageState extends State<SalesCheckoutPage> {
                     child: SizedBox(
                       height: 50,
                       child: IntlPhoneField(
+                          validator: (phone) =>
+                              Validator.phoneNumber(phoneNumber),
                           decoration: InputDecoration(
                               alignLabelWithHint: true,
                               focusedBorder: const OutlineInputBorder(
@@ -222,22 +231,7 @@ class _SalesCheckoutPageState extends State<SalesCheckoutPage> {
                           minimumSize: const Size.fromHeight(50),
                         ),
                         onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            backgroundColor: Colors.green[300],
-                            content: const Text(
-                              'Your order has been placed successfully',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            behavior: SnackBarBehavior.floating,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            margin: EdgeInsets.only(
-                                bottom:
-                                    MediaQuery.of(context).size.height * 0.85,
-                                right: 20,
-                                left: 20),
-                          ));
+                          
                         },
                         child: const Text('Submit')),
                   ),
