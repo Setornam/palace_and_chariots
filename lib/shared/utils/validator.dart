@@ -8,6 +8,36 @@ class Validator {
     return null;
   }
 
+  static String? isPasswordValid(String? password) {
+    // Check if the password has at least 8 characters
+    if (password!.length < 8) {
+      return 'Password must have at least 8 characters';
+    }
+
+    // Check if the password contains at least one special character
+    if (!RegExp(r'[!@#\$%^&*(),.?":{}|<>]').hasMatch(password)) {
+      return 'Password must contain at least one special character';
+    }
+
+    // Check if the password contains at least one digit (number)
+    if (!RegExp(r'\d').hasMatch(password)) {
+      return "Password must contain at least one digit";
+    }
+
+    // Check if the password contains at least one lowercase letter
+    if (!RegExp(r'[a-z]').hasMatch(password)) {
+      return "Password must contain at least one lowercase letter";
+    }
+
+    // Check if the password contains at least one uppercase letter
+    if (!RegExp(r'[A-Z]').hasMatch(password)) {
+      return "Password must contain at least one uppercase letter";
+    }
+
+    // If all checks pass, the password is valid
+    return '';
+  }
+
   static String? license(String? value) {
     if (value!.trim().isEmpty) {
       return ' License is required';
