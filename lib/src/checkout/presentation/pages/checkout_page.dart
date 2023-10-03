@@ -834,7 +834,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       if (driverAvailable == "Yes") {
                         if (userFormKey.currentState!.validate()) {
                           await Orders.addOrder(
-                            'pending'
+                            'pending',
                                 'order-123',
                             widget.name,
                             FirebaseAuth.instance.currentUser!.uid,

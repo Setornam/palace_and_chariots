@@ -454,8 +454,8 @@ class _EventCheckoutPageState extends State<EventCheckoutPage> {
 
                         if (formKey.currentState!.validate()) {
                           await Orders.addOrder(
-                            'pending'
-                                'order-123',
+                            'pending',
+                            'order-123',
                             widget.name,
                             FirebaseAuth.instance.currentUser!.uid,
                             'event-rentals',
