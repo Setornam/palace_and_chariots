@@ -768,8 +768,8 @@ class _EventTabBarViewState extends State<EventTabBarView> {
                                           height: 80,
                                           decoration: const BoxDecoration(
                                               borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(7),
-                                                  bottomLeft:
+                                                  topRight: Radius.circular(7),
+                                                  bottomRight:
                                                       Radius.circular(7)),
                                               color: Color(0xffe7e7f4)),
                                           child: Padding(

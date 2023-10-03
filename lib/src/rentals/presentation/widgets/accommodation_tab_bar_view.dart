@@ -1941,12 +1941,13 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                     decoration: const BoxDecoration(
                                                         borderRadius:
                                                             BorderRadius.only(
-                                                                topLeft: Radius
+                                                                topRight: Radius
                                                                     .circular(
                                                                         7),
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        7)),
+                                                                bottomRight:
+                                                                    Radius
+                                                                        .circular(
+                                                                            7)),
                                                         color:
                                                             Color(0xffe7e7f4)),
                                                     child: Padding(

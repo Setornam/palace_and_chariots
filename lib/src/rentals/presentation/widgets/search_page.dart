@@ -22,7 +22,8 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-      automaticallyImplyLeading: false,
+      foregroundColor: Colors.black,
+      automaticallyImplyLeading: true,
       toolbarHeight: 90,
       elevation: 0,
       backgroundColor: Colors.white,
@@ -128,8 +129,6 @@ class _SearchPageState extends State<SearchPage> {
                 }
 
                 return CircularProgressIndicator();
-
-                
               })),
     ));
   }

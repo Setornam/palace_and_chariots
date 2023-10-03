@@ -214,7 +214,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               ),
 
               //rental charges
-              Text(
+              const Text(
                 'Rental Charges',
                 style:
                     TextStyle(color: Colors.black, fontWeight: FontWeight.bold),

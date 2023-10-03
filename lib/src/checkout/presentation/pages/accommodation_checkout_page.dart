@@ -327,7 +327,104 @@ class _AccommodationCheckoutPageState extends State<AccommodationCheckoutPage> {
                           ),
                         ),
 
-                        Divider()
+                        Divider(),
+
+                        Container(
+                          height: 100,
+                          width: MediaQuery.of(context).size.width,
+                          color: lightColorScheme.primary.withOpacity(0.1),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 17),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text('\$300 (USD)',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                fontSize: 18,
+                                                color: lightColorScheme.primary,
+                                                fontWeight: FontWeight.bold,
+                                              )),
+                                      Text('Include taxes and charges',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                fontSize: 14,
+                                              )),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.sizeOf(context).width * 0.4,
+                                  child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            lightColorScheme.primary,
+                                        minimumSize: const Size.fromHeight(40),
+                                      ),
+                                      onPressed: () async {
+                                        DateTime currentDate = DateTime.now();
+                                        String date =
+                                            '${currentDate.day}- ${currentDate.month} - ${currentDate.year}';
+                                        // await Orders.addOrder();
+                                        ///add order
+                                        ///
+                                        if (formKey.currentState!.validate()) {
+                                          await Orders.addOrder(
+                                            'pending',
+                                            'order-123',
+                                            widget.name,
+                                            FirebaseAuth
+                                                .instance.currentUser!.uid,
+                                            'accommodation-rentals',
+                                            widget.price,
+                                            widget.image,
+                                            date,
+                                            '',
+                                            '',
+                                            '',
+                                            '',
+                                            '',
+                                            '',
+                                            '',
+                                            '',
+                                            widget.distance,
+                                            '',
+                                            '',
+                                            '',
+                                            widget.rating,
+                                            widget.reviews,
+                                            '',
+                                            widget.room,
+                                          );
+
+                                          // ignore: use_build_context_synchronously
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const SuccessPage()));
+                                        }
+                                      },
+                                      child: const Text(
+                                        'Submit',
+                                        style: TextStyle(color: Colors.white),
+                                      )),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -335,100 +432,6 @@ class _AccommodationCheckoutPageState extends State<AccommodationCheckoutPage> {
               ],
             ),
           ),
-          Positioned(
-              bottom: 0,
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                color: lightColorScheme.primary.withOpacity(0.1),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 17),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text('\$300 (USD)',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                      fontSize: 18,
-                                      color: lightColorScheme.primary,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                            Text('Include taxes and charges',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                      fontSize: 14,
-                                    )),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.sizeOf(context).width * 0.4,
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: lightColorScheme.primary,
-                              minimumSize: const Size.fromHeight(40),
-                            ),
-                            onPressed: () async {
-                              DateTime currentDate = DateTime.now();
-                              String date =
-                                  '${currentDate.day}- ${currentDate.month} - ${currentDate.year}';
-                              // await Orders.addOrder();
-                              ///add order
-                              ///
-                              if (formKey.currentState!.validate()) {
-                                await Orders.addOrder(
-                                  'pending',
-                                  'order-123',
-                                  widget.name,
-                                  FirebaseAuth.instance.currentUser!.uid,
-                                  'accommodation-rentals',
-                                  widget.price,
-                                  widget.image,
-                                  date,
-                                  '',
-                                  '',
-                                  '',
-                                  '',
-                                  '',
-                                  '',
-                                  '',
-                                  '',
-                                  widget.distance,
-                                  '',
-                                  '',
-                                  '',
-                                  widget.rating,
-                                  widget.reviews,
-                                  '',
-                                  widget.room,
-                                );
-
-                                // ignore: use_build_context_synchronously
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const SuccessPage()));
-                              }
-                            },
-                            child: const Text(
-                              'Submit',
-                              style: TextStyle(color: Colors.white),
-                            )),
-                      ),
-                    ],
-                  ),
-                ),
-              ))
         ]));
   }
 }
