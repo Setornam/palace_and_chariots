@@ -7,6 +7,7 @@ import 'package:palace_and_chariots/src/booking_list/presentation/pages/bookings
 import 'package:palace_and_chariots/src/chat/presentation/pages/chatbox_page.dart';
 import 'package:palace_and_chariots/src/notifications/presentation/pages/notifications_page.dart';
 import 'package:palace_and_chariots/src/profile/presentation/pages/profile_page.dart';
+import 'package:palace_and_chariots/src/sign_in/presentation/pages/sign_in_page.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
 import '../pages/home.dart';
@@ -40,10 +41,15 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
     if (user != null) {
       // User is signed in
       print('User is logged in: ${user.email}');
-      
+      setState(() {
+        isLoggedIn = true;
+      });
     } else {
       // No user is signed in
       print('User is not logged in');
+      setState(() {
+        isLoggedIn = false;
+      });
     }
   }
   // current index
@@ -103,8 +109,15 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
             ],
             selectedIndex: currentIndex,
             onTabChange: (index) {
+              checkLoginState();
+              if (isLoggedIn == false) {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => SignInPage()));
+              } else {}
+
               setState(() {
-                checkLoginState();
                 currentIndex = index;
               });
             },

@@ -708,7 +708,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                             ),
                                                                             IconButton(
                                                                                 onPressed: () {
-                                                                                  numberOfChildren.value > 0 ? numberOfChildren.value-- : numberOfChildren.value = 0;
+                                                                                  numberOfChildren.value >= 0 ? numberOfChildren.value-- : numberOfChildren.value = 0;
                                                                                 },
                                                                                 icon: Icon(
                                                                                   Icons.remove_circle_outline,
@@ -1630,7 +1630,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                     child:
                                                                         ValueListenableBuilder(
                                                                       valueListenable:
-                                                                          numberOfChildren,
+                                                                          numberOfChildrenApartment,
                                                                       builder: (BuildContext
                                                                               context,
                                                                           value,

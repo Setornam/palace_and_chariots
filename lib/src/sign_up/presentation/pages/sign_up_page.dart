@@ -206,9 +206,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       minWidth: double.maxFinite,
                       height: 50,
                       onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          _isLoading ? null : _signUp();
-                        }
+                        // if (formKey.currentState!.validate()) {
+                        _isLoading ? null : _signUp();
+                        // }
                       },
                       color: lightColorScheme.tertiary,
                       textColor: Colors.white,
