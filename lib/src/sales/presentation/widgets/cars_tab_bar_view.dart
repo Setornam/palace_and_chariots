@@ -341,57 +341,9 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                                                         color: lightColorScheme
                                                                             .primary),
                                                                   ),
-                                                                  const Text(
-                                                                    ' |  Per day',
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                            13,
-                                                                        color: Colors
-                                                                            .black87),
-                                                                  ),
                                                                 ],
                                                               ),
                                                             ),
-
-                                                            //order button
-                                                            // SizedBox(
-                                                            //   height: 25,
-                                                            //   child:
-                                                            //       ElevatedButton(
-                                                            //     onPressed: () {
-                                                            //       Navigator.push(
-                                                            //           context,
-                                                            //           MaterialPageRoute(
-                                                            //               builder: (BuildContext context) => CheckoutPage(
-                                                            //                     name: mercedesList[index].name,
-                                                            //                     color: mercedesList[index].color,
-                                                            //                     rating: mercedesList[index].rating,
-                                                            //                     seats: mercedesList[index].seats,
-                                                            //                     transmission: mercedesList[index].transmission!,
-                                                            //                     image: mercedesList[index].images.first,
-                                                            //                     price: mercedesList[index].price,
-                                                            //                   )));
-                                                            //     },
-                                                            //     style: ElevatedButton
-                                                            //         .styleFrom(
-                                                            //       shape: const RoundedRectangleBorder(
-                                                            //           borderRadius:
-                                                            //               BorderRadius.all(
-                                                            //                   Radius.circular(5))),
-                                                            //       backgroundColor:
-                                                            //           lightColorScheme
-                                                            //               .primary,
-                                                            //       elevation: 0,
-                                                            //     ),
-                                                            //     child:
-                                                            //         const Text(
-                                                            //       'Order',
-                                                            //       style: TextStyle(
-                                                            //           fontSize:
-                                                            //               11),
-                                                            //     ),
-                                                            //   ),
-                                                            // ),
                                                           ],
                                                         ),
                                                       ],
