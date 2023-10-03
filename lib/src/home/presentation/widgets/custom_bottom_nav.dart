@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -19,6 +20,7 @@ class CustomBottomNavigation extends StatefulWidget {
 
 class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
   int currentIndex = 0;
+  bool isLoggedIn = false;
 
   // list of screens that will be rendered in the scaffold body
   final List screens = [
@@ -28,6 +30,22 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
     NotificationsPage(),
     ProfilePage()
   ];
+
+  void checkLoginState() {
+    FirebaseAuth auth = FirebaseAuth.instance;
+
+    // Check if there is a current user
+    User? user = auth.currentUser;
+
+    if (user != null) {
+      // User is signed in
+      print('User is logged in: ${user.email}');
+      
+    } else {
+      // No user is signed in
+      print('User is not logged in');
+    }
+  }
   // current index
 
   @override
@@ -86,6 +104,7 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
             selectedIndex: currentIndex,
             onTabChange: (index) {
               setState(() {
+                checkLoginState();
                 currentIndex = index;
               });
             },

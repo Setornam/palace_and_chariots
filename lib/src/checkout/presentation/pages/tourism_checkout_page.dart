@@ -320,7 +320,7 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                           minimumSize: const Size.fromHeight(50),
                         ),
                         onPressed: () async {
-                          if (!formKey.currentState!.validate()) {
+                          if (formKey.currentState!.validate()) {
                             DateTime currentDate = DateTime.now();
                             String date =
                                 '${currentDate.day}- ${currentDate.month} - ${currentDate.year}';

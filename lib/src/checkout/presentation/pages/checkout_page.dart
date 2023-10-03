@@ -830,9 +830,31 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           '${currentDate.day}- ${currentDate.month} - ${currentDate.year}';
 
                       ///add order
+                      ///
+                      if (driverAvailable == "Yes") {
+                        if (userFormKey.currentState!.validate()) {
+                          await Orders.addOrder(
+                            'pending'
+                                'order-123',
+                            widget.name,
+                            FirebaseAuth.instance.currentUser!.uid,
+                            'vehicle-rentals',
+                            widget.price,
+                            widget.image,
+                            date,
+                            widget.color,
+                            widget.seats,
+                          );
 
-                      if (formKey.currentState!.validate() &&
-                          userFormKey.currentState!.validate()) {
+                          // ignore: use_build_context_synchronously
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SuccessPage()));
+                        }
+                      }
+
+                      if (userFormKey.currentState!.validate()) {
                         await Orders.addOrder(
                           'pending'
                               'order-123',
