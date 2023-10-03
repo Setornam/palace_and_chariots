@@ -278,7 +278,7 @@ class _TravelCheckoutPageState extends State<TravelCheckoutPage> {
                                         startDate: widget.startDate,
                                       )));
                         },
-                        child: Text('Next')),
+                        child: const Text('Next')),
                   ),
                 )
               ],

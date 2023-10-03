@@ -86,19 +86,18 @@ class Validator {
       return '😉 Come on, don\'t be shy, enter your number';
     }
 
-    /// TODO(GYEKYE) Add regEx
-    else if (value.length < 9) {
-      if (9 - value.length == 1) {
-        return '😉 You\'re missing ${9 - value.length} digit';
-      }
+    // else if (value.length < 9) {
+    //   if (9 - value.length == 1) {
+    //     return '😉 You\'re missing ${9 - value.length} digit';
+    //   }
 
-      return '👏 Come on, ${9 - value.length} digits more';
-    }
+    //   return '👏 Come on, ${9 - value.length} digits more';
+    // }
 
-    /// When [value] is greater than 9
-    else if (value.length > 9) {
-      return '📢 Valid phone numbers are 9 digits right ?';
-    }
+    // /// When [value] is greater than 9
+    // else if (value.length > 9) {
+    //   return '📢 Valid phone numbers are 10 digits right ?';
+    // }
     return null;
   }
 

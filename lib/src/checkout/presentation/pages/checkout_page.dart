@@ -442,9 +442,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 child: SizedBox(
                                   height: 70,
                                   child: IntlPhoneField(
-                                      validator: (phoneNumber) =>
-                                          Validator.phoneNumber(
-                                              phoneNumber?.number),
+                                      validator: (phone) =>
+                                          Validator.phoneNumber(phoneNumber),
                                       decoration: InputDecoration(
                                           alignLabelWithHint: true,
                                           focusedBorder:
