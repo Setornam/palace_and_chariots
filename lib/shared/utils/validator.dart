@@ -87,17 +87,17 @@ class Validator {
     }
 
     /// TODO(GYEKYE) Add regEx
-    else if (value.length < 10) {
-      if (10 - value.length == 1) {
-        return '😉 You\'re missing ${10 - value.length} digit';
+    else if (value.length < 9) {
+      if (9 - value.length == 1) {
+        return '😉 You\'re missing ${9 - value.length} digit';
       }
 
-      return '👏 Come on, ${10 - value.length} digits more';
+      return '👏 Come on, ${9 - value.length} digits more';
     }
 
-    /// When [value] is greater than 10
-    else if (value.length > 10) {
-      return '📢 Valid phone numbers are 10 digits right ?';
+    /// When [value] is greater than 9
+    else if (value.length > 9) {
+      return '📢 Valid phone numbers are 9 digits right ?';
     }
     return null;
   }
@@ -105,9 +105,9 @@ class Validator {
   /// Displays an enabled button or a disabled one based on form validity
   static bool? formValid(String? value) {
     /// Show enabled button
-    if (value!.length == 10) {
+    if (value!.length == 9) {
       return true;
-    } else if (value.length < 10 || value.length > 10) {
+    } else if (value.length < 9 || value.length > 9) {
       /// Show disabled button
       return false;
     }
