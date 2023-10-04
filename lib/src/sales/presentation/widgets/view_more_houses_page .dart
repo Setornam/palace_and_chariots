@@ -180,7 +180,7 @@ class _ViewMoreHousesState extends State<ViewMoreHouses> {
                         onTap: () {
                           showModalBottomSheet(
                               constraints:
-                                  const BoxConstraints.tightFor(height: 250),
+                                  const BoxConstraints.tightFor(height: 200),
                               context: context,
                               builder: (BuildContext context) => SizedBox(
                                     child: Padding(
@@ -240,41 +240,41 @@ class _ViewMoreHousesState extends State<ViewMoreHouses> {
                                           ),
 
                                           //sort by lower price
-                                          ValueListenableBuilder(
-                                            builder: (BuildContext context,
-                                                value, Widget? child) {
-                                              return Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  const Text(
-                                                      'Price (lower first)'),
-                                                  Checkbox(
-                                                      side: const BorderSide(
-                                                        color: Colors.grey,
-                                                      ),
-                                                      fillColor:
-                                                          MaterialStateProperty
-                                                              .all(
-                                                                  lightColorScheme
-                                                                      .primary),
-                                                      value:
-                                                          isSortByLowerPriceChecked
-                                                              .value,
-                                                      onChanged: (checked) {
-                                                        sortByLowestRating();
-                                                        isSortByLowerPriceChecked
-                                                                .value =
-                                                            !isSortByLowerPriceChecked
-                                                                .value;
-                                                      }),
-                                                ],
-                                              );
-                                            },
-                                            valueListenable:
-                                                isSortByLowerPriceChecked,
-                                          ),
+                                          // ValueListenableBuilder(
+                                          //   builder: (BuildContext context,
+                                          //       value, Widget? child) {
+                                          //     return Row(
+                                          //       mainAxisAlignment:
+                                          //           MainAxisAlignment
+                                          //               .spaceBetween,
+                                          //       children: [
+                                          //         const Text(
+                                          //             'Price (lower first)'),
+                                          //         Checkbox(
+                                          //             side: const BorderSide(
+                                          //               color: Colors.grey,
+                                          //             ),
+                                          //             fillColor:
+                                          //                 MaterialStateProperty
+                                          //                     .all(
+                                          //                         lightColorScheme
+                                          //                             .primary),
+                                          //             value:
+                                          //                 isSortByLowerPriceChecked
+                                          //                     .value,
+                                          //             onChanged: (checked) {
+                                          //               sortByLowestRating();
+                                          //               isSortByLowerPriceChecked
+                                          //                       .value =
+                                          //                   !isSortByLowerPriceChecked
+                                          //                       .value;
+                                          //             }),
+                                          //       ],
+                                          //     );
+                                          //   },
+                                          //   valueListenable:
+                                          //       isSortByLowerPriceChecked,
+                                          // ),
 
                                           //sort by highest rating
                                           ValueListenableBuilder(

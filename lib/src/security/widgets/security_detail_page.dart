@@ -60,7 +60,7 @@ class _SecurityDetailPageState extends State<SecurityDetailPage> {
             Container(
               height: 140,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       bottomRight: Radius.circular(7),
                       bottomLeft: Radius.circular(7),
                       topLeft: Radius.circular(7),
