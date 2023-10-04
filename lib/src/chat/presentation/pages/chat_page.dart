@@ -163,7 +163,7 @@ class _ChatState extends State<Chat> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 80),
+            padding: const EdgeInsets.only(top: 80, bottom: 25),
             child: chatMessages(),
           ),
           Container(

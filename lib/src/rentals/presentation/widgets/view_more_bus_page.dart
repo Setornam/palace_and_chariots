@@ -179,7 +179,7 @@ class _ViewMoreBusesPageState extends State<ViewMoreBusesPage> {
                         onTap: () {
                           showModalBottomSheet(
                               constraints:
-                                  const BoxConstraints.tightFor(height: 250),
+                                  const BoxConstraints.tightFor(height: 200),
                               context: context,
                               builder: (BuildContext context) => SizedBox(
                                     child: Padding(
@@ -313,42 +313,42 @@ class _ViewMoreBusesPageState extends State<ViewMoreBusesPage> {
                                           ),
 
                                           //sort by lowest rating
-                                          ValueListenableBuilder(
-                                            builder: (BuildContext context,
-                                                value, Widget? child) {
-                                              return Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  const Text(
-                                                      'Star rating (lowest first)'),
-                                                  Checkbox(
-                                                      side: const BorderSide(
-                                                        color: Colors.grey,
-                                                      ),
-                                                      fillColor:
-                                                          MaterialStateProperty
-                                                              .all(
-                                                                  lightColorScheme
-                                                                      .primary),
-                                                      value:
-                                                          isSortByLowestRatingChecked
-                                                              .value,
-                                                      onChanged:
-                                                          (bool? checked) {
-                                                        sortByLowestRating();
+                                          // ValueListenableBuilder(
+                                          //   builder: (BuildContext context,
+                                          //       value, Widget? child) {
+                                          //     return Row(
+                                          //       mainAxisAlignment:
+                                          //           MainAxisAlignment
+                                          //               .spaceBetween,
+                                          //       children: [
+                                          //         const Text(
+                                          //             'Star rating (lowest first)'),
+                                          //         Checkbox(
+                                          //             side: const BorderSide(
+                                          //               color: Colors.grey,
+                                          //             ),
+                                          //             fillColor:
+                                          //                 MaterialStateProperty
+                                          //                     .all(
+                                          //                         lightColorScheme
+                                          //                             .primary),
+                                          //             value:
+                                          //                 isSortByLowestRatingChecked
+                                          //                     .value,
+                                          //             onChanged:
+                                          //                 (bool? checked) {
+                                          //               sortByLowestRating();
 
-                                                        isSortByLowestRatingChecked
-                                                                .value =
-                                                            checked ?? false;
-                                                      }),
-                                                ],
-                                              );
-                                            },
-                                            valueListenable:
-                                                isSortByLowestRatingChecked,
-                                          )
+                                          //               isSortByLowestRatingChecked
+                                          //                       .value =
+                                          //                   checked ?? false;
+                                          //             }),
+                                          //       ],
+                                          //     );
+                                          //   },
+                                          //   valueListenable:
+                                          //       isSortByLowestRatingChecked,
+                                          // )
                                         ],
                                       ),
                                     ),

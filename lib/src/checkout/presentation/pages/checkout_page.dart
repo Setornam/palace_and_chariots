@@ -288,7 +288,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ),
                 ],
               ),
-              driverAvailable == "Yes"
+              driverAvailable == "No"
                   ? Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Form(
@@ -834,8 +834,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       if (driverAvailable == "Yes") {
                         if (userFormKey.currentState!.validate()) {
                           await Orders.addOrder(
-                            'pending',
-                                'order-123',
+                            'active',
+                            'order-123',
                             widget.name,
                             FirebaseAuth.instance.currentUser!.uid,
                             'vehicle-rentals',
@@ -856,8 +856,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
                       if (userFormKey.currentState!.validate()) {
                         await Orders.addOrder(
-                          'pending'
-                              'order-123',
+                          'active',
+                          'order-123',
                           widget.name,
                           FirebaseAuth.instance.currentUser!.uid,
                           'vehicle-rentals',

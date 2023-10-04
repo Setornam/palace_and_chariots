@@ -327,7 +327,7 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                             // await Orders.addOrder();
                             ///add order
                             await Orders.addOrder(
-                              'pending',
+                              'active',
                               'order-12463',
                               widget.tourism.name,
                               FirebaseAuth.instance.currentUser!.uid,

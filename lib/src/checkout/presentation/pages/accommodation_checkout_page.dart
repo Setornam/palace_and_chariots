@@ -215,7 +215,7 @@ class _AccommodationCheckoutPageState extends State<AccommodationCheckoutPage> {
                               height: 70,
                               child: IntlPhoneField(
                                   validator: (phone) =>
-                              Validator.phoneNumber(phoneNumber),
+                                      Validator.phoneNumber(phoneNumber),
                                   decoration: InputDecoration(
                                       alignLabelWithHint: true,
                                       focusedBorder: OutlineInputBorder(
@@ -380,7 +380,7 @@ class _AccommodationCheckoutPageState extends State<AccommodationCheckoutPage> {
                                         ///
                                         if (formKey.currentState!.validate()) {
                                           await Orders.addOrder(
-                                            'pending',
+                                            'active',
                                             'order-123',
                                             widget.name,
                                             FirebaseAuth

@@ -316,7 +316,7 @@ class _SecurityCheckoutPageState extends State<SecurityCheckoutPage> {
 
                         if (formKey.currentState!.validate()) {
                           await Orders.addOrder(
-                              'pending',
+                              'active',
                               'order-123',
                               widget.security.name,
                               FirebaseAuth.instance.currentUser!.uid,
