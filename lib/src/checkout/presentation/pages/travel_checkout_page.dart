@@ -6,11 +6,13 @@ import 'package:palace_and_chariots/src/checkout/presentation/pages/security_che
 import '../widgets/travel_user_form.dart';
 
 class TravelCheckoutPage extends StatefulWidget {
-  final String startDate, endDate;
+  final String startDate, endDate, takeOff, destination;
   const TravelCheckoutPage({
     super.key,
     required this.startDate,
     required this.endDate,
+    required this.takeOff,
+    required this.destination,
   });
 
   @override
@@ -60,9 +62,9 @@ class _TravelCheckoutPageState extends State<TravelCheckoutPage> {
                     ),
                     Row(
                       children: [
-                        const Text('(ACC)'),
+                        // const Text('(ACC)'),
                         Container(
-                          width: 110,
+                          width: 180,
                           child: const Divider(
                             height: 2,
                           ),
@@ -74,16 +76,22 @@ class _TravelCheckoutPageState extends State<TravelCheckoutPage> {
                             height: 2,
                           ),
                         ),
-                        const Text('(XYZ)')
+                        // const Text('(XYZ)')
                       ],
                     ),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text('Accra Airport'), Text('Toronto')],
+                      children: [
+                        Text('${widget.takeOff} Airport'),
+                        Text('${widget.destination} Airport')
+                      ],
                     ),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text('Accra '), Text('Toronto')],
+                      children: [
+                        Text(widget.takeOff),
+                        Text(widget.destination)
+                      ],
                     )
                   ],
                 ),
@@ -100,9 +108,9 @@ class _TravelCheckoutPageState extends State<TravelCheckoutPage> {
                       ),
                       Row(
                         children: [
-                          const Text('(ACC)'),
+                          // const Text('(ACC)'),
                           Container(
-                            width: 110,
+                            width: 180,
                             child: const Divider(
                               height: 2,
                             ),
@@ -114,16 +122,22 @@ class _TravelCheckoutPageState extends State<TravelCheckoutPage> {
                               height: 2,
                             ),
                           ),
-                          const Text('(XYZ)')
+                          // const Text('(XYZ)')
                         ],
                       ),
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [Text('Accra Airport'), Text('Toronto')],
+                        children: [
+                          Text('${widget.takeOff} Airport'),
+                          Text('${widget.destination} Airport')
+                        ],
                       ),
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [Text('Accra '), Text('Toronto')],
+                        children: [
+                          Text(widget.takeOff),
+                          Text(widget.destination)
+                        ],
                       )
                     ],
                   ),

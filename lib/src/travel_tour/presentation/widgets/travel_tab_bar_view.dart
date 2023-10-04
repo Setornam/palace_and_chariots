@@ -28,6 +28,9 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
   final ValueNotifier<String> _startDate = ValueNotifier('start date');
   final ValueNotifier<String> _endDate = ValueNotifier('end date');
 
+  final takeOffController = TextEditingController();
+  final destinationController = TextEditingController();
+
   List<Map<String, String>> locations = [
     {'name': 'Accra', 'image': 'assets/images/accra.png'},
     {'name': 'Lagos', 'image': 'assets/images/lagos.png'},
@@ -55,7 +58,7 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                       right: BorderSide(color: lightColorScheme.primary),
                       bottom: BorderSide(
                           color: lightColorScheme.primary, width: 0.011)),
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10),
                       bottomLeft: Radius.circular(29),
@@ -64,67 +67,104 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(5.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    DestinationSearchPage()));
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          //from
-                          Row(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        //from
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Row(
                             children: [
                               const Icon(Icons.flight_takeoff,
                                   size: 18, color: Colors.black54),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    '   take off',
-                                    style:
-                                        Theme.of(context).textTheme.bodySmall,
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: Text(
+                                      '   take off',
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
+                                    ),
                                   ),
-                                  Text(
-                                    '   City or airport',
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
-                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: SizedBox(
+                                        height: 40,
+                                        width: 150,
+                                        child: TextFormField(
+                                          controller: takeOffController,
+                                          decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.only(right: 5),
+                                              focusedBorder:
+                                                  UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color:
+                                                              lightColorScheme
+                                                                  .primary)),
+                                              hintText: 'City or airport',
+                                              hintStyle:
+                                                  TextStyle(fontSize: 14),
+                                              fillColor: Colors.white70),
+                                        )),
+                                  )
                                 ],
                               )
                             ],
                           ),
+                        ),
 
-                          Padding(
-                            padding: const EdgeInsets.only(right: 40),
-                            child: Row(
-                              children: [
-                                const Icon(Icons.flight_land,
-                                    size: 18, color: Colors.black54),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
+                        Padding(
+                          padding: const EdgeInsets.only(right: 0),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.flight_land,
+                                  size: 18, color: Colors.black54),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: Text(
                                       '   destination',
                                       style:
                                           Theme.of(context).textTheme.bodySmall,
                                     ),
-                                    Text(
-                                      '   City or airport',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium,
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: SizedBox(
+                                        height: 40,
+                                        width: 150,
+                                        child: TextFormField(
+                                          controller: destinationController,
+                                          decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.only(right: 5),
+                                              focusedBorder:
+                                                  UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color:
+                                                              lightColorScheme
+                                                                  .primary)),
+                                              hintText: 'City or airport',
+                                              hintStyle:
+                                                  TextStyle(fontSize: 14),
+                                              fillColor: Colors.white70),
+                                        )),
+                                  )
+                                  // Text(
+                                  //   '   City or airport',
+                                  //   style: Theme.of(context).textTheme.bodyMedium,
+                                  // ),
+                                ],
+                              )
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                   Divider(),
@@ -182,7 +222,7 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                                                           isTodayHighlighted:
                                                               false,
                                                           selectedTextStyle:
-                                                              TextStyle(
+                                                              const TextStyle(
                                                                   color: Colors
                                                                       .white,
                                                                   fontWeight:
@@ -744,7 +784,7 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                       child: Row(
                         children: [
                           const Padding(
-                            padding: EdgeInsets.only(left: 15, right: 18),
+                            padding: EdgeInsets.only(left: 15, right: 10),
                             child: Icon(Icons.person_2_outlined,
                                 size: 18, color: Colors.black54),
                           ),
@@ -755,21 +795,24 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                                 builder: (BuildContext context, value,
                                     Widget? child) {
                                   return Text(
-                                    '${numberOfAdults.value} Adults    -        ',
+                                    '${numberOfAdults.value} Adults           ',
                                     textAlign: TextAlign.center,
                                   );
                                 },
                                 valueListenable: numberOfAdults,
                               ),
-                              ValueListenableBuilder(
-                                builder: (BuildContext context, value,
-                                    Widget? child) {
-                                  return Text(
-                                    '${numberOfChildren.value} Children',
-                                    textAlign: TextAlign.center,
-                                  );
-                                },
-                                valueListenable: numberOfChildren,
+                              Padding(
+                                padding: const EdgeInsets.only(left: 80),
+                                child: ValueListenableBuilder(
+                                  builder: (BuildContext context, value,
+                                      Widget? child) {
+                                    return Text(
+                                      '${numberOfChildren.value} Children',
+                                      textAlign: TextAlign.center,
+                                    );
+                                  },
+                                  valueListenable: numberOfChildren,
+                                ),
                               ),
                             ],
                           )
@@ -797,6 +840,8 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                                     TravelCheckoutPage(
                                       endDate: _endDate.value,
                                       startDate: _startDate.value,
+                                      destination: destinationController.text,
+                                      takeOff: takeOffController.text,
                                     )));
                       },
                       child: const Text('Next'))
