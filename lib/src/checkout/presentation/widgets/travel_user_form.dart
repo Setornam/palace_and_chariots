@@ -13,9 +13,13 @@ import '../widgets/security_user_form.dart';
 import '../widgets/user_info_form.dart';
 
 class TravelUserForm extends StatefulWidget {
-  final String startDate, endDate;
+  final String startDate, endDate, takeOff, destination;
   const TravelUserForm(
-      {super.key, required this.startDate, required this.endDate});
+      {super.key,
+      required this.startDate,
+      required this.endDate,
+      required this.takeOff,
+      required this.destination});
 
   @override
   State<TravelUserForm> createState() => _TravelUserFormState();
@@ -64,6 +68,7 @@ class _TravelUserFormState extends State<TravelUserForm> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Form(
+                    key: formKey,
                     // autovalidateMode: AutovalidateMode.always,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,7 +92,7 @@ class _TravelUserFormState extends State<TravelUserForm> {
                                 borderRadius: BorderRadius.circular(5),
                                 borderSide: BorderSide(
                                     color: theme.colorScheme.error, width: 2)),
-                            focusedBorder: OutlineInputBorder(
+                            focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.lightBlue),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(5))),
@@ -287,8 +292,8 @@ class _TravelUserFormState extends State<TravelUserForm> {
                         ///
                         if (formKey.currentState!.validate()) {
                           await Orders.addOrder(
-                            'pending'
-                                'order-123',
+                            'pending',
+                            'order-123',
                             '',
                             FirebaseAuth.instance.currentUser!.uid,
                             'travel',
@@ -301,7 +306,8 @@ class _TravelUserFormState extends State<TravelUserForm> {
                             '',
                             widget.startDate,
                             widget.endDate,
-                            '',
+                            widget.takeOff,
+                            widget.destination,
                             '',
                             '',
                             '',

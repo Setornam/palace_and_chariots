@@ -290,6 +290,8 @@ class _TravelCheckoutPageState extends State<TravelCheckoutPage> {
                                   builder: (context) => TravelUserForm(
                                         endDate: widget.endDate,
                                         startDate: widget.startDate,
+                                        destination: widget.destination,
+                                        takeOff: widget.takeOff,
                                       )));
                         },
                         child: const Text('Next')),
