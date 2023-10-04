@@ -148,7 +148,7 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                         ],
                                       ),
                                     )
-                                  : SizedBox(),
+                                  : const SizedBox(),
                               doc['service'] == 'accommodation-rentals'
                                   ? Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -160,7 +160,7 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                               MaterialPageRoute(
                                                   builder: (BuildContext
                                                           context) =>
-                                                      AccommodationDetailsPage()));
+                                                      const AccommodationDetailsPage()));
                                         },
                                         child: Column(
                                           children: [
@@ -254,7 +254,7 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                                             children: [
                                                               Text(
                                                                 doc['name'],
-                                                                style: TextStyle(
+                                                                style: const TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold,
@@ -380,7 +380,7 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                         ),
                                       ),
                                     )
-                                  : SizedBox(),
+                                  : const SizedBox(),
                               doc['service'] == 'event-rentals'
                                   ? Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -392,7 +392,7 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                               MaterialPageRoute(
                                                   builder: (BuildContext
                                                           context) =>
-                                                      AccommodationDetailsPage()));
+                                                      const AccommodationDetailsPage()));
                                         },
                                         child: Column(
                                           children: [
@@ -486,7 +486,7 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                                             children: [
                                                               Text(
                                                                 doc['name'],
-                                                                style: TextStyle(
+                                                                style: const TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold,
@@ -590,7 +590,7 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                         ),
                                       ),
                                     )
-                                  : SizedBox(),
+                                  : const SizedBox(),
                               doc['service'] == 'tourism'
                                   ? Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -602,7 +602,7 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                               MaterialPageRoute(
                                                   builder: (BuildContext
                                                           context) =>
-                                                      AccommodationDetailsPage()));
+                                                      const AccommodationDetailsPage()));
                                         },
                                         child: Column(
                                           children: [
@@ -697,7 +697,7 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                                             children: [
                                                               Text(
                                                                 doc['name'],
-                                                                style: TextStyle(
+                                                                style: const TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold,
@@ -743,7 +743,7 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                                               )
                                                             ],
                                                           ),
-                                                          Row(
+                                                          const Row(
                                                             children: [
                                                               // Text(
                                                               //   'Superior room: 1 bed',
@@ -821,7 +821,7 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                         ),
                                       ),
                                     )
-                                  : SizedBox(),
+                                  : const SizedBox(),
                               doc['service'] == 'travel'
                                   ? Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -864,16 +864,16 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    vertical: 7),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 7),
                                                 child: Text(
                                                     'Depart ${doc['flight_departure_date']}'),
                                               ),
                                               Row(
                                                 children: [
-                                                  const Text('(ACC)'),
                                                   Container(
-                                                    width: 110,
+                                                    width: 180,
                                                     child: const Divider(
                                                       height: 2,
                                                     ),
@@ -886,25 +886,26 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                                       height: 2,
                                                     ),
                                                   ),
-                                                  const Text('(XYZ)')
                                                 ],
                                               ),
-                                              const Row(
+                                              Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: [
-                                                  Text('Accra Airport'),
-                                                  Text('Toronto')
+                                                  Text(
+                                                      '${doc['flight_departure']} Airport'),
+                                                  Text(
+                                                      '${doc['flight_return']} Airport')
                                                 ],
                                               ),
-                                              const Row(
+                                              Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: [
-                                                  Text('Accra '),
-                                                  Text('Toronto')
+                                                  Text(doc['flight_departure']),
+                                                  Text(doc['flight_return'])
                                                 ],
                                               )
                                             ],
@@ -919,16 +920,15 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      vertical: 7),
+                                                  padding: const EdgeInsets
+                                                      .symmetric(vertical: 7),
                                                   child: Text(
                                                       'Return ${doc['flight_return_date']}'),
                                                 ),
                                                 Row(
                                                   children: [
-                                                    const Text('(ACC)'),
                                                     Container(
-                                                      width: 110,
+                                                      width: 180,
                                                       child: const Divider(
                                                         height: 2,
                                                       ),
@@ -941,25 +941,27 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                                         height: 2,
                                                       ),
                                                     ),
-                                                    const Text('(XYZ)')
                                                   ],
                                                 ),
-                                                const Row(
+                                                Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Text('Accra Airport'),
-                                                    Text('Toronto')
+                                                    Text(
+                                                        '${doc['flight_departure']} Airport'),
+                                                    Text(
+                                                        '${doc['flight_return']} Airport')
                                                   ],
                                                 ),
-                                                const Row(
+                                                Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Text('Accra '),
-                                                    Text('Toronto')
+                                                    Text(doc[
+                                                        'flight_departure']),
+                                                    Text(doc['flight_return'])
                                                   ],
                                                 )
                                               ],
@@ -967,7 +969,7 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                           ),
                                         ],
                                       ))
-                                  : SizedBox(),
+                                  : const SizedBox(),
                               doc['service'] == 'security'
                                   ? Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -1085,7 +1087,7 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                                             )
                                                           ],
                                                         ),
-                                                        Row(
+                                                        const Row(
                                                           children: [
                                                             // Text(
                                                             //   'Superior room: 1 bed',
@@ -1105,7 +1107,7 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                         ],
                                       ),
                                     )
-                                  : SizedBox(),
+                                  : const SizedBox(),
                             ],
                           ))
                       .toList()),
