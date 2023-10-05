@@ -5,6 +5,7 @@ import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/widgets/success_page.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/widgets/travel_form.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/widgets/user_personal_details_form.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../../shared/utils/validator.dart';
 import '../../services/order.dart';
@@ -286,14 +287,16 @@ class _TravelUserFormState extends State<TravelUserForm> {
                         DateTime currentDate = DateTime.now();
                         String date =
                             '${currentDate.day}- ${currentDate.month} - ${currentDate.year}';
+                        var uuid = Uuid();
+                        String orderId = uuid.v4();
                         // await Orders.addOrder();
                         ///add order
                         ///
                         ///
                         if (formKey.currentState!.validate()) {
                           await Orders.addOrder(
-                            'pending',
-                            'order-123',
+                            'Active',
+                            'order-$orderId',
                             '',
                             FirebaseAuth.instance.currentUser!.uid,
                             'travel',

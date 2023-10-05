@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/shared/utils/validator.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../travel_tour/travel_and_tour/domain/entities/tourism.dart';
 import '../../services/order.dart';
@@ -324,11 +325,13 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                             DateTime currentDate = DateTime.now();
                             String date =
                                 '${currentDate.day}- ${currentDate.month} - ${currentDate.year}';
-                            // await Orders.addOrder();
+                            var uuid = Uuid();
+                            String orderId = uuid.v4();
+
                             ///add order
                             await Orders.addOrder(
-                              'active',
-                              'order-12463',
+                              'Active',
+                              'order-$orderId',
                               widget.tourism.name,
                               FirebaseAuth.instance.currentUser!.uid,
                               'tourism',

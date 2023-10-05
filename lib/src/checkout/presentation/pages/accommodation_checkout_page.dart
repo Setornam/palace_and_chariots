@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/widgets/user_personal_details_form.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../../shared/utils/validator.dart';
 import '../../services/order.dart';
@@ -375,13 +376,15 @@ class _AccommodationCheckoutPageState extends State<AccommodationCheckoutPage> {
                                         DateTime currentDate = DateTime.now();
                                         String date =
                                             '${currentDate.day}- ${currentDate.month} - ${currentDate.year}';
-                                        // await Orders.addOrder();
+                                        var uuid = Uuid();
+                                        String orderId = uuid.v4();
+
                                         ///add order
                                         ///
                                         if (formKey.currentState!.validate()) {
                                           await Orders.addOrder(
-                                            'active',
-                                            'order-123',
+                                            'Active',
+                                            'order-$orderId',
                                             widget.name,
                                             FirebaseAuth
                                                 .instance.currentUser!.uid,

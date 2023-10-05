@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../../shared/utils/validator.dart';
 import '../../../rentals/vehicle/domain/entities/vehicle.dart';
@@ -829,13 +830,16 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       String date =
                           '${currentDate.day}- ${currentDate.month} - ${currentDate.year}';
 
+                      var uuid = Uuid();
+                      String orderId = uuid.v4();
+
                       ///add order
                       ///
                       if (driverAvailable == "Yes") {
                         if (userFormKey.currentState!.validate()) {
                           await Orders.addOrder(
-                            'active',
-                            'order-123',
+                            'Active',
+                            'order-$orderId',
                             widget.name,
                             FirebaseAuth.instance.currentUser!.uid,
                             'vehicle-rentals',
