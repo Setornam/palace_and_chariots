@@ -525,7 +525,8 @@ class _SalesDetailsPageAccommodationState
                                                               FirebaseAuth
                                                                   .instance
                                                                   .currentUser!
-                                                                  .uid
+                                                                  .uid,
+                                                          'user_email':_getEmail
                                                         });
 
                                                         if (messageEditingController

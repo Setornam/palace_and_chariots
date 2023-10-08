@@ -582,7 +582,9 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                                               FirebaseAuth
                                                                   .instance
                                                                   .currentUser!
-                                                                  .uid
+                                                                  .uid,
+                                                          'user_email':
+                                                              _getEmail
                                                         });
 
                                                         if (messageEditingController
