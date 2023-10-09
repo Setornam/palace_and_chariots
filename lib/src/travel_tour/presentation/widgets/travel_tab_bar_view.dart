@@ -31,6 +31,8 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
   final takeOffController = TextEditingController();
   final destinationController = TextEditingController();
 
+  final isTravelFormValid = ValueNotifier<bool>(true);
+
   List<Map<String, String>> locations = [
     {'name': 'Accra', 'image': 'assets/images/accra.png'},
     {'name': 'Lagos', 'image': 'assets/images/lagos.png'},

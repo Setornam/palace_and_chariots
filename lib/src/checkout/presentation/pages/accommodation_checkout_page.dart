@@ -292,8 +292,7 @@ class _AccommodationCheckoutPageState extends State<AccommodationCheckoutPage> {
                                           value: isWorkSelected,
                                           onChanged: (val) {
                                             setState(() {
-                                              isSavedToAccount =
-                                                  !isSavedToAccount;
+                                              isWorkSelected = !isWorkSelected;
                                             });
                                           }),
                                       Text(
@@ -311,8 +310,8 @@ class _AccommodationCheckoutPageState extends State<AccommodationCheckoutPage> {
                                           value: isLeisureSelected,
                                           onChanged: (val) {
                                             setState(() {
-                                              isSavedToAccount =
-                                                  !isSavedToAccount;
+                                              isLeisureSelected =
+                                                  !isLeisureSelected;
                                             });
                                           }),
                                       Text(

@@ -87,7 +87,7 @@ class _EventTabBarViewState extends State<EventTabBarView> {
                                             color: lightColorScheme.primary)),
                                     contentPadding:
                                         const EdgeInsets.only(top: 10),
-                                    hintText: 'Enter Destination',
+                                    hintText: 'Enter Location',
                                     constraints: const BoxConstraints.tightFor(
                                         height: 40),
                                     floatingLabelBehavior:
