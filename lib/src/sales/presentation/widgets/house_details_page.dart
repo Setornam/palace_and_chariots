@@ -85,7 +85,6 @@ class _SalesDetailsPageAccommodationState
         ],
       ),
       body: FutureBuilder(
-       
         future: FirebaseFirestore.instance
             .collection('users')
             .where('id', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
@@ -606,7 +605,8 @@ class _SalesDetailsPageAccommodationState
                                                                                   'price': widget.accommodation.price,
                                                                                   'user_id': FirebaseAuth.instance.currentUser!.uid,
                                                                                   'user_email': _getEmail,
-                                                                                  'user_name': '${doc['first_name']} ${doc['last_name']}'
+                                                                                  'user_name': '${doc['first_name']} ${doc['last_name']}',
+                                                                                  'profile_picture': doc['profile_image_url']
                                                                                 });
 
                                                                                 if (messageEditingController.text.isNotEmpty) {

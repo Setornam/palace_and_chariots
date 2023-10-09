@@ -647,7 +647,8 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                                                                 'price': widget.car.price,
                                                                                 'user_id': FirebaseAuth.instance.currentUser!.uid,
                                                                                 'user_email': _getEmail,
-                                                                                'user_name': '${doc['first_name']} ${doc['last_name']}'
+                                                                                'user_name': '${doc['first_name']} ${doc['last_name']}',
+                                                                                'profile_picture': doc['profile_image_url']
                                                                               });
 
                                                                               if (messageEditingController.text.isNotEmpty) {
