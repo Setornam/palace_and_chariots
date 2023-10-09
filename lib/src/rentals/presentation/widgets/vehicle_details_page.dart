@@ -4,6 +4,8 @@ import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/checkout/presentation/pages/checkout_page.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/item_gallery_page.dart';
 
+import '../../../checkout/presentation/pages/jet_checkout_page.dart';
+
 class VehicleDetailsPage extends StatefulWidget {
   final String numberOfSeats, name, category, price, color, rating, luggage;
   final String? transmission, height, length, speed, range;
@@ -617,13 +619,14 @@ class _VehicleDetailsPageState extends State<VehicleDetailsPage> {
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      CheckoutPage(
+                                      JetCheckOutPage(
                                         name: widget.name,
                                         color: widget.color,
                                         transmission: widget.transmission!,
                                         rating: widget.rating,
                                         seats: widget.numberOfSeats,
-                                        image: widget.images.first, price:widget.price,
+                                        image: widget.images.first,
+                                        price: widget.price,
                                       )));
                         },
                         child: const Text('Submit')),

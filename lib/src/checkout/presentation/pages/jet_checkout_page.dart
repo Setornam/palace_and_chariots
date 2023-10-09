@@ -12,9 +12,9 @@ import '../widgets/driver_details_form.dart';
 import '../widgets/success_page.dart';
 import '../widgets/user_info_form.dart';
 
-class CheckoutPage extends StatefulWidget {
+class JetCheckOutPage extends StatefulWidget {
   final String name, color, rating, seats, image, transmission, price;
-  const CheckoutPage(
+  const JetCheckOutPage(
       {super.key,
       required this.name,
       required this.color,
@@ -25,10 +25,10 @@ class CheckoutPage extends StatefulWidget {
       required this.price});
 
   @override
-  State<CheckoutPage> createState() => _CheckoutPageState();
+  State<JetCheckOutPage> createState() => _JetCheckOutPageState();
 }
 
-class _CheckoutPageState extends State<CheckoutPage> {
+class _JetCheckOutPageState extends State<JetCheckOutPage> {
   late String driverAvailable = "";
   TextEditingController phoneNumberController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -167,52 +167,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 ],
               ),
               const Divider(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Do you need a driver?',
-                    style: TextStyle(color: Colors.black87),
-                  ),
-                  Row(
-                    children: [
-                      Radio.adaptive(
-                          activeColor: Colors.grey,
-                          fillColor: MaterialStateProperty.all(
-                              lightColorScheme.primary),
-                          value: "Yes",
-                          groupValue: driverAvailable,
-                          onChanged: (value) {
-                            setState(() {
-                              driverAvailable = value!;
-                            });
-                          }),
-                      const Text(
-                        'Yes',
-                        style: TextStyle(color: Colors.black87),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Radio.adaptive(
-                          fillColor: MaterialStateProperty.all(
-                              lightColorScheme.primary),
-                          value: "No",
-                          groupValue: driverAvailable,
-                          onChanged: (value) {
-                            setState(() {
-                              driverAvailable = value!;
-                            });
-                          }),
-                      const Text(
-                        'No',
-                        style: TextStyle(color: Colors.black87),
-                      ),
-                    ],
-                  )
-                ],
-              ),
 
               //rental charges
               const Text(
@@ -225,7 +179,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Vehicle hiring cost per day',
+                    'Jet hiring cost per day',
                     style: TextStyle(color: Colors.black87),
                   ),
                   Text(

@@ -11,6 +11,7 @@ import 'package:palace_and_chariots/src/rentals/vehicle/domain/entities/vehicle.
 import 'package:palace_and_chariots/src/rentals/vehicle/presentation/bloc/vehicle_bloc.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
+import '../../../checkout/presentation/pages/jet_checkout_page.dart';
 
 class VehiclesTabBarView extends StatefulWidget {
   const VehiclesTabBarView({super.key});
@@ -885,8 +886,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                               .category,
                                                                     )));
                                                       },
-                                                      child: 
-                                                      Container(
+                                                      child: Container(
                                                         child: Row(
                                                           children: [
                                                             Container(
@@ -1053,8 +1053,6 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                           ],
                                                         ),
                                                       ),
-                                                   
-                                                   
                                                     ),
                                                   );
                                                 }),
@@ -3298,7 +3296,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                           Navigator.push(
                                                                               context,
                                                                               MaterialPageRoute(
-                                                                                  builder: (BuildContext context) => CheckoutPage(
+                                                                                  builder: (BuildContext context) => JetCheckOutPage(
                                                                                         name: jetList[index].name,
                                                                                         color: jetList[index].color,
                                                                                         rating: jetList[index].rating,

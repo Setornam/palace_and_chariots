@@ -157,10 +157,6 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                                               fillColor: Colors.white70),
                                         )),
                                   )
-                                  // Text(
-                                  //   '   City or airport',
-                                  //   style: Theme.of(context).textTheme.bodyMedium,
-                                  // ),
                                 ],
                               )
                             ],
@@ -250,12 +246,6 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                                                               _selectedDay
                                                                   .value,
                                                               day);
-
-                                                          // Return true if the day is within the selected range.
-                                                          // return _rangeStart != null &&
-                                                          //     _rangeEnd != null &&
-                                                          //     day.isAfter(_rangeStart!) &&
-                                                          //     day.isBefore(_rangeEnd!);
                                                         },
                                                         onDaySelected:
                                                             (selectedDay,
@@ -443,12 +433,6 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                                                               _selectedDay
                                                                   .value,
                                                               day);
-
-                                                          // Return true if the day is within the selected range.
-                                                          // return _rangeStart != null &&
-                                                          //     _rangeEnd != null &&
-                                                          //     day.isAfter(_rangeStart!) &&
-                                                          //     day.isBefore(_rangeEnd!);
                                                         },
                                                         onDaySelected:
                                                             (selectedDay,
@@ -610,11 +594,16 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                                                       IconButton(
                                                           onPressed: () {
                                                             numberOfAdults
-                                                                .value++;
+                                                                        .value >=
+                                                                    0
+                                                                ? numberOfAdults
+                                                                    .value--
+                                                                : numberOfAdults
+                                                                    .value = 0;
                                                           },
                                                           icon: Icon(
                                                             Icons
-                                                                .add_circle_outline,
+                                                                .remove_circle_outline,
                                                             color:
                                                                 lightColorScheme
                                                                     .primary,
@@ -629,16 +618,11 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                                                       IconButton(
                                                           onPressed: () {
                                                             numberOfAdults
-                                                                        .value >=
-                                                                    0
-                                                                ? numberOfAdults
-                                                                    .value--
-                                                                : numberOfAdults
-                                                                    .value = 0;
+                                                                .value++;
                                                           },
                                                           icon: Icon(
                                                             Icons
-                                                                .remove_circle_outline,
+                                                                .add_circle_outline,
                                                             color:
                                                                 lightColorScheme
                                                                     .primary,
@@ -670,11 +654,16 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                                                       IconButton(
                                                           onPressed: () {
                                                             numberOfChildren
-                                                                .value++;
+                                                                        .value >
+                                                                    0
+                                                                ? numberOfChildren
+                                                                    .value--
+                                                                : numberOfChildren
+                                                                    .value = 0;
                                                           },
                                                           icon: Icon(
                                                             Icons
-                                                                .add_circle_outline,
+                                                                .remove_circle_outline,
                                                             color:
                                                                 lightColorScheme
                                                                     .primary,
@@ -689,16 +678,11 @@ class _TravelTabBarViewState extends State<TravelTabBarView> {
                                                       IconButton(
                                                           onPressed: () {
                                                             numberOfChildren
-                                                                        .value >
-                                                                    0
-                                                                ? numberOfChildren
-                                                                    .value--
-                                                                : numberOfChildren
-                                                                    .value = 0;
+                                                                .value++;
                                                           },
                                                           icon: Icon(
                                                             Icons
-                                                                .remove_circle_outline,
+                                                                .add_circle_outline,
                                                             color:
                                                                 lightColorScheme
                                                                     .primary,

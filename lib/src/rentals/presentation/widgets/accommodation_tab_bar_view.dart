@@ -592,10 +592,10 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                           children: [
                                                                             IconButton(
                                                                                 onPressed: () {
-                                                                                  numberOfRooms.value++;
+                                                                                  numberOfRooms.value >= 0 ? numberOfRooms.value-- : numberOfRooms.value = 0;
                                                                                 },
                                                                                 icon: Icon(
-                                                                                  Icons.add_circle_outline,
+                                                                                  Icons.remove_circle_outline,
                                                                                   color: lightColorScheme.primary,
                                                                                 )),
                                                                             Text(
@@ -604,10 +604,10 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                             ),
                                                                             IconButton(
                                                                                 onPressed: () {
-                                                                                  numberOfRooms.value >= 0 ? numberOfRooms.value-- : numberOfRooms.value = 0;
+                                                                                  numberOfRooms.value++;
                                                                                 },
                                                                                 icon: Icon(
-                                                                                  Icons.remove_circle_outline,
+                                                                                  Icons.add_circle_outline,
                                                                                   color: lightColorScheme.primary,
                                                                                 )),
                                                                           ],
@@ -644,10 +644,10 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                           children: [
                                                                             IconButton(
                                                                                 onPressed: () {
-                                                                                  numberOfAdults.value++;
+                                                                                  numberOfAdults.value >= 0 ? numberOfAdults.value-- : numberOfAdults.value = 0;
                                                                                 },
                                                                                 icon: Icon(
-                                                                                  Icons.add_circle_outline,
+                                                                                  Icons.remove_circle_outline,
                                                                                   color: lightColorScheme.primary,
                                                                                 )),
                                                                             Text(
@@ -656,10 +656,10 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                             ),
                                                                             IconButton(
                                                                                 onPressed: () {
-                                                                                  numberOfAdults.value >= 0 ? numberOfAdults.value-- : numberOfAdults.value = 0;
+                                                                                  numberOfAdults.value++;
                                                                                 },
                                                                                 icon: Icon(
-                                                                                  Icons.remove_circle_outline,
+                                                                                  Icons.add_circle_outline,
                                                                                   color: lightColorScheme.primary,
                                                                                 )),
                                                                           ],
@@ -696,10 +696,10 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                           children: [
                                                                             IconButton(
                                                                                 onPressed: () {
-                                                                                  numberOfChildren.value++;
+                                                                                  numberOfChildren.value >= 0 ? numberOfChildren.value-- : numberOfChildren.value = 0;
                                                                                 },
                                                                                 icon: Icon(
-                                                                                  Icons.add_circle_outline,
+                                                                                  Icons.remove_circle_outline,
                                                                                   color: lightColorScheme.primary,
                                                                                 )),
                                                                             Text(
@@ -708,10 +708,10 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                             ),
                                                                             IconButton(
                                                                                 onPressed: () {
-                                                                                  numberOfChildren.value >= 0 ? numberOfChildren.value-- : numberOfChildren.value = 0;
+                                                                                  numberOfChildren.value++;
                                                                                 },
                                                                                 icon: Icon(
-                                                                                  Icons.remove_circle_outline,
+                                                                                  Icons.add_circle_outline,
                                                                                   color: lightColorScheme.primary,
                                                                                 )),
                                                                           ],
@@ -1545,10 +1545,10 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                               children: [
                                                                                 IconButton(
                                                                                     onPressed: () {
-                                                                                      numberOfRoomsApartment.value++;
+                                                                                      numberOfRoomsApartment.value > 0 ? numberOfRoomsApartment.value-- : numberOfRoomsApartment.value = 0;
                                                                                     },
                                                                                     icon: Icon(
-                                                                                      Icons.add_circle_outline,
+                                                                                      Icons.remove_circle_outline,
                                                                                       color: lightColorScheme.primary,
                                                                                     )),
                                                                                 Text(
@@ -1557,10 +1557,10 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                                 ),
                                                                                 IconButton(
                                                                                     onPressed: () {
-                                                                                      numberOfRoomsApartment.value > 0 ? numberOfRoomsApartment.value-- : numberOfRoomsApartment.value = 0;
+                                                                                      numberOfRoomsApartment.value++;
                                                                                     },
                                                                                     icon: Icon(
-                                                                                      Icons.remove_circle_outline,
+                                                                                      Icons.add_circle_outline,
                                                                                       color: lightColorScheme.primary,
                                                                                     )),
                                                                               ],
@@ -1595,10 +1595,10 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                               children: [
                                                                                 IconButton(
                                                                                     onPressed: () {
-                                                                                      numberOfAdultsApartment.value++;
+                                                                                      numberOfAdultsApartment.value >= 0 ? numberOfAdultsApartment.value-- : numberOfAdultsApartment.value = 0;
                                                                                     },
                                                                                     icon: Icon(
-                                                                                      Icons.add_circle_outline,
+                                                                                      Icons.remove_circle_outline,
                                                                                       color: lightColorScheme.primary,
                                                                                     )),
                                                                                 Text(
@@ -1607,10 +1607,10 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                                 ),
                                                                                 IconButton(
                                                                                     onPressed: () {
-                                                                                      numberOfAdultsApartment.value >= 0 ? numberOfAdultsApartment.value-- : numberOfAdultsApartment.value = 0;
+                                                                                      numberOfAdultsApartment.value++;
                                                                                     },
                                                                                     icon: Icon(
-                                                                                      Icons.remove_circle_outline,
+                                                                                      Icons.add_circle_outline,
                                                                                       color: lightColorScheme.primary,
                                                                                     )),
                                                                               ],
@@ -1645,10 +1645,10 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                               children: [
                                                                                 IconButton(
                                                                                     onPressed: () {
-                                                                                      numberOfChildrenApartment.value++;
+                                                                                      numberOfChildrenApartment.value > 0 ? numberOfChildrenApartment.value-- : numberOfChildrenApartment.value = 0;
                                                                                     },
                                                                                     icon: Icon(
-                                                                                      Icons.add_circle_outline,
+                                                                                      Icons.remove_circle_outline,
                                                                                       color: lightColorScheme.primary,
                                                                                     )),
                                                                                 Text(
@@ -1657,10 +1657,10 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                                                 ),
                                                                                 IconButton(
                                                                                     onPressed: () {
-                                                                                      numberOfChildrenApartment.value > 0 ? numberOfChildrenApartment.value-- : numberOfChildrenApartment.value = 0;
+                                                                                      numberOfChildrenApartment.value++;
                                                                                     },
                                                                                     icon: Icon(
-                                                                                      Icons.remove_circle_outline,
+                                                                                      Icons.add_circle_outline,
                                                                                       color: lightColorScheme.primary,
                                                                                     )),
                                                                               ],
