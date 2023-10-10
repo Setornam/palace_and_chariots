@@ -861,7 +861,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       if (userFormKey.currentState!.validate()) {
                         await Orders.addOrder(
                           'Active',
-                          'order-123',
+                           'order-$orderId',
                           widget.name,
                           FirebaseAuth.instance.currentUser!.uid,
                           'vehicle-rentals',

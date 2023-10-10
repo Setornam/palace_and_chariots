@@ -1,11 +1,43 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../../shared/utils/validator.dart';
+import '../../services/order.dart';
+import '../widgets/success_page.dart';
 
 class SalesCheckoutPage extends StatefulWidget {
-  const SalesCheckoutPage({super.key});
+  final String? name,
+      image,
+      seats,
+      transmission,
+      speed,
+      service,
+      location,
+      condition,
+      bathrooms,
+      price,
+      color,
+      rating,
+      bedrooms;
+
+  const SalesCheckoutPage(
+      {super.key,
+      this.name,
+      this.image,
+      this.seats,
+      this.transmission,
+      this.speed,
+      this.service,
+      this.location,
+      this.condition,
+      this.bathrooms,
+      this.bedrooms,
+      this.price,
+      this.color,
+      this.rating});
 
   @override
   State<SalesCheckoutPage> createState() => _SalesCheckoutPageState();
@@ -230,8 +262,78 @@ class _SalesCheckoutPageState extends State<SalesCheckoutPage> {
                           backgroundColor: lightColorScheme.primary,
                           minimumSize: const Size.fromHeight(50),
                         ),
-                        onPressed: () {
-                          
+                        onPressed: () async {
+                          DateTime currentDate = DateTime.now();
+                          String date =
+                              '${currentDate.day}- ${currentDate.month} - ${currentDate.year}';
+                          var uuid = const Uuid();
+                          String orderId = uuid.v4();
+                          // await Orders.addOrder();
+                          ///add order
+
+                          if (formKey.currentState!.validate()) {
+                            if (widget.service == 'car-sales') {
+                              await Orders.addOrder(
+                                  'Active',
+                                  'order-$orderId',
+                                  widget.name!,
+                                  FirebaseAuth.instance.currentUser!.uid,
+                                  widget.service!,
+                                  '',
+                                  widget.image!,
+                                  date,
+                                  widget.color,
+                                  widget.seats,
+                                  widget.transmission,
+                                  widget.speed,
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  widget.rating);
+                            } else {
+                              await Orders.addOrder(
+                                  'Active',
+                                  'order-$orderId',
+                                  widget.name!,
+                                  FirebaseAuth.instance.currentUser!.uid,
+                                  widget.service!,
+                                  widget.price!,
+                                  widget.image!,
+                                  date,
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  widget.condition,
+                                  widget.location,
+                                  widget.bathrooms,
+                                  widget.bedrooms);
+                            }
+
+                            // ignore: use_build_context_synchronously
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SuccessPage()));
+                          }
                         },
                         child: const Text('Submit')),
                   ),

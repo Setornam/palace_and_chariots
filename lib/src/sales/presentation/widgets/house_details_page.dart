@@ -508,7 +508,39 @@ class _SalesDetailsPageAccommodationState
                                                           minimumSize: const Size
                                                               .fromHeight(50),
                                                         ),
-                                                        onPressed: () {},
+                                                        onPressed: () {
+                                                          Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder: (BuildContext
+                                                                          context) =>
+                                                                      SalesCheckoutPage(
+                                                                        price: widget
+                                                                            .accommodation
+                                                                            .price,
+                                                                        service:
+                                                                            'house-sales',
+                                                                        name: widget
+                                                                            .accommodation
+                                                                            .name,
+                                                                        location: widget
+                                                                            .accommodation
+                                                                            .location,
+                                                                        image: widget
+                                                                            .accommodation
+                                                                            .images
+                                                                            .first,
+                                                                        condition: widget
+                                                                            .accommodation
+                                                                            .condition,
+                                                                        bathrooms: widget
+                                                                            .accommodation
+                                                                            .amenities['bathrooms'],
+                                                                        bedrooms: widget
+                                                                            .accommodation
+                                                                            .amenities['bedrooms'],
+                                                                      )));
+                                                        },
                                                         child: const Text(
                                                             'Request call back')),
                                                   ),
@@ -623,13 +655,6 @@ class _SalesDetailsPageAccommodationState
                                                                                     messageEditingController.text = "";
                                                                                   });
                                                                                 }
-
-                                                                                // Navigator.push(
-                                                                                //     context,
-                                                                                //     MaterialPageRoute(
-                                                                                //         builder: (BuildContext
-                                                                                //                 context) =>
-                                                                                //             const SalesCheckoutPage()));
                                                                               },
                                                                               child: const Text('Send')),
                                                                         ),

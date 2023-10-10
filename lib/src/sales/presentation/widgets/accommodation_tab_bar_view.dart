@@ -85,7 +85,9 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                               accommodation: houses[index],
                                             )));
                               },
-                              child: Row(
+                              child: 
+                              
+                              Row(
                                 children: [
                                   Container(
                                     height: 115,
@@ -186,6 +188,8 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                   )
                                 ],
                               ),
+                          
+                          
                             ),
                           );
                         }),

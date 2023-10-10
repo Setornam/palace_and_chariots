@@ -1416,7 +1416,9 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                                                           )));
                                                             },
                                                             child: Container(
-                                                              child: Row(
+                                                              child: 
+                                                              
+                                                              Row(
                                                                 children: [
                                                                   Container(
                                                                     height: 80,
@@ -1559,6 +1561,8 @@ class _CarsTabBarViewState extends State<CarsTabBarView> {
                                                                   )
                                                                 ],
                                                               ),
+                                                            
+                                                            
                                                             ),
                                                           ),
                                                         );

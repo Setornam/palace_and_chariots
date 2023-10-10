@@ -545,7 +545,40 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                                         minimumSize: const Size
                                                             .fromHeight(50),
                                                       ),
-                                                      onPressed: () {},
+                                                      onPressed: () {
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder: (BuildContext
+                                                                        context) =>
+                                                                    SalesCheckoutPage(
+                                                                      color: widget
+                                                                          .car
+                                                                          .color,
+                                                                      rating: widget
+                                                                          .car
+                                                                          .rating,
+                                                                      image: widget
+                                                                          .car
+                                                                          .images
+                                                                          .first,
+                                                                      name: widget
+                                                                          .car
+                                                                          .name,
+                                                                      seats: widget
+                                                                          .car
+                                                                          .seats,
+                                                                      speed: widget
+                                                                          .car
+                                                                          .speed,
+                                                                      transmission:
+                                                                          widget
+                                                                              .car
+                                                                              .transmission,
+                                                                      service:
+                                                                          'car-sales',
+                                                                    )));
+                                                      },
                                                       child: const Text(
                                                           'Request call back')),
                                                 ),

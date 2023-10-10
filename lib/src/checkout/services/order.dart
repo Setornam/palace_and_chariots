@@ -6,32 +6,35 @@ class Orders {
       FirebaseFirestore.instance.collection('orders');
 
   static Future<void> addOrder(
-    String orderStatus,
-    String orderID,
-    String name,
-    String userID,
-    String service,
-    String price,
-    String image,
-    String orderDate, [
-    String? color,
-    String? seats,
-    String? transmission,
-    String? speed,
-    String? flightDepartureDate,
-    String? flightReturnDate,
-    String? flightDeparture,
-    String? flightReturn,
-    String? accommodationDistance,
-    String? tourDuration,
-    String? checkIn,
-    String? checkOut,
-    String? rating,
-    String? review,
-    String? roomsAndGuests,
-    String? roomType,
-    String? securityAvailableFor,
-  ]) {
+      String orderStatus,
+      String orderID,
+      String name,
+      String userID,
+      String service,
+      String price,
+      String image,
+      String orderDate,
+      [String? color,
+      String? seats,
+      String? transmission,
+      String? speed,
+      String? flightDepartureDate,
+      String? flightReturnDate,
+      String? flightDeparture,
+      String? flightReturn,
+      String? accommodationDistance,
+      String? tourDuration,
+      String? checkIn,
+      String? checkOut,
+      String? rating,
+      String? review,
+      String? roomsAndGuests,
+      String? roomType,
+      String? securityAvailableFor,
+      String? houseCondition,
+      String? houseLocation,
+      String? numberOfBathrooms,
+      String? numberOfBedrooms]) {
     return orders
         .add({
           'order_status': orderStatus,
@@ -60,6 +63,10 @@ class Orders {
           'rating': rating,
           'review': review,
           'securityAvailableFor': securityAvailableFor,
+          'house_condition': houseCondition,
+          'house_location': houseLocation,
+          'number_of_bathrooms': numberOfBathrooms,
+          'number_of_bedrooms': numberOfBedrooms
         })
         .then((value) => print('order success'))
         .catchError((error) => print("Failed to order: $error"));
