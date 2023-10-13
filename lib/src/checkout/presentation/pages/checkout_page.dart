@@ -42,6 +42,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
   String userPhoneNumber = "";
   late String userCountry = '';
 
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final emailController = TextEditingController();
+  final cityController = TextEditingController();
+  final addressController = TextEditingController();
+
   bool isSavedToAccount = false;
   List<DropdownMenuItem> countrys = [
     const DropdownMenuItem(
@@ -402,6 +408,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               ),
                             ),
                             TextFormField(
+                              controller: emailController,
                               validator: Validator.email,
                               decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.symmetric(
@@ -588,6 +595,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         ),
                       ),
                       TextFormField(
+                        controller: firstNameController,
                         validator: Validator.name,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.symmetric(
@@ -705,6 +713,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         ),
                       ),
                       TextFormField(
+                        controller: addressController,
                         validator: Validator.address,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.symmetric(
@@ -736,6 +745,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         ),
                       ),
                       TextFormField(
+                        controller: cityController,
                         validator: Validator.city,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.symmetric(
@@ -838,17 +848,42 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       if (driverAvailable == "Yes") {
                         if (userFormKey.currentState!.validate()) {
                           await Orders.addOrder(
-                            'Active',
-                            'order-$orderId',
-                            widget.name,
-                            FirebaseAuth.instance.currentUser!.uid,
-                            'vehicle-rentals',
-                            widget.price,
-                            widget.image,
-                            date,
-                            widget.color,
-                            widget.seats,
-                          );
+                              'Active',
+                              'order-$orderId',
+                              widget.name,
+                              FirebaseAuth.instance.currentUser!.uid,
+                              'vehicle-rentals',
+                              widget.price,
+                              widget.image,
+                              date,
+                              widget.color,
+                              widget.seats,
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              emailController.text,
+                              firstNameController.text,
+                              lastNameController.text,
+                              phoneNumberController.text,
+                              country);
 
                           // ignore: use_build_context_synchronously
                           Navigator.push(
@@ -860,17 +895,42 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
                       if (userFormKey.currentState!.validate()) {
                         await Orders.addOrder(
-                          'Active',
-                           'order-$orderId',
-                          widget.name,
-                          FirebaseAuth.instance.currentUser!.uid,
-                          'vehicle-rentals',
-                          widget.price,
-                          widget.image,
-                          date,
-                          widget.color,
-                          widget.seats,
-                        );
+                            'Active',
+                            'order-$orderId',
+                            widget.name,
+                            FirebaseAuth.instance.currentUser!.uid,
+                            'vehicle-rentals',
+                            widget.price,
+                            widget.image,
+                            date,
+                            widget.color,
+                            widget.seats,
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            emailController.text,
+                            firstNameController.text,
+                            lastNameController.text,
+                            phoneNumberController.text,
+                            country);
 
                         // ignore: use_build_context_synchronously
                         Navigator.push(
@@ -881,7 +941,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
                       // ignore: use_build_context_synchronously
                     },
-                    child: Text('Book Now')),
+                    child: const Text('Book Now')),
               )
             ],
           ),

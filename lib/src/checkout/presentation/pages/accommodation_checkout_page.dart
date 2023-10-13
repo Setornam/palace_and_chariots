@@ -49,6 +49,10 @@ class _AccommodationCheckoutPageState extends State<AccommodationCheckoutPage> {
   TextEditingController phoneNumberController = TextEditingController();
   String phoneNumber = "";
   late String country = '';
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final emailController = TextEditingController();
+
   bool isSavedToAccount = false;
   bool isWorkSelected = false;
   bool isLeisureSelected = false;
@@ -97,6 +101,7 @@ class _AccommodationCheckoutPageState extends State<AccommodationCheckoutPage> {
                           ),
                         ),
                         TextFormField(
+                          controller: firstNameController,
                           validator: Validator.name,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
@@ -128,6 +133,7 @@ class _AccommodationCheckoutPageState extends State<AccommodationCheckoutPage> {
                           ),
                         ),
                         TextFormField(
+                          controller: lastNameController,
                           validator: Validator.name,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
@@ -159,6 +165,7 @@ class _AccommodationCheckoutPageState extends State<AccommodationCheckoutPage> {
                           ),
                         ),
                         TextFormField(
+                          controller: emailController,
                           validator: Validator.email,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
@@ -427,8 +434,14 @@ class _AccommodationCheckoutPageState extends State<AccommodationCheckoutPage> {
                                               '',
                                               '',
                                               '',
+                                              '',
                                               widget.numberOfCHildren,
-                                              widget.numberOfAdults);
+                                              widget.numberOfAdults,
+                                              emailController.text,
+                                              firstNameController.text,
+                                              lastNameController.text,
+                                              phoneNumberController.text,
+                                              country);
 
                                           // ignore: use_build_context_synchronously
                                           Navigator.push(
