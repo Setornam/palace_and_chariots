@@ -597,14 +597,16 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                                       ),
                                                       onPressed: () {
                                                         showModalBottomSheet(
-                                                            constraints: BoxConstraints
-                                                                .tightFor(
-                                                                    width: MediaQuery.of(
+                                                            constraints: BoxConstraints.tightFor(
+                                                                width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width,
+                                                                height: MediaQuery.of(
                                                                             context)
                                                                         .size
-                                                                        .width,
-                                                                    height:
-                                                                        200),
+                                                                        .height *
+                                                                    0.9),
                                                             context: context,
                                                             builder:
                                                                 (BuildContext
@@ -656,60 +658,55 @@ class _CarDetailsPageState extends State<CarDetailsPage> {
                                                                           SizedBox(
                                                                         width: MediaQuery.sizeOf(context)
                                                                             .width,
-                                                                        child: ElevatedButton(
-                                                                            style: ElevatedButton.styleFrom(
-                                                                              backgroundColor: Colors.green,
-                                                                              minimumSize: const Size.fromHeight(50),
-                                                                            ),
-                                                                            onPressed: () {
-                                                                              ///initiate a new chat session
-                                                                              ///
-                                                                              String randomId = generateRandomId(10);
+                                                                        child:
+                                                                            Padding(
+                                                                          padding:
+                                                                              const EdgeInsets.symmetric(horizontal: 20),
+                                                                          child: ElevatedButton(
+                                                                              style: ElevatedButton.styleFrom(
+                                                                                backgroundColor: Colors.green,
+                                                                                minimumSize: const Size.fromHeight(50),
+                                                                              ),
+                                                                              onPressed: () {
+                                                                                ///initiate a new chat session
+                                                                                ///
+                                                                                String randomId = generateRandomId(10);
 
-                                                                              final _auth = FirebaseAuth.instance;
-                                                                              final _getEmail = _auth.currentUser!.email;
-                                                                              CollectionReference chats = FirebaseFirestore.instance.collection('chats').doc(randomId).collection('chats');
+                                                                                final _auth = FirebaseAuth.instance;
+                                                                                final _getEmail = _auth.currentUser!.email;
+                                                                                CollectionReference chats = FirebaseFirestore.instance.collection('chats').doc(randomId).collection('chats');
 
-                                                                              FirebaseFirestore.instance.collection('chats').doc(randomId).set({
-                                                                                'id': randomId,
-                                                                                'chat_start_time': DateTime.now(),
-                                                                                'image': widget.car.images.first,
-                                                                                'name': widget.car.name,
-                                                                                'rating': widget.car.rating,
-                                                                                'color': widget.car.color,
-                                                                                'price': widget.car.price,
-                                                                                'user_id': FirebaseAuth.instance.currentUser!.uid,
-                                                                                'user_email': _getEmail,
-                                                                                'user_name': '${doc['first_name']} ${doc['last_name']}',
-                                                                                'profile_picture': doc['profile_image_url']
-                                                                              });
-
-                                                                              if (messageEditingController.text.isNotEmpty) {
-                                                                                chats
-                                                                                    .add({
-                                                                                      'message': messageEditingController.text,
-                                                                                      'sendBy': _getEmail,
-                                                                                      'created-at': Timestamp.now()
-                                                                                    })
-                                                                                    .then((value) => print("chat added"))
-                                                                                    .catchError((error) => print("Failed to add chat: $error"));
-
-                                                                                setState(() {
-                                                                                  messageEditingController.text = "";
+                                                                                FirebaseFirestore.instance.collection('chats').doc(randomId).set({
+                                                                                  'id': randomId,
+                                                                                  'chat_start_time': DateTime.now(),
+                                                                                  'image': widget.car.images.first,
+                                                                                  'name': widget.car.name,
+                                                                                  'rating': widget.car.rating,
+                                                                                  'color': widget.car.color,
+                                                                                  'price': widget.car.price,
+                                                                                  'user_id': FirebaseAuth.instance.currentUser!.uid,
+                                                                                  'user_email': _getEmail,
+                                                                                  'user_name': '${doc['first_name']} ${doc['last_name']}',
+                                                                                  'profile_picture': doc['profile_image_url']
                                                                                 });
-                                                                              }
-                                                                            },
 
-                                                                            // Navigator.push(
-                                                                            //     context,
-                                                                            //     MaterialPageRoute(
-                                                                            //         builder: (BuildContext
-                                                                            //                 context) =>
-                                                                            //             const SalesCheckoutPage())
+                                                                                if (messageEditingController.text.isNotEmpty) {
+                                                                                  chats
+                                                                                      .add({
+                                                                                        'message': messageEditingController.text,
+                                                                                        'sendBy': _getEmail,
+                                                                                        'created-at': Timestamp.now()
+                                                                                      })
+                                                                                      .then((value) => print("chat added"))
+                                                                                      .catchError((error) => print("Failed to add chat: $error"));
 
-                                                                            //             );
-
-                                                                            child: const Text('Send')),
+                                                                                  setState(() {
+                                                                                    messageEditingController.text = "";
+                                                                                  });
+                                                                                }
+                                                                              },
+                                                                              child: const Text('Send')),
+                                                                        ),
                                                                       ),
                                                                     )
                                                                   ]);

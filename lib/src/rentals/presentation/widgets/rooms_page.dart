@@ -8,8 +8,20 @@ import '../../accommodation/domain/entities/room.dart';
 class RoomsPage extends StatefulWidget {
   final List<Room> rooms;
   final Accommodation accommodation;
+  final String checkInDate,
+      checkOutDate,
+      numberOfRooms,
+      numberOfAdults,
+      numberOfChildren;
   const RoomsPage(
-      {super.key, required this.rooms, required this.accommodation});
+      {super.key,
+      required this.rooms,
+      required this.accommodation,
+      required this.checkInDate,
+      required this.checkOutDate,
+      required this.numberOfRooms,
+      required this.numberOfAdults,
+      required this.numberOfChildren});
 
   @override
   State<RoomsPage> createState() => _RoomsPageState();
@@ -48,7 +60,7 @@ class _RoomsPageState extends State<RoomsPage> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Padding(
+                                const Padding(
                                   padding: EdgeInsets.symmetric(vertical: 10),
                                   child: Row(
                                     children: [
@@ -62,7 +74,7 @@ class _RoomsPageState extends State<RoomsPage> {
                                     ],
                                   ),
                                 ),
-                                Row(
+                                const Row(
                                   children: [
                                     Icon(Icons.u_turn_right_outlined),
                                     Text(
@@ -72,7 +84,7 @@ class _RoomsPageState extends State<RoomsPage> {
                                     ),
                                   ],
                                 ),
-                                Padding(
+                                const Padding(
                                   padding: EdgeInsets.symmetric(vertical: 10),
                                   child: Row(
                                     children: [
@@ -171,7 +183,7 @@ class _RoomsPageState extends State<RoomsPage> {
                             color: lightColorScheme.primary.withOpacity(0.1),
                             child: const Center(
                                 child: Text(
-                              'price for 14 nights (13 Apr - 15 Apr)',
+                              'price for  nights (13 Apr - 15 Apr)',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ))),
                       ),
@@ -297,6 +309,21 @@ class _RoomsPageState extends State<RoomsPage> {
                                                                         .rooms
                                                                         .first
                                                                         .name,
+                                                                    checkInDate:
+                                                                        widget
+                                                                            .checkInDate,
+                                                                    checkOutDate:
+                                                                        widget
+                                                                            .checkOutDate,
+                                                                    numberOfAdults:
+                                                                        widget
+                                                                            .numberOfAdults,
+                                                                    numberOfCHildren:
+                                                                        widget
+                                                                            .numberOfChildren,
+                                                                    numberOfRooms:
+                                                                        widget
+                                                                            .numberOfRooms,
                                                                   )));
                                                     },
                                                     child: const Text(

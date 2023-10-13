@@ -37,7 +37,7 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
         backgroundColor: Colors.white,
         automaticallyImplyLeading: true,
         centerTitle: true,
-        title: Text('Accra, Ghana 13 Apr - 27 Apr',
+        title: Text('${widget.startDate} - ${widget.endDate}',
             style: Theme.of(context).textTheme.bodyLarge!),
         elevation: 0,
         actions: [
@@ -75,7 +75,7 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                           children: [
                             Container(
                               height: 80,
-                              width: 200,
+                              width: MediaQuery.of(context).size.width * 0.5,
                               decoration: const BoxDecoration(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(7)),
@@ -86,7 +86,7 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                             ),
                             Container(
                               height: 80,
-                              width: 120,
+                              width: MediaQuery.of(context).size.width * 0.4,
                               decoration: const BoxDecoration(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(7)),
@@ -441,12 +441,18 @@ class _AccommodationDetailsPageState extends State<AccommodationDetailsPage> {
                           minimumSize: const Size.fromHeight(50),
                         ),
                         onPressed: () {
-                          Navigator.pushReplacement(
+                          Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) => RoomsPage(
                                         rooms: widget.accommodation!.rooms,
                                         accommodation: widget.accommodation!,
+                                        checkInDate: widget.startDate!,
+                                        checkOutDate: widget.endDate!,
+                                        numberOfAdults: widget.numberOfAdults!,
+                                        numberOfChildren:
+                                            widget.numberOfChildren!,
+                                        numberOfRooms: widget.numberOfRooms!,
                                       )));
                         },
                         child: const Text('select rooms')),

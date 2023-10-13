@@ -12,7 +12,18 @@ import '../widgets/success_page.dart';
 import '../widgets/user_info_form.dart';
 
 class AccommodationCheckoutPage extends StatefulWidget {
-  final String name, image, distance, rating, reviews, room, price;
+  final String name,
+      image,
+      distance,
+      rating,
+      reviews,
+      room,
+      price,
+      checkInDate,
+      checkOutDate,
+      numberOfAdults,
+      numberOfCHildren,
+      numberOfRooms;
   const AccommodationCheckoutPage(
       {super.key,
       required this.name,
@@ -21,7 +32,12 @@ class AccommodationCheckoutPage extends StatefulWidget {
       required this.reviews,
       required this.room,
       required this.price,
-      required this.image});
+      required this.image,
+      required this.checkInDate,
+      required this.checkOutDate,
+      required this.numberOfAdults,
+      required this.numberOfCHildren,
+      required this.numberOfRooms});
 
   @override
   State<AccommodationCheckoutPage> createState() =>
@@ -382,32 +398,37 @@ class _AccommodationCheckoutPageState extends State<AccommodationCheckoutPage> {
                                         ///
                                         if (formKey.currentState!.validate()) {
                                           await Orders.addOrder(
-                                            'Active',
-                                            'order-$orderId',
-                                            widget.name,
-                                            FirebaseAuth
-                                                .instance.currentUser!.uid,
-                                            'accommodation-rentals',
-                                            widget.price,
-                                            widget.image,
-                                            date,
-                                            '',
-                                            '',
-                                            '',
-                                            '',
-                                            '',
-                                            '',
-                                            '',
-                                            '',
-                                            widget.distance,
-                                            '',
-                                            '',
-                                            '',
-                                            widget.rating,
-                                            widget.reviews,
-                                            '',
-                                            widget.room,
-                                          );
+                                              'Active',
+                                              'order-$orderId',
+                                              widget.name,
+                                              FirebaseAuth
+                                                  .instance.currentUser!.uid,
+                                              'accommodation-rentals',
+                                              widget.price,
+                                              widget.image,
+                                              date,
+                                              '',
+                                              '',
+                                              '',
+                                              '',
+                                              '',
+                                              '',
+                                              '',
+                                              '',
+                                              widget.distance,
+                                              '',
+                                              widget.checkInDate,
+                                              widget.checkOutDate,
+                                              widget.rating,
+                                              widget.reviews,
+                                              widget.numberOfRooms,
+                                              widget.room,
+                                              '',
+                                              '',
+                                              '',
+                                              '',
+                                              widget.numberOfCHildren,
+                                              widget.numberOfAdults);
 
                                           // ignore: use_build_context_synchronously
                                           Navigator.push(
