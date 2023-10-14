@@ -268,7 +268,7 @@ class _EventSearchResultPageState extends State<EventSearchResultPage> {
                         color: Colors.black,
                         size: 20,
                       ),
-                      Icon(
+                      const Icon(
                         Icons.arrow_downward,
                         color: Colors.black,
                         size: 20,
@@ -281,7 +281,7 @@ class _EventSearchResultPageState extends State<EventSearchResultPage> {
                   ),
                 ),
                 Text(
-                  '15 properties',
+                  '1 property',
                   style: Theme.of(context).textTheme.bodyMedium,
                 )
               ],
@@ -373,16 +373,7 @@ class _EventSearchResultPageState extends State<EventSearchResultPage> {
                                       padding: const EdgeInsets.only(top: 30),
                                       child: Row(
                                         children: [
-                                          // const Icon(
-                                          //   Icons.location_on,
-                                          //   size: 18,
-                                          // ),
-                                          // Text(
-                                          //   ' 4 km away | ',
-                                          //   style: Theme.of(context)
-                                          //       .textTheme
-                                          //       .bodyMedium,
-                                          // ),
+                                       
                                           const Icon(
                                             Icons.star,
                                             size: 18,

@@ -41,7 +41,8 @@ class Orders {
       String? firstName,
       String? lastName,
       String? phoneNumber,
-      String? country]) {
+      String? country,
+      String? numberOfGuests]) {
     return orders
         .add({
           'order_status': orderStatus,
@@ -76,6 +77,7 @@ class Orders {
           'number_of_bedrooms': numberOfBedrooms,
           'number_of_children': numberOfChildren,
           'number_of_adults': numberOfAdults,
+          'number_of_guests': numberOfGuests,
           'personalInfo': {
             'email': email,
             'first_name': firstName,

@@ -883,7 +883,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               firstNameController.text,
                               lastNameController.text,
                               phoneNumberController.text,
-                              country);
+                              country
+                              );
 
                           // ignore: use_build_context_synchronously
                           Navigator.push(

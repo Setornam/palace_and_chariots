@@ -32,6 +32,9 @@ class _TravelUserFormState extends State<TravelUserForm> {
   String phoneNumber = "";
   late String country = '';
   late String Security = '';
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final emailController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
 
@@ -82,7 +85,7 @@ class _TravelUserFormState extends State<TravelUserForm> {
                           ),
                         ),
                         TextFormField(
-                          controller: nameController,
+                          controller: firstNameController,
                           validator: Validator.name,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
@@ -113,6 +116,7 @@ class _TravelUserFormState extends State<TravelUserForm> {
                           ),
                         ),
                         TextFormField(
+                          controller: lastNameController,
                           validator: Validator.name,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
@@ -143,6 +147,7 @@ class _TravelUserFormState extends State<TravelUserForm> {
                           ),
                         ),
                         TextFormField(
+                          controller: emailController,
                           validator: Validator.email,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
@@ -295,32 +300,42 @@ class _TravelUserFormState extends State<TravelUserForm> {
                         ///
                         if (formKey.currentState!.validate()) {
                           await Orders.addOrder(
-                            'Active',
-                            'order-$orderId',
-                            '',
-                            FirebaseAuth.instance.currentUser!.uid,
-                            'travel',
-                            '',
-                            '',
-                            date,
-                            '',
-                            '',
-                            '',
-                            '',
-                            widget.startDate,
-                            widget.endDate,
-                            widget.takeOff,
-                            widget.destination,
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                          );
+                              'Active',
+                              'order-$orderId',
+                              '',
+                              FirebaseAuth.instance.currentUser!.uid,
+                              'travel',
+                              '',
+                              '',
+                              date,
+                              '',
+                              '',
+                              '',
+                              '',
+                              widget.startDate,
+                              widget.endDate,
+                              widget.takeOff,
+                              widget.destination,
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              emailController.text,
+                              firstNameController.text,
+                              lastNameController.text,
+                              phoneNumberController.text,
+                              country);
 
                           // ignore: use_build_context_synchronously
                           Navigator.push(

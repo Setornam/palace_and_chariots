@@ -14,7 +14,14 @@ import '../widgets/success_page.dart';
 import '../widgets/user_info_form.dart';
 
 class EventCheckoutPage extends StatefulWidget {
-  final String name, rating, review, image, location;
+  final String name,
+      rating,
+      review,
+      image,
+      location,
+      checkIn,
+      checkOut,
+      numberOfGuests;
 
   const EventCheckoutPage({
     super.key,
@@ -23,6 +30,9 @@ class EventCheckoutPage extends StatefulWidget {
     required this.review,
     required this.location,
     required this.image,
+    required this.checkIn,
+    required this.checkOut,
+    required this.numberOfGuests,
   });
 
   @override
@@ -482,8 +492,8 @@ class _EventCheckoutPageState extends State<EventCheckoutPage> {
                               '',
                               '',
                               '',
-                              '',
-                              '',
+                              widget.checkIn,
+                              widget.checkOut,
                               widget.rating,
                               widget.review,
                               '',
@@ -499,7 +509,8 @@ class _EventCheckoutPageState extends State<EventCheckoutPage> {
                               firstNameController.text,
                               lastNameController.text,
                               phoneNumberController.text,
-                              country);
+                              country,
+                              widget.numberOfGuests);
 
                           // ignore: use_build_context_synchronously
                           Navigator.push(

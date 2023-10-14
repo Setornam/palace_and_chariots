@@ -22,6 +22,9 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
   String phoneNumber = "";
   late String country = '';
   late String Security = '';
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final emailController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
 
@@ -69,13 +72,14 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                   ),
                 ),
                 TextFormField(
+                  controller: firstNameController,
                   validator: Validator.name,
                   decoration: InputDecoration(
                     contentPadding:
                         EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                     labelStyle: TextStyle(color: Colors.grey),
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.lightBlue),
                         borderRadius: BorderRadius.all(Radius.circular(5))),
                     enabledBorder: OutlineInputBorder(
@@ -98,6 +102,7 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                   ),
                 ),
                 TextFormField(
+                  controller: lastNameController,
                   validator: Validator.name,
                   decoration: InputDecoration(
                     contentPadding:
@@ -127,13 +132,14 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
                   ),
                 ),
                 TextFormField(
+                  controller: emailController,
                   validator: Validator.email,
                   decoration: InputDecoration(
                     contentPadding:
                         EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                     labelStyle: TextStyle(color: Colors.grey),
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.lightBlue),
                         borderRadius: BorderRadius.all(Radius.circular(5))),
                     enabledBorder: OutlineInputBorder(
@@ -330,54 +336,48 @@ class _TourismCheckoutPageState extends State<TourismCheckoutPage> {
 
                             ///add order
                             await Orders.addOrder(
-                              'Active',
-                              'order-$orderId',
-                              widget.tourism.name,
-                              FirebaseAuth.instance.currentUser!.uid,
-                              'tourism',
-                              widget.tourism.price,
-                              widget.tourism.images.first,
-                              date,
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              widget.tourism.duration,
-                              '',
-                              '',
-                              widget.tourism.rating,
-                              widget.tourism.reviews,
-                              '',
-                              '',
-                            );
+                                'Active',
+                                'order-$orderId',
+                                widget.tourism.name,
+                                FirebaseAuth.instance.currentUser!.uid,
+                                'tourism',
+                                widget.tourism.price,
+                                widget.tourism.images.first,
+                                date,
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                widget.tourism.duration,
+                                '',
+                                '',
+                                widget.tourism.rating,
+                                widget.tourism.reviews,
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                emailController.text,
+                                firstNameController.text,
+                                lastNameController.text,
+                                phoneNumberController.text,
+                                country);
 
                             // ignore: use_build_context_synchronously
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => const SuccessPage()));
-
-                            // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            //   backgroundColor: Colors.green[300],
-                            //   content: const Text(
-                            //     'Your booking has been placed successfully',
-                            //     style: TextStyle(fontWeight: FontWeight.bold),
-                            //   ),
-                            //   behavior: SnackBarBehavior.floating,
-                            //   shape: RoundedRectangleBorder(
-                            //     borderRadius: BorderRadius.circular(10),
-                            //   ),
-                            //   margin: EdgeInsets.only(
-                            //       bottom:
-                            //           MediaQuery.of(context).size.height * 0.85,
-                            //       right: 20,
-                            //       left: 20),
-                            // ));
                           }
                         },
                         child: const Text('Submit')),

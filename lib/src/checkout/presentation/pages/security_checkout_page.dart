@@ -27,6 +27,9 @@ class _SecurityCheckoutPageState extends State<SecurityCheckoutPage> {
   String phoneNumber = "";
   late String country = '';
   late String Security = '';
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final emailController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
 
@@ -82,6 +85,7 @@ class _SecurityCheckoutPageState extends State<SecurityCheckoutPage> {
                           ),
                         ),
                         TextFormField(
+                          controller: firstNameController,
                           validator: Validator.name,
                           decoration: const InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
@@ -108,6 +112,7 @@ class _SecurityCheckoutPageState extends State<SecurityCheckoutPage> {
                           ),
                         ),
                         TextFormField(
+                          controller: lastNameController,
                           validator: Validator.name,
                           decoration: const InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
@@ -134,6 +139,7 @@ class _SecurityCheckoutPageState extends State<SecurityCheckoutPage> {
                           ),
                         ),
                         TextFormField(
+                          controller: emailController,
                           validator: Validator.email,
                           decoration: const InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
@@ -343,7 +349,18 @@ class _SecurityCheckoutPageState extends State<SecurityCheckoutPage> {
                               '',
                               '',
                               '',
-                              widget.security.serviceAvailableFor);
+                              widget.security.serviceAvailableFor,
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              emailController.text,
+                              firstNameController.text,
+                              lastNameController.text,
+                              phoneNumberController.text,
+                              country);
 
                           // ignore: use_build_context_synchronously
                           Navigator.push(
@@ -352,7 +369,7 @@ class _SecurityCheckoutPageState extends State<SecurityCheckoutPage> {
                                   builder: (context) => const SuccessPage()));
                         }
                       },
-                      child: Text('Submit')),
+                      child: const Text('Submit')),
                 )
               ],
             ),

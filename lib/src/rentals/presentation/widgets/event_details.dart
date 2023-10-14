@@ -225,29 +225,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                 ],
                               ),
                             ),
-                            // const Divider(),
-                            // Padding(
-                            //   padding: const EdgeInsets.only(top: 20),
-                            //   child: Column(
-                            //     mainAxisAlignment:
-                            //         MainAxisAlignment.spaceBetween,
-                            //     crossAxisAlignment: CrossAxisAlignment.start,
-                            //     children: [
-                            //       Text(
-                            //         'US\$ 300',
-                            //         style: TextStyle(
-                            //             fontSize: 20,
-                            //             fontWeight: FontWeight.bold,
-                            //             color: lightColorScheme.primary),
-                            //       ),
-                            //       const Text(
-                            //         'include taxes and charges',
-                            //         style: TextStyle(
-                            //             fontSize: 15, color: Colors.black87),
-                            //       ),
-                            //     ],
-                            //   ),
-                            // ),
+
                             const Divider(),
 
                             Row(
@@ -411,6 +389,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                         rating: widget.eventService.rating,
                                         review: '10 ',
                                         image: '',
+                                        checkIn: widget.startDate,
+                                        checkOut: widget.endDate,
+                                        numberOfGuests: widget.numberOfGuests,
                                       )));
                         },
                         child: const Text('Reserve')),
