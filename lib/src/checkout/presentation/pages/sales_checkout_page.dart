@@ -300,7 +300,23 @@ class _SalesCheckoutPageState extends State<SalesCheckoutPage> {
                                   '',
                                   '',
                                   '',
-                                  widget.rating);
+                                  widget.rating,
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  '',
+                                  emailController.text,
+                                  firstNameController.text,
+                                  lastNameController.text,
+                                  phoneNumberController.text,
+                                  country);
                             } else {
                               await Orders.addOrder(
                                   'Active',

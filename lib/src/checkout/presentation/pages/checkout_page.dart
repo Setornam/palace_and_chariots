@@ -44,9 +44,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
-  final emailController = TextEditingController();
+  final driverEmailController = TextEditingController();
   final cityController = TextEditingController();
   final addressController = TextEditingController();
+  final driverFullNameController = TextEditingController();
+  final driverLicenseNumberController = TextEditingController();
 
   bool isSavedToAccount = false;
   List<DropdownMenuItem> countrys = [
@@ -373,6 +375,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               ),
                             ),
                             TextFormField(
+                              controller: driverFullNameController,
                               validator: Validator.name,
                               decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.symmetric(
@@ -408,7 +411,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               ),
                             ),
                             TextFormField(
-                              controller: emailController,
+                              controller: driverEmailController,
                               validator: Validator.email,
                               decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.symmetric(
@@ -535,6 +538,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               ),
                             ),
                             TextFormField(
+                              controller: driverLicenseNumberController,
                               validator: Validator.license,
                               decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.symmetric(
@@ -879,12 +883,19 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               '',
                               '',
                               '',
-                              emailController.text,
+                              '',
                               firstNameController.text,
                               lastNameController.text,
-                              phoneNumberController.text,
-                              country
-                              );
+                              userPhoneNumberController.text,
+                              userCountry,
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              addressController.text,
+                              cityController.text);
 
                           // ignore: use_build_context_synchronously
                           Navigator.push(
@@ -927,13 +938,19 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             '',
                             '',
                             '',
-                            emailController.text,
+                            '',
                             firstNameController.text,
                             lastNameController.text,
+                            userPhoneNumberController.text,
+                            userCountry,
+                            '',
+                            driverEmailController.text,
+                            driverFullNameController.text,
                             phoneNumberController.text,
-                            country
-                            
-                            );
+                            country,
+                            driverLicenseNumberController.text,
+                            addressController.text,
+                            cityController.text);
 
                         // ignore: use_build_context_synchronously
                         Navigator.push(
