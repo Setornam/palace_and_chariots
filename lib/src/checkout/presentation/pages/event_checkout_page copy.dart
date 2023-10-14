@@ -20,7 +20,7 @@ class _EventCheckoutPageState extends State<EventCheckoutPage> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text('Personal Info'),
+          title: const Text('Personal Info'),
           centerTitle: true,
           foregroundColor: Colors.black,
           backgroundColor: Colors.white,

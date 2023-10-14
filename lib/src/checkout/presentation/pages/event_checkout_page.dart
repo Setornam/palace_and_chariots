@@ -35,6 +35,10 @@ class _EventCheckoutPageState extends State<EventCheckoutPage> {
   late String country = '';
   late String event = '';
 
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final emailController = TextEditingController();
+
   final formKey = GlobalKey<FormState>();
 
   bool isSavedToAccount = false;
@@ -95,6 +99,7 @@ class _EventCheckoutPageState extends State<EventCheckoutPage> {
                           ),
                         ),
                         TextFormField(
+                          controller: firstNameController,
                           validator: Validator.name,
                           decoration: const InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
@@ -121,6 +126,7 @@ class _EventCheckoutPageState extends State<EventCheckoutPage> {
                           ),
                         ),
                         TextFormField(
+                          controller: lastNameController,
                           validator: Validator.name,
                           decoration: const InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
@@ -147,6 +153,7 @@ class _EventCheckoutPageState extends State<EventCheckoutPage> {
                           ),
                         ),
                         TextFormField(
+                          controller: emailController,
                           validator: Validator.email,
                           decoration: const InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
@@ -457,31 +464,42 @@ class _EventCheckoutPageState extends State<EventCheckoutPage> {
 
                         if (formKey.currentState!.validate()) {
                           await Orders.addOrder(
-                            'Active',
-                            'order-$orderId',
-                            widget.name,
-                            FirebaseAuth.instance.currentUser!.uid,
-                            'event-rentals',
-                            '',
-                            widget.image,
-                            date,
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            widget.rating,
-                            widget.review,
-                            '',
-                            '',
-                          );
+                              'Active',
+                              'order-$orderId',
+                              widget.name,
+                              FirebaseAuth.instance.currentUser!.uid,
+                              'event-rentals',
+                              '',
+                              widget.image,
+                              date,
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              widget.rating,
+                              widget.review,
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              emailController.text,
+                              firstNameController.text,
+                              lastNameController.text,
+                              phoneNumberController.text,
+                              country);
 
                           // ignore: use_build_context_synchronously
                           Navigator.push(

@@ -48,6 +48,10 @@ class _SalesCheckoutPageState extends State<SalesCheckoutPage> {
   String phoneNumber = "";
   late String country = '';
 
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final emailController = TextEditingController();
+
   final formKey = GlobalKey<FormState>();
 
   bool isSavedToAccount = false;
@@ -91,6 +95,7 @@ class _SalesCheckoutPageState extends State<SalesCheckoutPage> {
                   ),
                 ),
                 TextFormField(
+                  controller: firstNameController,
                   validator: Validator.name,
                   decoration: const InputDecoration(
                     contentPadding:
@@ -115,6 +120,7 @@ class _SalesCheckoutPageState extends State<SalesCheckoutPage> {
                   ),
                 ),
                 TextFormField(
+                  controller: lastNameController,
                   validator: Validator.name,
                   decoration: const InputDecoration(
                     contentPadding:
@@ -325,7 +331,14 @@ class _SalesCheckoutPageState extends State<SalesCheckoutPage> {
                                   widget.condition,
                                   widget.location,
                                   widget.bathrooms,
-                                  widget.bedrooms);
+                                  widget.bedrooms,
+                                  '',
+                                  '',
+                                  emailController.text,
+                                  firstNameController.text,
+                                  lastNameController.text,
+                                  phoneNumberController.text,
+                                  country);
                             }
 
                             // ignore: use_build_context_synchronously

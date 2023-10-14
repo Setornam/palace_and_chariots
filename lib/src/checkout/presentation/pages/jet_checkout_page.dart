@@ -38,6 +38,10 @@ class _JetCheckOutPageState extends State<JetCheckOutPage> {
   late String country = '';
   late String title = '';
 
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final emailController = TextEditingController();
+
   TextEditingController userPhoneNumberController = TextEditingController();
   String userPhoneNumber = "";
   late String userCountry = '';
@@ -356,6 +360,7 @@ class _JetCheckOutPageState extends State<JetCheckOutPage> {
                               ),
                             ),
                             TextFormField(
+                              controller: emailController,
                               validator: Validator.email,
                               decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.symmetric(
@@ -824,6 +829,32 @@ class _JetCheckOutPageState extends State<JetCheckOutPage> {
                           date,
                           widget.color,
                           widget.seats,
+                           '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              emailController.text,
+                              firstNameController.text,
+                              lastNameController.text,
+                              phoneNumberController.text,
+                              country
                         );
 
                         // ignore: use_build_context_synchronously
