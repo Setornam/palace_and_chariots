@@ -70,6 +70,7 @@ mixin _$Vehicle {
 
   ///height of vehicle
   String? get height => throw _privateConstructorUsedError;
+  bool get isFavorite => throw _privateConstructorUsedError;
 
   ///length of vehicle
   String? get length => throw _privateConstructorUsedError;
@@ -102,6 +103,7 @@ abstract class $VehicleCopyWith<$Res> {
       String? speed,
       String? range,
       String? height,
+      bool isFavorite,
       String? length});
 
   $VehicleBrandCopyWith<$Res>? get brand;
@@ -137,6 +139,7 @@ class _$VehicleCopyWithImpl<$Res, $Val extends Vehicle>
     Object? speed = freezed,
     Object? range = freezed,
     Object? height = freezed,
+    Object? isFavorite = null,
     Object? length = freezed,
   }) {
     return _then(_value.copyWith(
@@ -208,6 +211,10 @@ class _$VehicleCopyWithImpl<$Res, $Val extends Vehicle>
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
               as String?,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
       length: freezed == length
           ? _value.length
           : length // ignore: cast_nullable_to_non_nullable
@@ -253,6 +260,7 @@ abstract class _$$_VehicleCopyWith<$Res> implements $VehicleCopyWith<$Res> {
       String? speed,
       String? range,
       String? height,
+      bool isFavorite,
       String? length});
 
   @override
@@ -286,6 +294,7 @@ class __$$_VehicleCopyWithImpl<$Res>
     Object? speed = freezed,
     Object? range = freezed,
     Object? height = freezed,
+    Object? isFavorite = null,
     Object? length = freezed,
   }) {
     return _then(_$_Vehicle(
@@ -357,6 +366,10 @@ class __$$_VehicleCopyWithImpl<$Res>
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
               as String?,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
       length: freezed == length
           ? _value.length
           : length // ignore: cast_nullable_to_non_nullable
@@ -387,6 +400,7 @@ class _$_Vehicle implements _Vehicle {
       this.speed,
       this.range,
       this.height,
+      required this.isFavorite,
       this.length})
       : _images = images,
         _otherFeatures = otherFeatures;
@@ -477,6 +491,8 @@ class _$_Vehicle implements _Vehicle {
   ///height of vehicle
   @override
   final String? height;
+  @override
+  final bool isFavorite;
 
   ///length of vehicle
   @override
@@ -509,31 +525,35 @@ class _$_Vehicle implements _Vehicle {
             (identical(other.speed, speed) || other.speed == speed) &&
             (identical(other.range, range) || other.range == range) &&
             (identical(other.height, height) || other.height == height) &&
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite) &&
             (identical(other.length, length) || other.length == length));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      color,
-      price,
-      availability,
-      const DeepCollectionEquality().hash(_images),
-      brand,
-      category,
-      transmission,
-      seats,
-      luggage,
-      const DeepCollectionEquality().hash(_otherFeatures),
-      rating,
-      popularity,
-      speed,
-      range,
-      height,
-      length);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        name,
+        color,
+        price,
+        availability,
+        const DeepCollectionEquality().hash(_images),
+        brand,
+        category,
+        transmission,
+        seats,
+        luggage,
+        const DeepCollectionEquality().hash(_otherFeatures),
+        rating,
+        popularity,
+        speed,
+        range,
+        height,
+        isFavorite,
+        length
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -568,6 +588,7 @@ abstract class _Vehicle implements Vehicle {
       final String? speed,
       final String? range,
       final String? height,
+      required final bool isFavorite,
       final String? length}) = _$_Vehicle;
 
   factory _Vehicle.fromJson(Map<String, dynamic> json) = _$_Vehicle.fromJson;
@@ -640,6 +661,8 @@ abstract class _Vehicle implements Vehicle {
 
   ///height of vehicle
   String? get height;
+  @override
+  bool get isFavorite;
   @override
 
   ///length of vehicle

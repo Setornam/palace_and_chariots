@@ -8,6 +8,7 @@ import 'package:uuid/uuid.dart';
 import '../../../../shared/utils/validator.dart';
 import '../../../rentals/vehicle/domain/entities/vehicle.dart';
 import '../../services/order.dart';
+import '../../services/save_to_account.dart';
 import '../widgets/driver_details_form.dart';
 import '../widgets/success_page.dart';
 import '../widgets/user_info_form.dart';
@@ -69,6 +70,31 @@ class _CheckoutPageState extends State<CheckoutPage> {
     const DropdownMenuItem(value: 'Miss.', child: Text('Miss.'))
   ];
 
+  getAccount() {
+    FirebaseAuth _auth = FirebaseAuth.instance;
+    String? userID = _auth.currentUser!.uid;
+    FirebaseFirestore.instance
+        .collection('account')
+        .where('user_id', isEqualTo: userID)
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        firstNameController.text = doc['first_name'];
+        lastNameController.text = doc['last_name'];
+        userPhoneNumberController.text = doc['phone_number'];
+        country = doc['country'];
+        addressController.text = doc['address'];
+        cityController.text = doc['city'];
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getAccount();
+  }
+
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -81,890 +107,2136 @@ class _CheckoutPageState extends State<CheckoutPage> {
           elevation: 0,
           automaticallyImplyLeading: true,
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: ListView(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    height: 80,
-                    width: 80,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(7)),
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage(widget.image))),
-                    child: const Align(
-                      alignment: Alignment.topLeft,
-                      child: Padding(
-                        padding: EdgeInsets.all(5.0),
-                      ),
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.name,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            color: Colors.black87),
-                      ),
-                      Row(
+        body: FutureBuilder(
+          future: FirebaseFirestore.instance
+              .collection('account')
+              .where('user_id',
+                  isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+              .get(),
+          builder: (BuildContext context, snapshot) {
+            if (snapshot.hasData) {
+              final List<DocumentSnapshot> documents = snapshot.data!.docs;
+
+              return documents.isEmpty
+                  ? Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: ListView(
                         children: [
-                          Text(
-                            '${widget.color}   ',
-                            style:
-                                TextStyle(fontSize: 13, color: Colors.black87),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                height: 80,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(7)),
+                                    image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: NetworkImage(widget.image))),
+                                child: const Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                  ),
+                                ),
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    widget.name,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: Colors.black87),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        '${widget.color}   ',
+                                        style: TextStyle(
+                                            fontSize: 13,
+                                            color: Colors.black87),
+                                      ),
+                                      const Icon(
+                                        Icons.star,
+                                        size: 20,
+                                        color: Color(0xfff8c123),
+                                      ),
+                                      Text(
+                                        widget.rating,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium,
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.only(top: 15, right: 30),
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.person_2_outlined,
+                                              color: Colors.black87,
+                                              size: 20,
+                                            ),
+                                            Text(
+                                              widget.seats,
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.black87),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.only(top: 15, right: 70),
+                                        child: Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.settings,
+                                              color: Colors.black54,
+                                              size: 20,
+                                            ),
+                                            Text(
+                                              widget.transmission,
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.black87),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                          const Icon(
-                            Icons.star,
-                            size: 20,
-                            color: Color(0xfff8c123),
+                          const Divider(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                'Do you need a driver?',
+                                style: TextStyle(color: Colors.black87),
+                              ),
+                              Row(
+                                children: [
+                                  Radio.adaptive(
+                                      activeColor: Colors.grey,
+                                      fillColor: MaterialStateProperty.all(
+                                          lightColorScheme.primary),
+                                      value: "Yes",
+                                      groupValue: driverAvailable,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          driverAvailable = value!;
+                                        });
+                                      }),
+                                  const Text(
+                                    'Yes',
+                                    style: TextStyle(color: Colors.black87),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Radio.adaptive(
+                                      fillColor: MaterialStateProperty.all(
+                                          lightColorScheme.primary),
+                                      value: "No",
+                                      groupValue: driverAvailable,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          driverAvailable = value!;
+                                        });
+                                      }),
+                                  const Text(
+                                    'No',
+                                    style: TextStyle(color: Colors.black87),
+                                  ),
+                                ],
+                              )
+                            ],
                           ),
-                          Text(
-                            widget.rating,
-                            style: Theme.of(context).textTheme.bodyMedium,
+
+                          //rental charges
+                          const Text(
+                            'Rental Charges',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Divider(),
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Vehicle hiring cost per day',
+                                style: TextStyle(color: Colors.black87),
+                              ),
+                              Text(
+                                'GHS 230',
+                                style: TextStyle(
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+
+                          const Divider(),
+
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Cost for 3 days',
+                                style: TextStyle(color: Colors.black87),
+                              ),
+                              Text(
+                                'GHS 830',
+                                style: TextStyle(
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+
+                          const Divider(),
+
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Driver for 3 days',
+                                style: TextStyle(color: Colors.black87),
+                              ),
+                              Text(
+                                'GHS 830',
+                                style: TextStyle(
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+
+                          const Divider(),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                'Sum Total',
+                                style: TextStyle(
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'GHS 830',
+                                style: TextStyle(
+                                  color: lightColorScheme.primary,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          driverAvailable == "No"
+                              ? Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                  child: Form(
+                                    key: formKey,
+                                    // autovalidateMode: AutovalidateMode.always,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 15),
+                                          child: Text(
+                                            'Main drivers detail',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+
+                                        const Padding(
+                                          padding:
+                                              EdgeInsets.symmetric(vertical: 5),
+                                          child: Text(
+                                            'As they appear on drivers license',
+                                            style: TextStyle(
+                                                color: Colors.black87),
+                                          ),
+                                        ),
+
+                                        //title
+                                        const Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 10, bottom: 5),
+                                          child: Text(
+                                            'Title',
+                                            style: TextStyle(
+                                                color: Colors.black87),
+                                          ),
+                                        ),
+
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 10),
+                                          child: DropdownButtonFormField(
+                                              decoration: InputDecoration(
+                                                contentPadding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 30,
+                                                        vertical: 14),
+                                                floatingLabelBehavior:
+                                                    FloatingLabelBehavior.never,
+                                                labelStyle: const TextStyle(
+                                                    color: Colors.grey),
+                                                focusedBorder:
+                                                    const OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color: Colors
+                                                                .lightBlue),
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    5))),
+                                                enabledBorder:
+                                                    const OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color: Colors.grey),
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    5))),
+                                                errorBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: BorderSide(
+                                                      color: theme
+                                                          .colorScheme.error,
+                                                      width: 2),
+                                                ),
+                                                fillColor: Colors.white,
+                                              ),
+                                              hint: const Text('please select'),
+                                              items: titles,
+                                              onChanged: (selectedCountry) =>
+                                                  title = selectedCountry),
+                                        ),
+
+                                        const Padding(
+                                          padding:
+                                              EdgeInsets.symmetric(vertical: 5),
+                                          child: Text(
+                                            'Full Name(*)',
+                                            style: TextStyle(
+                                                color: Colors.black87),
+                                          ),
+                                        ),
+                                        TextFormField(
+                                          controller: driverFullNameController,
+                                          validator: Validator.name,
+                                          decoration: InputDecoration(
+                                            contentPadding:
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 30,
+                                                    vertical: 14),
+                                            floatingLabelBehavior:
+                                                FloatingLabelBehavior.never,
+                                            labelStyle: const TextStyle(
+                                                color: Colors.grey),
+                                            focusedBorder:
+                                                const OutlineInputBorder(
+                                                    borderSide:
+                                                        BorderSide(
+                                                            color: Colors
+                                                                .lightBlue),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))),
+                                            errorBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              borderSide: BorderSide(
+                                                  color:
+                                                      theme.colorScheme.error,
+                                                  width: 2),
+                                            ),
+                                            enabledBorder:
+                                                const OutlineInputBorder(
+                                                    borderSide:
+                                                        BorderSide(
+                                                            color: Colors.grey),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))),
+                                            fillColor: Colors.white,
+                                          ),
+                                        ),
+
+                                        //email address
+                                        const Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 5, top: 10),
+                                          child: Text(
+                                            'Email Address(*)',
+                                            style: TextStyle(
+                                                color: Colors.black87),
+                                          ),
+                                        ),
+                                        TextFormField(
+                                          controller: driverEmailController,
+                                          validator: Validator.email,
+                                          decoration: InputDecoration(
+                                            contentPadding:
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 30,
+                                                    vertical: 14),
+                                            floatingLabelBehavior:
+                                                FloatingLabelBehavior.never,
+                                            labelStyle: const TextStyle(
+                                                color: Colors.grey),
+                                            focusedBorder:
+                                                const OutlineInputBorder(
+                                                    borderSide:
+                                                        BorderSide(
+                                                            color: Colors
+                                                                .lightBlue),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))),
+                                            errorBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              borderSide: BorderSide(
+                                                  color:
+                                                      theme.colorScheme.error,
+                                                  width: 2),
+                                            ),
+                                            enabledBorder:
+                                                const OutlineInputBorder(
+                                                    borderSide:
+                                                        BorderSide(
+                                                            color: Colors.grey),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))),
+                                            fillColor: Colors.white,
+                                          ),
+                                        ),
+
+                                        ///phone number
+                                        ///
+
+                                        const Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 15, bottom: 5),
+                                          child: Text(
+                                            'Contact number(*)',
+                                            style: TextStyle(
+                                                color: Colors.black87),
+                                          ),
+                                        ),
+                                        Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 1, bottom: 10),
+                                            child: SizedBox(
+                                              height: 70,
+                                              child: IntlPhoneField(
+                                                  validator: (phone) =>
+                                                      Validator.phoneNumber(
+                                                          phoneNumber),
+                                                  decoration: InputDecoration(
+                                                      alignLabelWithHint: true,
+                                                      focusedBorder: const OutlineInputBorder(
+                                                          borderSide: BorderSide(
+                                                              color: Colors
+                                                                  .lightBlue),
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius.circular(
+                                                                      5))),
+                                                      enabledBorder: const OutlineInputBorder(
+                                                          borderSide: BorderSide(
+                                                              color:
+                                                                  Colors.grey),
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius.circular(
+                                                                      5))),
+                                                      errorBorder: OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                        borderSide: BorderSide(
+                                                            color: theme
+                                                                .colorScheme
+                                                                .error,
+                                                            width: 2),
+                                                      ),
+                                                      filled: true,
+                                                      fillColor: theme.colorScheme.surface.withOpacity(0.9)),
+                                                  controller: phoneNumberController,
+                                                  showDropdownIcon: false,
+                                                  disableLengthCheck: true,
+                                                  // validator to check if length is 10
+
+                                                  flagsButtonPadding: const EdgeInsets.symmetric(horizontal: 15),
+                                                  initialCountryCode: 'GH',
+                                                  // countries: const ['GH', 'NG', 'KE'],
+                                                  onChanged: (phone) {
+                                                    phoneNumber =
+                                                        phone.completeNumber;
+                                                  }),
+                                            )),
+
+                                        //country
+                                        const Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 15, bottom: 5),
+                                          child: Text(
+                                            'Country of residence',
+                                            style: TextStyle(
+                                                color: Colors.black87),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 10),
+                                          child: DropdownButtonFormField(
+                                              decoration: const InputDecoration(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 30,
+                                                        vertical: 14),
+                                                floatingLabelBehavior:
+                                                    FloatingLabelBehavior.never,
+                                                labelStyle: TextStyle(
+                                                    color: Colors.grey),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color:
+                                                                Colors
+                                                                    .lightBlue),
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    5))),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color: Colors.grey),
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    5))),
+                                                fillColor: Colors.white,
+                                              ),
+                                              hint:
+                                                  const Text('select country'),
+                                              items: countrys,
+                                              onChanged: (selectedCountry) =>
+                                                  country = selectedCountry),
+                                        ),
+
+                                        const Padding(
+                                          padding:
+                                              EdgeInsets.symmetric(vertical: 5),
+                                          child: Text(
+                                            'License number(*)',
+                                            style: TextStyle(
+                                                color: Colors.black87),
+                                          ),
+                                        ),
+                                        TextFormField(
+                                          controller:
+                                              driverLicenseNumberController,
+                                          validator: Validator.license,
+                                          decoration: InputDecoration(
+                                            contentPadding:
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 30,
+                                                    vertical: 14),
+                                            floatingLabelBehavior:
+                                                FloatingLabelBehavior.never,
+                                            labelStyle: const TextStyle(
+                                                color: Colors.grey),
+                                            focusedBorder:
+                                                const OutlineInputBorder(
+                                                    borderSide:
+                                                        BorderSide(
+                                                            color: Colors
+                                                                .lightBlue),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))),
+                                            enabledBorder:
+                                                const OutlineInputBorder(
+                                                    borderSide:
+                                                        BorderSide(
+                                                            color: Colors.grey),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))),
+                                            errorBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              borderSide: BorderSide(
+                                                  color:
+                                                      theme.colorScheme.error,
+                                                  width: 2),
+                                            ),
+                                            fillColor: Colors.white,
+                                          ),
+                                        ),
+
+                                        const Padding(
+                                          padding: EdgeInsets.only(top: 15),
+                                          child: Divider(),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              : SizedBox(),
+
+                          ///user info form
+
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Form(
+                              key: userFormKey,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 15),
+                                    child: Text(
+                                      'Your Information',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 5),
+                                    child: Text(
+                                      'Full Name(*)',
+                                      style: TextStyle(color: Colors.black87),
+                                    ),
+                                  ),
+                                  TextFormField(
+                                    controller: firstNameController,
+                                    validator: Validator.name,
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.symmetric(
+                                          horizontal: 30, vertical: 14),
+                                      floatingLabelBehavior:
+                                          FloatingLabelBehavior.never,
+                                      labelStyle: TextStyle(color: Colors.grey),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.lightBlue),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))),
+                                      enabledBorder: const OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.grey),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))),
+                                      errorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide: BorderSide(
+                                            color: theme.colorScheme.error,
+                                            width: 2),
+                                      ),
+                                      fillColor: Colors.white,
+                                    ),
+                                  ),
+
+                                  ///phone number
+                                  ///
+
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 15, bottom: 5),
+                                    child: Text(
+                                      'Contact number(*)',
+                                      style: TextStyle(color: Colors.black87),
+                                    ),
+                                  ),
+                                  Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 1, bottom: 10),
+                                      child: SizedBox(
+                                        height: 70,
+                                        child: IntlPhoneField(
+                                            validator: (phone) =>
+                                                Validator.phoneNumber(
+                                                    phoneNumber),
+                                            decoration: InputDecoration(
+                                                alignLabelWithHint: true,
+                                                focusedBorder: OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color:
+                                                            Colors.lightBlue),
+                                                    borderRadius: BorderRadius.all(
+                                                        Radius.circular(5))),
+                                                enabledBorder: const OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.grey),
+                                                    borderRadius: BorderRadius.all(
+                                                        Radius.circular(5))),
+                                                errorBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: BorderSide(
+                                                      color: theme
+                                                          .colorScheme.error,
+                                                      width: 2),
+                                                ),
+                                                filled: true,
+                                                fillColor: theme
+                                                    .colorScheme.surface
+                                                    .withOpacity(0.9)),
+                                            controller:
+                                                userPhoneNumberController,
+                                            showDropdownIcon: false,
+                                            disableLengthCheck: true,
+                                            // validator to check if length is 10
+
+                                            flagsButtonPadding:
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 15),
+                                            initialCountryCode: 'GH',
+                                            // countries: const ['GH', 'NG', 'KE'],
+                                            onChanged: (phone) {
+                                              phoneNumber =
+                                                  phone.completeNumber;
+                                            }),
+                                      )),
+
+                                  //country
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 15, bottom: 5),
+                                    child: Text(
+                                      'Country',
+                                      style: TextStyle(color: Colors.black87),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    child: DropdownButtonFormField(
+                                        decoration: const InputDecoration(
+                                          contentPadding: EdgeInsets.symmetric(
+                                              horizontal: 30, vertical: 14),
+                                          floatingLabelBehavior:
+                                              FloatingLabelBehavior.never,
+                                          labelStyle:
+                                              TextStyle(color: Colors.grey),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.lightBlue),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(5))),
+                                          enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(5))),
+                                          fillColor: Colors.white,
+                                        ),
+                                        hint: const Text('select country'),
+                                        items: countrys,
+                                        onChanged: (selectedCountry) =>
+                                            country = selectedCountry),
+                                  ),
+
+                                  const Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 5),
+                                    child: Text(
+                                      'Address(*)',
+                                      style: TextStyle(color: Colors.black87),
+                                    ),
+                                  ),
+                                  TextFormField(
+                                    controller: addressController,
+                                    validator: Validator.address,
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.symmetric(
+                                          horizontal: 30, vertical: 14),
+                                      floatingLabelBehavior:
+                                          FloatingLabelBehavior.never,
+                                      labelStyle: TextStyle(color: Colors.grey),
+                                      focusedBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.lightBlue),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))),
+                                      enabledBorder: const OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.grey),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))),
+                                      errorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide: BorderSide(
+                                            color: theme.colorScheme.error,
+                                            width: 2),
+                                      ),
+                                      fillColor: Colors.white,
+                                    ),
+                                  ),
+
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 15, bottom: 5),
+                                    child: Text(
+                                      'City(*)',
+                                      style: TextStyle(color: Colors.black87),
+                                    ),
+                                  ),
+                                  TextFormField(
+                                    controller: cityController,
+                                    validator: Validator.city,
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.symmetric(
+                                          horizontal: 30, vertical: 14),
+                                      floatingLabelBehavior:
+                                          FloatingLabelBehavior.never,
+                                      labelStyle: TextStyle(color: Colors.grey),
+                                      focusedBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.lightBlue),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.grey),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))),
+                                      errorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide: BorderSide(
+                                            color: theme.colorScheme.error,
+                                            width: 2),
+                                      ),
+                                      fillColor: Colors.white,
+                                    ),
+                                  ),
+
+                                  Row(
+                                    children: [
+                                      Checkbox.adaptive(
+                                          side: BorderSide(color: Colors.grey),
+                                          fillColor: MaterialStateProperty.all(
+                                              lightColorScheme.primary),
+                                          value: isSavedToAccount,
+                                          onChanged: (val) {
+                                            setState(() {
+                                              isSavedToAccount =
+                                                  !isSavedToAccount;
+                                            });
+                                          }),
+                                      Text(
+                                        'Save to your account',
+                                        style: TextStyle(color: Colors.black87),
+                                      ),
+                                    ],
+                                  ),
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 20),
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.error_outline,
+                                            color: lightColorScheme.primary),
+                                        Text(
+                                          '  Free Cancellation up to 24 hours before pick up ',
+                                          style: TextStyle(
+                                              color: lightColorScheme.primary),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+
+                                  Divider()
+                                ],
+                              ),
+                            ),
+                          ),
+
+                          const Text(
+                            'Terms and conditions',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+
+                          const Padding(
+                            padding: EdgeInsets.only(top: 5, bottom: 10),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'By clicking Book Now , you are confirming that you\nhave read, understood and accepted our',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          SizedBox(
+                            width: MediaQuery.sizeOf(context).width,
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.green,
+                                  minimumSize: const Size.fromHeight(50),
+                                ),
+                                onPressed: () async {
+                                  DateTime currentDate = DateTime.now();
+                                  String date =
+                                      '${currentDate.day}- ${currentDate.month} - ${currentDate.year}';
+
+                                  var uuid = Uuid();
+                                  String orderId = uuid.v4();
+
+                                  ///add order
+                                  ///
+                                  if (driverAvailable == "Yes") {
+                                    if (userFormKey.currentState!.validate()) {
+                                      await Orders.addOrder(
+                                          'Active',
+                                          'order-$orderId',
+                                          widget.name,
+                                          FirebaseAuth
+                                              .instance.currentUser!.uid,
+                                          'vehicle-rentals',
+                                          widget.price,
+                                          widget.image,
+                                          date,
+                                          widget.color,
+                                          widget.seats,
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          firstNameController.text,
+                                          lastNameController.text,
+                                          userPhoneNumberController.text,
+                                          userCountry,
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          addressController.text,
+                                          cityController.text);
+                                      if (isSavedToAccount == true) {
+                                        Account.saveToAccount(
+                                            FirebaseAuth
+                                                .instance.currentUser!.uid,
+                                            firstNameController.text,
+                                            lastNameController.text,
+                                            phoneNumberController.text,
+                                            country,
+                                            firstNameController.text +
+                                                lastNameController.text,
+                                            addressController.text,
+                                            cityController.text);
+                                      }
+
+                                      // ignore: use_build_context_synchronously
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const SuccessPage()));
+                                    }
+                                  }
+
+                                  if (userFormKey.currentState!.validate()) {
+                                    await Orders.addOrder(
+                                        'Active',
+                                        'order-$orderId',
+                                        widget.name,
+                                        FirebaseAuth.instance.currentUser!.uid,
+                                        'vehicle-rentals',
+                                        widget.price,
+                                        widget.image,
+                                        date,
+                                        widget.color,
+                                        widget.seats,
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        firstNameController.text,
+                                        lastNameController.text,
+                                        userPhoneNumberController.text,
+                                        userCountry,
+                                        '',
+                                        driverEmailController.text,
+                                        driverFullNameController.text,
+                                        phoneNumberController.text,
+                                        country,
+                                        driverLicenseNumberController.text,
+                                        addressController.text,
+                                        cityController.text);
+
+                                    if (isSavedToAccount == true) {
+                                      Account.saveToAccount(
+                                          FirebaseAuth
+                                              .instance.currentUser!.uid,
+                                          firstNameController.text,
+                                          lastNameController.text,
+                                          phoneNumberController.text,
+                                          country,
+                                          firstNameController.text +
+                                              lastNameController.text,
+                                          addressController.text,
+                                          cityController.text);
+                                    }
+
+                                    // ignore: use_build_context_synchronously
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const SuccessPage()));
+                                  }
+
+                                  // ignore: use_build_context_synchronously
+                                },
+                                child: const Text('Book Now')),
                           )
                         ],
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: ListView(
                         children: [
-                          Padding(
-                            padding: EdgeInsets.only(top: 15, right: 30),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.person_2_outlined,
-                                  color: Colors.black87,
-                                  size: 20,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                height: 80,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(7)),
+                                    image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: NetworkImage(widget.image))),
+                                child: const Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                  ),
                                 ),
-                                Text(
-                                  widget.seats,
-                                  style: TextStyle(
-                                      fontSize: 15, color: Colors.black87),
-                                ),
-                              ],
-                            ),
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    widget.name,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: Colors.black87),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        '${widget.color}   ',
+                                        style: TextStyle(
+                                            fontSize: 13,
+                                            color: Colors.black87),
+                                      ),
+                                      const Icon(
+                                        Icons.star,
+                                        size: 20,
+                                        color: Color(0xfff8c123),
+                                      ),
+                                      Text(
+                                        widget.rating,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium,
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.only(top: 15, right: 30),
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.person_2_outlined,
+                                              color: Colors.black87,
+                                              size: 20,
+                                            ),
+                                            Text(
+                                              widget.seats,
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.black87),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.only(top: 15, right: 70),
+                                        child: Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.settings,
+                                              color: Colors.black54,
+                                              size: 20,
+                                            ),
+                                            Text(
+                                              widget.transmission,
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.black87),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 15, right: 70),
-                            child: Row(
-                              children: [
-                                const Icon(
-                                  Icons.settings,
-                                  color: Colors.black54,
-                                  size: 20,
-                                ),
-                                Text(
-                                  widget.transmission,
-                                  style: TextStyle(
-                                      fontSize: 15, color: Colors.black87),
-                                ),
-                              ],
-                            ),
+                          const Divider(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                'Do you need a driver?',
+                                style: TextStyle(color: Colors.black87),
+                              ),
+                              Row(
+                                children: [
+                                  Radio.adaptive(
+                                      activeColor: Colors.grey,
+                                      fillColor: MaterialStateProperty.all(
+                                          lightColorScheme.primary),
+                                      value: "Yes",
+                                      groupValue: driverAvailable,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          driverAvailable = value!;
+                                        });
+                                      }),
+                                  const Text(
+                                    'Yes',
+                                    style: TextStyle(color: Colors.black87),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Radio.adaptive(
+                                      fillColor: MaterialStateProperty.all(
+                                          lightColorScheme.primary),
+                                      value: "No",
+                                      groupValue: driverAvailable,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          driverAvailable = value!;
+                                        });
+                                      }),
+                                  const Text(
+                                    'No',
+                                    style: TextStyle(color: Colors.black87),
+                                  ),
+                                ],
+                              )
+                            ],
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const Divider(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Do you need a driver?',
-                    style: TextStyle(color: Colors.black87),
-                  ),
-                  Row(
-                    children: [
-                      Radio.adaptive(
-                          activeColor: Colors.grey,
-                          fillColor: MaterialStateProperty.all(
-                              lightColorScheme.primary),
-                          value: "Yes",
-                          groupValue: driverAvailable,
-                          onChanged: (value) {
-                            setState(() {
-                              driverAvailable = value!;
-                            });
-                          }),
-                      const Text(
-                        'Yes',
-                        style: TextStyle(color: Colors.black87),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Radio.adaptive(
-                          fillColor: MaterialStateProperty.all(
-                              lightColorScheme.primary),
-                          value: "No",
-                          groupValue: driverAvailable,
-                          onChanged: (value) {
-                            setState(() {
-                              driverAvailable = value!;
-                            });
-                          }),
-                      const Text(
-                        'No',
-                        style: TextStyle(color: Colors.black87),
-                      ),
-                    ],
-                  )
-                ],
-              ),
 
-              //rental charges
-              const Text(
-                'Rental Charges',
-                style:
-                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-              ),
-              Divider(),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Vehicle hiring cost per day',
-                    style: TextStyle(color: Colors.black87),
-                  ),
-                  Text(
-                    'GHS 230',
-                    style: TextStyle(
-                        color: Colors.black87, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-
-              const Divider(),
-
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Cost for 3 days',
-                    style: TextStyle(color: Colors.black87),
-                  ),
-                  Text(
-                    'GHS 830',
-                    style: TextStyle(
-                        color: Colors.black87, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-
-              const Divider(),
-
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Driver for 3 days',
-                    style: TextStyle(color: Colors.black87),
-                  ),
-                  Text(
-                    'GHS 830',
-                    style: TextStyle(
-                        color: Colors.black87, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-
-              const Divider(),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Sum Total',
-                    style: TextStyle(
-                        color: Colors.black87, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    'GHS 830',
-                    style: TextStyle(
-                      color: lightColorScheme.primary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              driverAvailable == "No"
-                  ? Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Form(
-                        key: formKey,
-                        // autovalidateMode: AutovalidateMode.always,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 15),
-                              child: Text(
-                                'Main drivers detail',
+                          //rental charges
+                          const Text(
+                            'Rental Charges',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Divider(),
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Vehicle hiring cost per day',
+                                style: TextStyle(color: Colors.black87),
+                              ),
+                              Text(
+                                'GHS 230',
                                 style: TextStyle(
-                                    color: Colors.black,
+                                    color: Colors.black87,
                                     fontWeight: FontWeight.bold),
                               ),
-                            ),
+                            ],
+                          ),
 
-                            const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 5),
-                              child: Text(
-                                'As they appear on drivers license',
+                          const Divider(),
+
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Cost for 3 days',
                                 style: TextStyle(color: Colors.black87),
                               ),
-                            ),
+                              Text(
+                                'GHS 830',
+                                style: TextStyle(
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
 
-                            //title
-                            const Padding(
-                              padding: EdgeInsets.only(top: 10, bottom: 5),
-                              child: Text(
-                                'Title',
+                          const Divider(),
+
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Driver for 3 days',
                                 style: TextStyle(color: Colors.black87),
                               ),
-                            ),
-
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: DropdownButtonFormField(
-                                  decoration: InputDecoration(
-                                    contentPadding: const EdgeInsets.symmetric(
-                                        horizontal: 30, vertical: 14),
-                                    floatingLabelBehavior:
-                                        FloatingLabelBehavior.never,
-                                    labelStyle:
-                                        const TextStyle(color: Colors.grey),
-                                    focusedBorder: const OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.lightBlue),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))),
-                                    enabledBorder: const OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.grey),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))),
-                                    errorBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(5),
-                                      borderSide: BorderSide(
-                                          color: theme.colorScheme.error,
-                                          width: 2),
-                                    ),
-                                    fillColor: Colors.white,
-                                  ),
-                                  hint: const Text('please select'),
-                                  items: titles,
-                                  onChanged: (selectedCountry) =>
-                                      title = selectedCountry),
-                            ),
-
-                            const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 5),
-                              child: Text(
-                                'Full Name(*)',
-                                style: TextStyle(color: Colors.black87),
+                              Text(
+                                'GHS 830',
+                                style: TextStyle(
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.bold),
                               ),
-                            ),
-                            TextFormField(
-                              controller: driverFullNameController,
-                              validator: Validator.name,
-                              decoration: InputDecoration(
-                                contentPadding: const EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 14),
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.never,
-                                labelStyle: const TextStyle(color: Colors.grey),
-                                focusedBorder: const OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.lightBlue),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))),
-                                errorBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                  borderSide: BorderSide(
-                                      color: theme.colorScheme.error, width: 2),
+                            ],
+                          ),
+
+                          const Divider(),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                'Sum Total',
+                                style: TextStyle(
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'GHS 830',
+                                style: TextStyle(
+                                  color: lightColorScheme.primary,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                enabledBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))),
-                                fillColor: Colors.white,
                               ),
-                            ),
-
-                            //email address
-                            const Padding(
-                              padding:
-                                  const EdgeInsets.only(bottom: 5, top: 10),
-                              child: Text(
-                                'Email Address(*)',
-                                style: TextStyle(color: Colors.black87),
-                              ),
-                            ),
-                            TextFormField(
-                              controller: driverEmailController,
-                              validator: Validator.email,
-                              decoration: InputDecoration(
-                                contentPadding: const EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 14),
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.never,
-                                labelStyle: const TextStyle(color: Colors.grey),
-                                focusedBorder: const OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.lightBlue),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))),
-                                errorBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                  borderSide: BorderSide(
-                                      color: theme.colorScheme.error, width: 2),
-                                ),
-                                enabledBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))),
-                                fillColor: Colors.white,
-                              ),
-                            ),
-
-                            ///phone number
-                            ///
-
-                            const Padding(
-                              padding: EdgeInsets.only(top: 15, bottom: 5),
-                              child: Text(
-                                'Contact number(*)',
-                                style: TextStyle(color: Colors.black87),
-                              ),
-                            ),
-                            Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 1, bottom: 10),
-                                child: SizedBox(
-                                  height: 70,
-                                  child: IntlPhoneField(
-                                      validator: (phone) =>
-                                          Validator.phoneNumber(phoneNumber),
-                                      decoration: InputDecoration(
-                                          alignLabelWithHint: true,
-                                          focusedBorder:
-                                              const OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      color: Colors.lightBlue),
-                                                  borderRadius: BorderRadius.all(
-                                                      Radius.circular(5))),
-                                          enabledBorder:
-                                              const OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      color: Colors.grey),
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(5))),
-                                          errorBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            borderSide: BorderSide(
-                                                color: theme.colorScheme.error,
-                                                width: 2),
+                            ],
+                          ),
+                          driverAvailable == "No"
+                              ? Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                  child: Form(
+                                    key: formKey,
+                                    // autovalidateMode: AutovalidateMode.always,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 15),
+                                          child: Text(
+                                            'Main drivers detail',
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
                                           ),
-                                          filled: true,
-                                          fillColor: theme.colorScheme.surface
-                                              .withOpacity(0.9)),
-                                      controller: phoneNumberController,
-                                      showDropdownIcon: false,
-                                      disableLengthCheck: true,
-                                      // validator to check if length is 10
+                                        ),
 
-                                      flagsButtonPadding:
-                                          const EdgeInsets.symmetric(
-                                              horizontal: 15),
-                                      initialCountryCode: 'GH',
-                                      // countries: const ['GH', 'NG', 'KE'],
-                                      onChanged: (phone) {
-                                        phoneNumber = phone.completeNumber;
-                                      }),
-                                )),
+                                        const Padding(
+                                          padding:
+                                              EdgeInsets.symmetric(vertical: 5),
+                                          child: Text(
+                                            'As they appear on drivers license',
+                                            style: TextStyle(
+                                                color: Colors.black87),
+                                          ),
+                                        ),
 
-                            //country
-                            const Padding(
-                              padding: EdgeInsets.only(top: 15, bottom: 5),
-                              child: Text(
-                                'Country of residence',
-                                style: TextStyle(color: Colors.black87),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: DropdownButtonFormField(
-                                  decoration: const InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(
-                                        horizontal: 30, vertical: 14),
-                                    floatingLabelBehavior:
-                                        FloatingLabelBehavior.never,
-                                    labelStyle: TextStyle(color: Colors.grey),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.lightBlue),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.grey),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))),
-                                    fillColor: Colors.white,
-                                  ),
-                                  hint: const Text('select country'),
-                                  items: countrys,
-                                  onChanged: (selectedCountry) =>
-                                      country = selectedCountry),
-                            ),
+                                        //title
+                                        const Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 10, bottom: 5),
+                                          child: Text(
+                                            'Title',
+                                            style: TextStyle(
+                                                color: Colors.black87),
+                                          ),
+                                        ),
 
-                            const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 5),
-                              child: Text(
-                                'License number(*)',
-                                style: TextStyle(color: Colors.black87),
-                              ),
-                            ),
-                            TextFormField(
-                              controller: driverLicenseNumberController,
-                              validator: Validator.license,
-                              decoration: InputDecoration(
-                                contentPadding: const EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 14),
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.never,
-                                labelStyle: const TextStyle(color: Colors.grey),
-                                focusedBorder: const OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.lightBlue),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))),
-                                enabledBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))),
-                                errorBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                  borderSide: BorderSide(
-                                      color: theme.colorScheme.error, width: 2),
-                                ),
-                                fillColor: Colors.white,
-                              ),
-                            ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 10),
+                                          child: DropdownButtonFormField(
+                                              decoration: InputDecoration(
+                                                contentPadding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 30,
+                                                        vertical: 14),
+                                                floatingLabelBehavior:
+                                                    FloatingLabelBehavior.never,
+                                                labelStyle: const TextStyle(
+                                                    color: Colors.grey),
+                                                focusedBorder:
+                                                    const OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color: Colors
+                                                                .lightBlue),
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    5))),
+                                                enabledBorder:
+                                                    const OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color: Colors.grey),
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    5))),
+                                                errorBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: BorderSide(
+                                                      color: theme
+                                                          .colorScheme.error,
+                                                      width: 2),
+                                                ),
+                                                fillColor: Colors.white,
+                                              ),
+                                              hint: const Text('please select'),
+                                              items: titles,
+                                              onChanged: (selectedCountry) =>
+                                                  title = selectedCountry),
+                                        ),
 
-                            const Padding(
-                              padding: EdgeInsets.only(top: 15),
-                              child: Divider(),
-                            )
-                          ],
-                        ),
-                      ),
-                    )
-                  : SizedBox(),
+                                        const Padding(
+                                          padding:
+                                              EdgeInsets.symmetric(vertical: 5),
+                                          child: Text(
+                                            'Full Name(*)',
+                                            style: TextStyle(
+                                                color: Colors.black87),
+                                          ),
+                                        ),
+                                        TextFormField(
+                                          controller: driverFullNameController,
+                                          validator: Validator.name,
+                                          decoration: InputDecoration(
+                                            contentPadding:
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 30,
+                                                    vertical: 14),
+                                            floatingLabelBehavior:
+                                                FloatingLabelBehavior.never,
+                                            labelStyle: const TextStyle(
+                                                color: Colors.grey),
+                                            focusedBorder:
+                                                const OutlineInputBorder(
+                                                    borderSide:
+                                                        BorderSide(
+                                                            color: Colors
+                                                                .lightBlue),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))),
+                                            errorBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              borderSide: BorderSide(
+                                                  color:
+                                                      theme.colorScheme.error,
+                                                  width: 2),
+                                            ),
+                                            enabledBorder:
+                                                const OutlineInputBorder(
+                                                    borderSide:
+                                                        BorderSide(
+                                                            color: Colors.grey),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))),
+                                            fillColor: Colors.white,
+                                          ),
+                                        ),
 
-              ///user info form
+                                        //email address
+                                        const Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 5, top: 10),
+                                          child: Text(
+                                            'Email Address(*)',
+                                            style: TextStyle(
+                                                color: Colors.black87),
+                                          ),
+                                        ),
+                                        TextFormField(
+                                          controller: driverEmailController,
+                                          validator: Validator.email,
+                                          decoration: InputDecoration(
+                                            contentPadding:
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 30,
+                                                    vertical: 14),
+                                            floatingLabelBehavior:
+                                                FloatingLabelBehavior.never,
+                                            labelStyle: const TextStyle(
+                                                color: Colors.grey),
+                                            focusedBorder:
+                                                const OutlineInputBorder(
+                                                    borderSide:
+                                                        BorderSide(
+                                                            color: Colors
+                                                                .lightBlue),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))),
+                                            errorBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              borderSide: BorderSide(
+                                                  color:
+                                                      theme.colorScheme.error,
+                                                  width: 2),
+                                            ),
+                                            enabledBorder:
+                                                const OutlineInputBorder(
+                                                    borderSide:
+                                                        BorderSide(
+                                                            color: Colors.grey),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))),
+                                            fillColor: Colors.white,
+                                          ),
+                                        ),
 
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Form(
-                  key: userFormKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 15),
-                        child: Text(
-                          'Your Information',
-                          style: TextStyle(
-                              color: Colors.black, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 5),
-                        child: Text(
-                          'Full Name(*)',
-                          style: TextStyle(color: Colors.black87),
-                        ),
-                      ),
-                      TextFormField(
-                        controller: firstNameController,
-                        validator: Validator.name,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 14),
-                          floatingLabelBehavior: FloatingLabelBehavior.never,
-                          labelStyle: TextStyle(color: Colors.grey),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.lightBlue),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
-                          enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
-                          errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(
-                                color: theme.colorScheme.error, width: 2),
-                          ),
-                          fillColor: Colors.white,
-                        ),
-                      ),
+                                        ///phone number
+                                        ///
 
-                      ///phone number
-                      ///
+                                        const Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 15, bottom: 5),
+                                          child: Text(
+                                            'Contact number(*)',
+                                            style: TextStyle(
+                                                color: Colors.black87),
+                                          ),
+                                        ),
+                                        Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 1, bottom: 10),
+                                            child: SizedBox(
+                                              height: 70,
+                                              child: IntlPhoneField(
+                                                  validator: (phone) =>
+                                                      Validator.phoneNumber(
+                                                          phoneNumber),
+                                                  decoration: InputDecoration(
+                                                      alignLabelWithHint: true,
+                                                      focusedBorder: const OutlineInputBorder(
+                                                          borderSide: BorderSide(
+                                                              color: Colors
+                                                                  .lightBlue),
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius.circular(
+                                                                      5))),
+                                                      enabledBorder: const OutlineInputBorder(
+                                                          borderSide: BorderSide(
+                                                              color:
+                                                                  Colors.grey),
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius.circular(
+                                                                      5))),
+                                                      errorBorder: OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                        borderSide: BorderSide(
+                                                            color: theme
+                                                                .colorScheme
+                                                                .error,
+                                                            width: 2),
+                                                      ),
+                                                      filled: true,
+                                                      fillColor: theme.colorScheme.surface.withOpacity(0.9)),
+                                                  controller: phoneNumberController,
+                                                  showDropdownIcon: false,
+                                                  disableLengthCheck: true,
+                                                  // validator to check if length is 10
 
-                      const Padding(
-                        padding: EdgeInsets.only(top: 15, bottom: 5),
-                        child: Text(
-                          'Contact number(*)',
-                          style: TextStyle(color: Colors.black87),
-                        ),
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.only(top: 1, bottom: 10),
-                          child: SizedBox(
-                            height: 70,
-                            child: IntlPhoneField(
-                                validator: (phone) =>
-                                    Validator.phoneNumber(phoneNumber),
-                                decoration: InputDecoration(
-                                    alignLabelWithHint: true,
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.lightBlue),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))),
-                                    enabledBorder: const OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.grey),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))),
-                                    errorBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(5),
-                                      borderSide: BorderSide(
-                                          color: theme.colorScheme.error,
-                                          width: 2),
+                                                  flagsButtonPadding: const EdgeInsets.symmetric(horizontal: 15),
+                                                  initialCountryCode: 'GH',
+                                                  // countries: const ['GH', 'NG', 'KE'],
+                                                  onChanged: (phone) {
+                                                    phoneNumber =
+                                                        phone.completeNumber;
+                                                  }),
+                                            )),
+
+                                        //country
+                                        const Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 15, bottom: 5),
+                                          child: Text(
+                                            'Country of residence',
+                                            style: TextStyle(
+                                                color: Colors.black87),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 10),
+                                          child: DropdownButtonFormField(
+                                              decoration: const InputDecoration(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 30,
+                                                        vertical: 14),
+                                                floatingLabelBehavior:
+                                                    FloatingLabelBehavior.never,
+                                                labelStyle: TextStyle(
+                                                    color: Colors.grey),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color:
+                                                                Colors
+                                                                    .lightBlue),
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    5))),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color: Colors.grey),
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    5))),
+                                                fillColor: Colors.white,
+                                              ),
+                                              hint:
+                                                  const Text('select country'),
+                                              items: countrys,
+                                              onChanged: (selectedCountry) =>
+                                                  country = selectedCountry),
+                                        ),
+
+                                        const Padding(
+                                          padding:
+                                              EdgeInsets.symmetric(vertical: 5),
+                                          child: Text(
+                                            'License number(*)',
+                                            style: TextStyle(
+                                                color: Colors.black87),
+                                          ),
+                                        ),
+                                        TextFormField(
+                                          controller:
+                                              driverLicenseNumberController,
+                                          validator: Validator.license,
+                                          decoration: InputDecoration(
+                                            contentPadding:
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 30,
+                                                    vertical: 14),
+                                            floatingLabelBehavior:
+                                                FloatingLabelBehavior.never,
+                                            labelStyle: const TextStyle(
+                                                color: Colors.grey),
+                                            focusedBorder:
+                                                const OutlineInputBorder(
+                                                    borderSide:
+                                                        BorderSide(
+                                                            color: Colors
+                                                                .lightBlue),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))),
+                                            enabledBorder:
+                                                const OutlineInputBorder(
+                                                    borderSide:
+                                                        BorderSide(
+                                                            color: Colors.grey),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))),
+                                            errorBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              borderSide: BorderSide(
+                                                  color:
+                                                      theme.colorScheme.error,
+                                                  width: 2),
+                                            ),
+                                            fillColor: Colors.white,
+                                          ),
+                                        ),
+
+                                        const Padding(
+                                          padding: EdgeInsets.only(top: 15),
+                                          child: Divider(),
+                                        )
+                                      ],
                                     ),
-                                    filled: true,
-                                    fillColor: theme.colorScheme.surface
-                                        .withOpacity(0.9)),
-                                controller: userPhoneNumberController,
-                                showDropdownIcon: false,
-                                disableLengthCheck: true,
-                                // validator to check if length is 10
+                                  ),
+                                )
+                              : SizedBox(),
 
-                                flagsButtonPadding:
-                                    const EdgeInsets.symmetric(horizontal: 15),
-                                initialCountryCode: 'GH',
-                                // countries: const ['GH', 'NG', 'KE'],
-                                onChanged: (phone) {
-                                  phoneNumber = phone.completeNumber;
-                                }),
-                          )),
+                          ///user info form
 
-                      //country
-                      const Padding(
-                        padding: EdgeInsets.only(top: 15, bottom: 5),
-                        child: Text(
-                          'Country',
-                          style: TextStyle(color: Colors.black87),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: DropdownButtonFormField(
-                            decoration: const InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 30, vertical: 14),
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.never,
-                              labelStyle: TextStyle(color: Colors.grey),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.lightBlue),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5))),
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5))),
-                              fillColor: Colors.white,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Form(
+                              key: userFormKey,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 15),
+                                    child: Text(
+                                      'Your Information',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 5),
+                                    child: Text(
+                                      'Full Name(*)',
+                                      style: TextStyle(color: Colors.black87),
+                                    ),
+                                  ),
+                                  TextFormField(
+                                    controller: firstNameController,
+                                    validator: Validator.name,
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.symmetric(
+                                          horizontal: 30, vertical: 14),
+                                      floatingLabelBehavior:
+                                          FloatingLabelBehavior.never,
+                                      labelStyle: TextStyle(color: Colors.grey),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.lightBlue),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))),
+                                      enabledBorder: const OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.grey),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))),
+                                      errorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide: BorderSide(
+                                            color: theme.colorScheme.error,
+                                            width: 2),
+                                      ),
+                                      fillColor: Colors.white,
+                                    ),
+                                  ),
+
+                                  ///phone number
+                                  ///
+
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 15, bottom: 5),
+                                    child: Text(
+                                      'Contact number(*)',
+                                      style: TextStyle(color: Colors.black87),
+                                    ),
+                                  ),
+                                  Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 1, bottom: 10),
+                                      child: SizedBox(
+                                        height: 70,
+                                        child: IntlPhoneField(
+                                            validator: (phone) =>
+                                                Validator.phoneNumber(
+                                                    phoneNumber),
+                                            decoration: InputDecoration(
+                                                alignLabelWithHint: true,
+                                                focusedBorder: OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color:
+                                                            Colors.lightBlue),
+                                                    borderRadius: BorderRadius.all(
+                                                        Radius.circular(5))),
+                                                enabledBorder: const OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.grey),
+                                                    borderRadius: BorderRadius.all(
+                                                        Radius.circular(5))),
+                                                errorBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  borderSide: BorderSide(
+                                                      color: theme
+                                                          .colorScheme.error,
+                                                      width: 2),
+                                                ),
+                                                filled: true,
+                                                fillColor: theme
+                                                    .colorScheme.surface
+                                                    .withOpacity(0.9)),
+                                            controller:
+                                                userPhoneNumberController,
+                                            showDropdownIcon: false,
+                                            disableLengthCheck: true,
+                                            // validator to check if length is 10
+
+                                            flagsButtonPadding:
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 15),
+                                            initialCountryCode: 'GH',
+                                            // countries: const ['GH', 'NG', 'KE'],
+                                            onChanged: (phone) {
+                                              phoneNumber =
+                                                  phone.completeNumber;
+                                            }),
+                                      )),
+
+                                  //country
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 15, bottom: 5),
+                                    child: Text(
+                                      'Country',
+                                      style: TextStyle(color: Colors.black87),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    child: DropdownButtonFormField(
+                                        decoration: const InputDecoration(
+                                          contentPadding: EdgeInsets.symmetric(
+                                              horizontal: 30, vertical: 14),
+                                          floatingLabelBehavior:
+                                              FloatingLabelBehavior.never,
+                                          labelStyle:
+                                              TextStyle(color: Colors.grey),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.lightBlue),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(5))),
+                                          enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(5))),
+                                          fillColor: Colors.white,
+                                        ),
+                                        hint: const Text('select country'),
+                                        items: countrys,
+                                        onChanged: (selectedCountry) =>
+                                            country = selectedCountry),
+                                  ),
+
+                                  const Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 5),
+                                    child: Text(
+                                      'Address(*)',
+                                      style: TextStyle(color: Colors.black87),
+                                    ),
+                                  ),
+                                  TextFormField(
+                                    controller: addressController,
+                                    validator: Validator.address,
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.symmetric(
+                                          horizontal: 30, vertical: 14),
+                                      floatingLabelBehavior:
+                                          FloatingLabelBehavior.never,
+                                      labelStyle: TextStyle(color: Colors.grey),
+                                      focusedBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.lightBlue),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))),
+                                      enabledBorder: const OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.grey),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))),
+                                      errorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide: BorderSide(
+                                            color: theme.colorScheme.error,
+                                            width: 2),
+                                      ),
+                                      fillColor: Colors.white,
+                                    ),
+                                  ),
+
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 15, bottom: 5),
+                                    child: Text(
+                                      'City(*)',
+                                      style: TextStyle(color: Colors.black87),
+                                    ),
+                                  ),
+                                  TextFormField(
+                                    controller: cityController,
+                                    validator: Validator.city,
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.symmetric(
+                                          horizontal: 30, vertical: 14),
+                                      floatingLabelBehavior:
+                                          FloatingLabelBehavior.never,
+                                      labelStyle: TextStyle(color: Colors.grey),
+                                      focusedBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.lightBlue),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.grey),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))),
+                                      errorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide: BorderSide(
+                                            color: theme.colorScheme.error,
+                                            width: 2),
+                                      ),
+                                      fillColor: Colors.white,
+                                    ),
+                                  ),
+
+                                  Row(
+                                    children: [
+                                      Checkbox.adaptive(
+                                          side: BorderSide(color: Colors.grey),
+                                          fillColor: MaterialStateProperty.all(
+                                              lightColorScheme.primary),
+                                          value: isSavedToAccount,
+                                          onChanged: (val) {
+                                            setState(() {
+                                              isSavedToAccount =
+                                                  !isSavedToAccount;
+                                            });
+                                          }),
+                                      Text(
+                                        'Save to your account',
+                                        style: TextStyle(color: Colors.black87),
+                                      ),
+                                    ],
+                                  ),
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 20),
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.error_outline,
+                                            color: lightColorScheme.primary),
+                                        Text(
+                                          '  Free Cancellation up to 24 hours before pick up ',
+                                          style: TextStyle(
+                                              color: lightColorScheme.primary),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+
+                                  Divider()
+                                ],
+                              ),
                             ),
-                            hint: const Text('select country'),
-                            items: countrys,
-                            onChanged: (selectedCountry) =>
-                                country = selectedCountry),
-                      ),
-
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 5),
-                        child: Text(
-                          'Address(*)',
-                          style: TextStyle(color: Colors.black87),
-                        ),
-                      ),
-                      TextFormField(
-                        controller: addressController,
-                        validator: Validator.address,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 14),
-                          floatingLabelBehavior: FloatingLabelBehavior.never,
-                          labelStyle: TextStyle(color: Colors.grey),
-                          focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.lightBlue),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
-                          enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
-                          errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(
-                                color: theme.colorScheme.error, width: 2),
                           ),
-                          fillColor: Colors.white,
-                        ),
-                      ),
 
-                      const Padding(
-                        padding: EdgeInsets.only(top: 15, bottom: 5),
-                        child: Text(
-                          'City(*)',
-                          style: TextStyle(color: Colors.black87),
-                        ),
-                      ),
-                      TextFormField(
-                        controller: cityController,
-                        validator: Validator.city,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 14),
-                          floatingLabelBehavior: FloatingLabelBehavior.never,
-                          labelStyle: TextStyle(color: Colors.grey),
-                          focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.lightBlue),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
-                          errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(
-                                color: theme.colorScheme.error, width: 2),
+                          const Text(
+                            'Terms and conditions',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
                           ),
-                          fillColor: Colors.white,
-                        ),
-                      ),
 
-                      Row(
-                        children: [
-                          Checkbox.adaptive(
-                              side: BorderSide(color: Colors.grey),
-                              fillColor: MaterialStateProperty.all(
-                                  lightColorScheme.primary),
-                              value: isSavedToAccount,
-                              onChanged: (val) {
-                                setState(() {
-                                  isSavedToAccount = !isSavedToAccount;
-                                });
-                              }),
-                          Text(
-                            'Save to your account',
-                            style: TextStyle(color: Colors.black87),
+                          const Padding(
+                            padding: EdgeInsets.only(top: 5, bottom: 10),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'By clicking Book Now , you are confirming that you\nhave read, understood and accepted our',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
+
+                          SizedBox(
+                            width: MediaQuery.sizeOf(context).width,
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.green,
+                                  minimumSize: const Size.fromHeight(50),
+                                ),
+                                onPressed: () async {
+                                  DateTime currentDate = DateTime.now();
+                                  String date =
+                                      '${currentDate.day}- ${currentDate.month} - ${currentDate.year}';
+
+                                  var uuid = Uuid();
+                                  String orderId = uuid.v4();
+
+                                  ///add order
+                                  ///
+                                  if (driverAvailable == "Yes") {
+                                    if (userFormKey.currentState!.validate()) {
+                                      await Orders.addOrder(
+                                          'Active',
+                                          'order-$orderId',
+                                          widget.name,
+                                          FirebaseAuth
+                                              .instance.currentUser!.uid,
+                                          'vehicle-rentals',
+                                          widget.price,
+                                          widget.image,
+                                          date,
+                                          widget.color,
+                                          widget.seats,
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          firstNameController.text,
+                                          lastNameController.text,
+                                          userPhoneNumberController.text,
+                                          userCountry,
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          '',
+                                          addressController.text,
+                                          cityController.text);
+
+                                      if (isSavedToAccount == true) {
+                                        Account.saveToAccount(
+                                            FirebaseAuth
+                                                .instance.currentUser!.uid,
+                                            firstNameController.text,
+                                            lastNameController.text,
+                                            phoneNumberController.text,
+                                            country,
+                                            firstNameController.text +
+                                                lastNameController.text,
+                                            addressController.text,
+                                            cityController.text);
+                                      }
+
+                                      // ignore: use_build_context_synchronously
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const SuccessPage()));
+                                    }
+                                  }
+
+                                  if (userFormKey.currentState!.validate()) {
+                                    await Orders.addOrder(
+                                        'Active',
+                                        'order-$orderId',
+                                        widget.name,
+                                        FirebaseAuth.instance.currentUser!.uid,
+                                        'vehicle-rentals',
+                                        widget.price,
+                                        widget.image,
+                                        date,
+                                        widget.color,
+                                        widget.seats,
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        '',
+                                        firstNameController.text,
+                                        lastNameController.text,
+                                        userPhoneNumberController.text,
+                                        userCountry,
+                                        '',
+                                        driverEmailController.text,
+                                        driverFullNameController.text,
+                                        phoneNumberController.text,
+                                        country,
+                                        driverLicenseNumberController.text,
+                                        addressController.text,
+                                        cityController.text);
+
+                                    if (isSavedToAccount == true) {
+                                      Account.saveToAccount(
+                                          FirebaseAuth
+                                              .instance.currentUser!.uid,
+                                          firstNameController.text,
+                                          lastNameController.text,
+                                          phoneNumberController.text,
+                                          country,
+                                          firstNameController.text +
+                                              lastNameController.text,
+                                          addressController.text,
+                                          cityController.text);
+                                    }
+
+                                    // ignore: use_build_context_synchronously
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const SuccessPage()));
+                                  }
+
+                                  // ignore: use_build_context_synchronously
+                                },
+                                child: const Text('Book Now')),
+                          )
                         ],
                       ),
+                    );
+            } else {
+              if (snapshot.hasError) {
+                return Text('Error');
+              }
 
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Row(
-                          children: [
-                            Icon(Icons.error_outline,
-                                color: lightColorScheme.primary),
-                            Text(
-                              '  Free Cancellation up to 24 hours before pick up ',
-                              style: TextStyle(color: lightColorScheme.primary),
-                            )
-                          ],
-                        ),
-                      ),
-
-                      Divider()
-                    ],
-                  ),
-                ),
-              ),
-
-              const Text(
-                'Terms and conditions',
-                style:
-                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-              ),
-
-              const Padding(
-                padding: EdgeInsets.only(top: 5, bottom: 10),
-                child: Row(
-                  children: [
-                    Text(
-                      'By clicking Book Now , you are confirming that you\nhave read, understood and accepted our',
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              SizedBox(
-                width: MediaQuery.sizeOf(context).width,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      minimumSize: const Size.fromHeight(50),
-                    ),
-                    onPressed: () async {
-                      DateTime currentDate = DateTime.now();
-                      String date =
-                          '${currentDate.day}- ${currentDate.month} - ${currentDate.year}';
-
-                      var uuid = Uuid();
-                      String orderId = uuid.v4();
-
-                      ///add order
-                      ///
-                      if (driverAvailable == "Yes") {
-                        if (userFormKey.currentState!.validate()) {
-                          await Orders.addOrder(
-                              'Active',
-                              'order-$orderId',
-                              widget.name,
-                              FirebaseAuth.instance.currentUser!.uid,
-                              'vehicle-rentals',
-                              widget.price,
-                              widget.image,
-                              date,
-                              widget.color,
-                              widget.seats,
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              firstNameController.text,
-                              lastNameController.text,
-                              userPhoneNumberController.text,
-                              userCountry,
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              addressController.text,
-                              cityController.text);
-
-                          // ignore: use_build_context_synchronously
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const SuccessPage()));
-                        }
-                      }
-
-                      if (userFormKey.currentState!.validate()) {
-                        await Orders.addOrder(
-                            'Active',
-                            'order-$orderId',
-                            widget.name,
-                            FirebaseAuth.instance.currentUser!.uid,
-                            'vehicle-rentals',
-                            widget.price,
-                            widget.image,
-                            date,
-                            widget.color,
-                            widget.seats,
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            '',
-                            firstNameController.text,
-                            lastNameController.text,
-                            userPhoneNumberController.text,
-                            userCountry,
-                            '',
-                            driverEmailController.text,
-                            driverFullNameController.text,
-                            phoneNumberController.text,
-                            country,
-                            driverLicenseNumberController.text,
-                            addressController.text,
-                            cityController.text);
-
-                        // ignore: use_build_context_synchronously
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const SuccessPage()));
-                      }
-
-                      // ignore: use_build_context_synchronously
-                    },
-                    child: const Text('Book Now')),
-              )
-            ],
-          ),
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
         ));
   }
 }

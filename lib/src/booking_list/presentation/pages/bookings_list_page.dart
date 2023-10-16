@@ -51,7 +51,7 @@ class _BookingsListPageState extends State<BookingsListPage> {
           children: [
             ActiveBookingsTabBarView(),
             HistoryTabBarView(),
-            FavoriteTabBarView()
+            FavoritesTabBarView()
           ],
         ),
       ),

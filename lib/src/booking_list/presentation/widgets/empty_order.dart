@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class EmptyFavorite extends StatelessWidget {
-  const EmptyFavorite({super.key});
+class EmptyOrder extends StatelessWidget {
+  const EmptyOrder({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,17 +10,20 @@ class EmptyFavorite extends StatelessWidget {
       child: Center(
         child: Column(
           children: [
-            Image.asset('assets/images/empty_favorites_icon.png'),
+            Image.asset(
+              'assets/images/no-records.png',
+              scale: 5.0,
+            ),
             const Text(
               textAlign: TextAlign.center,
-              'Keep what you like at hand.',
+              'You have no active orders.',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Text(
                 textAlign: TextAlign.center,
-                'Save properties you like in your search, and find them all here',
+                'Make an Order ',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             )

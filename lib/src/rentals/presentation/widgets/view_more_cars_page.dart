@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/vehicle_details_page.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
+import '../../../wishlist/wishlist.dart';
 import '../../vehicle/domain/entities/vehicle.dart';
 
 class ViewMorePage extends StatefulWidget {
@@ -22,6 +25,8 @@ class _ViewMorePageState extends State<ViewMorePage> {
   ValueNotifier<bool> isSortByHighestRatingChecked = ValueNotifier(false);
   ValueNotifier<bool> isSortByLowestRatingChecked = ValueNotifier(false);
   List<Vehicle> sortedSaloonCars = [];
+
+  late bool isLiked;
 
   ///sorting functions
   sortByPopularity() {
@@ -106,6 +111,7 @@ class _ViewMorePageState extends State<ViewMorePage> {
   void initState() {
     super.initState();
     sortedSaloonCars = widget.saloonCars;
+    
   }
 
   @override
@@ -605,14 +611,53 @@ class _ViewMorePageState extends State<ViewMorePage> {
                                   image: NetworkImage(
                                     sortedSaloonCars[index].images.first,
                                   ))),
-                          child: const Align(
+                          child: Align(
                             alignment: Alignment.topLeft,
                             child: Padding(
                               padding: EdgeInsets.all(5.0),
-                              child: Icon(
-                                size: 18,
-                                Icons.favorite_outline,
-                                color: Colors.white,
+                              child: GestureDetector(
+                                onTap: () async {
+                                  ///add to wishlist
+                                  ///
+                                  ///
+                                  DocumentReference docRef =
+                                      FirebaseFirestore.instance.doc(
+                                          'vehicles/${sortedSaloonCars[index].id}');
+
+                                  if (sortedSaloonCars[index].isFavorite ==
+                                      false) {
+                                    await Wishlist.addToWishlist(
+                                      sortedSaloonCars[index].id,
+                                      sortedSaloonCars[index].name,
+                                      FirebaseAuth.instance.currentUser!.uid,
+                                      'vehicle-rentals',
+                                      sortedSaloonCars[index].price,
+                                      sortedSaloonCars[index].images.first,
+                                      sortedSaloonCars[index].color,
+                                      '',
+                                      '',
+                                      sortedSaloonCars[index].rating,
+                                    );
+
+                                    docRef.update({'isFavorite': true});
+                                  } else {
+                                    await Wishlist.removeFromWishlist(
+                                        sortedSaloonCars[index].id);
+                                    docRef.update({'isFavorite': false});
+                                  }
+                                },
+                                child:
+                                    sortedSaloonCars[index].isFavorite == true
+                                        ? const Icon(
+                                            size: 25,
+                                            Icons.favorite,
+                                            color: Colors.red,
+                                          )
+                                        : const Icon(
+                                            size: 25,
+                                            Icons.favorite_outline,
+                                            color: Colors.white,
+                                          ),
                               ),
                             ),
                           ),

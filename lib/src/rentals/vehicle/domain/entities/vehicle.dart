@@ -30,13 +30,13 @@ class Vehicle with _$Vehicle {
       required List<String> images,
 
       ///vehicle brand
-       VehicleBrand? brand,
+      VehicleBrand? brand,
 
       ///Vehicle Category
       required String category,
 
       ///vehicle transmission
-       String? transmission,
+      String? transmission,
 
       ///number of seats
       required String seats,
@@ -45,7 +45,7 @@ class Vehicle with _$Vehicle {
       required String luggage,
 
       ///Other Vehicle Features
-       List<String>? otherFeatures,
+      List<String>? otherFeatures,
 
       ///Vehicle rating
       required String rating,
@@ -61,6 +61,7 @@ class Vehicle with _$Vehicle {
 
       ///height of vehicle
       String? height,
+      required bool isFavorite,
 
       ///length of vehicle
       String? length}) = _Vehicle;
@@ -88,5 +89,6 @@ class Vehicle with _$Vehicle {
       seats: '',
       transmission: '',
       color: '',
-      brand: VehicleBrand.initial());
+      brand: VehicleBrand.initial(),
+      isFavorite: false);
 }

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
@@ -28,6 +30,9 @@ class _TravelCheckoutPageState extends State<TravelCheckoutPage> {
   bool isTourismSelected = false;
   bool isAccommodationSelected = false;
   bool isCarRentalSelected = false;
+
+   
+
 
   @override
   Widget build(BuildContext context) {

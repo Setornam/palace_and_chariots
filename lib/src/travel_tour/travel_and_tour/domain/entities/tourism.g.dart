@@ -16,6 +16,7 @@ _$_Tourism _$$_TourismFromJson(Map<String, dynamic> json) => _$_Tourism(
       duration: json['duration'] as String,
       overview: json['overview'] as String,
       rating: json['rating'] as String,
+      isFavorite: json['isFavorite'] as bool,
       reviews: json['reviews'] as String,
     );
 
@@ -29,5 +30,6 @@ Map<String, dynamic> _$$_TourismToJson(_$_Tourism instance) =>
       'duration': instance.duration,
       'overview': instance.overview,
       'rating': instance.rating,
+      'isFavorite': instance.isFavorite,
       'reviews': instance.reviews,
     };

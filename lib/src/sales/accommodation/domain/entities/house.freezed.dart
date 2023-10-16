@@ -46,6 +46,7 @@ mixin _$House {
 
   ///property size
   String get rating => throw _privateConstructorUsedError;
+  bool get isFavorite => throw _privateConstructorUsedError;
 
   ///Out House
   String get outHouse => throw _privateConstructorUsedError; //facilities
@@ -77,6 +78,7 @@ abstract class $HouseCopyWith<$Res> {
       String propertySize,
       String popularity,
       String rating,
+      bool isFavorite,
       String outHouse,
       List<String> facilities,
       Map<String, String> amenities,
@@ -105,6 +107,7 @@ class _$HouseCopyWithImpl<$Res, $Val extends House>
     Object? propertySize = null,
     Object? popularity = null,
     Object? rating = null,
+    Object? isFavorite = null,
     Object? outHouse = null,
     Object? facilities = null,
     Object? amenities = null,
@@ -147,6 +150,10 @@ class _$HouseCopyWithImpl<$Res, $Val extends House>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
       outHouse: null == outHouse
           ? _value.outHouse
           : outHouse // ignore: cast_nullable_to_non_nullable
@@ -183,6 +190,7 @@ abstract class _$$_HouseCopyWith<$Res> implements $HouseCopyWith<$Res> {
       String propertySize,
       String popularity,
       String rating,
+      bool isFavorite,
       String outHouse,
       List<String> facilities,
       Map<String, String> amenities,
@@ -207,6 +215,7 @@ class __$$_HouseCopyWithImpl<$Res> extends _$HouseCopyWithImpl<$Res, _$_House>
     Object? propertySize = null,
     Object? popularity = null,
     Object? rating = null,
+    Object? isFavorite = null,
     Object? outHouse = null,
     Object? facilities = null,
     Object? amenities = null,
@@ -249,6 +258,10 @@ class __$$_HouseCopyWithImpl<$Res> extends _$HouseCopyWithImpl<$Res, _$_House>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
       outHouse: null == outHouse
           ? _value.outHouse
           : outHouse // ignore: cast_nullable_to_non_nullable
@@ -283,6 +296,7 @@ class _$_House implements _House {
       required this.propertySize,
       required this.popularity,
       required this.rating,
+      required this.isFavorite,
       required this.outHouse,
       required final List<String> facilities,
       required final Map<String, String> amenities,
@@ -336,6 +350,8 @@ class _$_House implements _House {
   ///property size
   @override
   final String rating;
+  @override
+  final bool isFavorite;
 
   ///Out House
   @override
@@ -383,6 +399,8 @@ class _$_House implements _House {
             (identical(other.popularity, popularity) ||
                 other.popularity == popularity) &&
             (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite) &&
             (identical(other.outHouse, outHouse) ||
                 other.outHouse == outHouse) &&
             const DeepCollectionEquality()
@@ -406,6 +424,7 @@ class _$_House implements _House {
       propertySize,
       popularity,
       rating,
+      isFavorite,
       outHouse,
       const DeepCollectionEquality().hash(_facilities),
       const DeepCollectionEquality().hash(_amenities),
@@ -436,6 +455,7 @@ abstract class _House implements House {
       required final String propertySize,
       required final String popularity,
       required final String rating,
+      required final bool isFavorite,
       required final String outHouse,
       required final List<String> facilities,
       required final Map<String, String> amenities,
@@ -479,6 +499,8 @@ abstract class _House implements House {
 
   ///property size
   String get rating;
+  @override
+  bool get isFavorite;
   @override
 
   ///Out House

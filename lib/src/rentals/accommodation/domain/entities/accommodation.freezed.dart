@@ -49,6 +49,7 @@ mixin _$Accommodation {
 
   ///Accommodation rating
   String get rating => throw _privateConstructorUsedError;
+  bool get isFavorite => throw _privateConstructorUsedError;
 
   ///Accommodation popularity
   String get popularity => throw _privateConstructorUsedError;
@@ -76,6 +77,7 @@ abstract class $AccommodationCopyWith<$Res> {
       String category,
       List<Room> rooms,
       String rating,
+      bool isFavorite,
       String popularity});
 }
 
@@ -102,6 +104,7 @@ class _$AccommodationCopyWithImpl<$Res, $Val extends Accommodation>
     Object? category = null,
     Object? rooms = null,
     Object? rating = null,
+    Object? isFavorite = null,
     Object? popularity = null,
   }) {
     return _then(_value.copyWith(
@@ -145,6 +148,10 @@ class _$AccommodationCopyWithImpl<$Res, $Val extends Accommodation>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
       popularity: null == popularity
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
@@ -172,6 +179,7 @@ abstract class _$$_AccommodationCopyWith<$Res>
       String category,
       List<Room> rooms,
       String rating,
+      bool isFavorite,
       String popularity});
 }
 
@@ -196,6 +204,7 @@ class __$$_AccommodationCopyWithImpl<$Res>
     Object? category = null,
     Object? rooms = null,
     Object? rating = null,
+    Object? isFavorite = null,
     Object? popularity = null,
   }) {
     return _then(_$_Accommodation(
@@ -239,6 +248,10 @@ class __$$_AccommodationCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
       popularity: null == popularity
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
@@ -262,6 +275,7 @@ class _$_Accommodation implements _Accommodation {
       required this.category,
       required final List<Room> rooms,
       required this.rating,
+      required this.isFavorite,
       required this.popularity})
       : _images = images,
         _facilities = facilities,
@@ -330,6 +344,8 @@ class _$_Accommodation implements _Accommodation {
   ///Accommodation rating
   @override
   final String rating;
+  @override
+  final bool isFavorite;
 
   ///Accommodation popularity
   @override
@@ -354,6 +370,8 @@ class _$_Accommodation implements _Accommodation {
                 other.category == category) &&
             const DeepCollectionEquality().equals(other._rooms, _rooms) &&
             (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite) &&
             (identical(other.popularity, popularity) ||
                 other.popularity == popularity));
   }
@@ -372,6 +390,7 @@ class _$_Accommodation implements _Accommodation {
       category,
       const DeepCollectionEquality().hash(_rooms),
       rating,
+      isFavorite,
       popularity);
 
   @JsonKey(ignore: true)
@@ -400,6 +419,7 @@ abstract class _Accommodation implements Accommodation {
       required final String category,
       required final List<Room> rooms,
       required final String rating,
+      required final bool isFavorite,
       required final String popularity}) = _$_Accommodation;
 
   factory _Accommodation.fromJson(Map<String, dynamic> json) =
@@ -445,6 +465,8 @@ abstract class _Accommodation implements Accommodation {
 
   ///Accommodation rating
   String get rating;
+  @override
+  bool get isFavorite;
   @override
 
   ///Accommodation popularity

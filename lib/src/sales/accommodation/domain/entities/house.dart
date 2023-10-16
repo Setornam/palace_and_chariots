@@ -35,8 +35,7 @@ class House with _$House {
 
     ///property size
     required String rating,
-
-
+    required bool isFavorite,
 
     ///Out House
     required String outHouse,
@@ -70,6 +69,9 @@ class House with _$House {
         price: '',
         propertySize: '',
         amenities: {},
-        facilities: [], popularity: '', rating: '',
+        facilities: [],
+        popularity: '',
+        rating: '',
+        isFavorite: false,
       );
 }

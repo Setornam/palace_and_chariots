@@ -39,6 +39,7 @@ class Accommodation with _$Accommodation {
 
     ///Accommodation rating
     required String rating,
+    required bool isFavorite,
 
     ///Accommodation popularity
     required String popularity,
@@ -64,5 +65,6 @@ class Accommodation with _$Accommodation {
       popularity: '',
       price: '',
       rating: '',
-      rooms: []);
+      rooms: [],
+      isFavorite: false);
 }

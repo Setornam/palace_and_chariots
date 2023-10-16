@@ -17,6 +17,7 @@ _$_House _$$_HouseFromJson(Map<String, dynamic> json) => _$_House(
       propertySize: json['propertySize'] as String,
       popularity: json['popularity'] as String,
       rating: json['rating'] as String,
+      isFavorite: json['isFavorite'] as bool,
       outHouse: json['outHouse'] as String,
       facilities: (json['facilities'] as List<dynamic>)
           .map((e) => e as String)
@@ -35,6 +36,7 @@ Map<String, dynamic> _$$_HouseToJson(_$_House instance) => <String, dynamic>{
       'propertySize': instance.propertySize,
       'popularity': instance.popularity,
       'rating': instance.rating,
+      'isFavorite': instance.isFavorite,
       'outHouse': instance.outHouse,
       'facilities': instance.facilities,
       'amenities': instance.amenities,

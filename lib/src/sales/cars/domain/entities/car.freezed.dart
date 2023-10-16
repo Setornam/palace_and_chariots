@@ -66,6 +66,7 @@ mixin _$Car {
 
   ///Car popularity
   String get popularity => throw _privateConstructorUsedError;
+  bool get isFavorite => throw _privateConstructorUsedError;
 
   ///Car speed
   String get speed => throw _privateConstructorUsedError;
@@ -98,6 +99,7 @@ abstract class $CarCopyWith<$Res> {
       String numberOfCylinders,
       String rating,
       String popularity,
+      bool isFavorite,
       String speed});
 
   $CarBrandCopyWith<$Res>? get brand;
@@ -132,6 +134,7 @@ class _$CarCopyWithImpl<$Res, $Val extends Car> implements $CarCopyWith<$Res> {
     Object? numberOfCylinders = null,
     Object? rating = null,
     Object? popularity = null,
+    Object? isFavorite = null,
     Object? speed = null,
   }) {
     return _then(_value.copyWith(
@@ -203,6 +206,10 @@ class _$CarCopyWithImpl<$Res, $Val extends Car> implements $CarCopyWith<$Res> {
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
               as String,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
       speed: null == speed
           ? _value.speed
           : speed // ignore: cast_nullable_to_non_nullable
@@ -247,6 +254,7 @@ abstract class _$$_CarCopyWith<$Res> implements $CarCopyWith<$Res> {
       String numberOfCylinders,
       String rating,
       String popularity,
+      bool isFavorite,
       String speed});
 
   @override
@@ -279,6 +287,7 @@ class __$$_CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res, _$_Car>
     Object? numberOfCylinders = null,
     Object? rating = null,
     Object? popularity = null,
+    Object? isFavorite = null,
     Object? speed = null,
   }) {
     return _then(_$_Car(
@@ -350,6 +359,10 @@ class __$$_CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res, _$_Car>
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
               as String,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
       speed: null == speed
           ? _value.speed
           : speed // ignore: cast_nullable_to_non_nullable
@@ -380,6 +393,7 @@ class _$_Car implements _Car {
       required this.numberOfCylinders,
       required this.rating,
       required this.popularity,
+      required this.isFavorite,
       required this.speed})
       : _images = images;
 
@@ -455,6 +469,8 @@ class _$_Car implements _Car {
   ///Car popularity
   @override
   final String popularity;
+  @override
+  final bool isFavorite;
 
   ///Car speed
   @override
@@ -488,31 +504,35 @@ class _$_Car implements _Car {
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.popularity, popularity) ||
                 other.popularity == popularity) &&
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite) &&
             (identical(other.speed, speed) || other.speed == speed));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      color,
-      price,
-      availability,
-      const DeepCollectionEquality().hash(_images),
-      brand,
-      transmission,
-      seats,
-      condition,
-      maker,
-      engineSize,
-      trim,
-      year,
-      numberOfCylinders,
-      rating,
-      popularity,
-      speed);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        name,
+        color,
+        price,
+        availability,
+        const DeepCollectionEquality().hash(_images),
+        brand,
+        transmission,
+        seats,
+        condition,
+        maker,
+        engineSize,
+        trim,
+        year,
+        numberOfCylinders,
+        rating,
+        popularity,
+        isFavorite,
+        speed
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -547,6 +567,7 @@ abstract class _Car implements Car {
       required final String numberOfCylinders,
       required final String rating,
       required final String popularity,
+      required final bool isFavorite,
       required final String speed}) = _$_Car;
 
   factory _Car.fromJson(Map<String, dynamic> json) = _$_Car.fromJson;
@@ -615,6 +636,8 @@ abstract class _Car implements Car {
 
   ///Car popularity
   String get popularity;
+  @override
+  bool get isFavorite;
   @override
 
   ///Car speed

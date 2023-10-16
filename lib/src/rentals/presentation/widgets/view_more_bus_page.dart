@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/vehicle_details_page.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
+import '../../../wishlist/wishlist.dart';
 import '../../vehicle/domain/entities/vehicle.dart';
 
 class ViewMoreBusesPage extends StatefulWidget {
@@ -311,44 +314,6 @@ class _ViewMoreBusesPageState extends State<ViewMoreBusesPage> {
                                             valueListenable:
                                                 isSortByHighestRatingChecked,
                                           ),
-
-                                          //sort by lowest rating
-                                          // ValueListenableBuilder(
-                                          //   builder: (BuildContext context,
-                                          //       value, Widget? child) {
-                                          //     return Row(
-                                          //       mainAxisAlignment:
-                                          //           MainAxisAlignment
-                                          //               .spaceBetween,
-                                          //       children: [
-                                          //         const Text(
-                                          //             'Star rating (lowest first)'),
-                                          //         Checkbox(
-                                          //             side: const BorderSide(
-                                          //               color: Colors.grey,
-                                          //             ),
-                                          //             fillColor:
-                                          //                 MaterialStateProperty
-                                          //                     .all(
-                                          //                         lightColorScheme
-                                          //                             .primary),
-                                          //             value:
-                                          //                 isSortByLowestRatingChecked
-                                          //                     .value,
-                                          //             onChanged:
-                                          //                 (bool? checked) {
-                                          //               sortByLowestRating();
-
-                                          //               isSortByLowestRatingChecked
-                                          //                       .value =
-                                          //                   checked ?? false;
-                                          //             }),
-                                          //       ],
-                                          //     );
-                                          //   },
-                                          //   valueListenable:
-                                          //       isSortByLowestRatingChecked,
-                                          // )
                                         ],
                                       ),
                                     ),
@@ -425,14 +390,51 @@ class _ViewMoreBusesPageState extends State<ViewMoreBusesPage> {
                                 fit: BoxFit.cover,
                                 image: AssetImage(
                                     'assets/images/benz-front.png'))),
-                        child: const Align(
+                        child: Align(
                           alignment: Alignment.topLeft,
                           child: Padding(
                             padding: EdgeInsets.all(5.0),
-                            child: Icon(
-                              size: 18,
-                              Icons.favorite_outline,
-                              color: Colors.white,
+                            child: GestureDetector(
+                              onTap: () async {
+                                ///add to wishlist
+                                ///
+                                ///
+                                DocumentReference docRef = FirebaseFirestore
+                                    .instance
+                                    .doc('vehicles/${sortedBuses[index].id}');
+
+                                if (sortedBuses[index].isFavorite == false) {
+                                  await Wishlist.addToWishlist(
+                                    sortedBuses[index].id,
+                                    sortedBuses[index].name,
+                                    FirebaseAuth.instance.currentUser!.uid,
+                                    'vehicle-rentals',
+                                    sortedBuses[index].price,
+                                    sortedBuses[index].images.first,
+                                    sortedBuses[index].color,
+                                    '',
+                                    '',
+                                    sortedBuses[index].rating,
+                                  );
+
+                                  docRef.update({'isFavorite': true});
+                                } else {
+                                  await Wishlist.removeFromWishlist(
+                                      sortedBuses[index].id);
+                                  docRef.update({'isFavorite': false});
+                                }
+                              },
+                              child: sortedBuses[index].isFavorite == true
+                                  ? const Icon(
+                                      size: 25,
+                                      Icons.favorite,
+                                      color: Colors.red,
+                                    )
+                                  : const Icon(
+                                      size: 25,
+                                      Icons.favorite_outline,
+                                      color: Colors.white,
+                                    ),
                             ),
                           ),
                         ),

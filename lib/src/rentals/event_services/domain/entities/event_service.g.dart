@@ -21,6 +21,7 @@ _$_EventService _$$_EventServiceFromJson(Map<String, dynamic> json) =>
           .toList(),
       category: json['category'] as String,
       rating: json['rating'] as String,
+      isFavorite: json['isFavorite'] as bool,
       popularity: json['popularity'] as String,
     );
 
@@ -36,5 +37,6 @@ Map<String, dynamic> _$$_EventServiceToJson(_$_EventService instance) =>
       'amenities': instance.amenities,
       'category': instance.category,
       'rating': instance.rating,
+      'isFavorite': instance.isFavorite,
       'popularity': instance.popularity,
     };

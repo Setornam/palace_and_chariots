@@ -32,6 +32,7 @@ class Tourism with _$Tourism {
 
     ///Tourism rating
     required String rating,
+    required bool isFavorite,
 
     ///Tourism reviews
     required String reviews,
@@ -56,5 +57,6 @@ class Tourism with _$Tourism {
         duration: '',
         overview: '',
         reviews: '',
+        isFavorite: false,
       );
 }

@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/vehicle_details_page.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
+import '../../../wishlist/wishlist.dart';
 import '../../vehicle/domain/entities/vehicle.dart';
 
 class ViewMoreJetsPage extends StatefulWidget {
@@ -391,14 +394,52 @@ class _ViewMoreJetsPageState extends State<ViewMoreJetsPage> {
                                 fit: BoxFit.cover,
                                 image: NetworkImage(
                                     sortedPrivateJets[index].images.first))),
-                        child: const Align(
+                        child: Align(
                           alignment: Alignment.topLeft,
                           child: Padding(
                             padding: EdgeInsets.all(5.0),
-                            child: Icon(
-                              size: 18,
-                              Icons.favorite_outline,
-                              color: Colors.white,
+                            child: GestureDetector(
+                              onTap: () async {
+                                ///add to wishlist
+                                ///
+                                ///
+                                DocumentReference docRef =
+                                    FirebaseFirestore.instance.doc(
+                                        'vehicles/${sortedPrivateJets[index].id}');
+
+                                if (sortedPrivateJets[index].isFavorite ==
+                                    false) {
+                                  await Wishlist.addToWishlist(
+                                    sortedPrivateJets[index].id,
+                                    sortedPrivateJets[index].name,
+                                    FirebaseAuth.instance.currentUser!.uid,
+                                    'vehicle-rentals',
+                                    sortedPrivateJets[index].price,
+                                    sortedPrivateJets[index].images.first,
+                                    sortedPrivateJets[index].color,
+                                    '',
+                                    '',
+                                    sortedPrivateJets[index].rating,
+                                  );
+
+                                  docRef.update({'isFavorite': true});
+                                } else {
+                                  await Wishlist.removeFromWishlist(
+                                      sortedPrivateJets[index].id);
+                                  docRef.update({'isFavorite': false});
+                                }
+                              },
+                              child: sortedPrivateJets[index].isFavorite == true
+                                  ? const Icon(
+                                      size: 25,
+                                      Icons.favorite,
+                                      color: Colors.red,
+                                    )
+                                  : const Icon(
+                                      size: 25,
+                                      Icons.favorite_outline,
+                                      color: Colors.white,
+                                    ),
                             ),
                           ),
                         ),

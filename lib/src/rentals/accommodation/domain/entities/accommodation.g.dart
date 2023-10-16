@@ -23,6 +23,7 @@ _$_Accommodation _$$_AccommodationFromJson(Map<String, dynamic> json) =>
           .map((e) => Room.fromJson(e as Map<String, dynamic>))
           .toList(),
       rating: json['rating'] as String,
+      isFavorite: json['isFavorite'] as bool,
       popularity: json['popularity'] as String,
     );
 
@@ -38,5 +39,6 @@ Map<String, dynamic> _$$_AccommodationToJson(_$_Accommodation instance) =>
       'category': instance.category,
       'rooms': instance.rooms.map((e) => e.toJson()).toList(),
       'rating': instance.rating,
+      'isFavorite': instance.isFavorite,
       'popularity': instance.popularity,
     };

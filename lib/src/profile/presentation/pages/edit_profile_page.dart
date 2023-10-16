@@ -158,7 +158,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
         ),
       ),
       body: FutureBuilder(
-        future: FirebaseFirestore.instance
+        future: 
+        
+        FirebaseFirestore.instance
             .collection('users')
             .where('id', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
             .get(),

@@ -49,6 +49,7 @@ mixin _$EventService {
 
   ///EventService rating
   String get rating => throw _privateConstructorUsedError;
+  bool get isFavorite => throw _privateConstructorUsedError;
 
   ///EventService popularity
   String get popularity => throw _privateConstructorUsedError;
@@ -76,6 +77,7 @@ abstract class $EventServiceCopyWith<$Res> {
       List<Map<String, String>> amenities,
       String category,
       String rating,
+      bool isFavorite,
       String popularity});
 }
 
@@ -102,6 +104,7 @@ class _$EventServiceCopyWithImpl<$Res, $Val extends EventService>
     Object? amenities = null,
     Object? category = null,
     Object? rating = null,
+    Object? isFavorite = null,
     Object? popularity = null,
   }) {
     return _then(_value.copyWith(
@@ -145,6 +148,10 @@ class _$EventServiceCopyWithImpl<$Res, $Val extends EventService>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
       popularity: null == popularity
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
@@ -172,6 +179,7 @@ abstract class _$$_EventServiceCopyWith<$Res>
       List<Map<String, String>> amenities,
       String category,
       String rating,
+      bool isFavorite,
       String popularity});
 }
 
@@ -196,6 +204,7 @@ class __$$_EventServiceCopyWithImpl<$Res>
     Object? amenities = null,
     Object? category = null,
     Object? rating = null,
+    Object? isFavorite = null,
     Object? popularity = null,
   }) {
     return _then(_$_EventService(
@@ -239,6 +248,10 @@ class __$$_EventServiceCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
       popularity: null == popularity
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
@@ -262,6 +275,7 @@ class _$_EventService implements _EventService {
       required final List<Map<String, String>> amenities,
       required this.category,
       required this.rating,
+      required this.isFavorite,
       required this.popularity})
       : _images = images,
         _amenities = amenities;
@@ -322,6 +336,8 @@ class _$_EventService implements _EventService {
   ///EventService rating
   @override
   final String rating;
+  @override
+  final bool isFavorite;
 
   ///EventService popularity
   @override
@@ -346,6 +362,8 @@ class _$_EventService implements _EventService {
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite) &&
             (identical(other.popularity, popularity) ||
                 other.popularity == popularity));
   }
@@ -364,6 +382,7 @@ class _$_EventService implements _EventService {
       const DeepCollectionEquality().hash(_amenities),
       category,
       rating,
+      isFavorite,
       popularity);
 
   @JsonKey(ignore: true)
@@ -392,6 +411,7 @@ abstract class _EventService implements EventService {
       required final List<Map<String, String>> amenities,
       required final String category,
       required final String rating,
+      required final bool isFavorite,
       required final String popularity}) = _$_EventService;
 
   factory _EventService.fromJson(Map<String, dynamic> json) =
@@ -437,6 +457,8 @@ abstract class _EventService implements EventService {
 
   ///EventService rating
   String get rating;
+  @override
+  bool get isFavorite;
   @override
 
   ///EventService popularity

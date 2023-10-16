@@ -27,6 +27,7 @@ _$_Car _$$_CarFromJson(Map<String, dynamic> json) => _$_Car(
       numberOfCylinders: json['numberOfCylinders'] as String,
       rating: json['rating'] as String,
       popularity: json['popularity'] as String,
+      isFavorite: json['isFavorite'] as bool,
       speed: json['speed'] as String,
     );
 
@@ -48,5 +49,6 @@ Map<String, dynamic> _$$_CarToJson(_$_Car instance) => <String, dynamic>{
       'numberOfCylinders': instance.numberOfCylinders,
       'rating': instance.rating,
       'popularity': instance.popularity,
+      'isFavorite': instance.isFavorite,
       'speed': instance.speed,
     };

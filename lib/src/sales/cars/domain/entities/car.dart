@@ -57,6 +57,7 @@ class Car with _$Car {
 
     ///Car popularity
     required String popularity,
+    required bool isFavorite,
 
     ///Car speed
     required String speed,
@@ -87,5 +88,7 @@ class Car with _$Car {
       numberOfCylinders: '',
       trim: '',
       availability: false,
-      year: '', speed: '');
+      year: '',
+      speed: '',
+      isFavorite: false);
 }

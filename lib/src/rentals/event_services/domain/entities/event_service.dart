@@ -38,6 +38,7 @@ class EventService with _$EventService {
 
     ///EventService rating
     required String rating,
+    required bool isFavorite,
 
     ///EventService popularity
     required String popularity,
@@ -64,5 +65,6 @@ class EventService with _$EventService {
         price: '',
         rating: '',
         review: '',
+        isFavorite: false,
       );
 }

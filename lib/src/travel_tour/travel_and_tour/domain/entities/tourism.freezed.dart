@@ -43,6 +43,7 @@ mixin _$Tourism {
 
   ///Tourism rating
   String get rating => throw _privateConstructorUsedError;
+  bool get isFavorite => throw _privateConstructorUsedError;
 
   ///Tourism reviews
   String get reviews => throw _privateConstructorUsedError;
@@ -66,6 +67,7 @@ abstract class $TourismCopyWith<$Res> {
       String duration,
       String overview,
       String rating,
+      bool isFavorite,
       String reviews});
 }
 
@@ -90,6 +92,7 @@ class _$TourismCopyWithImpl<$Res, $Val extends Tourism>
     Object? duration = null,
     Object? overview = null,
     Object? rating = null,
+    Object? isFavorite = null,
     Object? reviews = null,
   }) {
     return _then(_value.copyWith(
@@ -125,6 +128,10 @@ class _$TourismCopyWithImpl<$Res, $Val extends Tourism>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
       reviews: null == reviews
           ? _value.reviews
           : reviews // ignore: cast_nullable_to_non_nullable
@@ -149,6 +156,7 @@ abstract class _$$_TourismCopyWith<$Res> implements $TourismCopyWith<$Res> {
       String duration,
       String overview,
       String rating,
+      bool isFavorite,
       String reviews});
 }
 
@@ -170,6 +178,7 @@ class __$$_TourismCopyWithImpl<$Res>
     Object? duration = null,
     Object? overview = null,
     Object? rating = null,
+    Object? isFavorite = null,
     Object? reviews = null,
   }) {
     return _then(_$_Tourism(
@@ -205,6 +214,10 @@ class __$$_TourismCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
       reviews: null == reviews
           ? _value.reviews
           : reviews // ignore: cast_nullable_to_non_nullable
@@ -226,6 +239,7 @@ class _$_Tourism implements _Tourism {
       required this.duration,
       required this.overview,
       required this.rating,
+      required this.isFavorite,
       required this.reviews})
       : _images = images;
 
@@ -270,6 +284,8 @@ class _$_Tourism implements _Tourism {
   ///Tourism rating
   @override
   final String rating;
+  @override
+  final bool isFavorite;
 
   ///Tourism reviews
   @override
@@ -291,6 +307,8 @@ class _$_Tourism implements _Tourism {
             (identical(other.overview, overview) ||
                 other.overview == overview) &&
             (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite) &&
             (identical(other.reviews, reviews) || other.reviews == reviews));
   }
 
@@ -306,6 +324,7 @@ class _$_Tourism implements _Tourism {
       duration,
       overview,
       rating,
+      isFavorite,
       reviews);
 
   @JsonKey(ignore: true)
@@ -332,6 +351,7 @@ abstract class _Tourism implements Tourism {
       required final String duration,
       required final String overview,
       required final String rating,
+      required final bool isFavorite,
       required final String reviews}) = _$_Tourism;
 
   factory _Tourism.fromJson(Map<String, dynamic> json) = _$_Tourism.fromJson;
@@ -368,6 +388,8 @@ abstract class _Tourism implements Tourism {
 
   ///Tourism rating
   String get rating;
+  @override
+  bool get isFavorite;
   @override
 
   ///Tourism reviews

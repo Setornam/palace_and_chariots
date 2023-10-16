@@ -29,6 +29,7 @@ _$_Vehicle _$$_VehicleFromJson(Map<String, dynamic> json) => _$_Vehicle(
       speed: json['speed'] as String?,
       range: json['range'] as String?,
       height: json['height'] as String?,
+      isFavorite: json['isFavorite'] as bool,
       length: json['length'] as String?,
     );
 
@@ -51,5 +52,6 @@ Map<String, dynamic> _$$_VehicleToJson(_$_Vehicle instance) =>
       'speed': instance.speed,
       'range': instance.range,
       'height': instance.height,
+      'isFavorite': instance.isFavorite,
       'length': instance.length,
     };
