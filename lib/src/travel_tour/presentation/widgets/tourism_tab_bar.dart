@@ -1,8 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/src/travel_tour/presentation/widgets/tourism_details.dart';
 
 import '../../../../injection_container.dart';
 import '../../../../shared/theme/color_scheme.dart';
+import '../../../wishlist/wishlist.dart';
 import '../../travel_and_tour/domain/entities/tourism.dart';
 import '../../travel_and_tour/presentation/bloc/tourism_bloc.dart';
 
@@ -43,8 +46,7 @@ class _TourismTabBarViewState extends State<TourismTabBarView> {
                                           tourism: tourisms[index],
                                         )));
                           },
-                          child: 
-                          Row(
+                          child: Row(
                             children: [
                               Container(
                                 height: 120,
@@ -57,16 +59,60 @@ class _TourismTabBarViewState extends State<TourismTabBarView> {
                                         fit: BoxFit.cover,
                                         image: AssetImage(
                                             'assets/images/capecoast.png'))),
-                                child: const Align(
+                                child: Align(
                                   alignment: Alignment.topLeft,
-                                  child: Padding(
+                                  child: 
+                                  
+                                  Padding(
                                     padding: EdgeInsets.all(5.0),
-                                    child: Icon(
-                                      size: 18,
-                                      Icons.favorite_outline,
-                                      color: Colors.white,
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        ///add to wishlist
+                                        ///
+                                        ///
+                                        DocumentReference docRef =
+                                            FirebaseFirestore.instance.doc(
+                                                'tourism/${tourisms[index].id}');
+
+                                        if (tourisms[index].isFavorite ==
+                                            false) {
+                                          await Wishlist.addToWishlist(
+                                              tourisms[index].id,
+                                              tourisms[index].name,
+                                              FirebaseAuth
+                                                  .instance.currentUser!.uid,
+                                              'tourism',
+                                              tourisms[index].price,
+                                              tourisms[index].images.first,
+                                              '',
+                                              '',
+                                              tourisms[index].duration,
+                                              tourisms[index].rating,
+                                              tourisms[index].reviews,
+                                              '');
+
+                                          docRef.update({'isFavorite': true});
+                                        } else {
+                                          await Wishlist.removeFromWishlist(
+                                              tourisms[index].id);
+                                          docRef.update({'isFavorite': false});
+                                        }
+                                      },
+                                      child: tourisms[index].isFavorite == true
+                                          ? const Icon(
+                                              size: 25,
+                                              Icons.favorite,
+                                              color: Colors.red,
+                                            )
+                                          : const Icon(
+                                              size: 25,
+                                              Icons.favorite_outline,
+                                              color: Colors.white,
+                                            ),
                                     ),
                                   ),
+                                
+                                
                                 ),
                               ),
                               Expanded(
@@ -193,8 +239,6 @@ class _TourismTabBarViewState extends State<TourismTabBarView> {
                               )
                             ],
                           ),
-                       
-                       
                         ),
                       );
                     }),

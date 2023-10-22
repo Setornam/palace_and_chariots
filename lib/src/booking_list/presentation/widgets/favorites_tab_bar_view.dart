@@ -58,16 +58,24 @@ class _FavoritesTabBarViewState extends State<FavoritesTabBarView> {
                                                         image: NetworkImage(
                                                             doc['image']
                                                                 .toString()))),
-                                                child: const Align(
+                                                child: Align(
                                                   alignment: Alignment.topLeft,
                                                   child: Padding(
                                                     padding:
                                                         EdgeInsets.all(5.0),
-                                                    child: Icon(
-                                                      size: 18,
-                                                      Icons.favorite_outline,
-                                                      color: Colors.white,
-                                                    ),
+                                                    child: doc['is_favorite'] ==
+                                                            true
+                                                        ? const Icon(
+                                                            size: 18,
+                                                            Icons.favorite,
+                                                            color: Colors.red,
+                                                          )
+                                                        : const Icon(
+                                                            size: 18,
+                                                            Icons
+                                                                .favorite_outline,
+                                                            color: Colors.white,
+                                                          ),
                                                   ),
                                                 ),
                                               ),
@@ -170,39 +178,6 @@ class _FavoritesTabBarViewState extends State<FavoritesTabBarView> {
                                             },
                                             child: Column(
                                               children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          bottom: 5),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        'Hotel Reservation',
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyMedium!
-                                                            .apply(
-                                                                fontWeightDelta:
-                                                                    2,
-                                                                color:
-                                                                    lightColorScheme
-                                                                        .primary),
-                                                      ),
-                                                      Text(
-                                                        doc['order_date'],
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyMedium!
-                                                            .apply(
-                                                                color: Colors
-                                                                    .grey),
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
                                                 Row(
                                                   children: [
                                                     Container(
@@ -221,19 +196,30 @@ class _FavoritesTabBarViewState extends State<FavoritesTabBarView> {
                                                               fit: BoxFit.cover,
                                                               image: AssetImage(
                                                                   'assets/images/hotel.png'))),
-                                                      child: const Align(
+                                                      child: Align(
                                                         alignment:
                                                             Alignment.topLeft,
                                                         child: Padding(
                                                           padding:
                                                               EdgeInsets.all(
                                                                   5.0),
-                                                          child: Icon(
-                                                            size: 18,
-                                                            Icons
-                                                                .favorite_outline,
-                                                            color: Colors.white,
-                                                          ),
+                                                          child:
+                                                              doc['is_favorite'] ==
+                                                                      true
+                                                                  ? const Icon(
+                                                                      size: 18,
+                                                                      Icons
+                                                                          .favorite,
+                                                                      color: Colors
+                                                                          .red,
+                                                                    )
+                                                                  : const Icon(
+                                                                      size: 18,
+                                                                      Icons
+                                                                          .favorite_outline,
+                                                                      color: Colors
+                                                                          .white,
+                                                                    ),
                                                         ),
                                                       ),
                                                     ),
@@ -279,18 +265,18 @@ class _FavoritesTabBarViewState extends State<FavoritesTabBarView> {
                                                               ),
                                                               Row(
                                                                 children: [
-                                                                  const Icon(
-                                                                    Icons
-                                                                        .location_on,
-                                                                    size: 18,
-                                                                  ),
-                                                                  Text(
-                                                                    ' ${doc['accommodation_distance']} away | ',
-                                                                    style: Theme.of(
-                                                                            context)
-                                                                        .textTheme
-                                                                        .bodyMedium,
-                                                                  ),
+                                                                  // const Icon(
+                                                                  //   Icons
+                                                                  //       .location_on,
+                                                                  //   size: 18,
+                                                                  // ),
+                                                                  // Text(
+                                                                  //   ' ${doc['accommodation_distance']} away | ',
+                                                                  //   style: Theme.of(
+                                                                  //           context)
+                                                                  //       .textTheme
+                                                                  //       .bodyMedium,
+                                                                  // ),
                                                                   const Icon(
                                                                     Icons.star,
                                                                     size: 18,
@@ -304,13 +290,13 @@ class _FavoritesTabBarViewState extends State<FavoritesTabBarView> {
                                                                         .textTheme
                                                                         .bodyMedium,
                                                                   ),
-                                                                  Text(
-                                                                    ' | ${doc['review']} reviews',
-                                                                    style: Theme.of(
-                                                                            context)
-                                                                        .textTheme
-                                                                        .bodyMedium,
-                                                                  )
+                                                                  // Text(
+                                                                  //   ' | ${doc['review']} reviews',
+                                                                  //   style: Theme.of(
+                                                                  //           context)
+                                                                  //       .textTheme
+                                                                  //       .bodyMedium,
+                                                                  // )
                                                                 ],
                                                               ),
                                                               Row(
@@ -407,39 +393,6 @@ class _FavoritesTabBarViewState extends State<FavoritesTabBarView> {
                                             },
                                             child: Column(
                                               children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          bottom: 5),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        'Event Rentals',
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyMedium!
-                                                            .apply(
-                                                                fontWeightDelta:
-                                                                    2,
-                                                                color:
-                                                                    lightColorScheme
-                                                                        .primary),
-                                                      ),
-                                                      Text(
-                                                        doc['order_date'],
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyMedium!
-                                                            .apply(
-                                                                color: Colors
-                                                                    .grey),
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
                                                 Row(
                                                   children: [
                                                     Container(
@@ -458,19 +411,30 @@ class _FavoritesTabBarViewState extends State<FavoritesTabBarView> {
                                                               fit: BoxFit.cover,
                                                               image: AssetImage(
                                                                   'assets/images/event_space.png'))),
-                                                      child: const Align(
+                                                      child: Align(
                                                         alignment:
                                                             Alignment.topLeft,
                                                         child: Padding(
                                                           padding:
                                                               EdgeInsets.all(
                                                                   5.0),
-                                                          child: Icon(
-                                                            size: 18,
-                                                            Icons
-                                                                .favorite_outline,
-                                                            color: Colors.white,
-                                                          ),
+                                                          child:
+                                                              doc['is_favorite'] ==
+                                                                      true
+                                                                  ? const Icon(
+                                                                      size: 18,
+                                                                      Icons
+                                                                          .favorite,
+                                                                      color: Colors
+                                                                          .red,
+                                                                    )
+                                                                  : const Icon(
+                                                                      size: 18,
+                                                                      Icons
+                                                                          .favorite_outline,
+                                                                      color: Colors
+                                                                          .white,
+                                                                    ),
                                                         ),
                                                       ),
                                                     ),
@@ -623,39 +587,6 @@ class _FavoritesTabBarViewState extends State<FavoritesTabBarView> {
                                             },
                                             child: Column(
                                               children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          bottom: 5),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        'Tourism Reservation',
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyMedium!
-                                                            .apply(
-                                                                fontWeightDelta:
-                                                                    2,
-                                                                color:
-                                                                    lightColorScheme
-                                                                        .primary),
-                                                      ),
-                                                      Text(
-                                                        doc['order_date'],
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyMedium!
-                                                            .apply(
-                                                                color: Colors
-                                                                    .grey),
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
                                                 Row(
                                                   children: [
                                                     Container(
@@ -674,19 +605,30 @@ class _FavoritesTabBarViewState extends State<FavoritesTabBarView> {
                                                               fit: BoxFit.cover,
                                                               image: AssetImage(
                                                                   'assets/images/capecoast.png'))),
-                                                      child: const Align(
+                                                      child: Align(
                                                         alignment:
                                                             Alignment.topLeft,
                                                         child: Padding(
                                                           padding:
                                                               EdgeInsets.all(
                                                                   5.0),
-                                                          child: Icon(
-                                                            size: 18,
-                                                            Icons
-                                                                .favorite_outline,
-                                                            color: Colors.white,
-                                                          ),
+                                                          child:
+                                                              doc['is_favorite'] ==
+                                                                      true
+                                                                  ? const Icon(
+                                                                      size: 18,
+                                                                      Icons
+                                                                          .favorite,
+                                                                      color: Colors
+                                                                          .red,
+                                                                    )
+                                                                  : const Icon(
+                                                                      size: 18,
+                                                                      Icons
+                                                                          .favorite_outline,
+                                                                      color: Colors
+                                                                          .white,
+                                                                    ),
                                                         ),
                                                       ),
                                                     ),
@@ -1150,38 +1092,6 @@ class _FavoritesTabBarViewState extends State<FavoritesTabBarView> {
                                               vertical: 10, horizontal: 5),
                                           child: Column(
                                             children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    bottom: 5),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      'Car Sales',
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyMedium!
-                                                          .apply(
-                                                              fontWeightDelta:
-                                                                  2,
-                                                              color:
-                                                                  lightColorScheme
-                                                                      .primary),
-                                                    ),
-                                                    Text(
-                                                      doc['order_date'],
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyMedium!
-                                                          .apply(
-                                                              color:
-                                                                  Colors.grey),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
                                               Row(
                                                 children: [
                                                   Container(
@@ -1201,18 +1111,29 @@ class _FavoritesTabBarViewState extends State<FavoritesTabBarView> {
                                                             fit: BoxFit.cover,
                                                             image: NetworkImage(
                                                                 doc['image']))),
-                                                    child: const Align(
+                                                    child: Align(
                                                       alignment:
                                                           Alignment.topLeft,
                                                       child: Padding(
                                                         padding:
                                                             EdgeInsets.all(5.0),
-                                                        child: Icon(
-                                                          size: 18,
-                                                          Icons
-                                                              .favorite_outline,
-                                                          color: Colors.white,
-                                                        ),
+                                                        child:
+                                                            doc['is_favorite'] ==
+                                                                    true
+                                                                ? const Icon(
+                                                                    size: 18,
+                                                                    Icons
+                                                                        .favorite,
+                                                                    color: Colors
+                                                                        .red,
+                                                                  )
+                                                                : const Icon(
+                                                                    size: 18,
+                                                                    Icons
+                                                                        .favorite_outline,
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
                                                       ),
                                                     ),
                                                   ),
@@ -1327,38 +1248,6 @@ class _FavoritesTabBarViewState extends State<FavoritesTabBarView> {
                                               vertical: 10, horizontal: 5),
                                           child: Column(
                                             children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    bottom: 5),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      'House Sales',
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyMedium!
-                                                          .apply(
-                                                              fontWeightDelta:
-                                                                  2,
-                                                              color:
-                                                                  lightColorScheme
-                                                                      .primary),
-                                                    ),
-                                                    Text(
-                                                      doc['order_date'],
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyMedium!
-                                                          .apply(
-                                                              color:
-                                                                  Colors.grey),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
                                               Row(
                                                 children: [
                                                   Container(
@@ -1377,18 +1266,29 @@ class _FavoritesTabBarViewState extends State<FavoritesTabBarView> {
                                                             fit: BoxFit.cover,
                                                             image: NetworkImage(
                                                                 doc['image']))),
-                                                    child: const Align(
+                                                    child: Align(
                                                       alignment:
                                                           Alignment.topLeft,
                                                       child: Padding(
                                                         padding:
                                                             EdgeInsets.all(5.0),
-                                                        child: Icon(
-                                                          size: 18,
-                                                          Icons
-                                                              .favorite_outline,
-                                                          color: Colors.white,
-                                                        ),
+                                                        child:
+                                                            doc['is_favorite'] ==
+                                                                    true
+                                                                ? const Icon(
+                                                                    size: 18,
+                                                                    Icons
+                                                                        .favorite,
+                                                                    color: Colors
+                                                                        .red,
+                                                                  )
+                                                                : const Icon(
+                                                                    size: 18,
+                                                                    Icons
+                                                                        .favorite_outline,
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
                                                       ),
                                                     ),
                                                   ),

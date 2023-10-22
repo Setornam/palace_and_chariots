@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/accommodation_details_.dart';
@@ -7,6 +9,7 @@ import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../injection_container.dart';
 import '../../../../shared/theme/color_scheme.dart';
+import '../../../wishlist/wishlist.dart';
 import '../../accommodation/domain/entities/accommodation.dart';
 import '../../accommodation/presentation/bloc/accommodation_bloc.dart';
 
@@ -972,16 +975,76 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                       fit: BoxFit.cover,
                                                       image: AssetImage(
                                                           'assets/images/hotel.png'))),
-                                              child: const Align(
+                                              child: Align(
                                                 alignment: Alignment.topLeft,
                                                 child: Padding(
                                                   padding: EdgeInsets.all(5.0),
-                                                  child: Icon(
-                                                    size: 18,
-                                                    Icons.favorite_outline,
-                                                    color: Colors.white,
+                                                  child: GestureDetector(
+                                                    onTap: () async {
+                                                      ///add to wishlist
+                                                      ///
+                                                      ///
+                                                      DocumentReference docRef =
+                                                          FirebaseFirestore
+                                                              .instance
+                                                              .doc(
+                                                                  'accommodation/${hotels[index].id}');
+
+                                                      if (hotels[index]
+                                                              .isFavorite ==
+                                                          false) {
+                                                        await Wishlist
+                                                            .addToWishlist(
+                                                          hotels[index].id,
+                                                          hotels[index].name,
+                                                          FirebaseAuth.instance
+                                                              .currentUser!.uid,
+                                                          'accommodation-rentals',
+                                                          hotels[index].price,
+                                                          hotels[index]
+                                                              .images
+                                                              .first,
+                                                          '',
+                                                          '',
+                                                          '',
+                                                          hotels[index].rating,
+                                                          '',
+                                                          hotels[index]
+                                                              .facilities
+                                                              .first,
+                                                        );
+
+                                                        docRef.update({
+                                                          'isFavorite': true
+                                                        });
+                                                      } else {
+                                                        await Wishlist
+                                                            .removeFromWishlist(
+                                                                hotels[index]
+                                                                    .id);
+                                                        docRef.update({
+                                                          'isFavorite': false
+                                                        });
+                                                      }
+                                                    },
+                                                    child: hotels[index]
+                                                                .isFavorite ==
+                                                            true
+                                                        ? const Icon(
+                                                            size: 25,
+                                                            Icons.favorite,
+                                                            color: Colors.red,
+                                                          )
+                                                        : const Icon(
+                                                            size: 25,
+                                                            Icons
+                                                                .favorite_outline,
+                                                            color: Colors.white,
+                                                          ),
                                                   ),
                                                 ),
+                                            
+                                            
                                               ),
                                             ),
                                             Expanded(
@@ -1921,18 +1984,90 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                                           fit: BoxFit.cover,
                                                           image: AssetImage(
                                                               'assets/images/room.jpg'))),
-                                                  child: const Align(
+                                                  child: Align(
                                                     alignment:
                                                         Alignment.topLeft,
-                                                    child: Padding(
+                                                    child: 
+                                                    
+                                                    Padding(
                                                       padding:
                                                           EdgeInsets.all(5.0),
-                                                      child: Icon(
-                                                        size: 18,
-                                                        Icons.favorite_outline,
-                                                        color: Colors.white,
+                                                      child: GestureDetector(
+                                                        onTap: () async {
+                                                          ///add to wishlist
+                                                          ///
+                                                          ///
+                                                          DocumentReference
+                                                              docRef =
+                                                              FirebaseFirestore
+                                                                  .instance
+                                                                  .doc(
+                                                                      'accommodation/${apartments[index].id}');
+
+                                                          if (apartments[index]
+                                                                  .isFavorite ==
+                                                              false) {
+                                                            await Wishlist
+                                                                .addToWishlist(
+                                                              apartments[index]
+                                                                  .id,
+                                                              apartments[index]
+                                                                  .name,
+                                                              FirebaseAuth
+                                                                  .instance
+                                                                  .currentUser!
+                                                                  .uid,
+                                                              'accommodation-rentals',
+                                                              apartments[index]
+                                                                  .price,
+                                                              apartments[index]
+                                                                  .images
+                                                                  .first,
+                                                              '',
+                                                              '',
+                                                              '',
+                                                              apartments[index]
+                                                                  .rating,
+                                                              '',
+                                                              apartments[index]
+                                                                  .facilities
+                                                                  .first,
+                                                            );
+
+                                                            docRef.update({
+                                                              'isFavorite': true
+                                                            });
+                                                          } else {
+                                                            await Wishlist
+                                                                .removeFromWishlist(
+                                                                    apartments[
+                                                                            index]
+                                                                        .id);
+                                                            docRef.update({
+                                                              'isFavorite':
+                                                                  false
+                                                            });
+                                                          }
+                                                        },
+                                                        child: apartments[index]
+                                                                    .isFavorite ==
+                                                                true
+                                                            ? const Icon(
+                                                                size: 25,
+                                                                Icons.favorite,
+                                                                color:
+                                                                    Colors.red,
+                                                              )
+                                                            : const Icon(
+                                                                size: 25,
+                                                                Icons
+                                                                    .favorite_outline,
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
                                                       ),
                                                     ),
+                                                  
                                                   ),
                                                 ),
                                                 Expanded(

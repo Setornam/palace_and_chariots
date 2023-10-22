@@ -23,6 +23,7 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
         future: FirebaseFirestore.instance
             .collection('orders')
             .where('user_id', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+            .where('order_status', isEqualTo: 'Active')
             .get(),
         builder: (BuildContext context, snapshot) {
           if (snapshot.hasData) {
@@ -64,11 +65,11 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                                   child: Padding(
                                                     padding:
                                                         EdgeInsets.all(5.0),
-                                                    child: Icon(
-                                                      size: 18,
-                                                      Icons.favorite_outline,
-                                                      color: Colors.white,
-                                                    ),
+                                                    // child: Icon(
+                                                    //   size: 18,
+                                                    //   Icons.favorite_outline,
+                                                    //   color: Colors.white,
+                                                    // ),
                                                   ),
                                                 ),
                                               ),
@@ -229,12 +230,12 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                                           padding:
                                                               EdgeInsets.all(
                                                                   5.0),
-                                                          child: Icon(
-                                                            size: 18,
-                                                            Icons
-                                                                .favorite_outline,
-                                                            color: Colors.white,
-                                                          ),
+                                                          // child: Icon(
+                                                          //   size: 18,
+                                                          //   Icons
+                                                          //       .favorite_outline,
+                                                          //   color: Colors.white,
+                                                          // ),
                                                         ),
                                                       ),
                                                     ),
@@ -466,12 +467,12 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                                           padding:
                                                               EdgeInsets.all(
                                                                   5.0),
-                                                          child: Icon(
-                                                            size: 18,
-                                                            Icons
-                                                                .favorite_outline,
-                                                            color: Colors.white,
-                                                          ),
+                                                          // child: Icon(
+                                                          //   size: 18,
+                                                          //   Icons
+                                                          //       .favorite_outline,
+                                                          //   color: Colors.white,
+                                                          // ),
                                                         ),
                                                       ),
                                                     ),
@@ -682,12 +683,12 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                                           padding:
                                                               EdgeInsets.all(
                                                                   5.0),
-                                                          child: Icon(
-                                                            size: 18,
-                                                            Icons
-                                                                .favorite_outline,
-                                                            color: Colors.white,
-                                                          ),
+                                                          // child: Icon(
+                                                          //   size: 18,
+                                                          //   Icons
+                                                          //       .favorite_outline,
+                                                          //   color: Colors.white,
+                                                          // ),
                                                         ),
                                                       ),
                                                     ),
@@ -1061,12 +1062,12 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                                       child: Padding(
                                                         padding:
                                                             EdgeInsets.all(5.0),
-                                                        child: Icon(
-                                                          size: 18,
-                                                          Icons
-                                                              .favorite_outline,
-                                                          color: Colors.white,
-                                                        ),
+                                                        // child: Icon(
+                                                        //   size: 18,
+                                                        //   Icons
+                                                        //       .favorite_outline,
+                                                        //   color: Colors.white,
+                                                        // ),
                                                       ),
                                                     ),
                                                   ),
@@ -1208,12 +1209,12 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                                       child: Padding(
                                                         padding:
                                                             EdgeInsets.all(5.0),
-                                                        child: Icon(
-                                                          size: 18,
-                                                          Icons
-                                                              .favorite_outline,
-                                                          color: Colors.white,
-                                                        ),
+                                                        // child: Icon(
+                                                        //   size: 18,
+                                                        //   Icons
+                                                        //       .favorite_outline,
+                                                        //   color: Colors.white,
+                                                        // ),
                                                       ),
                                                     ),
                                                   ),
@@ -1384,12 +1385,12 @@ class _ActiveBookingsTabBarViewState extends State<ActiveBookingsTabBarView> {
                                                       child: Padding(
                                                         padding:
                                                             EdgeInsets.all(5.0),
-                                                        child: Icon(
-                                                          size: 18,
-                                                          Icons
-                                                              .favorite_outline,
-                                                          color: Colors.white,
-                                                        ),
+                                                        // child: Icon(
+                                                        //   size: 18,
+                                                        //   Icons
+                                                        //       .favorite_outline,
+                                                        //   color: Colors.white,
+                                                        // ),
                                                       ),
                                                     ),
                                                   ),

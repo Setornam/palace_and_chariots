@@ -26,8 +26,8 @@ class TourismBloc {
   }
 
   //retrieve a Tourism
-  Future<Tourism> retrieve(String documentID) async {
+  Stream<Tourism> retrieve(String documentID) async* {
     final result = await retrieveTourism(StringParams(documentID));
-    return result.fold((failure) => Tourism.initial(), (success) => success);
+    yield result.fold((failure) => Tourism.initial(), (success) => success);
   }
 }

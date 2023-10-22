@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/theme/color_scheme.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/accommodation_details_.dart';
 
+import '../../../wishlist/wishlist.dart';
 import '../../accommodation/domain/entities/accommodation.dart';
 
 class SearchResultPage extends StatefulWidget {
@@ -310,16 +313,62 @@ class _SearchResultPageState extends State<SearchResultPage> {
                                     fit: BoxFit.cover,
                                     image:
                                         AssetImage('assets/images/hotel.png'))),
-                            child: const Align(
+                            child: Align(
                               alignment: Alignment.topLeft,
-                              child: Padding(
+                              child: 
+                              
+                              Padding(
                                 padding: EdgeInsets.all(5.0),
-                                child: Icon(
-                                  size: 18,
-                                  Icons.favorite_outline,
-                                  color: Colors.white,
+                                child: GestureDetector(
+                                  onTap: () async {
+                                    ///add to wishlist
+                                    ///
+                                    ///
+                                    DocumentReference docRef =
+                                        FirebaseFirestore.instance.doc(
+                                            'accommodation/${searchResult[index].id}');
+
+                                    if (searchResult[index].isFavorite ==
+                                        false) {
+                                      await Wishlist.addToWishlist(
+                                        searchResult[index].id,
+                                        searchResult[index].name,
+                                        FirebaseAuth.instance.currentUser!.uid,
+                                        'accommodation-rentals',
+                                        searchResult[index].price,
+                                        searchResult[index].images.first,
+                                        '',
+                                        '',
+                                        '',
+                                        searchResult[index].rating,
+                                        '',
+                                        searchResult[index].facilities.first,
+                                      );
+
+                                      docRef.update({'isFavorite': true});
+                                      setState(() {});
+                                    } else {
+                                      await Wishlist.removeFromWishlist(
+                                          searchResult[index].id);
+                                      docRef.update({'isFavorite': false});
+                                      setState(() {});
+                                    }
+                                  },
+                                  child: searchResult[index].isFavorite == true
+                                      ? const Icon(
+                                          size: 25,
+                                          Icons.favorite,
+                                          color: Colors.red,
+                                        )
+                                      : const Icon(
+                                          size: 25,
+                                          Icons.favorite_outline,
+                                          color: Colors.white,
+                                        ),
                                 ),
                               ),
+                           
+                           
                             ),
                           ),
                           Expanded(

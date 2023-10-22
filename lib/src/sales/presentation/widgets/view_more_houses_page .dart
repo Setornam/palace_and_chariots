@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/src/sales/presentation/widgets/house_details_page.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
+import '../../../wishlist/wishlist.dart';
 import '../../accommodation/domain/entities/house.dart';
 
 class ViewMoreHouses extends StatefulWidget {
@@ -590,14 +593,59 @@ class _ViewMoreHousesState extends State<ViewMoreHouses> {
                                   image: NetworkImage(
                                     sortedhouses[index].images.first,
                                   ))),
-                          child: const Align(
+                          child: Align(
                             alignment: Alignment.topLeft,
                             child: Padding(
-                              padding: EdgeInsets.all(5.0),
-                              child: Icon(
-                                size: 18,
-                                Icons.favorite_outline,
-                                color: Colors.white,
+                              padding: EdgeInsets.only(right: 20),
+                              child: GestureDetector(
+                                onTap: () async {
+                                  ///add to wishlist
+                                  ///
+                                  ///
+                                  DocumentReference docRef = FirebaseFirestore
+                                      .instance
+                                      .doc('houses/${sortedhouses[index].id}');
+
+                                  if (sortedhouses[index].isFavorite == false) {
+                                    await Wishlist.addToWishlist(
+                                        sortedhouses[index].id,
+                                        sortedhouses[index].name,
+                                        FirebaseAuth.instance.currentUser!.uid,
+                                        'house-sales',
+                                        sortedhouses[index].price,
+                                        sortedhouses[index].images.first,
+                                        '',
+                                        '',
+                                        '',
+                                        sortedhouses[index].rating,
+                                        '',
+                                        '',
+                                        '',
+                                        sortedhouses[index].condition,
+                                        sortedhouses[index].location,
+                                        sortedhouses[index]
+                                            .amenities['bathrooms'],
+                                        sortedhouses[index]
+                                            .amenities['bedrooms']);
+
+                                    docRef.update({'isFavorite': true});
+                                  } else {
+                                    await Wishlist.removeFromWishlist(
+                                        sortedhouses[index].id);
+                                    docRef.update({'isFavorite': false});
+                                  }
+                                },
+                                child: sortedhouses[index].isFavorite == true
+                                    ? const Icon(
+                                        size: 25,
+                                        Icons.favorite,
+                                        color: Colors.red,
+                                      )
+                                    : const Icon(
+                                        size: 25,
+                                        Icons.favorite_outline,
+                                        color: Colors.white,
+                                      ),
                               ),
                             ),
                           ),

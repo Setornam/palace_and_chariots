@@ -27,9 +27,9 @@ class EventServiceBloc {
   }
 
   //retrieve a EventService
-  Future<EventService> retrieve(String documentID) async {
+  Stream<EventService> retrieve(String documentID) async* {
     final result = await retrieveEventService(StringParams(documentID));
-    return result.fold(
+    yield result.fold(
         (failure) => EventService.initial(), (success) => success);
   }
 }

@@ -381,6 +381,9 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                   mercedesList[
                                                                           index]
                                                                       .category,
+                                                              id: mercedesList[
+                                                                      index]
+                                                                  .id,
                                                             )));
                                               },
                                               child: Row(
@@ -622,14 +625,18 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                       Navigator.push(
                                                                           context,
                                                                           MaterialPageRoute(
-                                                                              builder: (BuildContext context) => CheckoutPage(
-                                                                                    name: mercedesList[index].name,
+                                                                              builder: (BuildContext context) => VehicleDetailsPage(
                                                                                     color: mercedesList[index].color,
-                                                                                    rating: mercedesList[index].rating,
-                                                                                    seats: mercedesList[index].seats,
-                                                                                    transmission: mercedesList[index].transmission!,
-                                                                                    image: mercedesList[index].images.first,
+                                                                                    name: mercedesList[index].name,
+                                                                                    luggage: mercedesList[index].luggage,
+                                                                                    numberOfSeats: mercedesList[index].seats,
                                                                                     price: mercedesList[index].price,
+                                                                                    rating: mercedesList[index].rating,
+                                                                                    images: mercedesList[index].images,
+                                                                                    otherFeatures: mercedesList[index].otherFeatures!,
+                                                                                    transmission: mercedesList[index].transmission,
+                                                                                    category: mercedesList[index].category,
+                                                                                    id: mercedesList[index].id,
                                                                                   )));
                                                                     },
                                                                     style: ElevatedButton
@@ -716,6 +723,9 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                   category: BMWList[
                                                                           index]
                                                                       .category,
+                                                                  id: BMWList[
+                                                                          index]
+                                                                      .id,
                                                                 )));
                                                   },
                                                   child: Container(
@@ -936,14 +946,18 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                             Navigator.push(
                                                                                 context,
                                                                                 MaterialPageRoute(
-                                                                                    builder: (BuildContext context) => CheckoutPage(
-                                                                                          name: BMWList[index].name,
+                                                                                    builder: (BuildContext context) => VehicleDetailsPage(
                                                                                           color: BMWList[index].color,
-                                                                                          rating: BMWList[index].rating,
-                                                                                          seats: BMWList[index].seats,
-                                                                                          transmission: BMWList[index].transmission!,
-                                                                                          image: BMWList[index].images.first,
+                                                                                          name: BMWList[index].name,
+                                                                                          luggage: BMWList[index].luggage,
+                                                                                          numberOfSeats: BMWList[index].seats,
                                                                                           price: BMWList[index].price,
+                                                                                          rating: BMWList[index].rating,
+                                                                                          transmission: BMWList[index].transmission,
+                                                                                          images: BMWList[index].images,
+                                                                                          otherFeatures: BMWList[index].otherFeatures!,
+                                                                                          category: BMWList[index].category,
+                                                                                          id: BMWList[index].id,
                                                                                         )));
                                                                           },
                                                                           style:
@@ -1032,6 +1046,9 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                       category:
                                                                           lexusList[index]
                                                                               .category,
+                                                                      id: lexusList[
+                                                                              index]
+                                                                          .id,
                                                                     )));
                                                       },
                                                       child: Container(
@@ -1234,14 +1251,18 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                 Navigator.push(
                                                                                     context,
                                                                                     MaterialPageRoute(
-                                                                                        builder: (BuildContext context) => CheckoutPage(
-                                                                                              name: lexusList[index].name,
+                                                                                        builder: (BuildContext context) => VehicleDetailsPage(
                                                                                               color: lexusList[index].color,
-                                                                                              rating: lexusList[index].rating,
-                                                                                              seats: lexusList[index].seats,
-                                                                                              transmission: lexusList[index].transmission!,
-                                                                                              image: lexusList[index].images.first,
+                                                                                              name: lexusList[index].name,
+                                                                                              luggage: lexusList[index].luggage,
+                                                                                              numberOfSeats: lexusList[index].seats,
                                                                                               price: lexusList[index].price,
+                                                                                              rating: lexusList[index].rating,
+                                                                                              images: lexusList[index].images,
+                                                                                              otherFeatures: lexusList[index].otherFeatures!,
+                                                                                              transmission: lexusList[index].transmission,
+                                                                                              category: lexusList[index].category,
+                                                                                              id: lexusList[index].id,
                                                                                             )));
                                                                               },
                                                                               style: ElevatedButton.styleFrom(
@@ -1315,6 +1336,8 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                               kiaList[index].transmission,
                                                                           category:
                                                                               kiaList[index].category,
+                                                                          id: kiaList[index]
+                                                                              .id,
                                                                         )));
                                                           },
                                                           child: Container(
@@ -1480,14 +1503,18 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                     Navigator.push(
                                                                                         context,
                                                                                         MaterialPageRoute(
-                                                                                            builder: (BuildContext context) => CheckoutPage(
-                                                                                                  name: kiaList[index].name,
+                                                                                            builder: (BuildContext context) => VehicleDetailsPage(
                                                                                                   color: kiaList[index].color,
-                                                                                                  rating: kiaList[index].rating,
-                                                                                                  seats: kiaList[index].seats,
-                                                                                                  transmission: kiaList[index].transmission!,
-                                                                                                  image: kiaList[index].images.first,
+                                                                                                  name: kiaList[index].name,
+                                                                                                  luggage: kiaList[index].luggage,
+                                                                                                  numberOfSeats: kiaList[index].seats,
                                                                                                   price: kiaList[index].price,
+                                                                                                  rating: kiaList[index].rating,
+                                                                                                  images: kiaList[index].images,
+                                                                                                  otherFeatures: kiaList[index].otherFeatures!,
+                                                                                                  transmission: kiaList[index].transmission,
+                                                                                                  category: kiaList[index].category,
+                                                                                                  id: kiaList[index].id,
                                                                                                 )));
                                                                                   },
                                                                                   style: ElevatedButton.styleFrom(
@@ -1554,6 +1581,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                               otherFeatures: hondaList[index].otherFeatures!,
                                                                               transmission: hondaList[index].transmission,
                                                                               category: hondaList[index].category,
+                                                                              id: hondaList[index].id,
                                                                             )));
                                                               },
                                                               child: Container(
@@ -1704,14 +1732,18 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                         Navigator.push(
                                                                                             context,
                                                                                             MaterialPageRoute(
-                                                                                                builder: (BuildContext context) => CheckoutPage(
-                                                                                                      name: hondaList[index].name,
+                                                                                                builder: (BuildContext context) => VehicleDetailsPage(
                                                                                                       color: hondaList[index].color,
-                                                                                                      rating: hondaList[index].rating,
-                                                                                                      seats: hondaList[index].seats,
-                                                                                                      transmission: hondaList[index].transmission!,
-                                                                                                      image: hondaList[index].images.first,
+                                                                                                      name: hondaList[index].name,
+                                                                                                      luggage: hondaList[index].luggage,
+                                                                                                      numberOfSeats: hondaList[index].seats,
                                                                                                       price: hondaList[index].price,
+                                                                                                      rating: hondaList[index].rating,
+                                                                                                      images: hondaList[index].images,
+                                                                                                      otherFeatures: hondaList[index].otherFeatures!,
+                                                                                                      transmission: hondaList[index].transmission,
+                                                                                                      category: hondaList[index].category,
+                                                                                                      id: hondaList[index].id,
                                                                                                     )));
                                                                                       },
                                                                                       style: ElevatedButton.styleFrom(
@@ -1777,6 +1809,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                               otherFeatures: [],
                                                                               transmission: saloonList[index].transmission,
                                                                               category: saloonList[index].category,
+                                                                              id: saloonList[index].id,
                                                                             )));
                                                               },
                                                               child: Container(
@@ -1927,14 +1960,18 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                         Navigator.push(
                                                                                             context,
                                                                                             MaterialPageRoute(
-                                                                                                builder: (BuildContext context) => CheckoutPage(
-                                                                                                      name: saloonList[index].name,
+                                                                                                builder: (BuildContext context) => VehicleDetailsPage(
                                                                                                       color: saloonList[index].color,
-                                                                                                      rating: saloonList[index].rating,
-                                                                                                      seats: saloonList[index].seats,
-                                                                                                      transmission: saloonList[index].transmission!,
-                                                                                                      image: saloonList[index].images.first,
+                                                                                                      name: saloonList[index].name,
+                                                                                                      luggage: saloonList[index].luggage,
+                                                                                                      numberOfSeats: saloonList[index].seats,
                                                                                                       price: saloonList[index].price,
+                                                                                                      rating: saloonList[index].rating,
+                                                                                                      images: saloonList[index].images,
+                                                                                                      otherFeatures: [],
+                                                                                                      transmission: saloonList[index].transmission,
+                                                                                                      category: saloonList[index].category,
+                                                                                                      id: saloonList[index].id,
                                                                                                     )));
                                                                                       },
                                                                                       style: ElevatedButton.styleFrom(
@@ -2051,6 +2088,9 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                   category: lexusBusList[
                                                                           index]
                                                                       .category,
+                                                                  id: lexusBusList[
+                                                                          index]
+                                                                      .id,
                                                                 )));
                                                   },
                                                   child: Container(
@@ -2279,14 +2319,18 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                             Navigator.push(
                                                                                 context,
                                                                                 MaterialPageRoute(
-                                                                                    builder: (BuildContext context) => CheckoutPage(
-                                                                                          name: lexusBusList[index].name,
+                                                                                    builder: (BuildContext context) => VehicleDetailsPage(
                                                                                           color: lexusBusList[index].color,
-                                                                                          rating: lexusBusList[index].rating,
-                                                                                          seats: lexusBusList[index].seats,
-                                                                                          transmission: lexusBusList[index].transmission!,
-                                                                                          image: lexusBusList[index].images.first,
+                                                                                          name: lexusBusList[index].name,
+                                                                                          luggage: lexusBusList[index].luggage,
+                                                                                          numberOfSeats: lexusBusList[index].seats,
                                                                                           price: lexusBusList[index].price,
+                                                                                          rating: lexusBusList[index].rating,
+                                                                                          images: [],
+                                                                                          otherFeatures: [],
+                                                                                          transmission: lexusBusList[index].transmission,
+                                                                                          category: lexusBusList[index].category,
+                                                                                          id: lexusBusList[index].id,
                                                                                         )));
                                                                           },
                                                                           style:
@@ -2369,6 +2413,9 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                       category:
                                                                           BMWBusList[index]
                                                                               .category,
+                                                                      id: BMWBusList[
+                                                                              index]
+                                                                          .id,
                                                                     )));
                                                       },
                                                       child: Container(
@@ -2571,14 +2618,18 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                 Navigator.push(
                                                                                     context,
                                                                                     MaterialPageRoute(
-                                                                                        builder: (BuildContext context) => CheckoutPage(
-                                                                                              name: BMWBusList[index].name,
+                                                                                        builder: (BuildContext context) => VehicleDetailsPage(
                                                                                               color: BMWBusList[index].color,
-                                                                                              rating: BMWBusList[index].rating,
-                                                                                              seats: BMWBusList[index].seats,
-                                                                                              transmission: BMWBusList[index].transmission!,
-                                                                                              image: BMWBusList[index].images.first,
+                                                                                              name: BMWBusList[index].name,
+                                                                                              luggage: BMWBusList[index].luggage,
+                                                                                              numberOfSeats: BMWBusList[index].seats,
                                                                                               price: BMWBusList[index].price,
+                                                                                              rating: BMWBusList[index].rating,
+                                                                                              images: [],
+                                                                                              otherFeatures: [],
+                                                                                              transmission: BMWBusList[index].transmission,
+                                                                                              category: BMWBusList[index].category,
+                                                                                              id: BMWBusList[index].id,
                                                                                             )));
                                                                               },
                                                                               style: ElevatedButton.styleFrom(
@@ -2651,6 +2702,8 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                               lexusBusList[index].transmission,
                                                                           category:
                                                                               lexusBusList[index].category,
+                                                                          id: lexusBusList[index]
+                                                                              .id,
                                                                         )));
                                                           },
                                                           child: Container(
@@ -2816,14 +2869,18 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                     Navigator.push(
                                                                                         context,
                                                                                         MaterialPageRoute(
-                                                                                            builder: (BuildContext context) => CheckoutPage(
-                                                                                                  name: lexusBusList[index].name,
+                                                                                            builder: (BuildContext context) => VehicleDetailsPage(
                                                                                                   color: lexusBusList[index].color,
+                                                                                                  name: lexusBusList[index].name,
+                                                                                                  luggage: lexusBusList[index].luggage,
+                                                                                                  numberOfSeats: lexusBusList[index].seats,
+                                                                                                  price: lexusBusList[index].price,
                                                                                                   rating: lexusBusList[index].rating,
-                                                                                                  seats: lexusBusList[index].seats,
-                                                                                                  transmission: lexusBusList[index].transmission!,
-                                                                                                  image: lexusBusList[index].images.first,
-                                                                                                  price: lexusList[index].price,
+                                                                                                  images: [],
+                                                                                                  otherFeatures: [],
+                                                                                                  transmission: lexusBusList[index].transmission,
+                                                                                                  category: lexusBusList[index].category,
+                                                                                                  id: lexusBusList[index].id,
                                                                                                 )));
                                                                                   },
                                                                                   style: ElevatedButton.styleFrom(
@@ -2892,6 +2949,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                               otherFeatures: [],
                                                                               transmission: kiaBusList[index].transmission,
                                                                               category: kiaBusList[index].category,
+                                                                              id: kiaBusList[index].id,
                                                                             )));
                                                               },
                                                               child: Container(
@@ -3042,14 +3100,18 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                         Navigator.push(
                                                                                             context,
                                                                                             MaterialPageRoute(
-                                                                                                builder: (BuildContext context) => CheckoutPage(
-                                                                                                      name: kiaBusList[index].name,
+                                                                                                builder: (BuildContext context) => VehicleDetailsPage(
                                                                                                       color: kiaBusList[index].color,
-                                                                                                      rating: kiaBusList[index].rating,
-                                                                                                      seats: kiaBusList[index].seats,
-                                                                                                      transmission: kiaBusList[index].transmission!,
-                                                                                                      image: kiaBusList[index].images.first,
+                                                                                                      name: kiaBusList[index].name,
+                                                                                                      luggage: kiaBusList[index].luggage,
+                                                                                                      numberOfSeats: kiaBusList[index].seats,
                                                                                                       price: kiaBusList[index].price,
+                                                                                                      rating: kiaBusList[index].rating,
+                                                                                                      images: [],
+                                                                                                      otherFeatures: [],
+                                                                                                      transmission: kiaBusList[index].transmission,
+                                                                                                      category: kiaBusList[index].category,
+                                                                                                      id: kiaBusList[index].id,
                                                                                                     )));
                                                                                       },
                                                                                       style: ElevatedButton.styleFrom(
@@ -3114,6 +3176,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                   otherFeatures: [],
                                                                                   transmission: hondaBusList[index].transmission,
                                                                                   category: hondaBusList[index].category,
+                                                                                  id: hondaBusList[index].id,
                                                                                 )));
                                                                   },
                                                                   child:
@@ -3253,14 +3316,18 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                             Navigator.push(
                                                                                                 context,
                                                                                                 MaterialPageRoute(
-                                                                                                    builder: (BuildContext context) => CheckoutPage(
-                                                                                                          name: hondaBusList[index].name,
+                                                                                                    builder: (BuildContext context) => VehicleDetailsPage(
                                                                                                           color: hondaBusList[index].color,
+                                                                                                          name: hondaBusList[index].name,
+                                                                                                          luggage: hondaBusList[index].luggage,
+                                                                                                          numberOfSeats: hondaBusList[index].seats,
+                                                                                                          price: hondaBusList[index].price,
                                                                                                           rating: hondaBusList[index].rating,
-                                                                                                          seats: hondaBusList[index].seats,
-                                                                                                          transmission: hondaBusList[index].transmission!,
-                                                                                                          image: hondaBusList[index].images.first,
-                                                                                                          price: hondaList[index].price,
+                                                                                                          images: [],
+                                                                                                          otherFeatures: [],
+                                                                                                          transmission: hondaBusList[index].transmission,
+                                                                                                          category: hondaBusList[index].category,
+                                                                                                          id: hondaBusList[index].id,
                                                                                                         )));
                                                                                           },
                                                                                           style: ElevatedButton.styleFrom(
@@ -3323,6 +3390,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                   otherFeatures: [],
                                                                                   transmission: busList[index].transmission,
                                                                                   category: busList[index].category,
+                                                                                  id: busList[index].id,
                                                                                 )));
                                                                   },
                                                                   child:
@@ -3462,14 +3530,18 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                                             Navigator.push(
                                                                                                 context,
                                                                                                 MaterialPageRoute(
-                                                                                                    builder: (BuildContext context) => CheckoutPage(
-                                                                                                          name: busList[index].name,
+                                                                                                    builder: (BuildContext context) => VehicleDetailsPage(
                                                                                                           color: busList[index].color,
-                                                                                                          rating: busList[index].rating,
-                                                                                                          seats: busList[index].seats,
-                                                                                                          transmission: busList[index].transmission!,
-                                                                                                          image: busList[index].images.first,
+                                                                                                          name: busList[index].name,
+                                                                                                          luggage: busList[index].luggage,
+                                                                                                          numberOfSeats: busList[index].seats,
                                                                                                           price: busList[index].price,
+                                                                                                          rating: busList[index].rating,
+                                                                                                          images: [],
+                                                                                                          otherFeatures: [],
+                                                                                                          transmission: busList[index].transmission,
+                                                                                                          category: busList[index].category,
+                                                                                                          id: busList[index].id,
                                                                                                         )));
                                                                                           },
                                                                                           style: ElevatedButton.styleFrom(
@@ -3553,49 +3625,39 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                   Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
-                                                          builder: (BuildContext
-                                                                  context) =>
-                                                              VehicleDetailsPage(
-                                                                color: jetList[
-                                                                        index]
-                                                                    .color,
-                                                                name: jetList[
-                                                                        index]
-                                                                    .name,
-                                                                luggage: jetList[
-                                                                        index]
-                                                                    .luggage,
-                                                                numberOfSeats:
-                                                                    jetList[index]
-                                                                        .seats,
-                                                                price: jetList[
-                                                                        index]
-                                                                    .price,
-                                                                rating: jetList[
-                                                                        index]
-                                                                    .rating,
-                                                                images: jetList[
-                                                                        index]
-                                                                    .images,
-                                                                otherFeatures: [],
-                                                                transmission:
-                                                                    '',
-                                                                category: jetList[
-                                                                        index]
-                                                                    .category,
-                                                                height: jetList[
-                                                                        index]
-                                                                    .height,
-                                                                length: jetList[
-                                                                        index]
-                                                                    .length,
-                                                                speed: jetList[
-                                                                        index]
-                                                                    .speed,
-                                                                range: jetList[
-                                                                        index]
-                                                                    .range,
-                                                              )));
+                                                          builder: (BuildContext context) => VehicleDetailsPage(
+                                                              color: jetList[index]
+                                                                  .color,
+                                                              name: jetList[index]
+                                                                  .name,
+                                                              luggage:
+                                                                  jetList[index]
+                                                                      .luggage,
+                                                              numberOfSeats:
+                                                                  jetList[index]
+                                                                      .seats,
+                                                              price: jetList[index]
+                                                                  .price,
+                                                              rating:
+                                                                  jetList[index]
+                                                                      .rating,
+                                                              images:
+                                                                  jetList[index]
+                                                                      .images,
+                                                              otherFeatures: [],
+                                                              transmission: '',
+                                                              category:
+                                                                  jetList[index]
+                                                                      .category,
+                                                              height:
+                                                                  jetList[index]
+                                                                      .height,
+                                                              length:
+                                                                  jetList[index]
+                                                                      .length,
+                                                              speed: jetList[index].speed,
+                                                              range: jetList[index].range,
+                                                              id: jetList[index].id)));
                                                 },
                                                 child: Container(
                                                   child: Row(
@@ -3821,16 +3883,7 @@ class _VehiclesTabBarViewState extends State<VehiclesTabBarView> {
                                                                             () {
                                                                           Navigator.push(
                                                                               context,
-                                                                              MaterialPageRoute(
-                                                                                  builder: (BuildContext context) => JetCheckOutPage(
-                                                                                        name: jetList[index].name,
-                                                                                        color: jetList[index].color,
-                                                                                        rating: jetList[index].rating,
-                                                                                        seats: jetList[index].seats,
-                                                                                        transmission: '',
-                                                                                        image: jetList[index].images.first,
-                                                                                        price: jetList[index].price,
-                                                                                      )));
+                                                                              MaterialPageRoute(builder: (BuildContext context) => VehicleDetailsPage(color: jetList[index].color, name: jetList[index].name, luggage: jetList[index].luggage, numberOfSeats: jetList[index].seats, price: jetList[index].price, rating: jetList[index].rating, images: jetList[index].images, otherFeatures: [], transmission: '', category: jetList[index].category, height: jetList[index].height, length: jetList[index].length, speed: jetList[index].speed, range: jetList[index].range, id: jetList[index].id)));
                                                                         },
                                                                         style: ElevatedButton
                                                                             .styleFrom(

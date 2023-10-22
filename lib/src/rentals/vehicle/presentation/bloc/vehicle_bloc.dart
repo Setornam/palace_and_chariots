@@ -26,8 +26,8 @@ class VehicleBloc {
   }
 
   //retrieve a vehicle
-  Future<Vehicle> retrieve(String documentID) async {
+  Stream<Vehicle> retrieve(String documentID) async* {
     final result = await retrieveVehicle(StringParams(documentID));
-    return result.fold((failure) => Vehicle.initial(), (success) => success);
+    yield result.fold((failure) => Vehicle.initial(), (success) => success);
   }
 }

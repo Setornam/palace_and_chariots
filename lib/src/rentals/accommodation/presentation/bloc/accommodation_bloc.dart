@@ -27,9 +27,9 @@ class AccommodationBloc {
   }
 
   //retrieve a Accommodation
-  Future<Accommodation> retrieve(String documentID) async {
+  Stream<Accommodation> retrieve(String documentID) async* {
     final result = await retrieveAccommodation(StringParams(documentID));
-    return result.fold(
+    yield result.fold(
         (failure) => Accommodation.initial(), (success) => success);
   }
 }

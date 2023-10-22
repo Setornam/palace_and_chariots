@@ -24,6 +24,7 @@ class Wishlist {
     String? houseLocation,
     String? numberOfBathrooms,
     String? numberOfBedrooms,
+    bool? isFavorite,
   ]) {
     return wishlist
         .doc(itemID)
@@ -45,19 +46,17 @@ class Wishlist {
           'house_location': houseLocation,
           'number_of_bathrooms': numberOfBathrooms,
           'number_of_bedrooms': numberOfBedrooms,
+          'is_favorite': true
         })
         .then((value) => print('Wishlist success'))
         .catchError((error) => print("Failed to Wishlist: $error"));
   }
 
-   static Future<void> removeFromWishlist(String wishlistItemID) {
-    return wishlist.doc(wishlistItemID).delete()
+  static Future<void> removeFromWishlist(String wishlistItemID) {
+    return wishlist
+        .doc(wishlistItemID)
+        .delete()
         .then((value) => print('Removed from Wishlist'))
         .catchError((error) => print("Failed to remove from Wishlist: $error"));
   }
-
-
-
-
-
 }

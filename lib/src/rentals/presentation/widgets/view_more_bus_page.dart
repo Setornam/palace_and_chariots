@@ -376,6 +376,7 @@ class _ViewMoreBusesPageState extends State<ViewMoreBusesPage> {
                                   otherFeatures: [],
                                   transmission: '',
                                   category: sortedBuses[index].category,
+                                  id: sortedBuses[index].id,
                                 )));
                   },
                   child: Column(
@@ -392,7 +393,9 @@ class _ViewMoreBusesPageState extends State<ViewMoreBusesPage> {
                                     'assets/images/benz-front.png'))),
                         child: Align(
                           alignment: Alignment.topLeft,
-                          child: Padding(
+                          child: 
+                          
+                          Padding(
                             padding: EdgeInsets.all(5.0),
                             child: GestureDetector(
                               onTap: () async {
@@ -437,6 +440,8 @@ class _ViewMoreBusesPageState extends State<ViewMoreBusesPage> {
                                     ),
                             ),
                           ),
+                       
+                       
                         ),
                       ),
                       Expanded(

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:palace_and_chariots/shared/data/image_assets.dart';
 import 'package:palace_and_chariots/src/rentals/presentation/widgets/destination_search_page.dart';
@@ -7,6 +9,7 @@ import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../injection_container.dart';
 import '../../../../shared/theme/color_scheme.dart';
+import '../../../wishlist/wishlist.dart';
 import '../../accommodation/domain/entities/house.dart';
 import '../../accommodation/presentation/bloc/house_bloc.dart';
 import '../../cars/presentation/bloc/car_bloc.dart';
@@ -85,9 +88,7 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                               accommodation: houses[index],
                                             )));
                               },
-                              child: 
-                              
-                              Row(
+                              child: Row(
                                 children: [
                                   Container(
                                     height: 115,
@@ -100,14 +101,64 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                             fit: BoxFit.cover,
                                             image: NetworkImage(
                                                 houses[index].images.first))),
-                                    child: const Align(
+                                    child: Align(
                                       alignment: Alignment.topLeft,
                                       child: Padding(
-                                        padding: EdgeInsets.all(5.0),
-                                        child: Icon(
-                                          size: 18,
-                                          Icons.favorite_outline,
-                                          color: Colors.white,
+                                        padding: EdgeInsets.only(right: 20),
+                                        child: GestureDetector(
+                                          onTap: () async {
+                                            ///add to wishlist
+                                            ///
+                                            ///
+                                            DocumentReference docRef =
+                                                FirebaseFirestore.instance.doc(
+                                                    'houses/${houses[index].id}');
+
+                                            if (houses[index].isFavorite ==
+                                                false) {
+                                              await Wishlist.addToWishlist(
+                                                  houses[index].id,
+                                                  houses[index].name,
+                                                  FirebaseAuth.instance
+                                                      .currentUser!.uid,
+                                                  'house-sales',
+                                                  houses[index].price,
+                                                  houses[index].images.first,
+                                                  '',
+                                                  '',
+                                                  '',
+                                                  houses[index].rating,
+                                                  '',
+                                                  '',
+                                                  '',
+                                                  houses[index].condition,
+                                                  houses[index].location,
+                                                  houses[index]
+                                                      .amenities['bathrooms'],
+                                                  houses[index]
+                                                      .amenities['bedrooms']);
+
+                                              docRef
+                                                  .update({'isFavorite': true});
+                                            } else {
+                                              await Wishlist.removeFromWishlist(
+                                                  houses[index].id);
+                                              docRef.update(
+                                                  {'isFavorite': false});
+                                            }
+                                          },
+                                          child:
+                                              houses[index].isFavorite == true
+                                                  ? const Icon(
+                                                      size: 25,
+                                                      Icons.favorite,
+                                                      color: Colors.red,
+                                                    )
+                                                  : const Icon(
+                                                      size: 25,
+                                                      Icons.favorite_outline,
+                                                      color: Colors.white,
+                                                    ),
                                         ),
                                       ),
                                     ),
@@ -188,8 +239,6 @@ class _AccommodationTabBarViewState extends State<AccommodationTabBarView> {
                                   )
                                 ],
                               ),
-                          
-                          
                             ),
                           );
                         }),

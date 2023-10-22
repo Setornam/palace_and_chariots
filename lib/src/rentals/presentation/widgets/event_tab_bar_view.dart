@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:palace_and_chariots/src/rentals/event_services/domain/entities/event_service.dart';
@@ -9,6 +11,7 @@ import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../injection_container.dart';
 import '../../../../shared/theme/color_scheme.dart';
+import '../../../wishlist/wishlist.dart';
 import '../../event_services/presentation/bloc/event_service_bloc.dart';
 
 class EventTabBarView extends StatefulWidget {
@@ -751,16 +754,68 @@ class _EventTabBarViewState extends State<EventTabBarView> {
                                                 fit: BoxFit.cover,
                                                 image: AssetImage(
                                                     'assets/images/event_space.png'))),
-                                        child: const Align(
+                                        child: Align(
                                           alignment: Alignment.topLeft,
-                                          child: Padding(
+                                          child: 
+                                          
+                                          Padding(
                                             padding: EdgeInsets.all(5.0),
-                                            child: Icon(
-                                              size: 18,
-                                              Icons.favorite_outline,
-                                              color: Colors.white,
+                                            child: GestureDetector(
+                                              onTap: () async {
+                                                ///add to wishlist
+                                                ///
+                                                ///
+                                                DocumentReference docRef =
+                                                    FirebaseFirestore.instance.doc(
+                                                        'event-services/${eventsList[index].id}');
+
+                                                if (eventsList[index]
+                                                        .isFavorite ==
+                                                    false) {
+                                                  await Wishlist.addToWishlist(
+                                                      eventsList[index].id,
+                                                      eventsList[index].name,
+                                                      FirebaseAuth.instance
+                                                          .currentUser!.uid,
+                                                      'event-rentals',
+                                                      eventsList[index].price,
+                                                      eventsList[index]
+                                                          .images
+                                                          .first,
+                                                      '',
+                                                      '',
+                                                      '',
+                                                      eventsList[index].rating,
+                                                      '',
+                                                      '');
+
+                                                  docRef.update(
+                                                      {'isFavorite': true});
+                                                } else {
+                                                  await Wishlist
+                                                      .removeFromWishlist(
+                                                          eventsList[index].id);
+                                                  docRef.update(
+                                                      {'isFavorite': false});
+                                                }
+                                              },
+                                              child: eventsList[index]
+                                                          .isFavorite ==
+                                                      true
+                                                  ? const Icon(
+                                                      size: 25,
+                                                      Icons.favorite,
+                                                      color: Colors.red,
+                                                    )
+                                                  : const Icon(
+                                                      size: 25,
+                                                      Icons.favorite_outline,
+                                                      color: Colors.white,
+                                                    ),
                                             ),
                                           ),
+                                       
+                                      
                                         ),
                                       ),
                                       Expanded(

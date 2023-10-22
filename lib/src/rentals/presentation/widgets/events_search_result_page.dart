@@ -322,17 +322,17 @@ class _EventSearchResultPageState extends State<EventSearchResultPage> {
                                     fit: BoxFit.cover,
                                     image: AssetImage(
                                         'assets/images/event_space.png'))),
-                            child: const Align(
-                              alignment: Alignment.topLeft,
-                              child: Padding(
-                                padding: EdgeInsets.all(5.0),
-                                child: Icon(
-                                  size: 18,
-                                  Icons.favorite_outline,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
+                            // child: const Align(
+                            //   alignment: Alignment.topLeft,
+                            //   child: Padding(
+                            //     padding: EdgeInsets.all(5.0),
+                            //     child: Icon(
+                            //       size: 18,
+                            //       Icons.favorite_outline,
+                            //       color: Colors.white,
+                            //     ),
+                            //   ),
+                            // ),
                           ),
                           Expanded(
                             child: Container(
@@ -373,7 +373,6 @@ class _EventSearchResultPageState extends State<EventSearchResultPage> {
                                       padding: const EdgeInsets.only(top: 30),
                                       child: Row(
                                         children: [
-                                       
                                           const Icon(
                                             Icons.star,
                                             size: 18,

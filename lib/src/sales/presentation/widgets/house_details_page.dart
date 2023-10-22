@@ -8,6 +8,7 @@ import 'package:palace_and_chariots/src/checkout/presentation/pages/checkout_pag
 import 'package:palace_and_chariots/src/sales/presentation/widgets/gallery_page.dart';
 
 import '../../../checkout/presentation/pages/sales_checkout_page.dart';
+import '../../../wishlist/wishlist.dart';
 import '../../accommodation/domain/entities/house.dart';
 import 'accomoodation_sales_gallery_page.dart';
 
@@ -76,12 +77,55 @@ class _SalesDetailsPageAccommodationState
         ),
         elevation: 0,
         actions: [
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.favorite_border,
-                color: Colors.black87,
-              ))
+          Padding(
+            padding: EdgeInsets.only(right: 20),
+            child: GestureDetector(
+              onTap: () async {
+                ///add to wishlist
+                ///
+                ///
+                DocumentReference docRef = FirebaseFirestore.instance
+                    .doc('houses/${widget.accommodation.id}');
+
+                if (widget.accommodation.isFavorite == false) {
+                  await Wishlist.addToWishlist(
+                      widget.accommodation.id,
+                      widget.accommodation.name,
+                      FirebaseAuth.instance.currentUser!.uid,
+                      'house-sales',
+                      widget.accommodation.price,
+                      widget.accommodation.images.first,
+                      '',
+                      '',
+                      '',
+                      widget.accommodation.rating,
+                      '',
+                      '',
+                      '',
+                      widget.accommodation.condition,
+                      widget.accommodation.location,
+                      widget.accommodation.amenities['bathrooms'],
+                      widget.accommodation.amenities['bedrooms']);
+
+                  docRef.update({'isFavorite': true});
+                } else {
+                  await Wishlist.removeFromWishlist(widget.accommodation.id);
+                  docRef.update({'isFavorite': false});
+                }
+              },
+              child: widget.accommodation.isFavorite == true
+                  ? const Icon(
+                      size: 25,
+                      Icons.favorite,
+                      color: Colors.red,
+                    )
+                  : const Icon(
+                      size: 25,
+                      Icons.favorite_outline,
+                      color: Colors.black,
+                    ),
+            ),
+          ),
         ],
       ),
       body: FutureBuilder(

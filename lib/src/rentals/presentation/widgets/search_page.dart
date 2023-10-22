@@ -100,6 +100,7 @@ class _SearchPageState extends State<SearchPage> {
                                               transmission:
                                                   suggestion.transmission,
                                               category: suggestion.category,
+                                              id: suggestion.id,
                                             )
                                           : VehicleDetailsPage(
                                               color: suggestion.color,
@@ -117,6 +118,7 @@ class _SearchPageState extends State<SearchPage> {
                                               // speed: widget
                                               //     .privateJets![index].speed,
                                               range: suggestion.range,
+                                              id: suggestion.id,
                                             )));
                         },
                       ),

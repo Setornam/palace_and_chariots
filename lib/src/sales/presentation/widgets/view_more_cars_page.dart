@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../shared/theme/color_scheme.dart';
+import '../../../wishlist/wishlist.dart';
 import '../../cars/domain/entities/car.dart';
 import 'cars_details_page.dart';
 
@@ -350,8 +353,6 @@ class _ViewMoreCarsPageState extends State<ViewMoreCarsPage> {
                                           //   valueListenable:
                                           //       isSortByLowestRatingChecked,
                                           // )
-                                      
-                                      
                                         ],
                                       ),
                                     ),
@@ -419,14 +420,51 @@ class _ViewMoreCarsPageState extends State<ViewMoreCarsPage> {
                                   image: NetworkImage(
                                     sortedCars[index].images.first,
                                   ))),
-                          child: const Align(
+                          child: Align(
                             alignment: Alignment.topLeft,
                             child: Padding(
                               padding: EdgeInsets.all(5.0),
-                              child: Icon(
-                                size: 18,
-                                Icons.favorite_outline,
-                                color: Colors.white,
+                              child: GestureDetector(
+                                onTap: () async {
+                                  ///add to wishlist
+                                  ///
+                                  ///
+                                  DocumentReference docRef = FirebaseFirestore
+                                      .instance
+                                      .doc('cars/${sortedCars[index].id}');
+
+                                  if (sortedCars[index].isFavorite == false) {
+                                    await Wishlist.addToWishlist(
+                                      sortedCars[index].id,
+                                      sortedCars[index].name,
+                                      FirebaseAuth.instance.currentUser!.uid,
+                                      'car-sales',
+                                      sortedCars[index].price,
+                                      sortedCars[index].images.first,
+                                      sortedCars[index].color,
+                                      '',
+                                      '',
+                                      sortedCars[index].rating,
+                                    );
+
+                                    docRef.update({'isFavorite': true});
+                                  } else {
+                                    await Wishlist.removeFromWishlist(
+                                        sortedCars[index].id);
+                                    docRef.update({'isFavorite': false});
+                                  }
+                                },
+                                child: sortedCars[index].isFavorite == true
+                                    ? const Icon(
+                                        size: 25,
+                                        Icons.favorite,
+                                        color: Colors.red,
+                                      )
+                                    : const Icon(
+                                        size: 25,
+                                        Icons.favorite_outline,
+                                        color: Colors.white,
+                                      ),
                               ),
                             ),
                           ),
